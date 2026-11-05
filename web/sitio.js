@@ -1,5 +1,5 @@
 // JavaScript mínimo de la web (BRIEF, sección 8).
-const WHATSAPP = "51907629950";
+const WHATSAPP = "51924285500";
 
 // Respaldo del listón para navegadores sin animaciones ligadas al scroll.
 const liston = document.querySelector(".liston");
