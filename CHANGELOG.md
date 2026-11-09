@@ -14,6 +14,8 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ## [Sin publicar]
 
+## [0.3.0] — 09/11/2026
+
 ### Agregado
 
 - Proyecto Astro 7 con TypeScript estricto, en varias páginas: Inicio, Proyectos (con filtros), una página por obra, Servicios, Cursos, Estudio, Contacto, Aviso de privacidad, Declaración de accesibilidad y la página 404. Los wireframes se reemplazan por esta versión, con recuadros "Pendiente" en lugar de fotos.
@@ -65,6 +67,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - PDF de los wireframes v2.
 - `.gitignore` como lista blanca, para que no se suba información interna del estudio.
 
-[Sin publicar]: https://github.com/FavioCanev/web-1903-arquitectos/compare/v0.2.0...HEAD
+[Sin publicar]: https://github.com/FavioCanev/web-1903-arquitectos/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/FavioCanev/web-1903-arquitectos/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/FavioCanev/web-1903-arquitectos/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/FavioCanev/web-1903-arquitectos/releases/tag/v0.1.0
