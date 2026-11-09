@@ -20,7 +20,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - Sistema de diseño con todas las variables (colores, espaciado, tipografía y tiempos de animación) en `src/styles/tokens.css`.
 - Datos del estudio en un solo lugar (`src/config.ts`).
 - Plantilla común: barra superior con la hora de Cajamarca en vivo, navegación con menú en celular, pie con el patrón de borde a borde, botón flotante de WhatsApp, listón animado que se mantiene entre páginas y enlace "Saltar al contenido".
-- Proyectos como archivos de datos con esquema validado: la construcción falla si falta un dato obligatorio.
+- Proyectos como archivos de datos con esquema validado: la construcción falla si falta un dato obligatorio, o si una foto con archivo tiene su texto alternativo o su pie todavía [pendiente].
 - Formulario de contacto que abre WhatsApp con el mensaje escrito, con casilla de consentimiento obligatoria y botón de respaldo sin JavaScript.
 - Revisiones automáticas en cada *pull request*: tipos, prueba del mensaje de WhatsApp, construcción, enlaces internos y accesibilidad (pa11y-ci, WCAG 2.2 AA).
 - Nivel 3 de la arquitectura (componentes de Astro) en `docs/arquitectura.md`.

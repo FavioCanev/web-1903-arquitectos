@@ -1,17 +1,11 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { esquemaFoto } from "./lib/esquemas";
 
 // Cada proyecto es un archivo en src/content/proyectos/. El nombre del archivo es la dirección de su página
 // (minúsculas, sin tildes, con guiones). Si falta un dato obligatorio, la construcción falla (mapa del sitio).
 // Un dato que el estudio aún no entrega se deja fuera (area, anio, encargo, solucion) o se escribe entre [corchetes].
-const foto = z.object({
-  /** Archivo de la foto. Sin él se muestra el recuadro "Pendiente". */
-  src: z.string().optional(),
-  alt: z.string().min(1),
-  pie: z.string().min(1),
-});
-
 const proyectos = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/proyectos" }),
   schema: z.object({
@@ -35,7 +29,7 @@ const proyectos = defineCollection({
     fotografo: z.string().optional(),
     encargo: z.string().optional(),
     solucion: z.string().optional(),
-    fotos: z.array(foto).min(1),
+    fotos: z.array(esquemaFoto).min(1),
   }),
 });
 
