@@ -1,0 +1,17 @@
+---
+import TarjetaProyecto from "./TarjetaProyecto.astro";
+import { rendersEnDesarrollo } from "../lib/proyectos";
+
+const renders = await rendersEnDesarrollo();
+---
+
+<!-- Desplazamiento horizontal nativo: se desliza con el dedo, el mouse y el teclado (flechas, con el foco en el carrusel) -->
+<div class="carrusel" tabindex="0" role="region" aria-label="Proyectos en diseño: desliza para ver más">
+  {renders.map((p) => <TarjetaProyecto proyecto={p} />)}
+</div>
+
+<style>
+  .carrusel { display: grid; grid-auto-flow: column; grid-auto-columns: 40%; gap: var(--e4); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--e3); scrollbar-color: var(--vino-2) transparent; }
+  .carrusel > :global(*) { scroll-snap-align: start; }
+  @media (max-width: 900px) { .carrusel { grid-auto-columns: 82%; gap: var(--e3); } }
+</style>

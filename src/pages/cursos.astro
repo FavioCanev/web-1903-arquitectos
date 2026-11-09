@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { enlaceWhatsapp, mensajeCurso } from "../lib/whatsapp";
+
+// Virtuales: se inscriben en Hotmart. Presenciales: por WhatsApp con el mensaje escrito (ADR 0006).
+// Sin precio en la web. Revit es presencial (actualizado por el estudio en la hoja).
+interface Curso {
+  nombre: string;
+  modalidad: "Virtual" | "Presencial";
+  /** Página del curso en Hotmart; falta hasta que el estudio la entregue. */
+  hotmart?: string;
+}
+const cursos: Curso[] = [
+  { nombre: "AutoCAD para arquitectos", modalidad: "Virtual" },
+  { nombre: "Lectura de planos", modalidad: "Virtual" },
+  { nombre: "V-Ray: visualización arquitectónica", modalidad: "Presencial" },
+  { nombre: "Revit", modalidad: "Presencial" },
+];
+
+const inscripcion = (c: Curso) =>
+  c.modalidad === "Presencial" ? enlaceWhatsapp(mensajeCurso(c.nombre)) : c.hotmart;
+---
+
+<Layout
+  titulo="Cursos de AutoCAD, V-Ray y Revit — 1903 Arquitectos"
+  descripcion="Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú."
+>
+  <section class="seccion cursos">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">Cursos</span><h1 class="h2">Aprende con el estudio</h1></div>
+        <p>Los cursos virtuales se inscriben en Hotmart; los presenciales, por WhatsApp. [Redacción por confirmar.]</p>
+      </div>
+      <div class="grilla">
+        {cursos.map((c) => {
+          const href = inscripcion(c);
+          return (
+            <article class="curso">
+              <span class="curso__modalidad">{c.modalidad}</span>
+              <h2 class="h3">{c.nombre}</h2>
+              <p class="pequeno texto-2">[Duración] · [Fechas]</p>
+              {href
+                ? <a class="boton boton--primario" href={href}>Inscribirme<span class="solo-lectores"> en {c.nombre}</span></a>
+                : <span class="boton boton--primario boton--inactivo">Inscripción próximamente [enlace de Hotmart pendiente]</span>}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor certificado">
+      <div><span class="etiqueta">Certificado</span><h2 class="h2">Con respaldo profesional</h2></div>
+      <p class="texto-2">Los cursos entregan un certificado en asociación con el Colegio de Arquitectos del Perú. [Redacción por confirmar.]</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cursos { background: var(--amarillo); }
+  .grilla { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e3); }
+  .curso { background: var(--fondo); border-radius: var(--radio); padding: var(--e4) var(--e3); display: grid; gap: var(--e2); align-content: start; min-width: 0; }
+  .curso__modalidad { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--vino-2); }
+  .curso .boton { justify-self: start; margin-top: var(--e1); }
+  .boton--inactivo { background: var(--pendiente); cursor: default; line-height: 1.3; padding-block: var(--e1); }
+  .boton--inactivo:hover { transform: none; }
+  .certificado { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); align-items: end; }
+  @media (max-width: 900px) {
+    .grilla, .certificado { grid-template-columns: minmax(0, 1fr); }
+    .certificado { gap: var(--e4); }
+  }
+</style>

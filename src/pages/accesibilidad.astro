@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { estudio } from "../config";
+---
+
+<Layout titulo="Declaración de accesibilidad — 1903 Arquitectos" descripcion="Nivel de accesibilidad que busca esta web, limitaciones conocidas y dónde reportar un problema.">
+  <section class="seccion">
+    <div class="contenedor texto">
+      <span class="etiqueta">Declaración de accesibilidad</span>
+      <h1 class="h2">Una web para todas las personas</h1>
+
+      <h2 class="h3">Nivel que busca la web</h2>
+      <p>Esta web busca cumplir las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2, nivel AA, como criterio técnico para cumplir el artículo 23.2 de la Ley 29973, Ley General de la Persona con Discapacidad.</p>
+
+      <h2 class="h3">Limitaciones conocidas</h2>
+      <p>[Lista de limitaciones conocidas: se completa y actualiza en cada publicación, después de la revisión manual.]</p>
+
+      <h2 class="h3">¿Algo no te funciona?</h2>
+      <p>Cuéntanos qué página y qué problema encontraste, escribiendo a <a href={`mailto:${estudio.correo}`}>{estudio.correo}</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .texto { display: grid; gap: var(--e3); max-width: 760px; margin: 0; }
+  .texto :global(h2.h3) { margin-top: var(--e3); }
+</style>

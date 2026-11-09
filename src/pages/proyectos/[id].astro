@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Foto from "../../components/Foto.astro";
+import { datoOPendiente, obrasTerminadas, tituloProyecto, urlProyecto } from "../../lib/proyectos";
+
+// Una sola plantilla genera la página de cada obra terminada a partir de su archivo de datos.
+export async function getStaticPaths() {
+  const obras = await obrasTerminadas();
+  return obras.map((proyecto, i) => ({
+    params: { id: proyecto.id },
+    props: {
+      proyecto,
+      // La lista da la vuelta: la última obra enlaza a la primera, y así no queda ningún enlace roto.
+      anterior: obras[(i - 1 + obras.length) % obras.length],
+      siguiente: obras[(i + 1) % obras.length],
+    },
+  }));
+}
+
+const { proyecto, anterior, siguiente } = Astro.props;
+const d = proyecto.data;
+const ficha = [
+  ["Lugar", d.ciudad],
+  ["Área", d.area ? `${d.area} m²` : "[m²]"],
+  ["Año", datoOPendiente(d.anio, "Año")],
+  ["Tipo", d.tipo],
+];
+// Disposición de la galería según la posición de la foto (la del wireframe v2)
+const disposicion = ["g-ancha", "g-7", "g-5 bajo", "g-mitad", "g-mitad"];
+const proporcion = ["r-16x9", "r-4x5", "r-4x5", "r-1x1", "r-1x1"];
+---
+
+<Layout
+  titulo={tituloProyecto(d)}
+  descripcion={`Conoce ${d.nombre}, un proyecto de ${d.tipo.toLowerCase()} de 1903 Arquitectos.`}
+  pieAmarillo
+>
+  <!-- Foto principal fija "como ventana": el contenido pasa por encima (solo CSS) -->
+  <section class="portada" aria-label="Foto principal">
+    <div class="pendiente portada__foto" style={d.fotos[0]?.src ? `background-image:url(${d.fotos[0].src})` : undefined}>
+      {!d.fotos[0]?.src && `Foto principal pendiente · ${d.nombre}`}
+    </div>
+  </section>
+
+  <div class="contenido">
+    <div class="contenedor">
+      <nav class="migas" aria-label="Migas de pan">
+        <a href="/">Inicio</a> / <a href="/proyectos/">Proyectos</a> / <span aria-current="page">{d.nombre}</span>
+      </nav>
+
+      <div class="titulo">
+        <div>
+          <span class="etiqueta">{d.tipo}</span>
+          <h1 class="h1">{d.nombre}</h1>
+          <p class="texto-2" style="margin-top:8px">{d.tipo} en {d.ciudad}</p>
+        </div>
+        <dl class="ficha">
+          {ficha.map(([nombre, valor]) => <div><dt>{nombre}</dt><dd>{valor}</dd></div>)}
+        </dl>
+      </div>
+
+      <div class="relato">
+        <div class="bloque"><span class="etiqueta">Encargo</span><p>{d.encargo ?? "[Qué pidió el cliente, 2–3 líneas. Por confirmar con el estudio.]"}</p></div>
+        <div class="bloque"><span class="etiqueta">Solución</span><p>{d.solucion ?? "[Qué hizo el estudio, 2–3 líneas. Por confirmar con el estudio.]"}</p></div>
+      </div>
+
+      <div class="galeria">
+        {d.fotos.map((foto, i) => (
+          <figure class={disposicion[i % disposicion.length]}>
+            <Foto src={foto.src} alt={foto.alt} clase={proporcion[i % proporcion.length]} />
+            <figcaption>{foto.pie}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="credito">Fotografía: {d.fotografo ?? "[Fotógrafo pendiente]"}</p>
+
+      <nav class="vecinos" aria-label="Otros proyectos">
+        <a href={urlProyecto(anterior)}><span class="etiqueta">Proyecto anterior</span><span class="h3">{anterior.data.nombre}</span></a>
+        <a href={urlProyecto(siguiente)}><span class="etiqueta">Proyecto siguiente</span><span class="h3">{siguiente.data.nombre}</span></a>
+      </nav>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .portada__foto {
+    min-height: clamp(460px, 70vh, 760px); border-radius: 0;
+    background-attachment: fixed; background-position: center; background-size: cover;
+  }
+  .contenido { background: var(--fondo); position: relative; }
+  .migas { font-size: 13px; color: var(--vino-2); padding-top: var(--e3); }
+  .migas a { text-decoration: none; }
+  .titulo { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--e8); padding: var(--e8) 0; align-items: end; }
+  .ficha { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e3); margin: 0; }
+  .ficha dt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--vino-2); margin-bottom: 4px; }
+  .ficha dd { margin: 0; font-size: 16px; }
+  .relato { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); padding-bottom: var(--seccion); }
+  .bloque { display: grid; gap: var(--e1); padding-top: var(--e3); border-top: 1px solid var(--linea); align-content: start; }
+  .galeria { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--e3); }
+  .galeria figure { display: grid; gap: var(--e1); min-width: 0; }
+  .galeria figcaption { font-size: 13px; color: var(--vino-2); }
+  .g-ancha { grid-column: 1 / -1; }
+  .g-mitad { grid-column: span 6; }
+  .g-7 { grid-column: span 7; }
+  .g-5 { grid-column: span 5; }
+  .g-5.bajo { margin-top: var(--e12); }
+  .credito { margin-top: var(--e6); font-size: 14px; color: var(--vino-2); }
+  .vecinos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--linea); margin-top: var(--seccion); }
+  .vecinos a { padding: var(--e6) 0; text-decoration: none; display: grid; gap: 4px; }
+  .vecinos a + a { text-align: right; border-left: 1px solid var(--linea); padding-left: var(--e4); }
+
+  @media (max-width: 900px) {
+    .titulo, .relato { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+    .ficha { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .galeria { grid-template-columns: minmax(0, 1fr); }
+    .galeria > :global(*) { grid-column: 1 / -1; margin-top: 0; }
+  }
+</style>
