@@ -1,0 +1,17 @@
+{
+  "nombre": "Jardín (Porongo)",
+  "tipo": "Interiorismo comercial",
+  "categorias": [
+    "Interiorismo comercial"
+  ],
+  "ciudad": "[pendiente]",
+  "estado": "render",
+  "orden": 14,
+  "porConfirmar": true,
+  "fotos": [
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

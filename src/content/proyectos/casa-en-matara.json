@@ -1,0 +1,17 @@
+{
+  "nombre": "Casa en Matara",
+  "tipo": "Vivienda",
+  "categorias": [
+    "Vivienda"
+  ],
+  "ciudad": "Matara, Cajamarca",
+  "estado": "render",
+  "orden": 12,
+  "porConfirmar": true,
+  "fotos": [
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

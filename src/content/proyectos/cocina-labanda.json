@@ -1,0 +1,33 @@
+{
+  "nombre": "Cocina Labanda",
+  "tipo": "Vivienda",
+  "categorias": [
+    "Vivienda"
+  ],
+  "ciudad": "[pendiente]",
+  "estado": "terminado",
+  "orden": 8,
+  "inicio": true,
+  "fotos": [
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

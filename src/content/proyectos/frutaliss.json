@@ -1,0 +1,33 @@
+{
+  "nombre": "Frutaliss",
+  "tipo": "Interiorismo comercial",
+  "categorias": [
+    "Interiorismo comercial"
+  ],
+  "ciudad": "[pendiente]",
+  "estado": "terminado",
+  "orden": 10,
+  "inicio": true,
+  "fotos": [
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}
