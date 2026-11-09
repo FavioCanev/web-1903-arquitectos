@@ -53,5 +53,6 @@ const { amarillo = false } = Astro.props;
   .pie__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--e2); font-size: 13px; color: var(--vino-2); border-top: 1px solid var(--linea); padding-top: var(--e3); }
   .pie--amarillo { background: var(--amarillo); }
   .pie--amarillo .pie__legal { color: var(--vino); border-top-color: rgba(83, 9, 10, 0.25); }
-  @media (max-width: 900px) { .pie__columnas { grid-template-columns: minmax(0, 1fr); } }
+  /* En celular se deja aire abajo para que el botón flotante de WhatsApp no tape los enlaces legales */
+  @media (max-width: 900px) { .pie__columnas { grid-template-columns: minmax(0, 1fr); } .pie { padding-bottom: var(--e12); } }
 </style>
