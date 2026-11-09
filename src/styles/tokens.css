@@ -1,0 +1,52 @@
+/* Sistema de diseño: todas las variables viven aquí (BRIEF, sección 8).
+   Colores de la paleta oficial del estudio, confirmada el 02/11/2026. */
+
+:root {
+  /* Color */
+  --fondo: #fdfdfd;
+  --fondo-alt: #f6f1ea;
+  --vino: #53090a;          /* texto principal y bloques oscuros (14,9:1 sobre el fondo) */
+  --vino-2: #822325;        /* texto secundario (9,5:1) */
+  --naranja: #f5700b;       /* acento único: botones, siempre con texto vino */
+  --amarillo: #ffde58;      /* una sola banda por página */
+  --claro: #fdfdfd;
+  --linea: #e4d8cc;
+  --pendiente: #ece6df;     /* recuadros "Pendiente" en lugar de fotos */
+  --sobre-vino: #f3d9c9;    /* texto secundario sobre fondo vino */
+
+  /* Tipografía */
+  --fuente: "Jost", system-ui, "Segoe UI", sans-serif;
+
+  /* Espaciado (múltiplos de 8) */
+  --e1: 8px;
+  --e2: 16px;
+  --e3: 24px;
+  --e4: 32px;
+  --e6: 48px;
+  --e8: 64px;
+  --e12: 96px;
+  --margen: clamp(20px, 4.4vw, 64px);
+  --seccion: clamp(80px, 10vw, 136px);
+  --ancho: 1440px;
+  --radio: 4px;
+
+  /* Capas */
+  --capa-liston: -1;
+  --capa-nav: 10;
+  --capa-whatsapp: 20;
+
+  /* Animación (ADR 0012): duraciones y curva en un solo lugar.
+     Valores iniciales; se ajustan viéndolos en pantalla. */
+  --dur-corta: 150ms;
+  --dur-media: 300ms;
+  --dur-larga: 600ms;
+  --curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-corta: 0ms;
+    --dur-media: 0ms;
+    --dur-larga: 0ms;
+  }
+}

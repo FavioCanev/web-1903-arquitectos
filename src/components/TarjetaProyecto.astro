@@ -1,0 +1,31 @@
+---
+import Foto from "./Foto.astro";
+import { datoOPendiente, urlProyecto, type Proyecto } from "../lib/proyectos";
+
+interface Props {
+  proyecto: Proyecto;
+}
+const { proyecto } = Astro.props;
+const d = proyecto.data;
+const esRender = d.estado === "render";
+// Los renders no tienen página propia (mapa del sitio): su tarjeta no es un enlace.
+const Etiqueta = esRender ? "article" : "a";
+const datos = [d.ciudad, d.area ? `${d.area} m²` : "[m²]", datoOPendiente(d.anio, "Año")].join(" · ");
+---
+
+<Etiqueta class="tarjeta" href={esRender ? undefined : urlProyecto(proyecto)} data-categorias={JSON.stringify(d.categorias)}>
+  {esRender && <span class="marca-render">Render{d.porConfirmar ? " [por confirmar]" : ""}</span>}
+  <Foto clase={esRender ? "r-3x2" : "r-4x5"} alt="" pendiente={`${esRender ? "Render" : "Foto"} pendiente · ${d.nombre}`} src={d.fotos[0]?.src} />
+  <span class="tarjeta__datos">{datos}</span>
+  <div class="tarjeta__titulo"><h3 class="h3">{d.nombre}</h3><span class="tarjeta__tipo">{d.tipo}</span></div>
+</Etiqueta>
+
+<style>
+  .tarjeta { display: grid; gap: var(--e2); text-decoration: none; min-width: 0; align-content: start; }
+  .tarjeta[hidden] { display: none; }
+  a.tarjeta:hover .h3 { text-decoration: underline; text-decoration-color: var(--naranja); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+  .tarjeta__datos { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--vino-2); }
+  .tarjeta__titulo { display: flex; justify-content: space-between; gap: var(--e2); align-items: baseline; }
+  .tarjeta__tipo { font-size: 14px; color: var(--vino-2); }
+  .marca-render { justify-self: start; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid var(--vino-2); border-radius: 999px; padding: 5px 12px; }
+</style>

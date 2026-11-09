@@ -4,7 +4,7 @@
 ![Estado: en desarrollo](https://img.shields.io/badge/estado-en%20desarrollo-F5700B)
 ![Licencia: todos los derechos reservados](https://img.shields.io/badge/licencia-todos%20los%20derechos%20reservados-53090A)
 
-> **In English:** portfolio website for 1903 Arquitectos, an architecture and interior design studio in Cajamarca, Peru. It is a static site (Astro, in progress), hosted on Cloudflare, with no cookies and accessibility to WCAG 2.2 AA. The code is published with the studio's permission as part of its author's portfolio; all rights reserved. Documentation is in Spanish.
+> **In English:** portfolio website for 1903 Arquitectos, an architecture and interior design studio in Cajamarca, Peru. It is a static site built with Astro, hosted on Cloudflare, with no cookies and accessibility to WCAG 2.2 AA. The code is published with the studio's permission as part of its author's portfolio; all rights reserved. Documentation is in Spanish.
 
 Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorismo de Cajamarca, Perú. Su objetivo es mostrar la obra terminada del estudio, presentar sus servicios y sus cursos, y que el visitante termine escribiendo por WhatsApp o visitando el estudio.
 
@@ -12,9 +12,9 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 
 | Etapa | Estado |
 |---|---|
-| Wireframes v2 (inicio y página de proyecto, en HTML y CSS) | Hechos y revisados por el estudio |
+| Wireframes v2 (inicio y página de proyecto, en HTML y CSS) | Hechos y revisados por el estudio; reemplazados por la migración a Astro (quedan en la versión 0.1.0) |
 | Documentación: decisiones de arquitectura, mapa del sitio y arquitectura | Hecha |
-| Migración a Astro, en varias páginas | Pendiente |
+| Migración a Astro, en varias páginas (con recuadros "Pendiente" en lugar de fotos) | Hecha, en revisión |
 | Mockups con las fotos en alta calidad | Pendiente de las fotos |
 | Publicación en `1903arq.com` | Prevista antes del 15/11/2026 |
 
@@ -24,20 +24,21 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 
 | Tecnología | Para qué | Estado |
 |---|---|---|
-| HTML, CSS y JavaScript | Los wireframes actuales, en `web/` | En uso |
-| [Astro](https://astro.build) 7 | Generar el sitio estático a partir de componentes y datos | Prevista |
+| [Astro](https://astro.build) 7 | Generar el sitio estático a partir de componentes y datos | En uso |
+| TypeScript | Revisar los datos de cada proyecto y el código | En uso |
 | Motion | Las animaciones ligadas al scroll | Prevista |
-| Jost, con Fontsource | La tipografía, alojada en la propia web | En uso (en TTF; pasa a WOFF2 con Astro) |
+| Jost, con Fontsource | La tipografía, alojada en la propia web, en WOFF2 | En uso |
+| Vitest y pa11y-ci | La prueba del mensaje de WhatsApp y la revisión de accesibilidad | En uso |
 | Cloudflare | Alojamiento, dominio, estadísticas sin cookies y almacenamiento de fotos (R2) | Prevista |
 | GitHub | Código, revisiones automáticas y análisis de seguridad (CodeQL) | En uso |
 
-*Leyenda: "Tecnología" es la herramienta o el servicio. "Para qué" es su función en la web. "Estado" indica si ya se usa o si se usará con la migración a Astro. "Sitio estático" es una web hecha solo de archivos, sin servidor ni base de datos. "TTF" y "WOFF2" son formatos de archivo de fuentes; WOFF2 pesa menos.*
+*Leyenda: "Tecnología" es la herramienta o el servicio. "Para qué" es su función en la web. "Estado" indica si ya se usa o si se usará más adelante. "Sitio estático" es una web hecha solo de archivos, sin servidor ni base de datos. "WOFF2" es el formato de archivo de fuentes pensado para la web: pesa poco. "TypeScript" es JavaScript con tipos. "Vitest" corre pruebas automáticas; "pa11y-ci" revisa la accesibilidad de cada página.*
 
 El porqué de cada elección está en las [decisiones de arquitectura](docs/adr/README.md).
 
 ## Cómo arrancar el proyecto
 
-Por ahora el proyecto son los wireframes en HTML y CSS. Para verlos hace falta [Python](https://www.python.org) (cualquier versión 3).
+Hace falta [Node](https://nodejs.org) 22.12 o superior (incluye `npm`).
 
 1. Clona el repositorio y entra a su carpeta:
 
@@ -46,17 +47,34 @@ Por ahora el proyecto son los wireframes en HTML y CSS. Para verlos hace falta [
    cd web-1903-arquitectos
    ```
 
-2. Levanta un servidor local:
+2. Instala las dependencias:
 
    ```bash
-   python -m http.server 8191 --directory web
+   npm install
    ```
 
-3. Abre `http://localhost:8191` en el navegador. La página de proyecto de ejemplo está en `http://localhost:8191/proyecto.html`.
+3. Levanta el servidor de desarrollo y abre `http://localhost:4321` en el navegador:
 
-Abrir el archivo `index.html` con doble clic también funciona, pero algunas cosas, como las fuentes, pueden no cargar sin un servidor.
+   ```bash
+   npm run dev
+   ```
 
-[Esta sección cambia con la migración a Astro: los pasos pasarán a ser instalar las dependencias con `npm install` y levantar el servidor de desarrollo con `npm run dev`.]
+Los comandos del proyecto:
+
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Levanta el servidor de desarrollo; los cambios se ven al guardar |
+| `npm run build` | Construye la web en la carpeta `dist/` |
+| `npm run preview` | Sirve la web ya construida, tal como la verá el visitante |
+| `npm run check` | Revisa los tipos de TypeScript y las plantillas de Astro |
+| `npm test` | Corre las pruebas (hoy, la del mensaje de WhatsApp) |
+| `npm run enlaces` | Revisa que no haya enlaces internos rotos (después de `npm run build`) |
+| `npm run accesibilidad` | Revisa cada página con pa11y-ci, contra WCAG 2.2 AA (después de `npm run build`). Necesita Chrome: si no se encuentra solo, indica su ruta en la variable `PA11Y_CHROME` |
+| `npm run revisar` | Corre todo lo anterior, en el mismo orden que las revisiones automáticas de GitHub |
+
+*Leyenda: "Comando" es lo que se escribe en la terminal, dentro de la carpeta del proyecto. "Qué hace" explica para qué sirve.*
+
+Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content/proyectos/`; su nombre es la dirección de su página (por ejemplo, `cafetos.json` da `/proyectos/cafetos/`). Si falta un dato obligatorio, `npm run build` falla y dice cuál. Los datos del estudio (WhatsApp, correo, dirección, horario y redes) están en `src/config.ts`.
 
 ## Cómo se publica
 
@@ -84,7 +102,7 @@ Abrir el archivo `index.html` con doble clic también funciona, pero algunas cos
   *Leyenda: "Tipo" es la palabra con la que empieza el mensaje del commit, seguida de dos puntos (por ejemplo, `fix: corrige el número de WhatsApp`). "Cuándo se usa" explica qué clase de cambio describe. Un "commit" es cada cambio guardado en el historial del repositorio.*
 
 - **Versiones:** se numeran con [versionado semántico](https://semver.org/lang/es/): 0.x mientras se construye y **1.0.0 el día de la publicación**. Cada versión se registra en el `CHANGELOG.md`.
-- **Revisiones automáticas:** CodeQL revisa la seguridad del código en cada cambio ([ADR 0014](docs/adr/0014-analisis-de-seguridad-codeql.md)). Con la migración a Astro se suman la construcción, los enlaces rotos y la accesibilidad ([ADR 0013](docs/adr/0013-accesibilidad-wcag-2-2-aa.md)).
+- **Revisiones automáticas:** CodeQL revisa la seguridad del código en cada cambio ([ADR 0014](docs/adr/0014-analisis-de-seguridad-codeql.md)). Con cada *pull request* también corren la construcción, la prueba del mensaje de WhatsApp, los enlaces rotos y la accesibilidad ([ADR 0013](docs/adr/0013-accesibilidad-wcag-2-2-aa.md)), definidas en `.github/workflows/revisiones.yml`.
 - **Lista blanca:** el repositorio es público y solo sube los archivos nombrados en `.gitignore`. Cada carpeta o archivo nuevo hay que agregarlo a esa lista ([ADR 0010](docs/adr/0010-repositorio-publico-lista-blanca.md)).
 
 ## Documentación
@@ -102,7 +120,7 @@ Abrir el archivo `index.html` con doble clic también funciona, pero algunas cos
 
 - **El código** es propiedad de **1903 ARQUITECTOS S.A.C.**, con todos los derechos reservados. Se publica con autorización del estudio como portafolio de su autor; no se permite reutilizarlo. Ver [LICENSE](LICENSE).
 - **Las fotografías** son de sus autores y de 1903 Arquitectos. No se pueden reutilizar.
-- **La fuente Jost** es de The Jost Project Authors (Indestructible Type) y se usa con la licencia SIL Open Font License 1.1 (ver `web/fuentes/OFL-Jost.txt`).
+- **La fuente Jost** es de The Jost Project Authors (Indestructible Type) y se usa con la licencia SIL Open Font License 1.1 (su licencia viene en el paquete `@fontsource/jost`).
 
 ## Créditos
 

@@ -1,0 +1,17 @@
+{
+  "nombre": "Galería Bazán",
+  "tipo": "Interiorismo comercial",
+  "categorias": [
+    "Interiorismo comercial"
+  ],
+  "ciudad": "Cajamarca",
+  "estado": "render",
+  "orden": 11,
+  "porConfirmar": true,
+  "fotos": [
+    {
+      "alt": "[Descripción pendiente]",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

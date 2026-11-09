@@ -1,0 +1,23 @@
+---
+import TarjetaProyecto from "./TarjetaProyecto.astro";
+import type { Proyecto } from "../lib/proyectos";
+
+interface Props {
+  proyectos: Proyecto[];
+}
+const { proyectos } = Astro.props;
+---
+
+<div class="mosaico" data-mosaico>
+  {proyectos.map((p) => <TarjetaProyecto proyecto={p} />)}
+</div>
+
+<style>
+  .mosaico { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e6) var(--e4); }
+  /* Ritmo escalonado, como Jalo */
+  .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: var(--e12); }
+  @media (max-width: 900px) {
+    .mosaico { grid-template-columns: minmax(0, 1fr); }
+    .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: 0; }
+  }
+</style>

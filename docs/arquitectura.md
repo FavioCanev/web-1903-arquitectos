@@ -145,4 +145,68 @@ Usamos los atributos de calidad de la norma **ISO/IEC 25010** como lista de lo q
 
 ## Nivel 3 — Componentes de Astro
 
-[Pendiente: se agrega después de migrar los wireframes a Astro, cuando existan las carpetas y los componentes. Describirlo antes sería suponer una estructura que puede cambiar al construirla.]
+Este nivel muestra **cómo está organizado el código** del proyecto Astro: qué carpeta cumple qué papel y cómo se arma cada página.
+
+```mermaid
+flowchart TB
+    subgraph datos["Datos"]
+        config["config.ts<br/>(WhatsApp, correo, dirección,<br/>horario, redes, navegación)"]
+        proyectos["content/proyectos/*.json<br/>(un archivo por proyecto)"]
+        esquema["content.config.ts<br/>(revisa los datos al construir)"]
+    end
+
+    subgraph logica["Funciones"]
+        whatsapp["lib/whatsapp.ts<br/>(enlaces y mensajes de WhatsApp)"]
+        libproy["lib/proyectos.ts<br/>(consultas y títulos de proyectos)"]
+    end
+
+    subgraph plantilla["Plantilla común"]
+        layout["layouts/Layout.astro"]
+        comunes["Barra superior · Navegación ·<br/>Listón · Pie · Botón de WhatsApp"]
+    end
+
+    subgraph piezas["Piezas de las páginas"]
+        tarjetas["TarjetaProyecto · MosaicoProyectos ·<br/>CarruselRenders · Foto"]
+    end
+
+    paginas["pages/*.astro<br/>(una por página; proyectos/[id] genera<br/>la de cada obra)"]
+    estilos["styles/tokens.css y base.css<br/>(sistema de diseño)"]
+
+    proyectos --> esquema
+    esquema --> libproy
+    config --> whatsapp
+    config --> comunes
+    whatsapp --> comunes
+    whatsapp --> paginas
+    libproy --> tarjetas
+    libproy --> paginas
+    tarjetas --> paginas
+    comunes --> layout
+    layout --> paginas
+    estilos --> layout
+```
+
+*Cómo leer el diagrama: cada recuadro grande agrupa un tipo de pieza del código; cada flecha significa "lo usa". Todas las páginas parten de la plantilla común y toman sus datos de los archivos de proyecto y de `config.ts`.*
+
+| Carpeta o archivo | Qué contiene | Ficha |
+|---|---|---|
+| `src/config.ts` | Los datos del estudio y la lista de la navegación, en un solo lugar | ADR 0005 |
+| `src/content.config.ts` | El esquema de los proyectos: si falta un dato obligatorio, la construcción falla | ADR 0001 |
+| `src/content/proyectos/` | Un archivo JSON por proyecto; su nombre es la dirección de la página | ADR 0001 y 0002 |
+| `src/lib/` | Funciones sin diseño: `whatsapp.ts` arma los enlaces y mensajes de WhatsApp (tiene su prueba); `proyectos.ts` consulta y ordena los proyectos | ADR 0005 y 0006 |
+| `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, enrutador, enlace "Saltar al contenido", barra superior, navegación, pie, listón y botón de WhatsApp | ADR 0012 y 0013 |
+| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (tarjeta de proyecto, mosaico, carrusel de renders y foto) | ADR 0009 |
+| `src/pages/` | Una página por archivo; `proyectos/[id].astro` genera la página de cada obra terminada | ADR 0002 |
+| `src/styles/` | `tokens.css`: todas las variables de diseño (colores, espaciado, tiempos de animación); `base.css`: los estilos que se repiten. Los estilos propios de cada pieza viven dentro de ella | ADR 0008 y 0012 |
+| `public/img/` | Los logos y el patrón de baldosa, en SVG | — |
+| `tests/` | La prueba del mensaje de WhatsApp, el revisor de enlaces internos y la configuración de la revisión de accesibilidad | ADR 0013 |
+| `.github/workflows/` | Las revisiones automáticas que corren en cada *pull request* | ADR 0013 y 0014 |
+
+*Leyenda: "Carpeta o archivo" es el lugar del repositorio. "Qué contiene" explica su papel. "Ficha" es la ADR que explica la decisión. "JSON" es un formato de archivo de datos. "Esquema" es la lista de datos que debe tener cada proyecto.*
+
+**Reglas del código** (para quien lo mantenga):
+
+- **Todo script se reinicia en cada cambio de página.** Con el enrutador de Astro, un script que corre solo al cargar la web deja de funcionar después de navegar; por eso los scripts escuchan el evento `astro:page-load` (ADR 0012). El listón es la excepción: se mantiene vivo entre páginas con `transition:persist`.
+- **Mejora progresiva.** El formulario de contacto, los filtros de proyectos y el menú de celular los activa un script; sin JavaScript, la página muestra el botón de WhatsApp, todos los proyectos y todos los enlaces.
+- **Un dato pendiente se escribe entre [corchetes]**, nunca inventado; un dato obligatorio que falte hace fallar la construcción.
+- **Las fotos son opcionales hoy:** mientras un proyecto no tenga la ruta de su foto (`src`), la web muestra el recuadro "Pendiente". Cuando lleguen las fotos reales se agrega su optimización (ADR 0011).

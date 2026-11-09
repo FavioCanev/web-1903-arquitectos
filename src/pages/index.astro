@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MosaicoProyectos from "../components/MosaicoProyectos.astro";
+import CarruselRenders from "../components/CarruselRenders.astro";
+import { estudio } from "../config";
+import { enlaceWhatsapp } from "../lib/whatsapp";
+import { obrasTerminadas, urlProyecto } from "../lib/proyectos";
+
+const obras = await obrasTerminadas();
+const destacado = obras.find((p) => p.data.destacado);
+const delInicio = obras.filter((p) => p.data.inicio);
+---
+
+<Layout
+  titulo="1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca"
+  descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales, viviendas y hoteles con identidad cajamarquina."
+>
+  <section class="inicio" aria-label="Proyecto destacado">
+    <div class="pendiente inicio__foto">
+      <div class="inicio__contenido">
+        <span class="inicio__nota">Foto pendiente · {destacado?.data.nombre}</span>
+        <h1 class="h1">{estudio.lema}</h1>
+        <div class="botones">
+          <a class="boton boton--primario" href="/proyectos/">Ver proyectos</a>
+          <a class="boton boton--secundario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
+        </div>
+        {destacado && <a class="inicio__enlace" href={urlProyecto(destacado)}>Ver el proyecto: {destacado.data.nombre}</a>}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">Proyectos</span><h2 class="h2">Obra terminada</h2></div>
+        <a class="boton boton--secundario" href="/proyectos/">Ver todos los proyectos</a>
+      </div>
+      <MosaicoProyectos proyectos={delInicio} />
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">En desarrollo</span><h2 class="h2">Proyectos en diseño</h2></div>
+        <p class="texto-2">Visualizaciones de proyectos que todavía no se construyen.</p>
+      </div>
+      <CarruselRenders />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .inicio__foto {
+    min-height: clamp(520px, 78vh, 820px); border-radius: 0; align-content: end; justify-items: start;
+    text-align: left; padding: var(--e8) var(--margen);
+  }
+  .inicio__contenido { display: grid; gap: var(--e3); max-width: 760px; text-transform: none; letter-spacing: normal; font-weight: 400; }
+  .inicio__nota { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
+  .inicio__enlace { font-size: 14px; color: var(--vino-2); }
+</style>

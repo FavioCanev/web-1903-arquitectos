@@ -1,0 +1,58 @@
+---
+import { estudio, navegacion } from "../config";
+import { enlaceWhatsapp } from "../lib/whatsapp";
+
+interface Props {
+  /** Solo la página de proyecto lleva el pie amarillo (pedido del 02/11/2026). */
+  amarillo?: boolean;
+}
+const { amarillo = false } = Astro.props;
+---
+
+<footer class:list={["pie", { "pie--amarillo": amarillo }]}>
+  <div class="contenedor">
+    <a class="pie__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" /></a>
+
+    <div class="pie__columnas">
+      <nav aria-label="Pie de página">
+        <ul>
+          {navegacion.map((e) => <li><a href={e.href}>{e.texto}</a></li>)}
+        </ul>
+      </nav>
+      <div class="pie__contacto">
+        <p><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></p>
+        <p>Atención en todo el Perú · <a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></p>
+        <p>{estudio.horario.semana}<br />{estudio.horario.sabado}</p>
+        <p>{estudio.direccion}</p>
+      </div>
+      <ul>
+        <li><a href={estudio.redes.instagram}>Instagram</a></li>
+        <li><a href={estudio.redes.facebook}>Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pie__patron" aria-hidden="true"></div>
+
+  <div class="contenedor">
+    <div class="pie__legal">
+      <span>{estudio.nombre} © 2026</span>
+      <span><a href="/privacidad/">Aviso de privacidad</a> · <a href="/accesibilidad/">Declaración de accesibilidad</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pie { padding: var(--e12) 0 var(--e4); }
+  .pie__logo img { width: min(560px, 80vw); height: auto; }
+  .pie__columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e6); margin-top: var(--e8); }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e1); align-content: start; }
+  .pie__contacto { display: grid; gap: var(--e1); align-content: start; font-size: 15px; }
+  /* De borde a borde, con 16 px de aire entre baldosas (pedido del 02/11/2026) */
+  .pie__patron { height: 56px; margin: var(--e8) 0 var(--e4); background: url("/img/patron.svg") center / 72px 56px repeat-x; }
+  .pie__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--e2); font-size: 13px; color: var(--vino-2); border-top: 1px solid var(--linea); padding-top: var(--e3); }
+  .pie--amarillo { background: var(--amarillo); }
+  .pie--amarillo .pie__legal { color: var(--vino); border-top-color: rgba(83, 9, 10, 0.25); }
+  /* En celular se deja aire abajo para que el botón flotante de WhatsApp no tape los enlaces legales */
+  @media (max-width: 900px) { .pie__columnas { grid-template-columns: minmax(0, 1fr); } .pie { padding-bottom: var(--e12); } }
+</style>

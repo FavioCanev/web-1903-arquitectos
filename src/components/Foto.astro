@@ -1,0 +1,17 @@
+---
+// Foto de un proyecto. Mientras el estudio no entregue las fotos reales, muestra el recuadro "Pendiente".
+// La optimización de las fotos (ADR 0011) se agrega cuando existan.
+interface Props {
+  src?: string;
+  alt: string;
+  /** Texto del recuadro cuando falta la foto. */
+  pendiente?: string;
+  clase?: string;
+  eager?: boolean;
+}
+const { src, alt, pendiente = "Foto pendiente", clase = "r-4x5", eager = false } = Astro.props;
+---
+
+{src
+  ? <img class={clase} src={src} alt={alt} loading={eager ? "eager" : "lazy"} style="object-fit:cover;width:100%" />
+  : <div class:list={["pendiente", clase]}>{pendiente}</div>}

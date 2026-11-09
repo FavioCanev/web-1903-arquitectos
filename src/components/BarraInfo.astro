@@ -1,0 +1,38 @@
+---
+import { estudio } from "../config";
+---
+
+<div class="barra-info">
+  <div class="contenedor">
+    <span>{estudio.ciudad}</span>
+    <!-- La hora la escribe el script; sin JavaScript queda vacía -->
+    <span>Hora local <time data-hora data-zona={estudio.zonaHoraria}></time></span>
+  </div>
+</div>
+
+<script>
+  // Se reinicia en cada cambio de página (ADR 0012): se limpia el temporizador anterior.
+  let temporizador: number | undefined;
+
+  function pintarHora() {
+    document.querySelectorAll<HTMLElement>("[data-hora]").forEach((el) => {
+      el.textContent = new Intl.DateTimeFormat("es-PE", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: el.dataset.zona,
+      }).format(new Date());
+    });
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    clearInterval(temporizador);
+    pintarHora();
+    temporizador = window.setInterval(pintarHora, 15_000);
+  });
+</script>
+
+<style>
+  .barra-info { background: var(--vino); color: var(--claro); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .contenedor { display: flex; justify-content: space-between; gap: var(--e2); min-height: 36px; align-items: center; }
+</style>

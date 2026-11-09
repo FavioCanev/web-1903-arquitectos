@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { enlaceComoLlegar } from "../config";
+
+const equipo = ["Arq. Jorge Muñoz", "Arq. Carla Llerena", "Arq. Loren Bazán"]; // solo nombres, sin cargos
+---
+
+<Layout
+  titulo="Estudio — 1903 Arquitectos"
+  descripcion="Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales."
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="historia">
+        <div>
+          <span class="etiqueta">Estudio</span>
+          <h1 class="h2">Diecinueve cero tres</h1>
+          <p class="texto-2" style="margin-top:24px;max-width:46ch">1903 nace de las casas de sus socios fundadores: el 19 del Jr. Amazonas 919, en Cajamarca, y el 03 del Jr. Amazonas 103, en Arequipa. Dos raíces en un mismo nombre. [Texto por aprobar.]</p>
+        </div>
+        <div class="textos">
+          <div class="bloque"><span class="etiqueta">Misión</span><p>Diseñamos espacios bellos y funcionales que respetan la identidad local y responden a lo que cada cliente necesita. [Por aprobar.]</p></div>
+          <div class="bloque"><span class="etiqueta">Visión</span><p>Ser un referente de la arquitectura y el interiorismo en el Perú, por unir creatividad, función y respeto por nuestra cultura. [Por aprobar.]</p></div>
+        </div>
+      </div>
+      <h2 class="solo-lectores">Equipo</h2>
+      <ul class="equipo">
+        {equipo.map((nombre) => (
+          <li><div class="pendiente r-4x5">Retrato pendiente</div><h3 class="h3">{nombre}</h3></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor showroom">
+      <div>
+        <span class="marca-render">Render</span>
+        <div class="pendiente r-3x2">Render pendiente · Showroom</div>
+      </div>
+      <div>
+        <span class="etiqueta">Showroom</span>
+        <h2 class="h2">Ven a ver los materiales en persona</h2>
+        <p class="texto-2" style="margin:24px 0">Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario. [Fecha exacta y materiales por confirmar.]</p>
+        <a class="boton boton--secundario" href={enlaceComoLlegar} target="_blank" rel="noopener">Cómo llegar<span class="solo-lectores"> (se abre en otra pestaña)</span></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .historia { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); align-items: start; }
+  .textos { display: grid; gap: var(--e6); }
+  .bloque { display: grid; gap: var(--e1); padding-top: var(--e3); border-top: 1px solid var(--linea); }
+  .equipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e4); list-style: none; padding: 0; margin: var(--e12) 0 0; }
+  .equipo li { display: grid; gap: var(--e2); min-width: 0; }
+  .showroom { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--e8); align-items: center; }
+  .marca-render { display: inline-block; margin-bottom: var(--e2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid var(--vino-2); border-radius: 999px; padding: 5px 12px; }
+  @media (max-width: 900px) {
+    .historia, .showroom { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+    .equipo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

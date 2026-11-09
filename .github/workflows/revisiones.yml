@@ -1,0 +1,30 @@
+# Revisiones automáticas de cada pull request (ADR 0013 y 0014):
+# tipos y plantillas, prueba del mensaje de WhatsApp, construcción, enlaces internos y accesibilidad.
+name: Revisiones
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - run: npm run enlaces
+      - run: npm run accesibilidad
+        env:
+          # Chrome ya viene instalado en el servidor de GitHub
+          PA11Y_CHROME: /usr/bin/google-chrome

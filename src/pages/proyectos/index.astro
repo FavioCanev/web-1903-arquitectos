@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MosaicoProyectos from "../../components/MosaicoProyectos.astro";
+import CarruselRenders from "../../components/CarruselRenders.astro";
+import { categoriasDe, obrasTerminadas } from "../../lib/proyectos";
+
+const obras = await obrasTerminadas();
+const categorias = categoriasDe(obras);
+---
+
+<Layout
+  titulo="Proyectos — 1903 Arquitectos"
+  descripcion="Obras terminadas del estudio: cafés, restaurantes, locales comerciales, viviendas y hoteles en Cajamarca y el norte del Perú."
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">Proyectos</span><h1 class="h2">Obra terminada</h1></div>
+        <!-- Los filtros necesitan JavaScript: se muestran desde el script; sin él se ven todos los proyectos -->
+        <div class="filtros" role="group" aria-label="Filtrar por categoría" data-filtros hidden>
+          <button type="button" class="chip" aria-pressed="true" data-filtro="">Todos</button>
+          {categorias.map((c) => <button type="button" class="chip" aria-pressed="false" data-filtro={c}>{c}</button>)}
+        </div>
+      </div>
+      <p class="solo-lectores" role="status" data-resultado></p>
+      <MosaicoProyectos proyectos={obras} />
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">En desarrollo</span><h2 class="h2">Proyectos en diseño</h2></div>
+        <p class="texto-2">Visualizaciones de proyectos que todavía no se construyen.</p>
+      </div>
+      <CarruselRenders />
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Filtra las tarjetas por categoría. Un proyecto con varias categorías aparece al elegir cualquiera de ellas.
+  document.addEventListener("astro:page-load", () => {
+    const grupo = document.querySelector<HTMLElement>("[data-filtros]");
+    const mosaico = document.querySelector<HTMLElement>("[data-mosaico]");
+    const resultado = document.querySelector<HTMLElement>("[data-resultado]");
+    if (!grupo || !mosaico) return;
+    grupo.hidden = false;
+
+    const botones = [...grupo.querySelectorAll<HTMLButtonElement>("[data-filtro]")];
+    const tarjetas = [...mosaico.querySelectorAll<HTMLElement>("[data-categorias]")];
+
+    for (const boton of botones) {
+      boton.addEventListener("click", () => {
+        const filtro = boton.dataset.filtro ?? "";
+        let visibles = 0;
+        for (const tarjeta of tarjetas) {
+          const categorias: string[] = JSON.parse(tarjeta.dataset.categorias ?? "[]");
+          const mostrar = !filtro || categorias.includes(filtro);
+          tarjeta.hidden = !mostrar;
+          if (mostrar) visibles++;
+        }
+        for (const otro of botones) otro.setAttribute("aria-pressed", String(otro === boton));
+        if (resultado) resultado.textContent = `${visibles} proyectos`;
+      });
+    }
+  });
+</script>
+
+<style>
+  .filtros[hidden] { display: none; }
+  .filtros { display: flex; flex-wrap: wrap; gap: var(--e1); }
+  .chip { border: 1px solid var(--linea); border-radius: 999px; padding: 8px 16px; font: 400 14px/1.4 var(--fuente); background: transparent; color: inherit; cursor: pointer; }
+  .chip:hover { border-color: var(--vino); }
+  /* El filtro elegido se distingue por borde grueso y marca, no solo por color */
+  .chip[aria-pressed="true"] { border: 2px solid var(--vino); padding: 7px 15px; font-weight: 500; }
+  .chip[aria-pressed="true"]::before { content: "✓ "; }
+</style>

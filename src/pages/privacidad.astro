@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { estudio } from "../config";
+---
+
+<Layout titulo="Aviso de privacidad — 1903 Arquitectos" descripcion="Qué datos trata esta web, quién los recibe y cómo pedir acceso, corrección o borrado.">
+  <section class="seccion">
+    <div class="contenedor texto">
+      <span class="etiqueta">Aviso de privacidad</span>
+      <h1 class="h2">Tus datos en esta web</h1>
+      <p class="texto-2">[Texto por aprobar por el estudio antes de publicarlo.]</p>
+
+      <h2 class="h3">Quién es el responsable</h2>
+      <p>{estudio.razonSocial}, RUC {estudio.ruc}, {estudio.direccion}.</p>
+
+      <h2 class="h3">Qué mide la web</h2>
+      <p>Qué páginas se visitan, desde qué país, en qué tipo de dispositivo y de dónde llegó el visitante. No identifica a nadie y no usa cookies.</p>
+
+      <h2 class="h3">Quiénes reciben datos</h2>
+      <p>Cloudflare, que aloja la web y mide las visitas, y WhatsApp, que recibe el mensaje del formulario cuando tú lo envías. La web no guarda lo que escribes en el formulario.</p>
+
+      <h2 class="h3">Enlaces a otros sitios</h2>
+      <p>Algunos enlaces te llevan a otros sitios (Hotmart, Google Maps, Instagram y Facebook), que tienen sus propias políticas de privacidad.</p>
+
+      <h2 class="h3">Tus derechos</h2>
+      <p>Puedes pedir acceso, corrección, cancelación u oposición sobre tus datos escribiendo a <a href={`mailto:${estudio.correo}`}>{estudio.correo}</a>, según la Ley 29733 de Protección de Datos Personales.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .texto { display: grid; gap: var(--e3); max-width: 760px; margin: 0; }
+  .texto :global(h2.h3) { margin-top: var(--e3); }
+</style>

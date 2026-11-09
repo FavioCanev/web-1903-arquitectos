@@ -1,0 +1,55 @@
+---
+import { navegacion } from "../config";
+
+const ruta = Astro.url.pathname;
+const esActual = (href: string) => ruta.startsWith(href);
+---
+
+<header class="nav">
+  <nav class="contenedor" aria-label="Principal">
+    <a class="nav__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" width="170" height="34" /></a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-lista">Menú</button>
+    <ul class="nav__lista" id="nav-lista">
+      {navegacion.map((e) => (
+        <li><a href={e.href} aria-current={esActual(e.href) ? "page" : undefined}>{e.texto}</a></li>
+      ))}
+    </ul>
+    <a class="boton boton--primario nav__escribenos" href="/contacto/">Escríbenos</a>
+  </nav>
+</header>
+
+<script>
+  // Menú de celular. Sin JavaScript los enlaces quedan siempre a la vista (mejora progresiva).
+  document.addEventListener("astro:page-load", () => {
+    const nav = document.querySelector<HTMLElement>(".nav");
+    const boton = nav?.querySelector<HTMLButtonElement>(".nav__menu");
+    if (!nav || !boton) return;
+    nav.dataset.js = "";
+    boton.addEventListener("click", () => {
+      const abierto = boton.getAttribute("aria-expanded") !== "true";
+      boton.setAttribute("aria-expanded", String(abierto));
+      nav.toggleAttribute("data-abierto", abierto);
+    });
+  });
+</script>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: var(--capa-nav); background: var(--fondo); border-bottom: 1px solid var(--linea); }
+  .contenedor { display: flex; align-items: center; gap: var(--e4); min-height: 76px; }
+  .nav__logo img { height: 34px; width: auto; }
+  .nav__lista { display: flex; gap: var(--e4); list-style: none; margin: 0 0 0 auto; padding: 0; }
+  .nav__lista a { text-decoration: none; font-size: 15px; letter-spacing: 0.04em; padding: var(--e1) 0; border-bottom: 2px solid transparent; }
+  .nav__lista a:hover, .nav__lista a[aria-current] { border-bottom-color: var(--naranja); }
+  .nav__menu { display: none; margin-left: auto; min-height: 44px; padding: 0 var(--e2); background: transparent; color: inherit; border: 1.5px solid currentColor; border-radius: 999px; font: 500 15px/1 var(--fuente); cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .contenedor { flex-wrap: wrap; justify-content: space-between; min-height: 64px; gap: var(--e1) var(--e2); }
+    .nav__lista { flex-basis: 100%; order: 3; flex-direction: column; gap: 0; margin: 0; padding-bottom: var(--e2); }
+    .nav__lista a { display: block; padding: var(--e2) 0; font-size: 17px; }
+    .nav__escribenos { order: 4; flex-basis: 100%; justify-content: center; margin-bottom: var(--e2); }
+    .nav[data-js] .nav__menu { display: inline-flex; align-items: center; }
+    .nav[data-js] .nav__lista, .nav[data-js] .nav__escribenos { display: none; }
+    .nav[data-js][data-abierto] .nav__lista { display: flex; }
+    .nav[data-js][data-abierto] .nav__escribenos { display: inline-flex; }
+  }
+</style>

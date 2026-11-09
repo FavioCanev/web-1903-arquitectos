@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { enlaceComoLlegar, estudio } from "../config";
+import { enlaceWhatsapp } from "../lib/whatsapp";
+
+const tipos = ["Local comercial", "Interiorismo", "Vivienda", "Hotel", "Otro"];
+const acciones = ["Diseñar", "Construir", "Remodelar"];
+---
+
+<Layout
+  titulo="Contacto — 1903 Arquitectos"
+  descripcion="Escríbenos por WhatsApp o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00."
+>
+  <section class="seccion contacto sobre-vino">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">Contacto</span><h1 class="h2">¿Tienes un proyecto en mente?</h1></div>
+        <p class="texto-2">Escríbenos o visítanos en el estudio, también sin cita.</p>
+      </div>
+
+      <div class="grilla">
+        <div>
+          <!-- Mejora progresiva (ADR 0005): sin JavaScript solo se ve el botón de WhatsApp -->
+          <div data-sin-js>
+            <a class="boton boton--primario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
+          </div>
+          <form class="formulario" novalidate hidden data-formulario>
+            <label class="campo">Nombre<input name="nombre" type="text" autocomplete="name" /></label>
+            <label class="campo">WhatsApp o teléfono (opcional)<input name="telefono" type="tel" autocomplete="tel" /></label>
+            <label class="campo">Tipo de proyecto
+              <select name="tipo">{tipos.map((t) => <option>{t}</option>)}</select>
+            </label>
+            <label class="campo">¿Qué quieres hacer?
+              <select name="accion">{acciones.map((a) => <option>{a}</option>)}</select>
+            </label>
+            <label class="campo">Cuéntanos tu idea<textarea name="mensaje"></textarea></label>
+            <label class="consentimiento">
+              <input type="checkbox" name="consentimiento" />
+              <span>Acepto el <a href="/privacidad/">aviso de privacidad</a> y que el estudio use mis datos para responder mi consulta.</span>
+            </label>
+            <p class="errores" role="alert" data-errores></p>
+            <div><button class="boton boton--primario" type="submit">Enviar por WhatsApp</button></div>
+          </form>
+        </div>
+
+        <div>
+          <div class="pendiente mapa r-16x9">Mapa pendiente · {estudio.direccion}</div>
+          <p class="credito-mapa pequeno">© OpenStreetMap</p>
+          <a class="boton boton--secundario" href={enlaceComoLlegar} target="_blank" rel="noopener">Cómo llegar<span class="solo-lectores"> (se abre en otra pestaña)</span></a>
+          <dl class="datos">
+            <div><dt>Dirección</dt><dd>{estudio.direccion}</dd></div>
+            <div><dt>WhatsApp</dt><dd><a href={enlaceWhatsapp()}>{estudio.whatsapp.visible}</a></dd></div>
+            <div><dt>Correo</dt><dd><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></dd></div>
+            <div><dt>Horario</dt><dd>{estudio.horario.semana}<br />{estudio.horario.sabado}</dd></div>
+          </dl>
+          <p class="pequeno">También te recibimos sin cita.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { enlaceWhatsapp, mensajeContacto } from "../lib/whatsapp";
+
+  // El formulario no guarda nada: arma el mensaje y abre WhatsApp para que el visitante lo envíe (ADR 0005).
+  // Se reinicia en cada cambio de página (ADR 0012).
+  document.addEventListener("astro:page-load", () => {
+    const formulario = document.querySelector<HTMLFormElement>("[data-formulario]");
+    if (!formulario) return;
+    formulario.hidden = false;
+    document.querySelector<HTMLElement>("[data-sin-js]")?.setAttribute("hidden", "");
+    const errores = formulario.querySelector<HTMLElement>("[data-errores]")!;
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      const datos = new FormData(formulario);
+      const texto = (campo: string) => String(datos.get(campo) ?? "");
+
+      const faltas: string[] = [];
+      if (!texto("nombre").trim()) faltas.push("Escribe tu nombre.");
+      if (!texto("mensaje").trim()) faltas.push("Cuéntanos tu idea en el mensaje.");
+      if (!datos.get("consentimiento")) faltas.push("Marca la casilla del aviso de privacidad para poder enviar tu consulta.");
+      errores.textContent = faltas.join(" ");
+      if (faltas.length > 0) return;
+
+      const mensaje = mensajeContacto({
+        nombre: texto("nombre"),
+        telefono: texto("telefono"),
+        tipo: texto("tipo"),
+        accion: texto("accion"),
+        mensaje: texto("mensaje"),
+      });
+      window.open(enlaceWhatsapp(mensaje), "_blank", "noopener");
+    });
+  });
+</script>
+
+<style>
+  .contacto { background: var(--vino); color: var(--claro); }
+  .contacto :global(.etiqueta), .contacto .texto-2 { color: var(--sobre-vino); }
+  .grilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); }
+  [hidden] { display: none !important; }
+  .formulario { display: grid; gap: var(--e3); }
+  .campo { display: grid; gap: var(--e1); font-size: 14px; }
+  .campo input, .campo select, .campo textarea {
+    min-height: 50px; padding: 12px 14px; background: transparent; color: var(--claro);
+    border: 1px solid #c9918d; border-radius: var(--radio); font: 400 16px/1.4 var(--fuente);
+  }
+  .campo select { color-scheme: light; }
+  /* La lista desplegable se abría oscura e ilegible (cambio pedido del 02/11/2026) */
+  .campo select option { background: var(--fondo); color: var(--vino); }
+  .campo textarea { min-height: 120px; }
+  .consentimiento { display: flex; gap: var(--e2); align-items: flex-start; font-size: 14px; }
+  .consentimiento input { width: 24px; height: 24px; flex: none; accent-color: var(--naranja); }
+  .errores { color: var(--amarillo); font-weight: 500; }
+  .errores:empty { display: none; }
+  .mapa { background: #6a1f20; color: var(--sobre-vino); }
+  .credito-mapa { color: var(--sobre-vino); margin: var(--e1) 0 var(--e3); }
+  .datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); margin: var(--e4) 0 var(--e2); }
+  .datos dt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); margin-bottom: 4px; }
+  .datos dd { margin: 0; font-size: 15px; }
+  @media (max-width: 900px) { .grilla { grid-template-columns: minmax(0, 1fr); gap: var(--e6); } }
+</style>

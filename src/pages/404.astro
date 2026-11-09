@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout titulo="Página no encontrada — 1903 Arquitectos" descripcion="La página que buscas no existe." noindex>
+  <section class="seccion">
+    <div class="contenedor centro">
+      <!-- Logo vertical en vino: se pinta con una máscara del SVG claro, para no duplicar el archivo -->
+      <div class="logo" role="img" aria-label="1903 Arquitectos"></div>
+      <h1 class="h2">Esta página no existe</h1>
+      <p class="texto-2">[Mensaje por aprobar.] Puede que el enlace sea antiguo o esté mal escrito.</p>
+      <div class="botones">
+        <a class="boton boton--primario" href="/">Ir al inicio</a>
+        <a class="boton boton--secundario" href="/proyectos/">Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .centro { display: grid; justify-items: center; text-align: center; gap: var(--e3); }
+  .logo {
+    width: 120px; aspect-ratio: 46.07 / 77.13; background: var(--vino);
+    mask: url("/img/logo-v-claro.svg") center / contain no-repeat;
+    -webkit-mask: url("/img/logo-v-claro.svg") center / contain no-repeat;
+  }
+</style>

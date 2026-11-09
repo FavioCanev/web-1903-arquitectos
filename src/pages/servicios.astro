@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Los 6 servicios de la ficha oficial (sin "Elaboración de planos", que va implícita en los demás).
+const servicios = [
+  { nombre: "Diseño arquitectónico", incluye: "Locales comerciales, viviendas, edificios multifamiliares, anteproyectos, ampliaciones y remodelaciones." },
+  { nombre: "Diseño de interiores", incluye: "Distribución de espacios, selección de materiales y acabados, mobiliario a medida, iluminación y decoración." },
+  { nombre: "Modelado 3D y visualización", incluye: "Renders fotorrealistas de interiores y exteriores, recorridos virtuales y animaciones." },
+  { nombre: "Desarrollo y coordinación de proyectos", incluye: "Coordinación con especialidades, estructuras, instalaciones eléctricas y sanitarias, documentación para obra." },
+  { nombre: "Supervisión, asesoría y construcción", incluye: "Supervisión de obra, visitas técnicas y la obra de inicio a fin. [Alcance de la construcción por confirmar.]" },
+  { nombre: "Lotizaciones y trámites municipales", incluye: "[Descripción por confirmar con el estudio.]", proximamente: true },
+];
+
+const pasos = [
+  { nombre: "Conversamos", texto: "Tu idea, el terreno o local y el presupuesto." },
+  { nombre: "Diseñamos", texto: "Propuesta, renders y planos." },
+  { nombre: "Elegimos materiales", texto: "Acabados, mobiliario e iluminación." },
+  { nombre: "Construimos", texto: "Llevamos la obra de inicio a fin." },
+];
+
+// Solo las respuestas que el estudio aprobó en la hoja (pestaña "Preguntas (del PDF)").
+const preguntas = [
+  { pregunta: "¿Cuánto cuesta un proyecto?", respuesta: "Cada presupuesto es personalizado: depende del área, el tipo y la complejidad del diseño, la ubicación, el nivel de detalle y la cantidad de planos, renders o entregables que necesites." },
+  { pregunta: "¿Cuánto tiempo toma?", respuesta: "El plazo mínimo es un mes, pero se define según la magnitud del servicio que contrates. Te lo indicamos en la cotización." },
+  { pregunta: "¿Puedo pedir servicios que no estaban en la cotización?", respuesta: "Sí. Los servicios adicionales se cotizan por separado." },
+];
+---
+
+<Layout
+  titulo="Servicios — 1903 Arquitectos"
+  descripcion="Diseño arquitectónico, interiorismo, visualización 3D, coordinación de proyectos, supervisión y construcción de obra de inicio a fin."
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="cabecera"><div><span class="etiqueta">Servicios</span><h1 class="h2">Qué hacemos</h1></div></div>
+      <ol class="servicios">
+        {servicios.map((s, i) => (
+          <li class="servicio">
+            <span class="servicio__num">{String(i + 1).padStart(2, "0")}</span>
+            <h2 class="h3">{s.nombre}{s.proximamente && <span class="pronto">Próximamente</span>}</h2>
+            <p class="servicio__lista">{s.incluye}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor">
+      <div class="cabecera"><div><span class="etiqueta">Cómo trabajamos</span><h2 class="h2">De la idea a la obra</h2></div></div>
+      <ol class="pasos">
+        {pasos.map((p, i) => (
+          <li class="paso"><span class="paso__num">{String(i + 1).padStart(2, "0")}</span><h3 class="h3">{p.nombre}</h3><p class="texto-2">{p.texto}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor faq">
+      <div><span class="etiqueta">Preguntas frecuentes</span><h2 class="h2">Antes de empezar</h2></div>
+      <div>
+        {preguntas.map((q) => <details><summary>{q.pregunta}</summary><p class="texto-2">{q.respuesta}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt llamado">
+    <div class="contenedor">
+      <h2 class="h2">¿Tienes un proyecto en mente?</h2>
+      <a class="boton boton--primario" href="/contacto/">Escríbenos</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .servicios { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+  .servicio { display: grid; grid-template-columns: 64px 1fr 1.3fr; gap: var(--e4); padding: var(--e4) 0; border-bottom: 1px solid var(--linea); align-items: baseline; }
+  .servicio__num { font-size: 14px; letter-spacing: 0.1em; color: var(--vino-2); }
+  .servicio__lista { font-size: 15px; color: var(--vino-2); }
+  .pronto { margin-left: var(--e2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid var(--vino-2); border-radius: 999px; padding: 5px 12px; vertical-align: middle; font-weight: 400; }
+
+  .pasos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e4); list-style: none; padding: 0; margin: 0; }
+  .paso { display: grid; gap: var(--e2); padding-top: var(--e3); border-top: 2px solid var(--vino); min-width: 0; align-content: start; }
+  .paso__num { font-size: 56px; line-height: 1; font-weight: 500; color: var(--vino); }
+
+  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--e8); }
+  details { border-bottom: 1px solid var(--linea); }
+  details:first-child { border-top: 1px solid var(--linea); }
+  summary { cursor: pointer; padding: var(--e3) 0; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: var(--e2); }
+  summary::after { content: "+"; color: var(--vino-2); }
+  details[open] summary::after { content: "−"; }
+  details p { padding-bottom: var(--e3); }
+
+  .llamado .contenedor { display: flex; justify-content: space-between; align-items: center; gap: var(--e4); flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .servicio { grid-template-columns: 48px 1fr; }
+    .servicio__lista { grid-column: 2; }
+    .pasos { grid-template-columns: minmax(0, 1fr); }
+    .faq { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+  }
+</style>
