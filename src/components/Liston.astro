@@ -1,0 +1,40 @@
+---
+// Listón con el patrón de baldosa que baja con el scroll (ADR 0009).
+// Es decorativo: los lectores de pantalla lo ignoran.
+---
+
+<div class="liston" aria-hidden="true"></div>
+
+<script>
+  // Respaldo para navegadores sin animaciones ligadas al scroll (hoy, Firefox).
+  if (!CSS.supports("animation-timeline: scroll()")) {
+    const avanzar = () => {
+      const liston = document.querySelector<HTMLElement>(".liston");
+      const total = document.documentElement.scrollHeight - innerHeight;
+      liston?.style.setProperty("--avance", (total > 0 ? (scrollY / total) * 100 : 100) + "%");
+    };
+    // Los oyentes se registran una sola vez; el listón persiste entre páginas, así que solo se recalcula al llegar a cada una.
+    addEventListener("scroll", avanzar, { passive: true });
+    addEventListener("resize", avanzar);
+    document.addEventListener("astro:page-load", avanzar);
+  }
+</script>
+
+<style>
+  /* Detrás de las secciones de color y delante del fondo (capa negativa).
+     Excepción a "sin posiciones fijas", aprobada el 03/11/2026 (ADR 0009). */
+  .liston {
+    position: fixed; top: 0; left: 0; z-index: var(--capa-liston);
+    height: 100vh; width: clamp(8px, calc(var(--margen) - 24px), 40px);
+    background: url("/img/patron.svg") top center / 100% auto repeat-y;
+    pointer-events: none;
+    animation: liston linear both; animation-timeline: scroll(root);
+  }
+  @keyframes liston { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+  @supports not (animation-timeline: scroll()) {
+    .liston { animation: none; clip-path: inset(0 0 calc(100% - var(--avance, 0%)) 0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .liston { animation: none; clip-path: none; } }
+  /* Pantallas angostas: se oculta (ADR 0009); el patrón sigue completo en el pie */
+  @media (max-width: 600px) { .liston { display: none; } }
+</style>

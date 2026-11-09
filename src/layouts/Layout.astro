@@ -1,0 +1,44 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@fontsource/jost/latin-400.css";
+import "@fontsource/jost/latin-500.css";
+import "../styles/tokens.css";
+import "../styles/base.css";
+import BarraInfo from "../components/BarraInfo.astro";
+import Nav from "../components/Nav.astro";
+import Pie from "../components/Pie.astro";
+import Liston from "../components/Liston.astro";
+import BotonWhatsapp from "../components/BotonWhatsapp.astro";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  /** Para la página 404: que no aparezca en Google. */
+  noindex?: boolean;
+  pieAmarillo?: boolean;
+}
+const { titulo, descripcion, noindex = false, pieAmarillo = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <Liston transition:persist="liston" />
+    <BarraInfo />
+    <Nav />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Pie amarillo={pieAmarillo} />
+    <BotonWhatsapp />
+  </body>
+</html>
