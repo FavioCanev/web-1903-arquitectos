@@ -11,6 +11,16 @@
 !/docs/
 !/web/
 
+# Proyecto Astro (migración)
+!/package.json
+!/package-lock.json
+!/astro.config.mjs
+!/tsconfig.json
+!/src/
+!/public/
+!/tests/
+!/.github/
+
 !/logo/
 /logo/*
 !/logo/vectorizado/
