@@ -1,0 +1,66 @@
+/* Estilos base y piezas que se repiten en toda la web.
+   Los estilos propios de cada componente viven dentro del componente. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--vino);
+  font: 400 17px/1.6 var(--fuente);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p, figure { margin: 0; }
+
+.contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--margen); }
+.seccion { padding: var(--seccion) 0; }
+.seccion--alt { background: var(--fondo-alt); }
+
+/* Enlace "Saltar al contenido": solo se ve al enfocarlo con el teclado */
+.saltar {
+  position: absolute; left: var(--e2); top: -100px; z-index: 100;
+  background: var(--vino); color: var(--claro); padding: var(--e2) var(--e3); border-radius: var(--radio);
+}
+.saltar:focus { top: var(--e2); }
+
+/* Tipografía */
+.etiqueta { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--vino-2); margin-bottom: var(--e2); }
+.h1 { font-size: clamp(40px, 6vw, 88px); line-height: 1.02; font-weight: 500; letter-spacing: -0.02em; }
+.h2 { font-size: clamp(30px, 3.6vw, 52px); line-height: 1.08; font-weight: 500; letter-spacing: -0.015em; }
+.h3 { font-size: 22px; line-height: 1.2; font-weight: 500; }
+.texto-2 { color: var(--vino-2); }
+.pequeno { font-size: 14px; }
+.cabecera { display: flex; justify-content: space-between; align-items: end; gap: var(--e3); margin-bottom: var(--e6); flex-wrap: wrap; }
+.cabecera p { max-width: 42ch; }
+
+/* Botones */
+.boton {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--e3);
+  border-radius: 999px; font: 500 15px/1 var(--fuente); letter-spacing: 0.02em;
+  text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
+  transition: transform var(--dur-corta) var(--curva);
+}
+.boton:hover { transform: translateY(-2px); }
+.boton--primario { background: var(--naranja); color: var(--vino); }
+.boton--secundario { border-color: currentColor; background: transparent; color: inherit; }
+.botones { display: flex; flex-wrap: wrap; gap: var(--e2); }
+:focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
+.sobre-vino :focus-visible, .contacto :focus-visible { outline-color: var(--amarillo); }
+
+/* Recuadro "Pendiente" en lugar de las fotos */
+.pendiente {
+  display: grid; place-items: center; text-align: center; width: 100%;
+  background: var(--pendiente); color: var(--vino-2); border-radius: var(--radio);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: var(--e2);
+}
+.r-4x5 { aspect-ratio: 4 / 5; }
+.r-3x2 { aspect-ratio: 3 / 2; }
+.r-1x1 { aspect-ratio: 1; }
+.r-16x9 { aspect-ratio: 16 / 9; }
+
+/* Texto solo para lectores de pantalla */
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
