@@ -25,7 +25,7 @@ const acciones = ["Diseñar", "Construir", "Remodelar"];
             <a class="boton boton--primario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
           </div>
           <form class="formulario" novalidate hidden data-formulario>
-            <label class="campo">Nombre<input name="nombre" autocomplete="name" /></label>
+            <label class="campo">Nombre<input name="nombre" type="text" autocomplete="name" /></label>
             <label class="campo">WhatsApp o teléfono (opcional)<input name="telefono" type="tel" autocomplete="tel" /></label>
             <label class="campo">Tipo de proyecto
               <select name="tipo">{tipos.map((t) => <option>{t}</option>)}</select>

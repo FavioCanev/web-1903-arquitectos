@@ -11,7 +11,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "enlaces": "node tests/enlaces.mjs",
+    "accesibilidad": "start-server-and-test \"astro preview\" http://localhost:4321 \"pa11y-ci --config tests/pa11y.config.cjs\"",
+    "revisar": "npm run check && npm test && npm run build && npm run enlaces && npm run accesibilidad"
   },
   "dependencies": {
     "@fontsource/jost": "5.3.0",
@@ -19,6 +22,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "pa11y-ci": "5.0.0",
+    "start-server-and-test": "3.0.13",
     "typescript": "6.0.3",
     "vitest": "5.1.0"
   }
