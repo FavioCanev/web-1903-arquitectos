@@ -1,7 +1,7 @@
 # Repositorio público: se ignora todo y solo se sube lo que está en esta lista.
 # Así, una carpeta nueva con información interna del estudio nunca se sube por error.
-# Quedan fuera, entre otros: BRIEF.md, CLAUDE.md, AGENTS.md, datos/, documentos-estudio/,
-# presentacion/, prototipo/ (usaba fotos de Instagram), referencias/ y capturas/ (imágenes de terceros).
+# Quedan fuera, entre otros: BRIEF.md, CLAUDE.md, AGENTS.md y todo material/ (datos, documentos del estudio,
+# presentaciones, el prototipo con fotos de Instagram y las capturas de webs de terceros).
 /*
 
 !/.gitignore

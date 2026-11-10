@@ -111,6 +111,7 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
 |---|---|
 | [Decisiones de arquitectura (ADR)](docs/adr/README.md) | Por qué la web está hecha así: cada decisión con su contexto, opciones y consecuencias |
 | [Mapa del sitio](docs/mapa-del-sitio.md) | Cada página, sus secciones, su prioridad y los criterios para darla por terminada |
+| [Estructura del proyecto](docs/ESTRUCTURA.md) | Qué hay en cada carpeta y cuál es el código de la web |
 | [Arquitectura](docs/arquitectura.md) | Cómo está hecha la web, con diagramas, metas de calidad y riesgos |
 | Manual de mantenimiento | [Pendiente] El paso a paso de los cambios frecuentes y el traspaso |
 
