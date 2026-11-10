@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import MosaicoProyectos from "../components/MosaicoProyectos.astro";
+import GrillaFija from "../components/GrillaFija.astro";
 import CarruselRenders from "../components/CarruselRenders.astro";
 import { estudio } from "../config";
 import { enlaceWhatsapp } from "../lib/whatsapp";
@@ -29,15 +29,7 @@ const delInicio = obras.filter((p) => p.data.inicio);
     </div>
   </section>
 
-  <section class="seccion">
-    <div class="contenedor">
-      <div class="cabecera">
-        <div><span class="etiqueta">Proyectos</span><h2 class="h2">Obra terminada</h2></div>
-        <a class="boton boton--secundario" href="/proyectos/">Ver todos los proyectos</a>
-      </div>
-      <MosaicoProyectos proyectos={delInicio} />
-    </div>
-  </section>
+  <GrillaFija proyectos={delInicio} />
 
   <section class="seccion seccion--alt liston-sobre">
     <div class="contenedor sobre-liston">
