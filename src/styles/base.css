@@ -20,6 +20,22 @@ h1, h2, h3, p, figure { margin: 0; }
 .seccion { padding: var(--seccion) 0; }
 .seccion--alt { background: var(--fondo-alt); }
 
+/* Capas del listón (ADR 0009, versión 2 en prueba). Por defecto, cada bloque de la página queda por encima
+   del listón: el listón pasa detrás de su fondo y de su contenido. En los bloques marcados "liston-sobre",
+   el listón pasa por encima del fondo, y solo lo que se eleva con "sobre-liston" queda por encima de él. */
+.barra-info, main > :not(.liston-sobre), .pie { position: relative; z-index: var(--capa-contenido); }
+.sobre-liston { position: relative; z-index: var(--capa-contenido); }
+/* Velo del listón (opción b, 10/11/2026): todo texto lleva un velo del color de su fondo que le baja la opacidad
+   al listón cuando pasa por detrás, para que el texto siempre se lea (WCAG 2.2 AA, ADR 0013). Sobre un fondo liso
+   el velo no se nota, porque es del mismo color: por eso cada bloque con fondo propio declara su --velo. */
+:root { --velo: var(--velo-fondo); }
+.seccion--alt { --velo: var(--velo-fondo-alt); }
+.pendiente { --velo: var(--velo-pendiente); }
+:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, figcaption, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta), .boton--secundario, .chip):not(.boton--primario, .boton--primario *) {
+  background-color: var(--velo);
+  box-shadow: 0 0 0 4px var(--velo);
+}
+
 /* Enlace "Saltar al contenido": solo se ve al enfocarlo con el teclado */
 .saltar {
   position: absolute; left: var(--e2); top: -100px; z-index: 100;
@@ -46,7 +62,7 @@ h1, h2, h3, p, figure { margin: 0; }
 }
 .boton:hover { transform: translateY(-2px); }
 .boton--primario { background: var(--naranja); color: var(--vino); }
-.boton--secundario { border-color: currentColor; background: transparent; color: inherit; }
+.boton--secundario { border-color: currentColor; background: var(--velo); color: inherit; } /* el velo atenúa el listón detrás */
 .botones { display: flex; flex-wrap: wrap; gap: var(--e2); }
 :focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
 .sobre-vino :focus-visible, .contacto :focus-visible { outline-color: var(--amarillo); }

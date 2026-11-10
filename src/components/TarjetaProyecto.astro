@@ -4,8 +4,10 @@ import { datoOPendiente, urlProyecto, type Proyecto } from "../lib/proyectos";
 
 interface Props {
   proyecto: Proyecto;
+  /** Clase extra, por ejemplo "parallax". */
+  clase?: string;
 }
-const { proyecto } = Astro.props;
+const { proyecto, clase } = Astro.props;
 const d = proyecto.data;
 const esRender = d.estado === "render";
 // Los renders no tienen página propia (mapa del sitio): su tarjeta no es un enlace.
@@ -13,7 +15,7 @@ const Etiqueta = esRender ? "article" : "a";
 const datos = [d.ciudad, d.area ? `${d.area} m²` : "[m²]", datoOPendiente(d.anio, "Año")].join(" · ");
 ---
 
-<Etiqueta class="tarjeta" href={esRender ? undefined : urlProyecto(proyecto)} data-categorias={JSON.stringify(d.categorias)}>
+<Etiqueta class:list={["tarjeta", clase]} href={esRender ? undefined : urlProyecto(proyecto)} data-categorias={JSON.stringify(d.categorias)}>
   {esRender && <span class="marca-render">Render{d.porConfirmar ? " [por confirmar]" : ""}</span>}
   <Foto clase={esRender ? "r-3x2" : "r-4x5"} alt="" pendiente={`${esRender ? "Render" : "Foto"} pendiente · ${d.nombre}`} src={d.fotos[0]?.src} />
   <span class="tarjeta__datos">{datos}</span>

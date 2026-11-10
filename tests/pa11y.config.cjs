@@ -19,6 +19,10 @@ module.exports = {
     // htmlcs aplica WCAG 2.1 AA; axe suma las reglas de WCAG 2.2 AA (por ejemplo, el tamaño mínimo de los objetivos táctiles).
     standard: "WCAG2AA",
     runners: ["htmlcs", "axe"],
+    // Lo que axe no puede decidir ("necesita revisión") queda como aviso, no como error. Pasa con el velo
+    // semitransparente del listón: axe no sabe calcular el contraste del texto encima. Las violaciones reales
+    // siguen frenando el cambio, y el contraste del velo se revisa a mano antes de publicar (ADR 0013).
+    levelCapWhenNeedsReview: "warning",
     // Las tarjetas del carrusel que quedan recortadas por el desplazamiento horizontal salen como falso positivo de
     // contraste en axe. Se omiten solo de la 3.ª en adelante; las dos primeras (visibles) usan los mismos colores.
     hideElements: ".carrusel article:nth-child(n+3)",

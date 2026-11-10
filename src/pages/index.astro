@@ -15,16 +15,16 @@ const delInicio = obras.filter((p) => p.data.inicio);
   titulo="1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca"
   descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales, viviendas y hoteles con identidad cajamarquina."
 >
-  <section class="inicio" aria-label="Proyecto destacado">
+  <section class="inicio liston-sobre" aria-label="Proyecto destacado">
     <div class="pendiente inicio__foto">
       <div class="inicio__contenido">
-        <span class="inicio__nota">Foto pendiente · {destacado?.data.nombre}</span>
-        <h1 class="h1">{estudio.lema}</h1>
-        <div class="botones">
+        <span class="inicio__nota parallax-portada sobre-liston">Foto pendiente · {destacado?.data.nombre}</span>
+        <h1 class="h1 parallax-portada sobre-liston">{estudio.lema}</h1>
+        <div class="botones sobre-liston">
           <a class="boton boton--primario" href="/proyectos/">Ver proyectos</a>
           <a class="boton boton--secundario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
         </div>
-        {destacado && <a class="inicio__enlace" href={urlProyecto(destacado)}>Ver el proyecto: {destacado.data.nombre}</a>}
+        {destacado && <a class="inicio__enlace sobre-liston" href={urlProyecto(destacado)}>Ver el proyecto: {destacado.data.nombre}</a>}
       </div>
     </div>
   </section>
@@ -39,8 +39,8 @@ const delInicio = obras.filter((p) => p.data.inicio);
     </div>
   </section>
 
-  <section class="seccion seccion--alt">
-    <div class="contenedor">
+  <section class="seccion seccion--alt liston-sobre">
+    <div class="contenedor sobre-liston">
       <div class="cabecera">
         <div><span class="etiqueta">En desarrollo</span><h2 class="h2">Proyectos en diseño</h2></div>
         <p class="texto-2">Visualizaciones de proyectos que todavía no se construyen.</p>
@@ -57,5 +57,5 @@ const delInicio = obras.filter((p) => p.data.inicio);
   }
   .inicio__contenido { display: grid; gap: var(--e3); max-width: 760px; text-transform: none; letter-spacing: normal; font-weight: 400; }
   .inicio__nota { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
-  .inicio__enlace { font-size: 14px; color: var(--vino-2); }
+  .inicio__enlace { font-size: 14px; color: var(--vino-2); justify-self: start; }
 </style>

@@ -1,0 +1,31 @@
+/* Parallax (prueba, ADR 0012): los elementos se mueven a distinta velocidad que la página al hacer scroll.
+   Solo con las animaciones ligadas al scroll del navegador (sin librerías ni JavaScript) y nunca con
+   "reducir movimiento". Donde el navegador no las tiene, todo queda quieto, sin romperse. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Titular de la portada: sube más lento que la página y se desvanece al salir. */
+    .parallax-portada {
+      animation: parallax-portada linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 85vh;
+    }
+
+    /* Capas que se desplazan mientras cruzan la pantalla. --parallax es la distancia, en px:
+       positiva baja más lento que la página; negativa, más rápido. */
+    .parallax {
+      animation: parallax-capa linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes parallax-portada {
+  to { translate: 0 18vh; opacity: 0.25; }
+}
+
+@keyframes parallax-capa {
+  from { translate: 0 calc(var(--parallax, 40) * -1px); }
+  to { translate: 0 calc(var(--parallax, 40) * 1px); }
+}

@@ -9,14 +9,19 @@ const { proyectos } = Astro.props;
 ---
 
 <div class="mosaico" data-mosaico>
-  {proyectos.map((p) => <TarjetaProyecto proyecto={p} />)}
+  {proyectos.map((p) => <TarjetaProyecto proyecto={p} clase="parallax" />)}
 </div>
 
 <style>
   .mosaico { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e6) var(--e4); }
   /* Ritmo escalonado, como Jalo */
   .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: var(--e12); }
+  /* Parallax (prueba): cada columna se mueve a su propia velocidad, como en las grillas editoriales */
+  .mosaico > :global(.tarjeta) { --parallax: 0; }
+  .mosaico > :global(.tarjeta:nth-child(3n + 2)) { --parallax: 70; }
+  .mosaico > :global(.tarjeta:nth-child(3n)) { --parallax: 30; }
   @media (max-width: 900px) {
+    .mosaico > :global(.tarjeta) { --parallax: 0; }
     .mosaico { grid-template-columns: minmax(0, 1fr); }
     .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: 0; }
   }

@@ -1,40 +1,164 @@
 ---
-// Listón con el patrón de baldosa que baja con el scroll (ADR 0009).
+// Listón con el patrón de baldosa que se desenrolla con el scroll (ADR 0009; versión 2 en prueba).
+// Cuelga de la barra de navegación y baja por la línea del 20 % del ancho, como un listón de tela que se desenrolla.
 // Es decorativo: los lectores de pantalla lo ignoran.
 ---
 
-<div class="liston" aria-hidden="true" transition:persist="liston"></div>
+<div class="liston" aria-hidden="true" transition:persist="liston">
+  <div class="liston__tela"></div>
+  <div class="liston__rollo">
+    <div class="liston__cuerpo"></div>
+    <div class="liston__tapa"></div>
+  </div>
+</div>
 
 <script>
-  // Respaldo para navegadores sin animaciones ligadas al scroll (hoy, Firefox).
-  if (!CSS.supports("animation-timeline: scroll()")) {
-    const avanzar = () => {
-      const liston = document.querySelector<HTMLElement>(".liston");
-      const total = document.documentElement.scrollHeight - innerHeight;
-      liston?.style.setProperty("--avance", (total > 0 ? (scrollY / total) * 100 : 100) + "%");
-    };
-    // Los oyentes se registran una sola vez; el listón persiste entre páginas, así que solo se recalcula al llegar a cada una.
-    addEventListener("scroll", avanzar, { passive: true });
-    addEventListener("resize", avanzar);
-    document.addEventListener("astro:page-load", avanzar);
+  // El listón persiste entre páginas (ADR 0012): los oyentes se registran una sola vez
+  // y solo se recalcula al llegar a cada página.
+  const reducir = matchMedia("(prefers-reduced-motion: reduce)");
+  // Qué tan por delante va el rollo: a esta fracción del alto de la pantalla.
+  const ADELANTO = 0.72;
+  let pendiente = false;
+  let ultimoScroll = scrollY;
+  let vaiven = 0;
+
+  function actualizar() {
+    pendiente = false;
+    const liston = document.querySelector<HTMLElement>(".liston");
+    if (!liston) return;
+
+    // Cuelga de la barra de navegación: su origen es el borde inferior de la barra, al inicio de la página.
+    const barra = document.querySelector<HTMLElement>(".barra-info");
+    const nav = document.querySelector<HTMLElement>(".nav");
+    const origen = (barra?.offsetHeight ?? 0) + (nav?.offsetHeight ?? 0);
+    const maximo = document.documentElement.scrollHeight - origen;
+    // La tela queda quieta en la página y el rollo va por delante de la vista, desenrollándola.
+    const largo = reducir.matches ? maximo : Math.min(maximo, Math.max(0, scrollY + innerHeight * ADELANTO - origen));
+
+    // Vaivén del rollo: se inclina un poco según la velocidad del scroll y vuelve a su sitio.
+    const velocidad = scrollY - ultimoScroll;
+    ultimoScroll = scrollY;
+    vaiven = reducir.matches ? 0 : Math.max(-6, Math.min(6, vaiven * 0.6 + velocidad * 0.15));
+
+    liston.style.setProperty("--liston-origen", `${origen}px`);
+    liston.style.setProperty("--liston-largo", `${largo}px`);
+    liston.style.setProperty("--vaiven", `${vaiven.toFixed(2)}deg`);
+    liston.dataset.completo = String(largo >= maximo);
   }
+
+  function pedirActualizacion() {
+    if (!pendiente) {
+      pendiente = true;
+      requestAnimationFrame(actualizar);
+    }
+  }
+
+  addEventListener("scroll", pedirActualizacion, { passive: true });
+  addEventListener("resize", pedirActualizacion);
+  document.addEventListener("astro:page-load", pedirActualizacion);
+  // Al dejar de mover el scroll, el rollo vuelve a quedar recto.
+  addEventListener("scrollend", () => { vaiven = 0; pedirActualizacion(); });
 </script>
 
 <style>
-  /* Detrás de las secciones de color y delante del fondo (capa negativa).
-     Excepción a "sin posiciones fijas", aprobada el 03/11/2026 (ADR 0009). */
+  /* Por encima de los fondos de la portada y de "Proyectos en diseño", y por debajo de los demás contenidos
+     (ver las capas en tokens.css y base.css). Excepción a "sin posiciones fijas" (ADR 0009). */
   .liston {
-    position: fixed; top: 0; left: 0; z-index: var(--capa-liston);
-    height: 100vh; width: clamp(8px, calc(var(--margen) - 24px), 40px);
-    background: url("/img/patron.svg") top center / 100% auto repeat-y;
+    --liston-ancho: 52px; /* 30 % más grande que los 40 px de la versión 1 */
+    position: absolute; /* fijo a la página, no a la pantalla: la tela cuelga y no se desliza */
+    top: var(--liston-origen, 0px);
+    left: calc(20vw - var(--liston-ancho) / 2); /* entre la primera y la segunda quinta parte */
+    width: var(--liston-ancho);
+    height: var(--liston-largo, 0px);
+    z-index: var(--capa-liston);
     pointer-events: none;
-    animation: liston linear both; animation-timeline: scroll(root);
   }
-  @keyframes liston { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
-  @supports not (animation-timeline: scroll()) {
-    .liston { animation: none; clip-path: inset(0 0 calc(100% - var(--avance, 0%)) 0); }
+
+  /* La parte ya desenrollada: el patrón queda quieto, como una tela que cuelga. */
+  .liston__tela {
+    height: 100%;
+    background:
+      /* curvatura de la tela en los bordes (prueba: el BRIEF prohíbe degradados y sombras decorativas) */
+      linear-gradient(90deg, rgb(40 10 5 / 0.22), transparent 18%, transparent 82%, rgb(40 10 5 / 0.22)),
+      url("/img/patron.svg") top center / 100% auto repeat-y;
+    box-shadow: 3px 0 10px rgb(40 10 5 / 0.25);
   }
-  @media (prefers-reduced-motion: reduce) { .liston { animation: none; clip-path: none; } }
-  /* Pantallas angostas: se oculta (ADR 0009); el patrón sigue completo en el pie */
-  @media (max-width: 600px) { .liston { display: none; } }
+
+  /* El rollo, visto de frente: un cilindro acostado donde se enrolla la tela, en estilo de ilustración plana
+     (franjas de luz y sombra con cortes nítidos, como las referencias de Favio del 10/11/2026).
+     La tela entra al rollo por arriba; a la derecha se ve la tapa con las vueltas de tela y el tubo de cartón. */
+  .liston__rollo {
+    --rollo-alto: 38px;
+    --rollo-borde: rgb(40 10 5 / 0.55);
+    position: absolute;
+    left: -6px;
+    right: -2px;
+    top: 100%;
+    height: var(--rollo-alto);
+    transform: translateY(-28%) rotate(var(--vaiven, 0deg));
+    transition: transform var(--dur-media) var(--curva);
+    filter: drop-shadow(0 5px 4px rgb(40 10 5 / 0.35));
+  }
+
+  /* Cuerpo del cilindro: recorta la tela enrollada y le pone las franjas de luz y sombra. */
+  .liston__cuerpo {
+    position: absolute;
+    inset: 0 8px 0 0;
+    overflow: hidden;
+    border: 1.5px solid var(--rollo-borde);
+    border-right: 0;
+    border-radius: 7px 0 0 7px;
+    background: #f6f1ea;
+  }
+  /* La tela enrollada: el mismo patrón del listón, aplastado en vertical (las vueltas se ven más juntas). */
+  .liston__cuerpo::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 400%;
+    background: url("/img/patron.svg") top center / 100% auto repeat-y;
+    transform: scaleY(0.25);
+    transform-origin: top;
+  }
+  /* Franjas del cilindro: brillo arriba, tono medio, sombra y sombra profunda abajo. */
+  .liston__cuerpo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgb(255 255 255 / 0.5) 0 18%,
+      transparent 18% 48%,
+      rgb(40 10 5 / 0.28) 48% 74%,
+      rgb(40 10 5 / 0.55) 74% 100%);
+  }
+
+  /* Tapa derecha: las vueltas de tela en los colores del patrón y el tubo de cartón mostaza con su agujero. */
+  .liston__tapa {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 17px;
+    height: var(--rollo-alto);
+    border-radius: 50%;
+    border: 1.5px solid var(--rollo-borde);
+    background: radial-gradient(closest-side,
+      #2a0b06 0 24%,
+      #e49600 24% 44%,
+      #00728a 44% 56%,
+      #f6f1ea 56% 64%,
+      #00728a 64% 76%,
+      #fa1103 76% 86%,
+      #00728a 86% 100%);
+  }
+
+  /* Con "reducir movimiento" o ya desenrollado del todo, no hay rollo. */
+  .liston[data-completo="true"] .liston__rollo { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .liston__rollo { display: none; }
+  }
+
+  /* Pantallas angostas: se oculta (ADR 0009); el patrón sigue completo en el pie. */
+  @media (max-width: 600px) {
+    .liston { display: none; }
+  }
 </style>

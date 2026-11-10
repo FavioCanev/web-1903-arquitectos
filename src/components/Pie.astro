@@ -51,7 +51,7 @@ const { amarillo = false } = Astro.props;
   /* De borde a borde, con 16 px de aire entre baldosas (pedido del 02/11/2026) */
   .pie__patron { height: 56px; margin: var(--e8) 0 var(--e4); background: url("/img/patron.svg") center / 72px 56px repeat-x; }
   .pie__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--e2); font-size: 13px; color: var(--vino-2); border-top: 1px solid var(--linea); padding-top: var(--e3); }
-  .pie--amarillo { background: var(--amarillo); }
+  .pie--amarillo { background: var(--amarillo); --velo: var(--velo-amarillo); }
   .pie--amarillo .pie__legal { color: var(--vino); border-top-color: rgba(83, 9, 10, 0.25); }
   /* En celular se deja aire abajo para que el botón flotante de WhatsApp no tape los enlaces legales */
   @media (max-width: 900px) { .pie__columnas { grid-template-columns: minmax(0, 1fr); } .pie { padding-bottom: var(--e12); } }
