@@ -16,6 +16,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Agregado
 
+- `docs/ESTRUCTURA.md`: qué hay en cada carpeta del proyecto y cuál es el código de la web.
 - Fotos reales de seis proyectos (Café San Luis, Tacos Cajamarquinos Jr. Ayacucho, Estación de servicio Labanda, Cafétos, Refugio VV y Estancia del Alba), con texto alternativo y crédito del fotógrafo. Van dentro del repositorio por ahora (a R2 más adelante). El script `scripts/preparar_fotos.py` las reduce a 2400 px, las pasa a sRGB y borra todos sus datos EXIF, XMP y demás, y verifica el resultado.
 - Las fotos se optimizan al construir (AVIF y WebP, varios tamaños, carga diferida).
 - Proyectos nuevos: Refugio VV, Estación de servicio Labanda y Tacos Cajamarquinos - La Colmena (este, con sus datos y fotos [pendientes]).
@@ -23,6 +24,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Cambiado
 
+- El material interno del estudio (presentaciones, prototipo, referencias, capturas, datos y documentos) pasa a la carpeta `material/`. No cambia lo que se sube al repositorio.
 - Categorías: "Arquitectura comercial" pasa a "Arquitectura", "Vivienda" a "Interiorismo residencial" y "Hotel" desaparece (pasa a "Interiorismo comercial"). "Cocina Labanda" y "Estación de servicio Labanda" son un solo proyecto, y "Otro" sale del tipo de proyecto del formulario. El formulario de contacto y las descripciones de Inicio y Proyectos usan los nombres nuevos.
 - Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV"; "Cocina Labanda" pasa a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
 - Servicios tomados de la hoja, con "Construcción de obra, de inicio a fin" como servicio aparte. Preguntas frecuentes: solo las 4 principales de la hoja ("¿Trabajan fuera de Cajamarca?" queda con "[Respuesta pendiente]"); las secundarias se ponen en otro lugar.
