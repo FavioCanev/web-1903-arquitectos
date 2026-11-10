@@ -14,6 +14,14 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ## [Sin publicar]
 
+### Agregado
+
+- `docs/ESTRUCTURA.md`: qué hay en cada carpeta del proyecto y cuál es el código de la web.
+
+### Cambiado
+
+- El material interno del estudio (presentaciones, prototipo, referencias, capturas, datos y documentos) pasa a la carpeta `material/`. No cambia lo que se sube al repositorio.
+
 ## [0.3.0] — 09/11/2026
 
 ### Agregado
