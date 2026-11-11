@@ -88,7 +88,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Obra terminada | Todas las obras terminadas, con foto, nombre y ficha corta (lugar · m² · año) | Must |
-| Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría [categorías por definir con el estudio] | Should |
+| Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría Las categorías de la hoja son "Arquitectura", "Interiorismo comercial" e "Interiorismo residencial" | Should |
 | En desarrollo | Los renders, separados de la obra terminada, con la etiqueta "Render" | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "m²" son los metros cuadrados del proyecto.*
@@ -144,9 +144,9 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Servicios | 01 Diseño arquitectónico · 02 Diseño de interiores · 03 Modelado 3D y visualización · 04 Desarrollo y coordinación de proyectos · 05 Supervisión, asesoría y construcción · 06 Lotizaciones y trámites municipales (con la etiqueta "Próximamente"), cada uno con una línea de lo que incluye [alcance de la construcción y descripción de lotizaciones y trámites: por confirmar] | Must |
+| Servicios | 01 Diseño arquitectónico · 02 Diseño de interiores · 03 Modelado 3D y visualización · 04 Desarrollo y coordinación de proyectos · 05 Supervisión y asesoría · 06 Construcción de obra, de inicio a fin · 07 Lotizaciones y trámites municipales (con la etiqueta "Próximamente"), cada uno con una línea de lo que incluye [alcance de la construcción y descripción de lotizaciones y trámites: por confirmar] | Must |
 | Cómo trabajamos | 4 pasos: Conversamos → Diseñamos → Elegimos materiales → Construimos | Must |
-| Preguntas frecuentes | Preguntas que se abren y se cierran; solo las respuestas aprobadas por el estudio en la hoja | Must |
+| Preguntas frecuentes | Cuatro preguntas principales que se abren y se cierran (las marcadas "Sí" en la hoja); las secundarias irán en otro lugar | Must |
 | Llamado a la acción | "¿Tienes un proyecto en mente?" con el botón a Contacto | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Llamado a la acción" es un bloque que invita al visitante a dar el siguiente paso.*
@@ -215,7 +215,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Formulario | Nombre, teléfono (opcional), tipo de proyecto, qué quiere hacer (diseñar, construir o remodelar) y mensaje; casilla de consentimiento con enlace al aviso de privacidad; botón "Enviar por WhatsApp" (ver la ADR 0005) | Must |
+| Formulario | Nombre, teléfono (opcional), tipo de proyecto (Arquitectura, Interiorismo comercial, o Interiorismo residencial), qué quiere hacer (diseñar, construir o remodelar) y mensaje; casilla de consentimiento con enlace al aviso de privacidad; botón "Enviar por WhatsApp" (ver la ADR 0005) | Must |
 | Mapa | Imagen exportada de OpenStreetMap con el crédito "© OpenStreetMap" y el botón "Cómo llegar", que abre Google Maps (ver la ADR 0007) | Must |
 | Datos | Dirección, WhatsApp, correo y horario; "también te recibimos sin cita" | Must |
 

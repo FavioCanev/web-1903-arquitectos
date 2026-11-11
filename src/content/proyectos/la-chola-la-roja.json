@@ -1,14 +1,15 @@
 {
-  "nombre": "Hotel Estancia del Alba",
-  "tipo": "Hotel",
+  "nombre": "La Chola - La roja",
+  "tipo": "Interiorismo comercial",
   "categorias": [
-    "Hotel"
+    "Interiorismo comercial"
   ],
-  "ciudad": "[pendiente]",
+  "ciudad": "Cajamarca",
   "estado": "terminado",
-  "orden": 5,
+  "orden": 7,
   "inicio": true,
-  "fotografo": "Ximena Cholán Terán",
+  "area": 412,
+  "anio": 2021,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",

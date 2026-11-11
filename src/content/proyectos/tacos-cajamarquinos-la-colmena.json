@@ -1,13 +1,15 @@
 {
-  "nombre": "Cocina Labanda",
-  "tipo": "Vivienda",
+  "nombre": "Tacos Cajamarquinos - La Colmena",
+  "tipo": "Interiorismo comercial",
   "categorias": [
-    "Vivienda"
+    "Interiorismo comercial"
   ],
-  "ciudad": "[pendiente]",
+  "ciudad": "Cajamarca",
   "estado": "terminado",
   "orden": 8,
   "inicio": true,
+  "area": 67,
+  "anio": 2022,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",

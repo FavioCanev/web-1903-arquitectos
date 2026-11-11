@@ -1,13 +1,12 @@
 {
-  "nombre": "Casa de playa",
-  "tipo": "Vivienda",
+  "nombre": "La colina - casa Lozada",
+  "tipo": "Interiorismo residencial",
   "categorias": [
-    "Vivienda"
+    "Interiorismo residencial"
   ],
   "ciudad": "Punta Sal, Tumbes",
   "estado": "render",
-  "orden": 13,
-  "porConfirmar": true,
+  "orden": 14,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",

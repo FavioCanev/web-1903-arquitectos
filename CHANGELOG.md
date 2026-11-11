@@ -14,6 +14,22 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ## [Sin publicar]
 
+### Agregado
+
+- Fotos reales de seis proyectos (Café San Luis, Tacos Cajamarquinos Jr. Ayacucho, Estación de servicio Labanda, Cafétos, Refugio VV y Estancia del Alba), con texto alternativo y crédito del fotógrafo. Van dentro del repositorio por ahora (a R2 más adelante). El script `scripts/preparar_fotos.py` las reduce a 2400 px, las pasa a sRGB y borra todos sus datos EXIF, XMP y demás, y verifica el resultado.
+- Las fotos se optimizan al construir (AVIF y WebP, varios tamaños, carga diferida).
+- Proyectos nuevos: Refugio VV, Estación de servicio Labanda y Tacos Cajamarquinos - La Colmena (este, con sus datos y fotos [pendientes]).
+- Ícono de la pestaña (favicon) en SVG: logo vertical en blanco sobre un cuadrado vino.
+
+### Cambiado
+
+- Categorías: "Arquitectura comercial" pasa a "Arquitectura", "Vivienda" a "Interiorismo residencial" y "Hotel" desaparece, "Cocina Labanda" y "Estación de servicio Labanda" son un solo proyecto, "Otro" sale del tipo de proyecto del formulario (pasa a "Interiorismo comercial"). El formulario de contacto y las descripciones de Inicio y Proyectos usan los nombres nuevos.
+- Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV" y "Cocina Labanda" a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
+- Servicios tomados de la hoja, con "Construcción de obra, de inicio a fin" como servicio aparte. Preguntas frecuentes: solo las 4 principales de la hoja ("¿Trabajan fuera de Cajamarca?" queda con "[Respuesta pendiente]"); las secundarias se ponen en otro lugar.
+- Se agrega "La Chola - La roja" y se completan los datos de Tacos La Colmena y de los renders que el estudio ya confirmó.
+- Una foto con archivo ya puede tener el pie [pendiente]; el texto alternativo sigue siendo obligatorio.
+- En la galería, las fotos conservan casi toda su forma en lugar de recortarse a una proporción fija.
+
 ## [0.3.0] — 09/11/2026
 
 ### Agregado

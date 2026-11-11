@@ -8,26 +8,45 @@
   "estado": "terminado",
   "orden": 1,
   "inicio": true,
+  "area": 25,
+  "anio": 2024,
   "fotografo": "Alejandro Cerna",
+  "encargo": "Desarrollar un espacio comercial de alto impacto visual que conecte con el consumidor y fortalezca la identidad de CAFETOS, posicionando al café como producto protagonista y potenciando la comercialización de sus complementos. El principal desafío consistió en transformar un espacio reducido de 25 m² en una cafetería con gran presencia arquitectónica, capaz de ofrecer una experiencia memorable, funcional y visualmente atractiva.",
+  "solucion": "La propuesta arquitectónica de CAFETOS busca transformar un espacio de apenas 25 m² en una experiencia comercial de gran impacto visual, integrando funcionalidad, identidad y diseño. La conceptualización incorpora la paleta cromática de la marca: rojo, blanco y negro, generando contrastes que aportan personalidad y reconocimiento visual. Esta composición se complementa con la calidez de la madera, una secuencia de arcos y una estructura reticular en el cielo raso que, junto con la iluminación integrada, generan continuidad, profundidad y una mayor percepción de amplitud espacial.\n\nComo elemento distintivo, se incorpora un mural de vinilo con ilustraciones inspiradas en los inicios de CAFETOS, convirtiendo la historia de la marca en un recurso narrativo que conecta emocionalmente con el consumidor. La distribución estratégica integra las áreas de preparación, exhibición, atención y consumo, optimizando cada metro cuadrado. El resultado es una cafetería donde la arquitectura trasciende sus dimensiones físicas, consolidando una identidad comercial reconocible y transformando un espacio reducido en una experiencia memorable.\n\nEl resultado es un espacio donde la arquitectura trasciende sus dimensiones físicas y se convierte en una extensión de la marca. CAFETOS demuestra que una gran cafetería no se define por su superficie, sino por su capacidad de transmitir identidad, contar una historia y transformar el consumo cotidiano en una experiencia memorable.",
   "fotos": [
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/cafetos/01.jpg",
+      "alt": "Mostrador de la cafetería con vitrina de panes, letrero luminoso de Cafétos y un cielorraso de listones de madera.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/cafetos/02.jpg",
+      "alt": "Dos personas conversan en una mesa dentro de un nicho de muro rojo curvo, con piso rojo y pared blanca texturada.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/cafetos/03.jpg",
+      "alt": "Barra con taburetes negros frente a un mural de colores, bajo un cielorraso de listones de madera.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/cafetos/04.jpg",
+      "alt": "Cielorraso de madera con listones y luz cálida sobre el letrero iluminado de Cafétos.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/cafetos/05.jpg",
+      "alt": "Cielorraso de madera en cuadrícula con luz lineal, visto hacia el mostrador.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/06.jpg",
+      "alt": "Panel de madera alargado con borde iluminado sobre un muro blanco, con una banca naranja abajo.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/07.jpg",
+      "alt": "Detalle de un muro rojo y un cielorraso curvo de madera con luz indirecta.",
       "pie": "[Pie de foto pendiente]"
     }
   ]

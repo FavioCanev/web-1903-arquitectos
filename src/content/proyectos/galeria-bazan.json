@@ -1,13 +1,12 @@
 {
-  "nombre": "Galería Bazán",
+  "nombre": "Ayni - Bazán",
   "tipo": "Interiorismo comercial",
   "categorias": [
     "Interiorismo comercial"
   ],
   "ciudad": "Cajamarca",
   "estado": "render",
-  "orden": 11,
-  "porConfirmar": true,
+  "orden": 12,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",

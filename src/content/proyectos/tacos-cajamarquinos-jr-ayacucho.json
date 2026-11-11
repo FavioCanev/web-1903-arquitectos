@@ -1,0 +1,39 @@
+{
+  "nombre": "Tacos Cajamarquinos - Jr. Ayacucho",
+  "tipo": "Interiorismo comercial",
+  "categorias": [
+    "Interiorismo comercial"
+  ],
+  "ciudad": "Cajamarca",
+  "estado": "terminado",
+  "orden": 2,
+  "destacado": true,
+  "inicio": true,
+  "area": 147.3,
+  "anio": 2026,
+  "fotografo": "Alejandro Cerna",
+  "encargo": "Desarrollar una propuesta de diseño interior temático que fusione la riqueza cultural de México con la identidad de Cajamarca, transformando una casona ubicada en el Centro Histórico en un espacio gastronómico y lleno de personalidad. El desafío consistió en trasladar un fragmento de México al corazón de Cajamarca, creando una experiencia que trascienda lo gastronómico y envuelva al usuario a través de la arquitectura, las tradiciones. La intervención contempla 147.30 m² distribuidos en dos niveles, integrando espacios de atención, preparación y consumo.",
+  "solucion": "La propuesta de TACOS CAJAMARQUINOS se desarrolla bajo el concepto de una fusión cultural y sensorial, reinterpretando la esencia festiva de México dentro de la arquitectura tradicional cajamarquina. Se emplea una paleta cromática vibrante, con tonalidades terracota, azul intenso, amarillo y verde, complementada con elementos artesanales, papel picado multicolor y luminarias escultóricas que evocan las celebraciones mexicanas. Los arcos, la madera y los elementos arquitectónicos existentes dialogan con la nueva intervención, mientras que los recursos decorativos y la iluminación cálida construyen una atmósfera envolvente, dinámica y cargada de identidad.\n\nLa intervención organiza funcionalmente los 147.30 m² en dos niveles. El primero integra la barra principal como elemento de bienvenida, la cocina, los servicios higiénicos y una zona de comensales concebida como el corazón de la experiencia gastronómica. El segundo nivel incorpora una sala adicional de comensales y un ambiente destinado a reservas, ofreciendo una experiencia más privada. El diseño aprovecha la verticalidad, el color y la riqueza gráfica para generar diferentes escenarios dentro de un mismo establecimiento. El resultado es un espacio donde México y Cajamarca convergen, transformando una casona histórica en un destino gastronómico que invita no solo a degustar, sino también a descubrir, celebrar y vivir ambas culturas.",
+  "fotos": [
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/01.jpg",
+      "alt": "Salón del restaurante con techo cubierto de papel picado de colores, muros rojos y una escalera de madera al fondo.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/02.jpg",
+      "alt": "Rincón del restaurante con un arco blanco y una imagen de la Virgen de Guadalupe, bajo guirnaldas de papel picado.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/03.jpg",
+      "alt": "Mesas con sillas amarillas, verdes y azules frente a un muro rojo con cuadros, bajo un techo de papel picado.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/04.jpg",
+      "alt": "Detalle del techo con papel picado de colores y una piñata, junto a un muro rojo con cuadros enmarcados.",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

@@ -4,29 +4,39 @@
   "categorias": [
     "Interiorismo comercial"
   ],
-  "ciudad": "[pendiente]",
+  "ciudad": "Cajamarca",
   "estado": "terminado",
   "orden": 3,
   "inicio": true,
+  "area": 145.7,
+  "anio": 2026,
+  "fotografo": "Alejandro Cerna",
+  "encargo": "El encargo consistió en el diseño interior y la renovación de la identidad espacial de la Cafetería San Luis, un establecimiento de dos niveles ubicado en el Centro Histórico de Cajamarca. El principal desafío radicaba en actualizar la imagen de marca y su paleta cromática, integrando la esencia de la ciudad sin recurrir a recursos visuales literales o imágenes referenciales directas. El proyecto debía reinterpretar la identidad cajamarquina de manera contemporánea y sutil a través de la materialidad, las texturas, las formas y el color, respetando el carácter arquitectónico preexistente del entorno monumental.",
+  "solucion": "La solución arquitectónica reinterpreta la identidad de Cajamarca de manera contemporánea mediante una paleta cromática de tonos terracota, que evocan la arcilla y las tejas coloniales, combinada con muros estucados de textura rústica y zócalos altos que abstraen las siluetas de las casonas e iglesias locales. Los techos conservan sus vigas de madera oscura originales, dialogando con un mobiliario de madera diseñado a medida donde destacan barras de atención funcionales y una estantería exenta con silueta a dos aguas que hace un guiño sutil a la volumetría rural andina.\nEl espacio se complementa con una iluminación escenográfica protagonizada por grandes lámparas colgantes de fibras naturales que emulan la forma del sombrero tradicional cajamarquino, proyectando una luz cálida sobre las superficies. En la segunda sala, el diseño se articula alrededor de una banca perimetral que rodea un árbol conceptual, coronado por lámparas naturales suspendidas que refuerzan la atmósfera íntima y sutil del ambiente; finalmente, las bancas con un respaldar tipo macetero con plantas secas e iluminacion sutil, evocan un ambiente acogedor y elegante, logrando una propuesta sofisticada y profundamente arraigada en su contexto histórico sin caer en recursos visuales literales.",
   "fotos": [
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/san-luis-cafe/01.jpg",
+      "alt": "Salón de la cafetería con banca curva crema, mesa redonda de madera y un árbol seco con farolillos blancos al centro.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/san-luis-cafe/02.jpg",
+      "alt": "Árbol seco con farolillos blancos sobre una base circular iluminada, junto a un mural de figuras en zancos sobre fondo azul.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/san-luis-cafe/03.jpg",
+      "alt": "Mesa redonda con sillas de madera frente a una banca curva y un mural colorido de figuras sobre un cielo.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/san-luis-cafe/04.jpg",
+      "alt": "Fila de mesas de madera con banca corrida a lo largo del muro, lámparas de mimbre y farolillos bajo un techo terracota.",
       "pie": "[Pie de foto pendiente]"
     },
     {
-      "alt": "[Descripción pendiente]",
+      "src": "../../assets/proyectos/san-luis-cafe/05.jpg",
+      "alt": "Mesas de madera con sillas y banca tapizada bajo lámparas de mimbre y farolillos, con cuadros en la pared.",
       "pie": "[Pie de foto pendiente]"
     }
   ]

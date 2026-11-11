@@ -27,6 +27,7 @@ const { titulo, descripcion, noindex = false, pieAmarillo = false } = Astro.prop
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {noindex && <meta name="robots" content="noindex" />}
     <ClientRouter />
   </head>

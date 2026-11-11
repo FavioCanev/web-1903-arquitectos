@@ -1,0 +1,64 @@
+{
+  "nombre": "Refugio VV",
+  "tipo": "Interiorismo residencial",
+  "categorias": [
+    "Interiorismo residencial"
+  ],
+  "ciudad": "Baños del Inca, Cajamarca",
+  "estado": "terminado",
+  "orden": 4,
+  "inicio": true,
+  "fotografo": "Alejandro Cerna",
+  "fotos": [
+    {
+      "src": "../../assets/proyectos/refugio-vv/01.jpg",
+      "alt": "Sala de doble altura con ventanales, celosía de madera, sillón de cuero y sofá blanco.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/02.jpg",
+      "alt": "Terraza cubierta con una larga mesa de tronco de madera, sillas verdes y vigas de madera bajo un techo con tragaluz.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/03.jpg",
+      "alt": "Cocina con isla blanca, muebles de madera clara y un muro terracota, con un comedor redondo de madera al frente.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/04.jpg",
+      "alt": "Sala con celosía de madera al fondo, sillón blanco, sillón de cuero y un mueble de madera.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/05.jpg",
+      "alt": "Dormitorio con cabecero tapizado de tablas redondeadas y una luz lineal que dibuja una curva en el muro.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/06.jpg",
+      "alt": "Barra de la terraza con taburetes, horno de barro y mesa de madera, abierta al jardín.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/07.jpg",
+      "alt": "Sillón de cuero junto a una celosía de madera, sobre piso de madera.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/08.jpg",
+      "alt": "Puerta de madera con vitral de colores junto a repisas con cuadros, y un comedor de madera.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/09.jpg",
+      "alt": "Comedor de madera junto a ventanas con marco de madera y vista al paisaje.",
+      "pie": "[Pie de foto pendiente]"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/10.jpg",
+      "alt": "Detalle de un panel de madera calada con trama de rejilla.",
+      "pie": "[Pie de foto pendiente]"
+    }
+  ]
+}

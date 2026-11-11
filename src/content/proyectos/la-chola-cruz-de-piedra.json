@@ -1,13 +1,15 @@
 {
-  "nombre": "La Chola",
+  "nombre": "La Chola - Cruz de piedra",
   "tipo": "Interiorismo comercial",
   "categorias": [
     "Interiorismo comercial"
   ],
   "ciudad": "Cajamarca",
   "estado": "terminado",
-  "orden": 4,
+  "orden": 9,
   "inicio": true,
+  "area": 100.9,
+  "anio": 2019,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",

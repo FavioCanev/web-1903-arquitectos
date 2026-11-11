@@ -1,17 +1,24 @@
 ---
-// Foto de un proyecto. Mientras el estudio no entregue las fotos reales, muestra el recuadro "Pendiente".
-// La optimización de las fotos (ADR 0011) se agrega cuando existan.
+// Foto de un proyecto. Con archivo (src/assets/, ADR 0011) Astro la optimiza: AVIF y WebP, varios tamaños y
+// carga diferida. Sin archivo, muestra el recuadro "Pendiente".
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
-  src?: string;
+  src?: ImageMetadata;
   alt: string;
   /** Texto del recuadro cuando falta la foto. */
   pendiente?: string;
   clase?: string;
   eager?: boolean;
+  /** Ancho que ocupa la foto en pantalla, para que el navegador elija el tamaño justo. */
+  sizes?: string;
+  /** Proporción ancho / alto de la foto; si no se da, manda la clase. */
+  ratio?: number;
 }
-const { src, alt, pendiente = "Foto pendiente", clase = "r-4x5", eager = false } = Astro.props;
+const { src, alt, pendiente = "Foto pendiente", clase = "r-4x5", eager = false, sizes = "(max-width: 900px) 100vw, 33vw", ratio } = Astro.props;
 ---
 
 {src
-  ? <img class={clase} src={src} alt={alt} loading={eager ? "eager" : "lazy"} style="object-fit:cover;width:100%" />
+  ? <Picture class={clase} src={src} alt={alt} formats={["avif", "webp"]} widths={[480, 800, 1200, 1600]} sizes={sizes} loading={eager ? "eager" : "lazy"} style={`object-fit:cover;width:100%;${ratio ? `aspect-ratio:${ratio.toFixed(4)}` : ""}`} />
   : <div class:list={["pendiente", clase]}>{pendiente}</div>}

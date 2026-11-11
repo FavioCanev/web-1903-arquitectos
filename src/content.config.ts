@@ -8,7 +8,8 @@ import { esquemaFoto } from "./lib/esquemas";
 // Un dato que el estudio aún no entrega se deja fuera (area, anio, encargo, solucion) o se escribe entre [corchetes].
 const proyectos = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/proyectos" }),
-  schema: z.object({
+  schema: ({ image }) =>
+    z.object({
     nombre: z.string().min(1),
     tipo: z.string().min(1),
     /** Un proyecto puede tener varias categorías; las define el estudio en la hoja. */
@@ -29,8 +30,8 @@ const proyectos = defineCollection({
     fotografo: z.string().optional(),
     encargo: z.string().optional(),
     solucion: z.string().optional(),
-    fotos: z.array(esquemaFoto).min(1),
-  }),
+    fotos: z.array(esquemaFoto(image)).min(1),
+    }),
 });
 
 export const collections = { proyectos };

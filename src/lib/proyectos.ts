@@ -26,5 +26,6 @@ export function tituloProyecto({ nombre, tipo, ciudad }: Proyecto["data"]): stri
   return `${nombre} — ${tipo.toLowerCase()}${lugar} · 1903 Arquitectos`;
 }
 
-/** Categorías distintas de una lista de proyectos, para los filtros. */
-export const categoriasDe = (proyectos: Proyecto[]) => [...new Set(proyectos.flatMap((p) => p.data.categorias))];
+/** Categorías distintas de una lista de proyectos, para los filtros. Las [pendientes] no son un filtro. */
+export const categoriasDe = (proyectos: Proyecto[]) =>
+  [...new Set(proyectos.flatMap((p) => p.data.categorias))].filter((c) => !esPendiente(c));

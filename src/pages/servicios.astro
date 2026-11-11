@@ -3,12 +3,13 @@ import Layout from "../layouts/Layout.astro";
 
 // Los 6 servicios de la ficha oficial (sin "Elaboración de planos", que va implícita en los demás).
 const servicios = [
-  { nombre: "Diseño arquitectónico", incluye: "Locales comerciales, viviendas, edificios multifamiliares, anteproyectos, ampliaciones y remodelaciones." },
-  { nombre: "Diseño de interiores", incluye: "Distribución de espacios, selección de materiales y acabados, mobiliario a medida, iluminación y decoración." },
-  { nombre: "Modelado 3D y visualización", incluye: "Renders fotorrealistas de interiores y exteriores, recorridos virtuales y animaciones." },
-  { nombre: "Desarrollo y coordinación de proyectos", incluye: "Coordinación con especialidades, estructuras, instalaciones eléctricas y sanitarias, documentación para obra." },
-  { nombre: "Supervisión, asesoría y construcción", incluye: "Supervisión de obra, visitas técnicas y la obra de inicio a fin. [Alcance de la construcción por confirmar.]" },
-  { nombre: "Lotizaciones y trámites municipales", incluye: "[Descripción por confirmar con el estudio.]", proximamente: true },
+  {"nombre": "Diseño arquitectónico", "incluye": "Diseño de viviendas · Diseño de edificios y proyectos multifamiliares · Diseño de locales comerciales y oficinas · Anteproyectos y proyectos arquitectónicos · Ampliaciones y remodelaciones"},
+  {"nombre": "Diseño de interiores", "incluye": "Diseño y distribución de espacios interiores · Diseño de salas, dormitorios, cocinas y baños · Diseño de oficinas y locales comerciales · Selección de materiales y acabados · Diseño de mobiliario personalizado · Propuesta de iluminación y decoración"},
+  {"nombre": "Modelado 3D y visualización", "incluye": "Modelado arquitectónico en 3D · Renders fotorrealistas de interiores · Renders fotorrealistas de exteriores · Recorridos virtuales y presentación de proyectos · Animaciones arquitectónicas, según requerimiento"},
+  {"nombre": "Desarrollo y coordinación de proyectos", "incluye": "Desarrollo integral de proyectos · Coordinación con especialidades · Planos estructurales · Instalaciones eléctricas · Instalaciones sanitarias · Documentación técnica para ejecución de obra"},
+  {"nombre": "Supervisión y asesoría", "incluye": "Asesoría arquitectónica · Supervisión de obra · Visitas técnicas · Coordinación durante la ejecución del proyecto · Asesoría en materiales y acabados"},
+  {"nombre": "Construcción de obra, de inicio a fin", "incluye": "[Descripción por confirmar con el estudio.]"},
+  {"nombre": "Lotizaciones y trámites municipales", "incluye": "[Descripción por confirmar con el estudio.]", "proximamente": true},
 ];
 
 const pasos = [
@@ -18,11 +19,13 @@ const pasos = [
   { nombre: "Construimos", texto: "Llevamos la obra de inicio a fin." },
 ];
 
-// Solo las respuestas que el estudio aprobó en la hoja (pestaña "Preguntas (del PDF)").
+// De la hoja, pestaña "Preguntas frecuentes": solo las filas "Sí" (las principales), sin el número y en el orden de ese
+// número. Las "SECUNDARIO" irán en otro lugar.
 const preguntas = [
-  { pregunta: "¿Cuánto cuesta un proyecto?", respuesta: "Cada presupuesto es personalizado: depende del área, el tipo y la complejidad del diseño, la ubicación, el nivel de detalle y la cantidad de planos, renders o entregables que necesites." },
-  { pregunta: "¿Cuánto tiempo toma?", respuesta: "El plazo mínimo es un mes, pero se define según la magnitud del servicio que contrates. Te lo indicamos en la cotización." },
-  { pregunta: "¿Puedo pedir servicios que no estaban en la cotización?", respuesta: "Sí. Los servicios adicionales se cotizan por separado." },
+  {"pregunta": "¿Qué información o documentos necesitan que les entregue para poder empezar a diseñar?", "respuesta": "Para iniciar, necesitamos el levantamiento topográfico del terreno, el certificado de parámetros urbanísticos o regulaciones de la zona y, si las hay, fotos del entorno, en caso contrario se podría realizar una visita a campo. Sin embargo, lo más importante para nosotros es un \"brief\" o lista de tus necesidades de espacio, tu presupuesto estimado y que nos compartas cómo imaginas tu día a día en el lugar."},
+  {"pregunta": "Me gusta su enfoque regional, pero ¿cómo se aseguran de que el diseño también refleje mis gustos personales y mi estilo de vida?", "respuesta": "Nuestro proceso es de co-creación. El arraigo local pone las reglas del clima, la luz y los materiales idóneos para el lugar, pero tú pones las reglas de cómo se habita. Diseñamos a partir de tus rutinas, pasatiempos y necesidades familiares. El resultado final es una fusión perfecta: una arquitectura que pertenece a su entorno, pero que se siente 100% tuya."},
+  {"pregunta": "¿De qué manera nos mostrarán las propuestas de diseño para que podamos entenderlas bien?", "respuesta": "Sabemos que interpretar planos técnicos puede ser difícil. Por eso, te presentaremos el proyecto de forma muy visual y didáctica. Utilizamos combinaciones de bocetos conceptuales, planos arquitectónicos simplificados, maquetas de estudio de materiales y renders (imágenes 3D hiperrealistas). Así podrás previsualizar con total claridad los volúmenes, la luz natural y las texturas antes de aprobar el diseño."},
+  {"pregunta": "¿Trabajan fuera de Cajamarca?", "respuesta": "[Respuesta pendiente]"},
 ];
 ---
 

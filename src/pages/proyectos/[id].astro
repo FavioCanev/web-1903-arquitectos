@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getImage } from "astro:assets";
 import Foto from "../../components/Foto.astro";
 import { datoOPendiente, obrasTerminadas, tituloProyecto, urlProyecto } from "../../lib/proyectos";
 
@@ -19,6 +20,8 @@ export async function getStaticPaths() {
 
 const { proyecto, anterior, siguiente } = Astro.props;
 const d = proyecto.data;
+// La foto principal fija es un fondo de CSS: se genera una versión optimizada (WebP, 2000 px) para ella.
+const principal = d.fotos[0]?.src ? await getImage({ src: d.fotos[0].src, format: "webp", width: 2000 }) : undefined;
 const ficha = [
   ["Lugar", d.ciudad],
   ["Área", d.area ? `${d.area} m²` : "[m²]"],
@@ -28,6 +31,15 @@ const ficha = [
 // Disposición de la galería según la posición de la foto (la del wireframe v2)
 const disposicion = ["g-ancha", "g-7", "g-5 bajo", "g-mitad", "g-mitad"];
 const proporcion = ["r-16x9", "r-4x5", "r-4x5", "r-1x1", "r-1x1"];
+// Tamaño aproximado de cada lugar de la galería en pantallas anchas (en celular todas ocupan el ancho completo).
+const anchos = ["100vw", "58vw", "42vw", "50vw", "50vw"];
+// Las fotos reales conservan casi toda su forma: se recortan solo lo necesario para encajar en la disposición
+// (la ancha admite desde 3:2; las demás, entre 4:5 y 3:2). Sin archivo, queda la proporción del recuadro.
+const proporcionDe = (foto: (typeof d.fotos)[number], i: number) => {
+  if (!foto.src) return undefined;
+  const natural = foto.src.width / foto.src.height;
+  return i % disposicion.length === 0 ? Math.max(natural, 3 / 2) : Math.min(Math.max(natural, 4 / 5), 3 / 2);
+};
 ---
 
 <Layout
@@ -37,8 +49,8 @@ const proporcion = ["r-16x9", "r-4x5", "r-4x5", "r-1x1", "r-1x1"];
 >
   <!-- Foto principal fija "como ventana": el contenido pasa por encima (solo CSS) -->
   <section class="portada" aria-label="Foto principal">
-    <div class="pendiente portada__foto" style={d.fotos[0]?.src ? `background-image:url(${d.fotos[0].src})` : undefined}>
-      {!d.fotos[0]?.src && `Foto principal pendiente · ${d.nombre}`}
+    <div class="pendiente portada__foto" style={principal ? `background-image:url(${principal.src})` : undefined}>
+      {!principal && `Foto principal pendiente · ${d.nombre}`}
     </div>
   </section>
 
@@ -60,14 +72,14 @@ const proporcion = ["r-16x9", "r-4x5", "r-4x5", "r-1x1", "r-1x1"];
       </div>
 
       <div class="relato">
-        <div class="bloque"><span class="etiqueta">Encargo</span><p>{d.encargo ?? "[Qué pidió el cliente, 2–3 líneas. Por confirmar con el estudio.]"}</p></div>
-        <div class="bloque"><span class="etiqueta">Solución</span><p>{d.solucion ?? "[Qué hizo el estudio, 2–3 líneas. Por confirmar con el estudio.]"}</p></div>
+        <div class="bloque"><span class="etiqueta">Encargo</span>{(d.encargo ?? "[Qué pidió el cliente, 2–3 líneas. Por confirmar con el estudio.]").split("\n\n").map((t) => <p>{t}</p>)}</div>
+        <div class="bloque"><span class="etiqueta">Solución</span>{(d.solucion ?? "[Qué hizo el estudio, 2–3 líneas. Por confirmar con el estudio.]").split("\n\n").map((t) => <p>{t}</p>)}</div>
       </div>
 
       <div class="galeria">
         {d.fotos.map((foto, i) => (
           <figure class={disposicion[i % disposicion.length]}>
-            <Foto src={foto.src} alt={foto.alt} clase={proporcion[i % proporcion.length]} />
+            <Foto src={foto.src} alt={foto.alt} clase={proporcion[i % proporcion.length]} ratio={proporcionDe(foto, i)} sizes={`(max-width: 900px) 100vw, ${anchos[i % anchos.length]}`} />
             <figcaption>{foto.pie}</figcaption>
           </figure>
         ))}

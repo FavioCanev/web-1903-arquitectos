@@ -1,0 +1,26 @@
+{
+  "san-luis-cafe": {
+    "carpeta": "1. Café San Luis",
+    "fotos": ["3.png", "5.png", "4.png", "1.png", "2.png"]
+  },
+  "tacos-cajamarquinos-jr-ayacucho": {
+    "carpeta": "2. Tacos Cajamarquinos - Ayacucho",
+    "fotos": ["1.png", "3.png", "2.png", "4.png"]
+  },
+  "estacion-de-servicio-labanda": {
+    "carpeta": "3. Estación de servicio Labanda",
+    "fotos": ["2.png", "1.png", "3.png"]
+  },
+  "cafetos": {
+    "carpeta": "4. Cafetos Café",
+    "fotos": ["IMG_9642.jpg", "IMG_9641.jpg", "IMG_9660.jpg", "IMG_9638.jpg", "IMG_9639.jpg", "IMG_9648.jpg", "IMG_9664.jpg"]
+  },
+  "refugio-vv": {
+    "carpeta": "5. Refugio VV",
+    "fotos": ["IMG_9353.jpg", "IMG_9425.jpg", "IMG_9497.jpg", "IMG_9554.jpg", "IMG_20250801_120120.jpg", "IMG_9399.jpg", "IMG_9338.jpg", "IMG_9570.jpg", "IMG_9614.jpg", "IMG_9594.jpg"]
+  },
+  "estancia-del-alba": {
+    "carpeta": "6. Estancia del Alba",
+    "fotos": ["IMG_7455.jpg", "IMG_7448.jpg", "IMG_7469.jpg", "IMG_7467.jpg"]
+  }
+}

@@ -1,13 +1,12 @@
 {
-  "nombre": "Jardín (Porongo)",
+  "nombre": "Eco Lounge - Jardín Porongo",
   "tipo": "Interiorismo comercial",
   "categorias": [
     "Interiorismo comercial"
   ],
-  "ciudad": "[pendiente]",
+  "ciudad": "Baños del Inca, Cajamarca",
   "estado": "render",
-  "orden": 14,
-  "porConfirmar": true,
+  "orden": 15,
   "fotos": [
     {
       "alt": "[Descripción pendiente]",
