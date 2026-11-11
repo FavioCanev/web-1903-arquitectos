@@ -97,7 +97,7 @@ const acciones = ["Diseñar", "Construir", "Remodelar"];
 </script>
 
 <style>
-  .contacto { background: var(--vino); color: var(--claro); }
+  .contacto { background: var(--vino); color: var(--claro); --velo: var(--velo-vino); }
   .contacto :global(.etiqueta), .contacto .texto-2 { color: var(--sobre-vino); }
   .grilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); }
   [hidden] { display: none !important; }
@@ -115,7 +115,7 @@ const acciones = ["Diseñar", "Construir", "Remodelar"];
   .consentimiento input { width: 24px; height: 24px; flex: none; accent-color: var(--naranja); }
   .errores { color: var(--amarillo); font-weight: 500; }
   .errores:empty { display: none; }
-  .mapa { background: #6a1f20; color: var(--sobre-vino); }
+  .mapa { background: #6a1f20; color: var(--sobre-vino); --velo: rgb(106 31 32); }
   .credito-mapa { color: var(--sobre-vino); margin: var(--e1) 0 var(--e3); }
   .datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); margin: var(--e4) 0 var(--e2); }
   .datos dt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); margin-bottom: 4px; }

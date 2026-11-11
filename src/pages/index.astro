@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import MosaicoProyectos from "../components/MosaicoProyectos.astro";
+import GrillaFija from "../components/GrillaFija.astro";
 import CarruselRenders from "../components/CarruselRenders.astro";
 import { estudio } from "../config";
 import { enlaceWhatsapp } from "../lib/whatsapp";
@@ -15,32 +15,29 @@ const delInicio = obras.filter((p) => p.data.inicio);
   titulo="1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca"
   descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina."
 >
-  <section class="inicio" aria-label="Proyecto destacado">
+  <!-- La portada queda quieta mientras el listón baja desde la barra; --pausa-portada lo calcula Liston.astro -->
+  <div class="portada-pausa liston-sobre">
+  <!-- Dos capas fijas: el fondo (la foto) queda por debajo del listón y el contenido, por encima -->
+  <div class="pendiente inicio__fondo" aria-hidden="true"></div>
+  <section class="inicio liston-sobre" aria-label="Proyecto destacado">
     <div class="pendiente inicio__foto">
       <div class="inicio__contenido">
-        <span class="inicio__nota">Foto pendiente · {destacado?.data.nombre}</span>
-        <h1 class="h1">{estudio.lema}</h1>
-        <div class="botones">
+        <span class="inicio__nota parallax-portada sobre-liston">Foto pendiente · {destacado?.data.nombre}</span>
+        <h1 class="h1 parallax-portada sobre-liston">{estudio.lema}</h1>
+        <div class="botones sobre-liston">
           <a class="boton boton--primario" href="/proyectos/">Ver proyectos</a>
           <a class="boton boton--secundario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
         </div>
-        {destacado && <a class="inicio__enlace" href={urlProyecto(destacado)}>Ver el proyecto: {destacado.data.nombre}</a>}
+        {destacado && <a class="inicio__enlace sobre-liston" href={urlProyecto(destacado)}>Ver el proyecto: {destacado.data.nombre}</a>}
       </div>
     </div>
   </section>
+  </div>
 
-  <section class="seccion">
-    <div class="contenedor">
-      <div class="cabecera">
-        <div><span class="etiqueta">Proyectos</span><h2 class="h2">Obra terminada</h2></div>
-        <a class="boton boton--secundario" href="/proyectos/">Ver todos los proyectos</a>
-      </div>
-      <MosaicoProyectos proyectos={delInicio} />
-    </div>
-  </section>
+  <GrillaFija proyectos={delInicio} />
 
-  <section class="seccion seccion--alt">
-    <div class="contenedor">
+  <section class="seccion seccion--alt liston-sobre">
+    <div class="contenedor sobre-liston">
       <div class="cabecera">
         <div><span class="etiqueta">En desarrollo</span><h2 class="h2">Proyectos en diseño</h2></div>
         <p class="texto-2">Visualizaciones de proyectos que todavía no se construyen.</p>
@@ -51,11 +48,21 @@ const delInicio = obras.filter((p) => p.data.inicio);
 </Layout>
 
 <style>
+  /* Portada fija durante la pausa. Fondo y contenido comparten la misma celda y quedan fijos juntos;
+     el sticky crea su propia capa, por eso son dos: el fondo debajo del listón y el contenido encima. */
+  .portada-pausa { display: grid; }
+  .portada-pausa > .inicio__fondo,
+  .portada-pausa > .inicio { grid-area: 1 / 1; position: sticky; top: var(--alto-nav, 0px); }
+  .inicio__fondo { z-index: 0; border-radius: 0; }
+  .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el halo toma el color del fondo de la portada */
+  .inicio .inicio__foto { background: transparent; }
+  /* Espacio de la pausa: el sticky solo se mueve dentro del contenido del contenedor, no en su relleno. */
+  .portada-pausa::after { content: ""; grid-row: 2; height: var(--pausa-portada, 0px); }
   .inicio__foto {
     min-height: clamp(520px, 78vh, 820px); border-radius: 0; align-content: end; justify-items: start;
     text-align: left; padding: var(--e8) var(--margen);
   }
   .inicio__contenido { display: grid; gap: var(--e3); max-width: 760px; text-transform: none; letter-spacing: normal; font-weight: 400; }
   .inicio__nota { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
-  .inicio__enlace { font-size: 14px; color: var(--vino-2); }
+  .inicio__enlace { font-size: 14px; color: var(--vino-2); justify-self: start; }
 </style>

@@ -78,7 +78,7 @@ const proporcionDe = (foto: (typeof d.fotos)[number], i: number) => {
 
       <div class="galeria">
         {d.fotos.map((foto, i) => (
-          <figure class={disposicion[i % disposicion.length]}>
+          <figure class:list={[disposicion[i % disposicion.length], "parallax"]} style={`--parallax: ${i % 2 ? 50 : 20}`}>
             <Foto src={foto.src} alt={foto.alt} clase={proporcion[i % proporcion.length]} ratio={proporcionDe(foto, i)} sizes={`(max-width: 900px) 100vw, ${anchos[i % anchos.length]}`} />
             <figcaption>{foto.pie}</figcaption>
           </figure>

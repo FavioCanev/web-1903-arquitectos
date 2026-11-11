@@ -23,12 +23,18 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Cambiado
 
-- Categorías: "Arquitectura comercial" pasa a "Arquitectura", "Vivienda" a "Interiorismo residencial" y "Hotel" desaparece, "Cocina Labanda" y "Estación de servicio Labanda" son un solo proyecto, "Otro" sale del tipo de proyecto del formulario (pasa a "Interiorismo comercial"). El formulario de contacto y las descripciones de Inicio y Proyectos usan los nombres nuevos.
-- Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV" y "Cocina Labanda" a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
+- Categorías: "Arquitectura comercial" pasa a "Arquitectura", "Vivienda" a "Interiorismo residencial" y "Hotel" desaparece (pasa a "Interiorismo comercial"). "Cocina Labanda" y "Estación de servicio Labanda" son un solo proyecto, y "Otro" sale del tipo de proyecto del formulario. El formulario de contacto y las descripciones de Inicio y Proyectos usan los nombres nuevos.
+- Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV"; "Cocina Labanda" pasa a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
 - Servicios tomados de la hoja, con "Construcción de obra, de inicio a fin" como servicio aparte. Preguntas frecuentes: solo las 4 principales de la hoja ("¿Trabajan fuera de Cajamarca?" queda con "[Respuesta pendiente]"); las secundarias se ponen en otro lugar.
 - Se agrega "La Chola - La roja" y se completan los datos de Tacos La Colmena y de los renders que el estudio ya confirmó.
 - Una foto con archivo ya puede tener el pie [pendiente]; el texto alternativo sigue siendo obligatorio.
 - En la galería, las fotos conservan casi toda su forma en lugar de recortarse a una proporción fija.
+- El inicio muestra "Obra terminada" como una grilla fija animada con el scroll, solo con fotos (prueba).
+- El pie de página ya no repite los enlaces de la barra de navegación.
+- El listón pasa al lado derecho, al 80 % del ancho, para descargar el lado izquierdo, donde está el texto (prueba).
+- El listón se desenrolla de un rollo que gira y se gasta justo al final de la página; la última baldosa no lleva las dos piezas de abajo (prueba).
+- La portada queda quieta mientras el listón baja hasta unas tres cuartas partes de la pantalla (prueba).
+- Cada texto lleva un borde del color de su fondo que tapa el listón justo detrás de las letras (prueba).
 
 ## [0.3.0] — 09/11/2026
 

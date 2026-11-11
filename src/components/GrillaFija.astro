@@ -1,0 +1,161 @@
+---
+// Grilla fija animada con el scroll (prueba, ADR 0012): una sección muy alta con un escenario "sticky" de una
+// pantalla. Al bajar, la página no se mueve: avanza una animación de CSS ligada al scroll (sin JavaScript).
+// Donde no hay animaciones ligadas al scroll, con "reducir movimiento" o en pantallas angostas, es una grilla normal.
+import TarjetaProyecto from "./TarjetaProyecto.astro";
+import type { Proyecto } from "../lib/proyectos";
+
+interface Props {
+  proyectos: Proyecto[];
+}
+const { proyectos } = Astro.props;
+
+// Tres columnas: la tarjeta 1 va a la columna 1, la 2 a la 2, la 3 a la 3, la 4 a la 1…
+const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
+---
+
+<section class="grilla-fija" aria-labelledby="titulo-construidos">
+  <div class="grilla-fija__escenario">
+    <div class="grilla-fija__panel">
+      <div class="grilla-fija__titulo">
+        <span class="etiqueta">Proyectos</span>
+        <h2 class="h2" id="titulo-construidos">Obra terminada</h2>
+      </div>
+      <a class="boton boton--primario grilla-fija__boton" href="/proyectos/">Ver todos los proyectos</a>
+    </div>
+
+    <div class="grilla-fija__grilla">
+      <div class="grilla-fija__columnas">
+        {columnas.map((tarjetas) => (
+          <div class="grilla-fija__col">
+            {tarjetas.map((p) => <TarjetaProyecto proyecto={p} soloFoto />)}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // No es de la animación: cuando una tarjeta recibe el foco con el teclado, el CSS vuelve a la grilla normal
+  // (la altura de la sección cambia) y la página queda en otro lugar; esto lleva la tarjeta de nuevo a la vista.
+  document.addEventListener("astro:page-load", () => {
+    document.querySelector(".grilla-fija")?.addEventListener("focusin", (e) => {
+      const destino = e.target as HTMLElement;
+      requestAnimationFrame(() => destino.scrollIntoView({ block: "center", behavior: "instant" }));
+    });
+  });
+</script>
+
+<style>
+  .grilla-fija {
+    --alto-nav: 76px;          /* altura de la barra de navegación (Nav.astro) */
+    --alto-seccion: 420vh;     /* cuánto dura el recorrido; más alto = animación más lenta */
+    --alto-escenario: calc(100vh - var(--alto-nav));
+    --abre: 12vw;              /* cuánto se abren hacia afuera las columnas de los lados */
+  }
+
+  /* Respaldo (Firefox hoy, "reducir movimiento" y pantallas angostas): grilla normal y quieta,
+     con el título arriba y el botón abajo. */
+  .grilla-fija__escenario {
+    max-width: var(--ancho); margin: 0 auto; padding: var(--seccion) var(--margen);
+    display: flex; flex-direction: column; gap: var(--e6);
+  }
+  .grilla-fija__panel { display: contents; }
+  .grilla-fija__titulo { order: 0; }
+  .grilla-fija__grilla { order: 1; }
+  .grilla-fija__boton { order: 2; align-self: flex-start; }
+  .grilla-fija__columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e4); }
+  .grilla-fija__col { display: flex; flex-direction: column; gap: var(--e6); min-width: 0; }
+  .grilla-fija__col:nth-child(2) { margin-top: var(--e12); }
+  @media (max-width: 900px) {
+    .grilla-fija__columnas { grid-template-columns: minmax(0, 1fr); }
+    .grilla-fija__col:nth-child(2) { margin-top: 0; }
+  }
+
+  /* Versión animada. Si una tarjeta recibe el foco con el teclado, vuelve la grilla normal para que se vea
+     (WCAG 2.4.11): por eso todo cuelga de :not(:has(:focus-visible)). */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
+      .grilla-fija:not(:has(:focus-visible)) {
+        height: var(--alto-seccion);
+        view-timeline: --recorrido block;
+        /* Aire blanco antes de la sección siguiente: 50 % del alto de una foto (ancho de columna × 5/4). */
+        margin-bottom: calc((min(72vw, 960px) - 2 * var(--e4)) / 3 * 1.25 * 0.5);
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__escenario {
+        position: sticky; top: var(--alto-nav); height: var(--alto-escenario);
+        max-width: none; padding: 0; gap: 0;
+        display: grid; place-items: center;
+        grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); /* la fila no crece con las columnas */
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__panel,
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__grilla { grid-area: 1 / 1; }
+
+      /* Título y botón, al centro y por encima de la grilla. El panel no bloquea los clics: solo el botón. */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__panel {
+        display: grid; justify-items: center; gap: var(--e4); text-align: center;
+        z-index: 1; pointer-events: none;
+        padding: var(--e4) var(--e6); /* solo el texto, sin bloque de fondo, como en la referencia (Favio, 10/11/2026) */
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { pointer-events: auto; align-self: auto; }
+
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__grilla {
+        width: 100%; height: 100%; overflow: clip; display: grid; place-items: start center;
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas {
+        width: min(72vw, 960px); align-items: start;
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(2) { margin-top: 0; }
+
+      /* Todas las animaciones recorren el tramo en que el escenario está fijo: desde que su borde superior
+         toca la barra hasta que la sección termina. */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas,
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col,
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton {
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: --recorrido;
+        animation-range: cover calc(100vh - var(--alto-nav)) cover var(--alto-seccion);
+      }
+
+      /* Fase 2 (40–85 %): zoom leve de toda la grilla. */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas { animation-name: grilla-zoom; }
+
+      /* Fases 1 y 2: cada columna sube o baja a su propia velocidad; las de los lados se abren hacia afuera. */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col { animation-name: grilla-sube, grilla-abre; --lado: -1; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(2) { animation-name: grilla-baja; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(3) { animation-name: grilla-sube-tarde, grilla-abre; --lado: 1; }
+
+      /* Fase 3 (85–95 %): aparece el botón. */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { animation-name: grilla-boton; }
+    }
+  }
+
+  @keyframes grilla-zoom {
+    0%, 40% { scale: 1; }
+    85%, 100% { scale: 1.12; }
+  }
+  /* Columnas 1 y 3: entran desde abajo y terminan mostrando sus últimas tarjetas. */
+  @keyframes grilla-sube {
+    0% { translate: 0 var(--alto-escenario); }
+    85%, 100% { translate: 0 min(0px, calc(var(--alto-escenario) - 100%)); }
+  }
+  @keyframes grilla-sube-tarde {
+    0%, 8% { translate: 0 var(--alto-escenario); }
+    85%, 100% { translate: 0 min(0px, calc(var(--alto-escenario) - 100%)); }
+  }
+  /* Columna 2: entra desde arriba y termina con su primera tarjeta a la vista. */
+  @keyframes grilla-baja {
+    0% { translate: 0 -100%; }
+    85%, 100% { translate: 0 0; }
+  }
+  @keyframes grilla-abre {
+    0%, 40% { transform: translateX(0); }
+    85%, 100% { transform: translateX(calc(var(--lado) * var(--abre))); }
+  }
+  @keyframes grilla-boton {
+    0%, 85% { opacity: 0; translate: 0 16px; visibility: hidden; }
+    95%, 100% { opacity: 1; translate: 0 0; visibility: visible; }
+  }
+</style>
