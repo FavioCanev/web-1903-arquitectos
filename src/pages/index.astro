@@ -57,7 +57,7 @@ const fotoPortada = destacado?.data.fotos[0];
   .portada-pausa { display: grid; }
   .portada-pausa > .inicio__fondo,
   .portada-pausa > .inicio { grid-area: 1 / 1; position: sticky; top: var(--alto-nav, 0px); }
-  .inicio__fondo { z-index: 0; border-radius: 0; padding: 0; min-height: clamp(520px, 78vh, 820px); }
+  .inicio__fondo { z-index: 0; border-radius: 0; padding: 0; contain: size; } /* la foto llena el espacio que da la portada, no lo agranda */
   .inicio__fondo :global(.inicio__imagen) { width: 100%; height: 100%; }
   .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el velo toma el color del fondo de la portada */
   .inicio .inicio__foto { background: transparent; }
