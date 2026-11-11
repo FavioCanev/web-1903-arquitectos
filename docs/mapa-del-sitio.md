@@ -33,7 +33,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Enlace "Saltar al contenido" | Primer elemento de la página; solo se ve al navegar con el teclado | Must |
 | Barra superior | "Cajamarca, Perú" y la hora de Cajamarca en vivo | Must (la hora en vivo: Should) |
 | Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · Contacto · botón "Escríbenos" (lleva a Contacto). En celular, los enlaces se agrupan en un menú | Must |
-| Listón con el patrón | Baja por el margen izquierdo a medida que se avanza en la página; oculto en pantallas de menos de unos 600 px (ver la ADR 0009) | Should |
+| Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, a medida que se avanza en la página (prueba; antes, por el margen izquierdo); oculto en pantallas de menos de unos 600 px (ver la ADR 0009) | Should |
 | Botón flotante de WhatsApp | Siempre visible; abre WhatsApp con el número del estudio | Must |
 | Pie de página | Logo grande · contacto (sin repetir los enlaces de la barra de navegación, que ya está fija en todas las páginas): correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · Instagram y Facebook · Aviso de privacidad · Declaración de accesibilidad · "1903 Arquitectos © 2026". Patrón de baldosa de borde a borde | Must |
 

@@ -1,6 +1,6 @@
 ---
 // Listón con el patrón de baldosa que se desenrolla con el scroll (ADR 0009; versión 2 en prueba).
-// Cuelga de la barra de navegación y baja por la línea del 20 % del ancho, como un listón de tela que se desenrolla
+// Cuelga de la barra de navegación y baja por la línea del 80 % del ancho (a la derecha, para descargar el lado izquierdo, donde está el texto), como un listón de tela que se desenrolla
 // de un rollo que gira, se adelgaza y se acaba justo al final de la página. Es decorativo: los lectores de pantalla lo ignoran.
 
 // Franjas horizontales del cuerpo del rollo: en cada una, el patrón se comprime según la curva del cilindro.
@@ -143,7 +143,7 @@ const FRANJAS = 10;
     --rollo-borde: rgb(40 10 5 / 0.55);
     position: absolute; /* fijo a la página, no a la pantalla: la tela cuelga y no se desliza */
     top: var(--liston-origen, 0px);
-    left: calc(20vw - var(--liston-ancho) / 2); /* entre la primera y la segunda quinta parte */
+    left: calc(80vw - var(--liston-ancho) / 2); /* entre la cuarta y la quinta quinta parte, a la derecha */
     width: var(--liston-ancho);
     height: var(--liston-largo, 0px);
     z-index: var(--capa-liston);
