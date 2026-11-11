@@ -14,12 +14,12 @@
   --pendiente: #ece6df;     /* recuadros "Pendiente" en lugar de fotos */
   --sobre-vino: #f3d9c9;    /* texto secundario sobre fondo vino */
 
-  /* Velos del listón: el color opaco de cada fondo, para que el halo sea un borde sólido */
-  --velo-fondo: rgb(253 253 253);
-  --velo-fondo-alt: rgb(246 241 234);
-  --velo-pendiente: rgb(236 230 223);
-  --velo-amarillo: rgb(255 222 88);
-  --velo-vino: rgb(83 9 10);
+  /* Velos del listón: el color de cada fondo al 82 %, escrito en rgb (las herramientas de accesibilidad no leen color-mix) */
+  --velo-fondo: rgb(253 253 253 / 0.82);
+  --velo-fondo-alt: rgb(246 241 234 / 0.82);
+  --velo-pendiente: rgb(236 230 223 / 0.82);
+  --velo-amarillo: rgb(255 222 88 / 0.82);
+  --velo-vino: rgb(83 9 10 / 0.82);
 
   /* Tipografía */
   --fuente: "Jost", system-ui, "Segoe UI", sans-serif;

@@ -118,7 +118,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Migas de pan | Inicio / Proyectos / {Nombre} | Must |
 | Título y ficha | Nombre, tipo y ciudad · ficha: lugar, m², año y tipo | Must |
 | Encargo y solución | Qué pidió el cliente y qué hizo el estudio, de 2 a 3 líneas cada uno | Must |
-| Galería | Fotos con su pie de foto y su texto alternativo, en el orden que indique el estudio | Must |
+| Galería | Fotos con su pie de foto y su texto alternativo, en el orden que indique el estudio. Cada foto va a un bloque de su misma orientación (las horizontales, al bloque ancho 3:2; las verticales, a bloques 2:3 en filas de 7+5 y de 4+4+4), para que se vea entera | Must |
 | Fotos con desplazamiento | Las fotos de la galería suben o bajan suavemente con el scroll | Could |
 | Crédito | "Fotografía: {nombre completo del fotógrafo}" | Must |
 | Proyecto anterior y siguiente | Enlaces a las obras vecinas en el orden de la lista | Must |

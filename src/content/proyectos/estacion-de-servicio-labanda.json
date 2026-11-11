@@ -17,17 +17,20 @@
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/01.jpg",
       "alt": "Interior techado con columnas de ladrillo, muros bajos de piedra y un piso de baldosas estampadas en blanco y negro.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "46% 43%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/02.jpg",
       "alt": "Pasillo junto a un muro de ladrillo rojizo y una banca de piedra, bajo una estructura metálica con cubierta.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "49% 43%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/03.jpg",
       "alt": "Puerta doble de madera tallada, enmarcada en piedra, sobre un muro de ladrillo.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "49% 49%"
     }
   ]
 }

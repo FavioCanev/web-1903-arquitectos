@@ -70,8 +70,8 @@ const categorias = categoriasDe(obras);
 <style>
   .filtros[hidden] { display: none; }
   .filtros { display: flex; flex-wrap: wrap; gap: var(--e1); }
-  .chip { border: 1px solid var(--linea); border-radius: 999px; padding: 8px 16px; font: 400 14px/1.4 var(--fuente); background: transparent; color: inherit; cursor: pointer; }
-  .chip:hover { border-color: var(--vino); }
+  .chip { border: 1px solid transparent; border-radius: 999px; padding: 8px 16px; font: 400 14px/1.4 var(--fuente); background: var(--boton-fondo); color: inherit; cursor: pointer; }
+  .chip:hover { background: var(--linea); }
   /* El filtro elegido se distingue por borde grueso y marca, no solo por color */
   .chip[aria-pressed="true"] { border: 2px solid var(--vino); padding: 7px 15px; font-weight: 500; }
   .chip[aria-pressed="true"]::before { content: "✓ "; }

@@ -18,22 +18,26 @@
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/01.jpg",
       "alt": "Salón del restaurante con techo cubierto de papel picado de colores, muros rojos y una escalera de madera al fondo.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "51% 51%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/02.jpg",
       "alt": "Rincón del restaurante con un arco blanco y una imagen de la Virgen de Guadalupe, bajo guirnaldas de papel picado.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "53% 49%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/03.jpg",
       "alt": "Mesas con sillas amarillas, verdes y azules frente a un muro rojo con cuadros, bajo un techo de papel picado.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "49% 47%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/04.jpg",
       "alt": "Detalle del techo con papel picado de colores y una piñata, junto a un muro rojo con cuadros enmarcados.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "49% 49%"
     }
   ]
 }

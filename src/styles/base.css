@@ -25,26 +25,22 @@ h1, h2, h3, p, figure { margin: 0; }
    el listón pasa por encima del fondo, y solo lo que se eleva con "sobre-liston" queda por encima de él. */
 .barra-info, main > :not(.liston-sobre), .pie { position: relative; z-index: var(--capa-contenido); }
 .sobre-liston { position: relative; z-index: var(--capa-contenido); }
-/* Velo del listón (opción b, 10/11/2026; en prueba como halo desde el 10/11): todo texto lleva un borde grueso
-   del color de su fondo, pegado a la forma de cada letra, que tapa el listón justo detrás de las letras para que
-   el texto siempre se lea (WCAG 2.2 AA, ADR 0013). Sobre un fondo liso no se nota, porque es del mismo color:
-   por eso cada bloque con fondo propio declara su --velo. */
+/* Velo del listón (opción b, 10/11/2026): todo texto lleva un velo del color de su fondo, un rectángulo con las
+   esquinas apenas redondeadas que cubre el texto de inicio a fin y le baja la opacidad al listón cuando pasa por
+   detrás, para que el texto siempre se lea (WCAG 2.2 AA, ADR 0013). Sobre un fondo liso el velo no se nota, porque
+   es del mismo color: por eso cada bloque con fondo propio declara su --velo. */
 :root { --velo: var(--velo-fondo); }
 .seccion--alt { --velo: var(--velo-fondo-alt); }
 .pendiente { --velo: var(--velo-pendiente); }
-:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, figcaption, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta), .boton--secundario, .chip):not(.boton--primario, .boton--primario *) {
-  /* Halo: copias opacas de la letra, sin difuminar, corridas en 8 direcciones: forman un borde sólido del color
-     del fondo. Las sombras siempre se pintan detrás del texto (un trazo con paint-order taparía la letra donde
-     no se soporta). Al seleccionar el texto, el halo se quita para que la selección se lea. */
-  --halo: 0.11em;
-  --halo-diagonal: 0.078em;
-  text-shadow:
-    var(--halo) 0 var(--velo), calc(var(--halo) * -1) 0 var(--velo),
-    0 var(--halo) var(--velo), 0 calc(var(--halo) * -1) var(--velo),
-    var(--halo-diagonal) var(--halo-diagonal) var(--velo), calc(var(--halo-diagonal) * -1) var(--halo-diagonal) var(--velo),
-    var(--halo-diagonal) calc(var(--halo-diagonal) * -1) var(--velo), calc(var(--halo-diagonal) * -1) calc(var(--halo-diagonal) * -1) var(--velo);
+:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, figcaption, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta)):not(.boton--primario, .boton--primario *) {
+  background-color: var(--velo);
+  box-shadow: 0 0 0 4px var(--velo);
+  border-radius: 6px;
+  /* El rectángulo mide lo que mide el texto, no el ancho de su bloque: así no tapa el listón donde no hay texto */
+  width: fit-content;
+  max-width: 100%;
 }
-::selection { text-shadow: none; }
+:where(main, .pie) summary { width: auto; } /* la fila de la pregunta es de ancho completo: el "+" va a la derecha */
 
 /* Enlace "Saltar al contenido": solo se ve al enfocarlo con el teclado */
 .saltar {
@@ -72,7 +68,12 @@ h1, h2, h3, p, figure { margin: 0; }
 }
 .boton:hover { transform: translateY(-2px); }
 .boton--primario { background: var(--naranja); color: var(--vino); }
-.boton--secundario { border-color: currentColor; background: var(--velo); color: inherit; } /* el velo atenúa el listón detrás */
+/* Todos los botones llevan fondo sólido, al 100 % y sin borde (--boton-fondo: un tono que se distingue del de su
+   sección: beige sobre los fondos claros, blanco sobre el beige y sobre las fotos, claro sobre el vino). */
+:root { --boton-fondo: var(--pendiente); }
+.pendiente { --boton-fondo: var(--fondo); }
+.sobre-vino, .contacto { --boton-fondo: var(--claro); }
+.boton--secundario { background: var(--boton-fondo); color: var(--vino); }
 .botones { display: flex; flex-wrap: wrap; gap: var(--e2); }
 :focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
 .sobre-vino :focus-visible, .contacto :focus-visible { outline-color: var(--amarillo); }
@@ -85,6 +86,7 @@ h1, h2, h3, p, figure { margin: 0; }
 }
 .r-4x5 { aspect-ratio: 4 / 5; }
 .r-3x2 { aspect-ratio: 3 / 2; }
+.r-2x3 { aspect-ratio: 2 / 3; }
 .r-1x1 { aspect-ratio: 1; }
 .r-16x9 { aspect-ratio: 16 / 9; }
 

@@ -19,7 +19,7 @@ const datos = [d.ciudad, d.area ? `${d.area} m²` : "[m²]", datoOPendiente(d.an
 
 <Etiqueta class:list={["tarjeta", clase]} href={esRender ? undefined : urlProyecto(proyecto)} data-categorias={JSON.stringify(d.categorias)}>
   {esRender && <span class="marca-render">Render{d.porConfirmar ? " [por confirmar]" : ""}</span>}
-  <Foto clase={esRender ? "r-3x2" : "r-4x5"} alt="" pendiente={`${esRender ? "Render" : "Foto"} pendiente · ${d.nombre}`} src={d.fotos[0]?.src} />
+  <Foto clase={esRender ? "r-3x2" : "r-4x5"} alt="" pendiente={`${esRender ? "Render" : "Foto"} pendiente · ${d.nombre}`} src={d.fotos[0]?.src} enfoque={d.fotos[0]?.enfoque} />
   <span class:list={["tarjeta__datos", { "solo-lectores": soloFoto }]}>{datos}</span>
   <div class:list={["tarjeta__titulo", { "solo-lectores": soloFoto }]}><h3 class="h3">{d.nombre}</h3><span class="tarjeta__tipo">{d.tipo}</span></div>
 </Etiqueta>

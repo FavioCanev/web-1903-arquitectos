@@ -14,22 +14,26 @@
     {
       "src": "../../assets/proyectos/estancia-del-alba/01.jpg",
       "alt": "Salón con mesas redondas y sillas, un muro de madera con una línea ondulada y discos de madera colgados del cielorraso, en tonos sepia.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "46% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/02.jpg",
       "alt": "Mesas redondas con sillas junto a una banca de madera y discos colgantes en el cielorraso, en tonos sepia.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "66% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/03.jpg",
       "alt": "Un hombre sentado a una mesa al fondo del salón, bajo discos de madera colgantes, en tonos sepia.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "45% 51%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/04.jpg",
       "alt": "Un hombre sentado junto a una biblioteca curva con libros y juegos de mesa, bajo discos de madera colgantes, en tonos sepia.",
-      "pie": "[Pie de foto pendiente]"
+      "pie": "[Pie de foto pendiente]",
+      "enfoque": "51% 53%"
     }
   ]
 }

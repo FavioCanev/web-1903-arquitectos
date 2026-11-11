@@ -16,6 +16,8 @@ export const esquemaFoto = (image: SchemaContext["image"]) =>
       src: image().optional(),
       alt: z.string().min(1),
       pie: z.string().min(1),
+      /** Qué parte de la foto se conserva al recortarla (como `object-position`, por ejemplo "50% 30%"). */
+      enfoque: z.string().optional(),
     })
     .refine((foto) => !foto.src || !esPendiente(foto.alt), {
       message: "Una foto con archivo necesita su texto alternativo real, no [pendiente].",

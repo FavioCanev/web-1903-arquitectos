@@ -4,11 +4,13 @@ import GrillaFija from "../components/GrillaFija.astro";
 import CarruselRenders from "../components/CarruselRenders.astro";
 import { estudio } from "../config";
 import { enlaceWhatsapp } from "../lib/whatsapp";
+import Foto from "../components/Foto.astro";
 import { obrasTerminadas, urlProyecto } from "../lib/proyectos";
 
 const obras = await obrasTerminadas();
 const destacado = obras.find((p) => p.data.destacado);
 const delInicio = obras.filter((p) => p.data.inicio);
+const fotoPortada = destacado?.data.fotos[0];
 ---
 
 <Layout
@@ -18,11 +20,13 @@ const delInicio = obras.filter((p) => p.data.inicio);
   <!-- La portada queda quieta mientras el listón baja desde la barra; --pausa-portada lo calcula Liston.astro -->
   <div class="portada-pausa liston-sobre">
   <!-- Dos capas fijas: el fondo (la foto) queda por debajo del listón y el contenido, por encima -->
-  <div class="pendiente inicio__fondo" aria-hidden="true"></div>
+  <div class="pendiente inicio__fondo" aria-hidden="true">
+    {fotoPortada?.src && <Foto src={fotoPortada.src} alt="" clase="inicio__imagen" eager sizes="100vw" enfoque={fotoPortada.enfoque} />}
+  </div>
   <section class="inicio liston-sobre" aria-label="Proyecto destacado">
     <div class="pendiente inicio__foto">
       <div class="inicio__contenido">
-        <span class="inicio__nota parallax-portada sobre-liston">Foto pendiente · {destacado?.data.nombre}</span>
+        {!fotoPortada?.src && <span class="inicio__nota parallax-portada sobre-liston">Foto pendiente · {destacado?.data.nombre}</span>}
         <h1 class="h1 parallax-portada sobre-liston">{estudio.lema}</h1>
         <div class="botones sobre-liston">
           <a class="boton boton--primario" href="/proyectos/">Ver proyectos</a>
@@ -53,8 +57,9 @@ const delInicio = obras.filter((p) => p.data.inicio);
   .portada-pausa { display: grid; }
   .portada-pausa > .inicio__fondo,
   .portada-pausa > .inicio { grid-area: 1 / 1; position: sticky; top: var(--alto-nav, 0px); }
-  .inicio__fondo { z-index: 0; border-radius: 0; }
-  .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el halo toma el color del fondo de la portada */
+  .inicio__fondo { z-index: 0; border-radius: 0; padding: 0; min-height: clamp(520px, 78vh, 820px); }
+  .inicio__fondo :global(.inicio__imagen) { width: 100%; height: 100%; }
+  .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el velo toma el color del fondo de la portada */
   .inicio .inicio__foto { background: transparent; }
   /* Espacio de la pausa: el sticky solo se mueve dentro del contenido del contenedor, no en su relleno. */
   .portada-pausa::after { content: ""; grid-row: 2; height: var(--pausa-portada, 0px); }
@@ -63,6 +68,8 @@ const delInicio = obras.filter((p) => p.data.inicio);
     text-align: left; padding: var(--e8) var(--margen);
   }
   .inicio__contenido { display: grid; gap: var(--e3); max-width: 760px; text-transform: none; letter-spacing: normal; font-weight: 400; }
+  /* El titular de la portada va sin el rectángulo del velo: ese rectángulo es solo para el texto que cruza el listón */
+  .inicio__contenido h1 { background: none; box-shadow: none; }
   .inicio__nota { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
   .inicio__enlace { font-size: 14px; color: var(--vino-2); justify-self: start; }
 </style>
