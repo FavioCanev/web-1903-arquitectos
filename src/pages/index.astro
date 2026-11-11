@@ -15,6 +15,10 @@ const delInicio = obras.filter((p) => p.data.inicio);
   titulo="1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca"
   descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales, viviendas y hoteles con identidad cajamarquina."
 >
+  <!-- La portada queda quieta mientras el listón baja desde la barra; --pausa-portada lo calcula Liston.astro -->
+  <div class="portada-pausa liston-sobre">
+  <!-- Dos capas fijas: el fondo (la foto) queda por debajo del listón y el contenido, por encima -->
+  <div class="pendiente inicio__fondo" aria-hidden="true"></div>
   <section class="inicio liston-sobre" aria-label="Proyecto destacado">
     <div class="pendiente inicio__foto">
       <div class="inicio__contenido">
@@ -28,6 +32,7 @@ const delInicio = obras.filter((p) => p.data.inicio);
       </div>
     </div>
   </section>
+  </div>
 
   <GrillaFija proyectos={delInicio} />
 
@@ -43,6 +48,16 @@ const delInicio = obras.filter((p) => p.data.inicio);
 </Layout>
 
 <style>
+  /* Portada fija durante la pausa. Fondo y contenido comparten la misma celda y quedan fijos juntos;
+     el sticky crea su propia capa, por eso son dos: el fondo debajo del listón y el contenido encima. */
+  .portada-pausa { display: grid; }
+  .portada-pausa > .inicio__fondo,
+  .portada-pausa > .inicio { grid-area: 1 / 1; position: sticky; top: var(--alto-nav, 0px); }
+  .inicio__fondo { z-index: 0; border-radius: 0; }
+  .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el halo toma el color del fondo de la portada */
+  .inicio .inicio__foto { background: transparent; }
+  /* Espacio de la pausa: el sticky solo se mueve dentro del contenido del contenedor, no en su relleno. */
+  .portada-pausa::after { content: ""; grid-row: 2; height: var(--pausa-portada, 0px); }
   .inicio__foto {
     min-height: clamp(520px, 78vh, 820px); border-radius: 0; align-content: end; justify-items: start;
     text-align: left; padding: var(--e8) var(--margen);

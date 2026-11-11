@@ -8,7 +8,8 @@
     .parallax-portada {
       animation: parallax-portada linear both;
       animation-timeline: scroll(root);
-      animation-range: 0 85vh;
+      /* Empieza después de la pausa de la portada (Liston.astro calcula --fin-pausa). */
+      animation-range: var(--fin-pausa, 0px) calc(var(--fin-pausa, 0px) + 85vh);
     }
 
     /* Capas que se desplazan mientras cruzan la pantalla. --parallax es la distancia, en px:
