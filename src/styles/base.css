@@ -36,11 +36,15 @@ h1, h2, h3, p, figure { margin: 0; }
   background-color: var(--velo);
   box-shadow: 0 0 0 4px var(--velo);
   border-radius: 6px;
-  /* El rectángulo mide lo que mide el texto, no el ancho de su bloque: así no tapa el listón donde no hay texto */
+}
+/* El rectángulo mide lo que mide el texto, no el ancho de su bloque: así no tapa el listón donde no hay texto.
+   Solo en los elementos que contienen texto y nada más: un <li> o un <label> con una foto, un campo o un bloque
+   dentro (el equipo, el formulario) conserva su ancho. */
+:where(main, .pie) :where(h1, h2, h3, h4, p, dt, dd, figcaption, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render),
+:where(main, .pie) :where(li, label):not(:has(input, select, textarea, div, figure, img, ul, ol, p, h1, h2, h3, h4)) {
   width: fit-content;
   max-width: 100%;
 }
-:where(main, .pie) summary { width: auto; } /* la fila de la pregunta es de ancho completo: el "+" va a la derecha */
 
 /* Enlace "Saltar al contenido": solo se ve al enfocarlo con el teclado */
 .saltar {

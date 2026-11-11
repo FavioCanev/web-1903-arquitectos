@@ -35,7 +35,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - El listón se desenrolla de un rollo que gira y se gasta justo al final de la página; la última baldosa no lleva las dos piezas de abajo (prueba).
 - La portada queda quieta mientras el listón baja hasta unas tres cuartas partes de la pantalla (prueba).
 - Cada texto vuelve a llevar un rectángulo del color de su fondo, con las esquinas apenas redondeadas, que cubre el texto de inicio a fin y atenúa el listón detrás (prueba).
-- Todos los botones llevan fondo sólido al 100 % y sin borde. El titular de la portada va sin rectángulo, y el rectángulo del texto mide lo que mide el texto, no el ancho de su bloque.
+- Todos los botones llevan fondo sólido al 100 % y sin borde. El titular de la portada va sin rectángulo, y el rectángulo del texto mide lo que mide el texto, no el ancho de su bloque (solo en los elementos que contienen únicamente texto; el formulario de contacto y los retratos del equipo conservan su tamaño).
 - En la galería de cada proyecto, cada foto va a un bloque de su misma orientación: las horizontales al bloque ancho (3:2) y las verticales a bloques de 2:3 en filas de 7+5 y de 4+4+4, con el orden que dio el estudio. Así casi no se recorta nada (la foto se ve entera). Cada foto tiene además un punto de enfoque propio.
 - Fotos de los renders de Galería Bazán (Ayni - Bazán), Casa de playa (La colina - casa Lozada) y Jardín Porongo (Eco Lounge), tomadas de la carpeta "Fotos proyectos" del Drive.
 
