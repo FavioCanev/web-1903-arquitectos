@@ -35,7 +35,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · Contacto · botón "Escríbenos" (lleva a Contacto). En celular, los enlaces se agrupan en un menú | Must |
 | Listón con el patrón | Baja por el margen izquierdo a medida que se avanza en la página; oculto en pantallas de menos de unos 600 px (ver la ADR 0009) | Should |
 | Botón flotante de WhatsApp | Siempre visible; abre WhatsApp con el número del estudio | Must |
-| Pie de página | Logo grande · enlaces de la barra de navegación · contacto: correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · Instagram y Facebook · Aviso de privacidad · Declaración de accesibilidad · "1903 Arquitectos © 2026". Patrón de baldosa de borde a borde | Must |
+| Pie de página | Logo grande · contacto (sin repetir los enlaces de la barra de navegación, que ya está fija en todas las páginas): correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · Instagram y Facebook · Aviso de privacidad · Declaración de accesibilidad · "1903 Arquitectos © 2026". Patrón de baldosa de borde a borde | Must |
 
 *Leyenda: "Elemento" es la parte que se repite en todas las páginas. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW (ver arriba). El RUC no va en el pie: está en el aviso de privacidad, donde la Ley 29733 pide identificar al responsable de los datos.*
 
@@ -63,17 +63,19 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Proyecto destacado | Foto de Tacos Cajamarquinos a pantalla completa, con el lema "Celebramos la cultura mediante el diseño." y los botones "Ver proyectos" y "Escríbenos por WhatsApp" | Must |
-| Collage de obras terminadas | Muchas o todas las obras terminadas, en un collage de fotos de distintos tamaños, cada una con su nombre; cada foto lleva a la página de su proyecto. Enlace "Ver todos los proyectos" | Must |
+| Obra terminada (grilla fija animada) | Las obras terminadas marcadas para el inicio, solo fotos, en 3 columnas. La sección es muy alta y su escenario queda fijo una pantalla: al bajar, las columnas suben y bajan a distinta velocidad, la grilla hace un leve zoom y las de los lados se abren, y al final aparece el botón "Ver todos los proyectos". El título "Obra terminada" queda al centro, sobre la grilla. Cada foto lleva a la página de su proyecto (su nombre solo lo leen los lectores de pantalla). En navegadores sin animaciones ligadas al scroll, con "reducir movimiento" y en pantallas de menos de 900 px es una grilla normal y quieta, con el título arriba y el botón abajo | Must |
 | Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; las tarjetas no llevan a una página propia | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Render" es una imagen hecha por computadora de un proyecto que todavía no se construye.*
 
 **Criterios de aceptación**
 
-- [auto] El collage muestra todas las obras marcadas para el inicio en los datos, y cada una enlaza a su página de proyecto.
+- [auto] La grilla muestra todas las obras marcadas para el inicio en los datos, y cada una enlaza a su página de proyecto.
 - [auto] Los renders nunca aparecen mezclados con las obras terminadas.
 - [manual] La foto del proyecto destacado se ve completa en escritorio y en celular, y el texto se lee sobre ella.
-- [manual] Las fotos del collage que están más abajo se cargan recién al acercarse a ellas.
+- [manual] Las fotos de la grilla que están más abajo se cargan recién al acercarse a ellas.
+- [manual] La animación avanza solo con el scroll y se ve fluida; el título queda por encima de la grilla y el botón aparece al final.
+- [manual] Con el teclado, la tarjeta enfocada se ve; con "reducir movimiento" o en celular la grilla es normal y quieta.
 - [manual] El carrusel se puede deslizar con el dedo, con el mouse y con el teclado.
 
 ---

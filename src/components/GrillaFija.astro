@@ -19,7 +19,7 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
     <div class="grilla-fija__panel">
       <div class="grilla-fija__titulo">
         <span class="etiqueta">Proyectos</span>
-        <h2 class="h2" id="titulo-construidos">Proyectos construidos</h2>
+        <h2 class="h2" id="titulo-construidos">Obra terminada</h2>
       </div>
       <a class="boton boton--primario grilla-fija__boton" href="/proyectos/">Ver todos los proyectos</a>
     </div>
@@ -28,7 +28,7 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
       <div class="grilla-fija__columnas">
         {columnas.map((tarjetas) => (
           <div class="grilla-fija__col">
-            {tarjetas.map((p) => <TarjetaProyecto proyecto={p} />)}
+            {tarjetas.map((p) => <TarjetaProyecto proyecto={p} soloFoto />)}
           </div>
         ))}
       </div>
@@ -80,6 +80,8 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
       .grilla-fija:not(:has(:focus-visible)) {
         height: var(--alto-seccion);
         view-timeline: --recorrido block;
+        /* Aire blanco antes de la sección siguiente: 50 % del alto de una foto (ancho de columna × 5/4). */
+        margin-bottom: calc((min(72vw, 960px) - 2 * var(--e4)) / 3 * 1.25 * 0.5);
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__escenario {
         position: sticky; top: var(--alto-nav); height: var(--alto-escenario);
@@ -94,7 +96,7 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__panel {
         display: grid; justify-items: center; gap: var(--e4); text-align: center;
         z-index: 1; pointer-events: none;
-        padding: var(--e4) var(--e6); background: var(--fondo); border-radius: var(--radio); /* tapa lo que pasa por detrás */
+        padding: var(--e4) var(--e6); /* solo el texto, sin bloque de fondo, como en la referencia (Favio, 10/11/2026) */
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { pointer-events: auto; align-self: auto; }
 

@@ -14,6 +14,14 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ## [Sin publicar]
 
+### Cambiado
+
+- El inicio muestra "Obra terminada" como una grilla fija animada con el scroll, solo con fotos (prueba).
+- El pie de página ya no repite los enlaces de la barra de navegación.
+- El listón se desenrolla de un rollo que gira y se gasta justo al final de la página; la última baldosa no lleva las dos piezas de abajo (prueba).
+- La portada queda quieta mientras el listón baja hasta unas tres cuartas partes de la pantalla (prueba).
+- Cada texto lleva un borde del color de su fondo que tapa el listón justo detrás de las letras (prueba).
+
 ## [0.3.0] — 09/11/2026
 
 ### Agregado
