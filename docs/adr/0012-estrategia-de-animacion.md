@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Estado | Aceptada |
+| Estado | Reemplazada por la [ADR 0016](0016-animaciones-con-css-y-grilla-fija.md) |
 | Fecha | 06/11/2026 |
 | Quién decide | Favio Canevaro Asto, con potestad delegada por 1903 Arquitectos |
 

@@ -14,9 +14,9 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 |---|---|
 | Wireframes v2 (inicio y página de proyecto, en HTML y CSS) | Hechos y revisados por el estudio; reemplazados por la migración a Astro (quedan en la versión 0.1.0) |
 | Documentación: decisiones de arquitectura, mapa del sitio y arquitectura | Hecha |
-| Migración a Astro, en varias páginas (con recuadros "Pendiente" en lugar de fotos) | Hecha, en revisión |
-| Mockups con las fotos en alta calidad | Pendiente de las fotos |
-| Publicación en `1903arq.com` | Prevista antes del 15/11/2026 |
+| Migración a Astro, en varias páginas | Hecha |
+| Mockups con las fotos en alta calidad | En curso: fotos reales en 6 obras terminadas y 3 renders; listón y grilla fija aprobados por el estudio |
+| Publicación en `1903arq.com` | Pendiente de confirmar fecha con el estudio |
 
 *Leyenda: "Etapa" es cada parte del trabajo, en orden. "Estado" indica si está hecha, pendiente o prevista. "Wireframe" es un esquema de la página que muestra su estructura sin el diseño final; "mockup" es la versión con el diseño y las fotos reales.*
 
@@ -26,7 +26,7 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 |---|---|---|
 | [Astro](https://astro.build) 7 | Generar el sitio estático a partir de componentes y datos | En uso |
 | TypeScript | Revisar los datos de cada proyecto y el código | En uso |
-| Motion | Las animaciones ligadas al scroll | Prevista |
+| Animaciones de CSS ligadas al scroll | La grilla fija del inicio y el desplazamiento suave de las fotos, sin librerías externas | En uso |
 | Jost, con Fontsource | La tipografía, alojada en la propia web, en WOFF2 | En uso |
 | Vitest y pa11y-ci | La prueba del mensaje de WhatsApp y la revisión de accesibilidad | En uso |
 | Cloudflare | Alojamiento, dominio, estadísticas sin cookies y almacenamiento de fotos (R2) | Prevista |
@@ -127,4 +127,4 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
 
 Diseño y desarrollo: **Favio Canevaro Asto**, para 1903 Arquitectos.
 
-[Fotografía: el crédito de cada fotógrafo, con su nombre completo, se agrega cuando sus fotos estén en la web.]
+Fotografía: Alejandro Cerna (en los proyectos publicados hasta ahora); los demás créditos se suman cuando entren sus fotos.

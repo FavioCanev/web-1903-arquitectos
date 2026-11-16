@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Estado | Aceptada |
+| Estado | Reemplazada por la [ADR 0015](0015-liston-como-rollo-a-la-derecha.md) |
 | Fecha | 03/11/2026 (completada el 06/11/2026 con el comportamiento en celulares) |
 | Quién decide | 1903 Arquitectos (pidió el listón) y Favio Canevaro Asto (definió cómo hacerlo) |
 

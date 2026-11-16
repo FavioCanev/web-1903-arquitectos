@@ -102,7 +102,7 @@ flowchart TB
 | Construcción | Astro toma el código y las fotos de R2, genera todas las páginas y cada foto en varios tamaños y formatos | Cloudflare | ADR 0001, 0004 y 0011 |
 | Web publicada | Los archivos listos que reciben los visitantes, desde servidores cercanos a cada uno | Cloudflare | ADR 0004 |
 | Estadísticas | Cuentan las visitas sin cookies y sin identificar a nadie | Cloudflare | ADR 0007 |
-| Navegador del visitante | Muestra las páginas y corre el poco JavaScript de la web: el enrutador, que anima el cambio de página; el listón; el reloj de la barra superior, y el formulario, que arma el mensaje de WhatsApp | El dispositivo de cada visitante | ADR 0005, 0009 y 0012 |
+| Navegador del visitante | Muestra las páginas y corre el poco JavaScript de la web: el enrutador, que anima el cambio de página; el listón; el reloj de la barra superior; el ajuste del foco en la grilla fija, y el formulario, que arma el mensaje de WhatsApp | El dispositivo de cada visitante | ADR 0005, 0015 y 0016 |
 
 *Leyenda: "Parte" es cada pieza grande de la web. "Qué hace" resume su función. "Dónde vive" es el servicio que la aloja. "Ficha" es la ADR que explica la decisión. "Enrutador" es el programa de Astro que maneja el cambio entre páginas.*
 
@@ -149,10 +149,12 @@ Este nivel muestra **cómo está organizado el código** del proyecto Astro: qu�
 
 ```mermaid
 flowchart TB
-    subgraph datos["Datos"]
+    subgraph datos["Datos y preparación"]
         config["config.ts<br/>(WhatsApp, correo, dirección,<br/>horario, redes, navegación)"]
         proyectos["content/proyectos/*.json<br/>(un archivo por proyecto)"]
+        esquemas["lib/esquemas.ts<br/>(reglas de cada foto)"]
         esquema["content.config.ts<br/>(revisa los datos al construir)"]
+        fotos["assets/proyectos/<br/>(preparadas con scripts/preparar_fotos.py)"]
     end
 
     subgraph logica["Funciones"]
@@ -166,12 +168,14 @@ flowchart TB
     end
 
     subgraph piezas["Piezas de las páginas"]
-        tarjetas["TarjetaProyecto · MosaicoProyectos ·<br/>CarruselRenders · Foto"]
+        tarjetas["GrillaFija · TarjetaProyecto ·<br/>MosaicoProyectos · CarruselRenders · Foto"]
     end
 
     paginas["pages/*.astro<br/>(una por página; proyectos/[id] genera<br/>la de cada obra)"]
-    estilos["styles/tokens.css y base.css<br/>(sistema de diseño)"]
+    estilos["styles/tokens.css, base.css y parallax.css<br/>(sistema de diseño y movimiento)"]
 
+    esquemas --> esquema
+    fotos --> esquema
     proyectos --> esquema
     esquema --> libproy
     config --> whatsapp
@@ -191,22 +195,24 @@ flowchart TB
 | Carpeta o archivo | Qué contiene | Ficha |
 |---|---|---|
 | `src/config.ts` | Los datos del estudio y la lista de la navegación, en un solo lugar | ADR 0005 |
-| `src/content.config.ts` | El esquema de los proyectos: si falta un dato obligatorio, la construcción falla | ADR 0001 |
+| `src/content.config.ts` | El esquema de los proyectos (apoyado en `src/lib/esquemas.ts`): si falta un dato obligatorio o un texto alternativo, la construcción falla | ADR 0001 y 0013 |
 | `src/content/proyectos/` | Un archivo JSON por proyecto; su nombre es la dirección de la página | ADR 0001 y 0002 |
-| `src/lib/` | Funciones sin diseño: `whatsapp.ts` arma los enlaces y mensajes de WhatsApp (tiene su prueba); `proyectos.ts` consulta y ordena los proyectos | ADR 0005 y 0006 |
-| `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, enrutador, enlace "Saltar al contenido", barra superior, navegación, pie, listón y botón de WhatsApp | ADR 0012 y 0013 |
-| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (tarjeta de proyecto, mosaico, carrusel de renders y foto) | ADR 0009 |
+| `src/assets/proyectos/` | Fotos reales reducidas a 2400 px y sin metadatos (plan B temporal antes de subirlas a R2) | ADR 0011 |
+| `scripts/` | `preparar_fotos.py` y `seleccion.json`: reducen las fotos, las pasan a sRGB, borran sus datos EXIF y verifican los archivos escritos | ADR 0011 |
+| `src/lib/` | Funciones sin diseño: `esquemas.ts` valida las fotos; `whatsapp.ts` arma los enlaces y mensajes de WhatsApp (tiene su prueba); `proyectos.ts` consulta y ordena los proyectos | ADR 0005, 0006 y 0013 |
+| `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, enrutador, enlace "Saltar al contenido", barra superior, navegación, pie, listón y botón de WhatsApp | ADR 0013 y 0016 |
+| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (`GrillaFija`, `TarjetaProyecto`, `MosaicoProyectos`, `CarruselRenders` y `Foto`) | ADR 0015 y 0016 |
 | `src/pages/` | Una página por archivo; `proyectos/[id].astro` genera la página de cada obra terminada | ADR 0002 |
-| `src/styles/` | `tokens.css`: todas las variables de diseño (colores, espaciado, tiempos de animación); `base.css`: los estilos que se repiten. Los estilos propios de cada pieza viven dentro de ella | ADR 0008 y 0012 |
-| `public/img/` | Los logos y el patrón de baldosa, en SVG | — |
-| `tests/` | La prueba del mensaje de WhatsApp, el revisor de enlaces internos y la configuración de la revisión de accesibilidad | ADR 0013 |
+| `src/styles/` | `tokens.css`: todas las variables de diseño (colores, espaciado, tiempos de animación y velos); `base.css`: los estilos que se repiten y los velos del listón; `parallax.css`: desplazamiento ligado al scroll en CSS. Los estilos propios de cada pieza viven dentro de ella | ADR 0008, 0015 y 0016 |
+| `public/img/` | Los logos y el patrón de baldosa (`patron.svg` y `patron-final.svg`), en SVG | — |
+| `tests/` | Las pruebas de WhatsApp y esquemas, el revisor de enlaces internos y la configuración de la revisión de accesibilidad | ADR 0013 |
 | `.github/workflows/` | Las revisiones automáticas que corren en cada *pull request* | ADR 0013 y 0014 |
 
-*Leyenda: "Carpeta o archivo" es el lugar del repositorio. "Qué contiene" explica su papel. "Ficha" es la ADR que explica la decisión. "JSON" es un formato de archivo de datos. "Esquema" es la lista de datos que debe tener cada proyecto.*
+*Leyenda: "Carpeta o archivo" es el lugar del repositorio. "Qué contiene" explica su papel. "Ficha" es la ADR que explica la decisión. "JSON" es un formato de archivo de datos. "Esquema" es la lista de datos que debe tener cada proyecto. "sRGB" es el espacio de color estándar de la web.*
 
 **Reglas del código** (para quien lo mantenga):
 
-- **Todo script se reinicia en cada cambio de página.** Con el enrutador de Astro, un script que corre solo al cargar la web deja de funcionar después de navegar; por eso los scripts escuchan el evento `astro:page-load` (ADR 0012). El listón es la excepción: se mantiene vivo entre páginas con `transition:persist`.
+- **Todo script se reinicia en cada cambio de página.** Con el enrutador de Astro, un script que corre solo al cargar la web deja de funcionar después de navegar; por eso los scripts escuchan el evento `astro:page-load` (ADR 0016). El listón es la excepción: se mantiene vivo entre páginas con `transition:persist`.
 - **Mejora progresiva.** El formulario de contacto, los filtros de proyectos y el menú de celular los activa un script; sin JavaScript, la página muestra el botón de WhatsApp, todos los proyectos y todos los enlaces.
 - **Un dato pendiente se escribe entre [corchetes]**, nunca inventado; un dato obligatorio que falte hace fallar la construcción.
-- **Las fotos son opcionales hoy:** mientras un proyecto no tenga la ruta de su foto (`src`), la web muestra el recuadro "Pendiente". Cuando lleguen las fotos reales se agrega su optimización (ADR 0011).
+- **Fotos preparadas y recuadro "Pendiente":** las fotos disponibles se preparan con `scripts/preparar_fotos.py` (2400 px, sRGB, sin datos EXIF) y Astro las optimiza desde `src/assets/proyectos/` (plan B temporal de la ADR 0011 hasta pasarlas a R2). Mientras un proyecto o espacio no tenga su archivo (`src`), la web muestra el recuadro "Pendiente".

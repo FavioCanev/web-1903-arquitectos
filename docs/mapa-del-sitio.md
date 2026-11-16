@@ -33,7 +33,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Enlace "Saltar al contenido" | Primer elemento de la página; solo se ve al navegar con el teclado | Must |
 | Barra superior | "Cajamarca, Perú" y la hora de Cajamarca en vivo | Must (la hora en vivo: Should) |
 | Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · Contacto · botón "Escríbenos" (lleva a Contacto). En celular, los enlaces se agrupan en un menú | Must |
-| Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, a medida que se avanza en la página (prueba; antes, por el margen izquierdo); oculto en pantallas de menos de unos 600 px (ver la ADR 0009) | Should |
+| Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, desenrollándose de un rollo cilíndrico a medida que se avanza en la página (ver la [ADR 0015](adr/0015-liston-como-rollo-a-la-derecha.md)); oculto en pantallas de hasta 600 px | Should |
 | Botón flotante de WhatsApp | Siempre visible; abre WhatsApp con el número del estudio | Must |
 | Pie de página | Logo grande · contacto (sin repetir los enlaces de la barra de navegación, que ya está fija en todas las páginas): correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · Instagram y Facebook · Aviso de privacidad · Declaración de accesibilidad · "1903 Arquitectos © 2026". Patrón de baldosa de borde a borde | Must |
 
@@ -58,11 +58,11 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Para quién y qué debe lograr:** para quien llega por primera vez. Que vea de inmediato la calidad de la obra del estudio y quiera ver más o escribir.
 
 **Título:** 1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca [por aprobar]
-**Descripción:** Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales, viviendas y hoteles con identidad cajamarquina. [por aprobar]
+**Descripción:** Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina. [por aprobar]
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Proyecto destacado | Foto de Tacos Cajamarquinos a pantalla completa, con el lema "Celebramos la cultura mediante el diseño." y los botones "Ver proyectos" y "Escríbenos por WhatsApp" | Must |
+| Proyecto destacado | Foto de Hito - complejo de estación de servicio Labanda (su segunda foto, el pasillo de ladrillo) a pantalla completa, con enlace a la página del proyecto, velo oscuro al 40 %, el lema "Celebramos la cultura mediante el diseño." en blanco y los botones "Ver proyectos" y "Escríbenos por WhatsApp" | Must |
 | Obra terminada (grilla fija animada) | Las obras terminadas marcadas para el inicio, solo fotos, en 3 columnas. La sección es muy alta y su escenario queda fijo una pantalla: al bajar, las columnas suben y bajan a distinta velocidad, la grilla hace un leve zoom y las de los lados se abren, y al final aparece el botón "Ver todos los proyectos". El título "Obra terminada" queda al centro, sobre la grilla. Cada foto lleva a la página de su proyecto (su nombre solo lo leen los lectores de pantalla). En navegadores sin animaciones ligadas al scroll, con "reducir movimiento" y en pantallas de menos de 900 px es una grilla normal y quieta, con el título arriba y el botón abajo | Must |
 | Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; las tarjetas no llevan a una página propia | Must |
 
@@ -85,12 +85,12 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Para quién y qué debe lograr:** para quien busca un tipo de obra en particular (por ejemplo, un café). Que encuentre proyectos parecidos al suyo y vea sus datos.
 
 **Título:** Proyectos — 1903 Arquitectos [por aprobar]
-**Descripción:** Obras terminadas del estudio: cafés, restaurantes, locales comerciales, viviendas y hoteles en Cajamarca y el norte del Perú. [por aprobar]
+**Descripción:** Obras terminadas del estudio: cafés, restaurantes, locales comerciales y viviendas en Cajamarca y el norte del Perú. [por aprobar]
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Obra terminada | Todas las obras terminadas, con foto, nombre y ficha corta (lugar · m² · año) | Must |
-| Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría Las categorías de la hoja son "Arquitectura", "Interiorismo comercial" e "Interiorismo residencial" | Should |
+| Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría. Las categorías de la hoja son "Arquitectura", "Interiorismo comercial" e "Interiorismo residencial" | Should |
 | En desarrollo | Los renders, separados de la obra terminada, con la etiqueta "Render" | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "m²" son los metros cuadrados del proyecto.*
@@ -118,8 +118,8 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Migas de pan | Inicio / Proyectos / {Nombre} | Must |
 | Título y ficha | Nombre, tipo y ciudad · ficha: lugar, m², año y tipo | Must |
 | Encargo y solución | Qué pidió el cliente y qué hizo el estudio, de 2 a 3 líneas cada uno | Must |
-| Galería | Fotos con su pie de foto y su texto alternativo, en el orden que indique el estudio. Cada foto va a un bloque de su misma orientación (las horizontales, al bloque ancho 3:2; las verticales, a bloques 2:3 en filas de 7+5 y de 4+4+4), para que se vea entera | Must |
-| Fotos con desplazamiento | Las fotos de la galería suben o bajan suavemente con el scroll | Could |
+| Galería | Fotos con su texto alternativo, en el orden que indique el estudio. Cada foto va a un bloque de su misma orientación (las horizontales, al bloque ancho 3:2; las verticales, a bloques 2:3 en filas de 7+5 y de 4+4+4), para que se vea entera | Must |
+| Fotos con desplazamiento | Las fotos de la galería suben o bajan suavemente con el scroll | Should |
 | Crédito | "Fotografía: {nombre completo del fotógrafo}" | Must |
 | Proyecto anterior y siguiente | Enlaces a las obras vecinas en el orden de la lista | Must |
 | Pie | Con el fondo amarillo de la banda de Cursos | Must |
@@ -132,7 +132,6 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 - [auto] La construcción de la web falla si a un proyecto le falta un dato obligatorio (nombre, tipo, ciudad o al menos una foto con su texto alternativo).
 - [auto] Ninguna foto se publica con datos EXIF (ver la ADR 0011).
 - [manual] "Anterior" y "Siguiente" llevan a las obras correctas, y la primera y la última no dejan enlaces rotos.
-- [manual] Al abrir un proyecto desde una tarjeta, la foto crece desde la tarjeta hasta la portada (ver la ADR 0012).
 - [manual] El crédito del fotógrafo usa su nombre completo, no su usuario de Instagram.
 
 ---

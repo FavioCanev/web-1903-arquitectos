@@ -21,6 +21,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - Las fotos se optimizan al construir (AVIF y WebP, varios tamaños, carga diferida).
 - Proyectos nuevos: Refugio VV, Estación de servicio Labanda y Tacos Cajamarquinos - La Colmena (este, con sus datos y fotos [pendientes]).
 - Ícono de la pestaña (favicon) en SVG: logo vertical en blanco sobre un cuadrado vino.
+- Fichas de decisión [ADR 0015](docs/adr/0015-liston-como-rollo-a-la-derecha.md) (listón como rollo a la derecha y velo en los textos, que reemplaza a la ADR 0009) y [ADR 0016](docs/adr/0016-animaciones-con-css-y-grilla-fija.md) (animaciones con CSS nativo y grilla fija en el Inicio, que reemplaza a la ADR 0012).
 
 ### Cambiado
 
@@ -29,20 +30,27 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV"; "Cocina Labanda" pasa a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
 - Servicios tomados de la hoja, con "Construcción de obra, de inicio a fin" como servicio aparte. Preguntas frecuentes: solo las 4 principales de la hoja ("¿Trabajan fuera de Cajamarca?" queda con "[Respuesta pendiente]"); las secundarias se ponen en otro lugar.
 - Se agrega "La Chola - La roja" y se completan los datos de Tacos La Colmena y de los renders que el estudio ya confirmó.
-- Una foto con archivo ya puede tener el pie [pendiente]; el texto alternativo sigue siendo obligatorio.
 - Las fotos llenan todo su recuadro: se recortan lo justo por los bordes (hacia el punto de enfoque de cada foto, que se puede ajustar) y nunca se estiran ni se salen. La portada del Inicio muestra la foto principal del proyecto destacado, y la de cada proyecto, su primera foto.
-- El inicio muestra "Obra terminada" como una grilla fija animada con el scroll, solo con fotos (prueba).
+- El inicio muestra "Obra terminada" como una grilla fija animada con el scroll, solo con fotos.
 - El pie de página ya no repite los enlaces de la barra de navegación.
-- El listón pasa al lado derecho, al 80 % del ancho, para descargar el lado izquierdo, donde está el texto (prueba).
-- El listón se desenrolla de un rollo que gira y se gasta justo al final de la página; la última baldosa no lleva las dos piezas de abajo (prueba).
-- La portada queda quieta mientras el listón baja hasta unas tres cuartas partes de la pantalla (prueba).
-- Cada texto vuelve a llevar un rectángulo del color de su fondo, con las esquinas apenas redondeadas, que cubre el texto de inicio a fin y atenúa el listón detrás (prueba).
-- La portada del Inicio ya no lleva el enlace de texto "Ver el proyecto: …": la foto principal es el enlace a la página del proyecto destacado. Como prueba para el estudio, el destacado es Estación de servicio Labanda (Hito), con su segunda foto (el pasillo de ladrillo); un proyecto puede indicar qué foto usa la portada con `portada`.
-- El titular de la portada del Inicio va en blanco (el tono claro de la paleta) y la foto lleva encima un velo plano negro al 40 %, sin degradado, para que el titular tenga contraste (3:1 o más en el 99,96 % o más de los píxeles detrás del texto). El titular se excluye de la revisión automática de contraste, que no ve la foto.
+- El listón pasa al lado derecho, al 80 % del ancho, para descargar el lado izquierdo, donde está el texto.
+- El listón se desenrolla de un rollo que gira y se gasta justo al final de la página; la última baldosa no lleva las dos piezas de abajo.
+- La portada queda quieta mientras el listón baja hasta unas tres cuartas partes de la pantalla.
+- Cada texto lleva un rectángulo del color de su fondo, con las esquinas apenas redondeadas, que cubre el texto de inicio a fin y atenúa el listón detrás.
+- La portada del Inicio ya no lleva el enlace de texto "Ver el proyecto: …": la foto principal es el enlace a la página del proyecto destacado. El proyecto destacado es Hito - complejo de estación de servicio Labanda, con su segunda foto (el pasillo de ladrillo); un proyecto puede indicar qué foto usa la portada con `portada`.
+- El titular de la portada del Inicio va en blanco (el tono claro de la paleta) cuando hay foto, y la foto lleva encima un velo plano negro al 40 %, sin degradado, para que el titular tenga contraste (3:1 o más en el 99,96 % o más de los píxeles detrás del texto). El titular se excluye de la revisión automática de contraste, que no ve la foto.
 - En la sección "Obra terminada" animada, la etiqueta "Proyectos" va centrada sobre el título.
 - Todos los botones llevan fondo sólido al 100 % y sin borde. El titular de la portada va sin rectángulo, y el rectángulo del texto mide lo que mide el texto, no el ancho de su bloque (solo en los elementos que contienen únicamente texto; el formulario de contacto y los retratos del equipo conservan su tamaño).
 - En la galería de cada proyecto, cada foto va a un bloque de su misma orientación: las horizontales al bloque ancho (3:2) y las verticales a bloques de 2:3 en filas de 7+5 y de 4+4+4, con el orden que dio el estudio. Así casi no se recorta nada (la foto se ve entera). Cada foto tiene además un punto de enfoque propio.
 - Fotos de los renders de Galería Bazán (Ayni - Bazán), Casa de playa (La colina - casa Lozada) y Jardín Porongo (Eco Lounge), tomadas de la carpeta "Fotos proyectos" del Drive.
+
+### Corregido
+
+- En la página de proyecto, la descripción para buscadores toma la primera oración del encargo cuando existe, y la foto principal respeta su punto de enfoque y desactiva el fondo fijo en celulares y Safari de iOS. En el Inicio, el titular de la portada solo pasa a blanco cuando hay foto.
+
+### Eliminado
+
+- Los pies de foto de la galería de cada proyecto (en el esquema, la plantilla y los archivos de datos); cada foto conserva su texto alternativo y el crédito del fotógrafo.
 
 ## [0.3.0] — 09/11/2026
 
