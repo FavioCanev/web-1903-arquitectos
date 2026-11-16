@@ -99,6 +99,8 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
         padding: var(--e4) var(--e6); /* solo el texto, sin bloque de fondo, como en la referencia (Favio, 10/11/2026) */
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { pointer-events: auto; align-self: auto; }
+      /* La etiqueta y el título van centrados entre sí (cada uno mide lo que mide su texto) */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__titulo { display: grid; justify-items: center; }
 
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__grilla {
         width: 100%; height: 100%; overflow: clip; display: grid; place-items: start center;

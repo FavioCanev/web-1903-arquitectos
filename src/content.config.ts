@@ -23,6 +23,8 @@ const proyectos = defineCollection({
     orden: z.number().int(),
     /** Proyecto destacado de la portada. */
     destacado: z.boolean().default(false),
+    /** Posición (desde 0) de la foto que se usa en la portada del Inicio cuando el proyecto es el destacado; por defecto, la primera. */
+    portada: z.number().int().min(0).optional(),
     /** Si aparece en el collage del inicio. */
     inicio: z.boolean().default(false),
     area: z.number().positive().optional(),
