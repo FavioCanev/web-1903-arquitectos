@@ -32,7 +32,7 @@ h1, h2, h3, p, figure { margin: 0; }
 :root { --velo: var(--velo-fondo); }
 .seccion--alt { --velo: var(--velo-fondo-alt); }
 .pendiente { --velo: var(--velo-pendiente); }
-:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, figcaption, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta)):not(.boton--primario, .boton--primario *) {
+:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta)):not(.boton--primario, .boton--primario *) {
   background-color: var(--velo);
   box-shadow: 0 0 0 4px var(--velo);
   border-radius: 6px;
@@ -40,7 +40,7 @@ h1, h2, h3, p, figure { margin: 0; }
 /* El rectángulo mide lo que mide el texto, no el ancho de su bloque: así no tapa el listón donde no hay texto.
    Solo en los elementos que contienen texto y nada más: un <li> o un <label> con una foto, un campo o un bloque
    dentro (el equipo, el formulario) conserva su ancho. */
-:where(main, .pie) :where(h1, h2, h3, h4, p, dt, dd, figcaption, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render),
+:where(main, .pie) :where(h1, h2, h3, h4, p, dt, dd, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render),
 :where(main, .pie) :where(li, label):not(:has(input, select, textarea, div, figure, img, ul, ol, p, h1, h2, h3, h4)) {
   width: fit-content;
   max-width: 100%;

@@ -11,6 +11,7 @@ const obras = await obrasTerminadas();
 const destacado = obras.find((p) => p.data.destacado);
 const delInicio = obras.filter((p) => p.data.inicio);
 const fotoPortada = destacado?.data.fotos[destacado.data.portada ?? 0];
+const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
 ---
 
 <Layout
@@ -18,9 +19,9 @@ const fotoPortada = destacado?.data.fotos[destacado.data.portada ?? 0];
   descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina."
 >
   <!-- La portada queda quieta mientras el listón baja desde la barra; --pausa-portada lo calcula Liston.astro -->
-  <div class="portada-pausa liston-sobre">
+  <div class:list={["portada-pausa", "liston-sobre", { "portada-pausa--con-foto": hayFotoPortada }]}>
   <!-- Dos capas fijas: el fondo (la foto) queda por debajo del listón y el contenido, por encima -->
-  <div class="pendiente inicio__fondo" aria-hidden={fotoPortada?.src && destacado ? undefined : "true"}>
+  <div class="pendiente inicio__fondo" aria-hidden={hayFotoPortada ? undefined : "true"}>
     {fotoPortada?.src && destacado && (
       <a href={urlProyecto(destacado)} aria-label={`Ver el proyecto ${destacado.data.nombre}`}>
         <Foto src={fotoPortada.src} alt="" clase="inicio__imagen" eager sizes="100vw" enfoque={fotoPortada.enfoque} />
@@ -80,7 +81,9 @@ const fotoPortada = destacado?.data.fotos[destacado.data.portada ?? 0];
     text-align: left; padding: var(--e8) var(--margen);
   }
   .inicio__contenido { display: grid; gap: var(--e3); max-width: 760px; text-transform: none; letter-spacing: normal; font-weight: 400; }
-  /* El titular de la portada va sin el rectángulo del velo: ese rectángulo es solo para el texto que cruza el listón */
-  .inicio__contenido h1 { background: none; box-shadow: none; color: var(--claro); }
+  /* El titular de la portada va sin el rectángulo del velo: ese rectángulo es solo para el texto que cruza el listón.
+     Solo pasa a blanco cuando hay foto (con su velo oscuro); si falta la foto, conserva el vino sobre el fondo pendiente. */
+  .inicio__contenido h1 { background: none; box-shadow: none; }
+  .portada-pausa--con-foto .inicio__contenido h1 { color: var(--claro); }
   .inicio__nota { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
 </style>

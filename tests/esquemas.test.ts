@@ -6,22 +6,18 @@ import { esquemaFoto } from "../src/lib/esquemas";
 const esquema = esquemaFoto((() => z.string()) as unknown as Parameters<typeof esquemaFoto>[0]);
 
 describe("esquemaFoto", () => {
-  const pendiente = { alt: "[Descripción pendiente]", pie: "[Pie de foto pendiente]" };
+  const pendiente = { alt: "[Descripción pendiente]" };
 
-  it("sin archivo acepta textos [pendientes]", () => {
+  it("sin archivo acepta un texto alternativo [pendiente]", () => {
     expect(esquema.safeParse(pendiente).success).toBe(true);
   });
 
   it("con archivo rechaza un texto alternativo [pendiente]", () => {
-    expect(esquema.safeParse({ ...pendiente, src: "cafetos/01.jpg", pie: "Barra" }).success).toBe(false);
+    expect(esquema.safeParse({ ...pendiente, src: "cafetos/01.jpg" }).success).toBe(false);
   });
 
-  it("con archivo acepta un pie [pendiente] si el texto alternativo es real", () => {
-    expect(esquema.safeParse({ ...pendiente, src: "cafetos/01.jpg", alt: "Barra de madera" }).success).toBe(true);
-  });
-
-  it("con archivo y textos reales es válida", () => {
-    const foto = { src: "cafetos/01.jpg", alt: "Barra de madera con lámparas colgantes", pie: "Barra principal" };
+  it("con archivo y texto alternativo real es válida", () => {
+    const foto = { src: "cafetos/01.jpg", alt: "Barra de madera con lámparas colgantes" };
     expect(esquema.safeParse(foto).success).toBe(true);
   });
 });

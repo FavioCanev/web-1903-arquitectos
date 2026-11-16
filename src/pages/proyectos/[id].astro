@@ -22,6 +22,9 @@ const { proyecto, anterior, siguiente } = Astro.props;
 const d = proyecto.data;
 // La foto principal fija es un fondo de CSS: se genera una versión optimizada (WebP, 2000 px) para ella.
 const principal = d.fotos[0]?.src ? await getImage({ src: d.fotos[0].src, format: "webp", width: 2000 }) : undefined;
+const enfoquePrincipal = d.fotos[0]?.enfoque ?? "50% 40%";
+const primeraOracion = d.encargo && !d.encargo.startsWith("[") ? d.encargo.split(/(?<=\.)\s+/)[0] : undefined;
+const descripcion = primeraOracion ?? `Conoce ${d.nombre}, un proyecto de ${d.tipo.toLowerCase()} de 1903 Arquitectos.`;
 const ficha = [
   ["Lugar", d.ciudad],
   ["Área", d.area ? `${d.area} m²` : "[m²]"],
@@ -52,12 +55,12 @@ const galeria = d.fotos.map((foto, i) => {
 
 <Layout
   titulo={tituloProyecto(d)}
-  descripcion={`Conoce ${d.nombre}, un proyecto de ${d.tipo.toLowerCase()} de 1903 Arquitectos.`}
+  descripcion={descripcion}
   pieAmarillo
 >
   <!-- Foto principal fija "como ventana": el contenido pasa por encima (solo CSS) -->
   <section class="portada" aria-label="Foto principal">
-    <div class="pendiente portada__foto" style={principal ? `background-image:url(${principal.src})` : undefined}>
+    <div class="pendiente portada__foto" style={principal ? `background-image:url(${principal.src});background-position:${enfoquePrincipal}` : undefined}>
       {!principal && `Foto principal pendiente · ${d.nombre}`}
     </div>
   </section>
@@ -88,7 +91,6 @@ const galeria = d.fotos.map((foto, i) => {
         {galeria.map(({ foto, clase, forma, ancho }, i) => (
           <figure class:list={[clase, "parallax"]} style={`--parallax: ${i % 2 ? 50 : 20}`}>
             <Foto src={foto.src} alt={foto.alt} enfoque={foto.enfoque} clase={forma} sizes={`(max-width: 900px) 100vw, ${ancho}`} />
-            <figcaption>{foto.pie}</figcaption>
           </figure>
         ))}
       </div>
@@ -117,8 +119,7 @@ const galeria = d.fotos.map((foto, i) => {
   .relato { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); padding-bottom: var(--seccion); }
   .bloque { display: grid; gap: var(--e1); padding-top: var(--e3); border-top: 1px solid var(--linea); align-content: start; }
   .galeria { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-flow: dense; gap: var(--e3); }
-  .galeria figure { display: grid; gap: var(--e1); min-width: 0; }
-  .galeria figcaption { font-size: 13px; color: var(--vino-2); }
+  .galeria figure { min-width: 0; }
   .g-ancha { grid-column: 1 / -1; }
   .g-mitad { grid-column: span 6; }
   .g-7 { grid-column: span 7; }
@@ -130,7 +131,12 @@ const galeria = d.fotos.map((foto, i) => {
   .vecinos a { padding: var(--e6) 0; text-decoration: none; display: grid; gap: 4px; }
   .vecinos a + a { text-align: right; border-left: 1px solid var(--linea); padding-left: var(--e4); }
 
+  @supports (-webkit-touch-callout: none) {
+    .portada__foto { background-attachment: scroll; }
+  }
+
   @media (max-width: 900px) {
+    .portada__foto { background-attachment: scroll; }
     .titulo, .relato { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
     .ficha { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .galeria { grid-template-columns: minmax(0, 1fr); }

@@ -5,9 +5,9 @@ import type { SchemaContext } from "astro:content";
 const esPendiente = (texto: string) => /^\[.*\]$/.test(texto.trim());
 
 /**
- * Foto de un proyecto (ADR 0011). Mientras no tenga archivo, sus textos pueden quedar [pendientes] y la web
+ * Foto de un proyecto (ADR 0011). Mientras no tenga archivo, su texto alternativo puede quedar [pendiente] y la web
  * muestra el recuadro "Pendiente". Cuando ya tiene archivo, el texto alternativo tiene que ser real (WCAG 2.2 AA,
- * ADR 0013). El pie puede seguir [pendiente] hasta que el estudio lo escriba (decisión del 11/11/2026).
+ * ADR 0013).
  * `src` es el archivo en src/assets/; Astro lo optimiza (el esquema recibe la función `image()` de Astro).
  */
 export const esquemaFoto = (image: SchemaContext["image"]) =>
@@ -15,7 +15,6 @@ export const esquemaFoto = (image: SchemaContext["image"]) =>
     .object({
       src: image().optional(),
       alt: z.string().min(1),
-      pie: z.string().min(1),
       /** Qué parte de la foto se conserva al recortarla (como `object-position`, por ejemplo "50% 30%"). */
       enfoque: z.string().optional(),
     })
