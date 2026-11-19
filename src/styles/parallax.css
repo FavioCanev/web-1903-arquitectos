@@ -4,26 +4,44 @@
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
+    /* Se declaran en propiedades largas (sin el shorthand `animation:`) porque LightningCSS al minificar
+       en producción fusiona `animation` con `animation-timeline` en un shorthand inválido que los navegadores descartan. */
+
     /* Titular de la portada: sube más lento que la página y se desvanece al salir. */
     .parallax-portada {
-      animation: parallax-portada linear both;
+      animation-name: parallax-portada;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: scroll(root);
       /* Empieza después de la pausa de la portada (Liston.astro calcula --fin-pausa) y termina antes de salir de la foto. */
       animation-range: var(--fin-pausa, 0px) calc(var(--fin-pausa, 0px) + 50vh);
     }
 
+    /* Foto de la portada: profundidad suave al bajar (escala desde 1 para no recortar al inicio ni dejar bordes). */
+    .parallax-foto-portada {
+      animation-name: parallax-foto-portada;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: scroll(root);
+      animation-range: var(--fin-pausa, 0px) calc(var(--fin-pausa, 0px) + 85vh);
+    }
+
     /* Capas que se desplazan mientras cruzan la pantalla. --parallax es la distancia, en px:
        positiva baja más lento que la página; negativa, más rápido. */
     .parallax {
-      animation: parallax-capa linear both;
+      animation-name: parallax-capa;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: cover;
     }
 
     /* Entradas suaves al aparecer en pantalla (ADR 0017): se aplica a bloques sin tocar portadas,
        la grilla fija (que ya tiene su propia animación de scroll) ni capas parallax. Si algo recibe foco por teclado (:focus-within), queda visible. */
-    main :where(.cabecera, .fila-info, .bloque-collage > .subtitulo, .vecinos, .seccion .tarjeta:not(.parallax), .seccion .grilla-12 > :not(.parallax), .seccion > .contenedor > :not(.grilla-fija, .grilla-12, .cabecera, .parallax, .parallax-portada)):not(:focus-within) {
-      animation: revelar-bloque linear both;
+    main :where(.cabecera, .fila-info, .bloque-collage > .subtitulo, .vecinos, .seccion .tarjeta:not(.parallax), .seccion .grilla-12 > :not(.parallax), .seccion > .contenedor > :not(.grilla-fija, .grilla-12, .cabecera, .parallax, .parallax-portada, .parallax-foto-portada)):not(:focus-within) {
+      animation-name: revelar-bloque;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: entry 0% cover 20%;
     }
@@ -32,6 +50,11 @@
 
 @keyframes parallax-portada {
   to { translate: 0 10vh; opacity: 0; }
+}
+
+@keyframes parallax-foto-portada {
+  from { scale: 1; translate: 0 0; }
+  to { scale: 1.18; translate: 0 8%; }
 }
 
 @keyframes parallax-capa {

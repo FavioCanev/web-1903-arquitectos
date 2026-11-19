@@ -53,7 +53,7 @@ const datosEstructurados = {
   <div class="pendiente inicio__fondo" aria-hidden={hayFotoPortada ? undefined : "true"}>
     {fotoPortada?.src && destacado && (
       <a href={urlProyecto(destacado)} aria-label={`Ver el proyecto ${destacado.data.nombre}`}>
-        <Foto src={fotoPortada.src} alt="" clase="inicio__imagen" eager sizes="100vw" enfoque={fotoPortada.enfoque} />
+        <Foto src={fotoPortada.src} alt="" clase="inicio__imagen parallax-foto-portada" eager sizes="100vw" enfoque={fotoPortada.enfoque} />
       </a>
     )}
   </div>
