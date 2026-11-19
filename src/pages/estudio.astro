@@ -1,15 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getImage } from "astro:assets";
 import Foto from "../components/Foto.astro";
 import renderShowroom from "../assets/showroom.jpg";
 import { enlaceComoLlegar } from "../config";
 
 const equipo = ["Arq. Jorge Muñoz", "Arq. Carla Llerena", "Arq. Loren Bazán"]; // solo nombres, sin cargos
+const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1200 })).src;
 ---
 
 <Layout
   titulo="Estudio — 1903 Arquitectos"
   descripcion="Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales."
+  imagen={imagenOg}
 >
   <section class="seccion">
     <div class="contenedor">

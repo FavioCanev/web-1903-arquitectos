@@ -6,7 +6,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 ## Cómo leer este documento
 
-**Prioridad (MoSCoW).** Cada sección lleva una prioridad pensada para la publicación del 15/11/2026:
+**Prioridad (MoSCoW).** Cada sección lleva una prioridad pensada para la publicación:
 
 | Prioridad | Significado |
 |---|---|
@@ -22,7 +22,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 - **[auto]:** lo comprueba una prueba automática en cada cambio.
 - **[manual]:** lo comprueba una persona antes de publicar.
 
-**Título y descripción para buscadores.** Son el texto que aparece en los resultados de Google. Todos están [por aprobar] por el estudio.
+**SEO y vista previa al compartir.** Cada página incluye `<title>`, `<meta name="description">`, etiquetas Open Graph (`og:*`) y Twitter Card con imagen en `1200 px`, `public/robots.txt`, enlace `canonical` automático al configurar `site` en `astro.config.mjs`, y datos estructurados `ArchitectureFirm` (JSON-LD) en el Inicio.
 
 ---
 
@@ -34,13 +34,13 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Barra superior | "Cajamarca, Perú" y la hora de Cajamarca en vivo | Must (la hora en vivo: Should) |
 | Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · botón único "Contacto" (lleva a Contacto). En celular, botón hamburguesa con ícono de tres líneas que despliega el menú | Must |
 | Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, desenrollándose de un rollo cilíndrico a medida que se avanza en la página (ver la [ADR 0015](adr/0015-liston-como-rollo-a-la-derecha.md)); oculto en pantallas de hasta 600 px | Should |
-| Pie de página | Logo grande sobre fondo amarillo (`--amarillo`) en toda la web · contacto: correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · enlaces del mapa del sitio · Patrón de baldosa de borde a borde · Franja inferior con "1903 Arquitectos © 2026" a la izquierda, Instagram y Facebook al centro como íconos circulares, y Aviso de privacidad · Declaración de accesibilidad a la derecha | Must |
+| Pie de página | Logo grande sobre fondo amarillo (`--amarillo`) en toda la web · contacto: correo (`1903arq@gmail.com`), "Atención en todo el Perú · WhatsApp 924 285 500", horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (`Jr. Amancaes 262, Cajamarca`) · enlaces del mapa del sitio · Patrón de baldosa de borde a borde · Franja inferior con "1903 Arquitectos © 2026" a la izquierda, Instagram y Facebook al centro como íconos circulares, y Aviso de privacidad · Declaración de accesibilidad a la derecha | Must |
 
 *Leyenda: "Elemento" es la parte que se repite en todas las páginas. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW (ver arriba). El RUC no va en el pie: está en el aviso de privacidad, donde la Ley 29733 pide identificar al responsable de los datos.*
 
 **Criterios de aceptación comunes**
 
-- [auto] Cada página tiene un título y una descripción propios, y el idioma declarado (`lang="es"`).
+- [auto] Cada página tiene título, descripción y metadatos Open Graph propios, y el idioma declarado (`lang="es"`).
 - [auto] Ninguna página tiene enlaces rotos.
 - [auto] Ninguna página tiene errores de accesibilidad en la revisión automática (ver la ADR 0013).
 - [manual] Al presionar Tab por primera vez aparece el enlace "Saltar al contenido", y al usarlo el foco salta al contenido principal.
@@ -56,21 +56,21 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien llega por primera vez. Que vea de inmediato la calidad de la obra del estudio y quiera ver más o escribir.
 
-**Título:** 1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca [por aprobar]
-**Descripción:** Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina. [por aprobar]
+**Título:** 1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca
+**Descripción:** Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Proyecto destacado | Foto de Hito - complejo de estación de servicio Labanda (su segunda foto, el pasillo de ladrillo) a pantalla completa, con enlace a la página del proyecto, velo oscuro al 40 %, el lema "Celebramos la cultura mediante el diseño." en blanco y los botones "Ver proyectos" y "Escríbenos por WhatsApp" | Must |
-| Obra terminada (grilla fija animada) | Las obras terminadas marcadas para el inicio, solo fotos, en 3 columnas. La sección es muy alta y su escenario queda fijo una pantalla: al bajar, las columnas suben y bajan a distinta velocidad, la grilla hace un leve zoom y las de los lados se abren, y al final aparece el botón "Ver todos los proyectos". El título "Obra terminada" queda al centro, sobre la grilla. Cada foto lleva a la página de su proyecto (su nombre solo lo leen los lectores de pantalla). En navegadores sin animaciones ligadas al scroll, con "reducir movimiento" y en pantallas de menos de 900 px es una grilla normal y quieta, con el título arriba y el botón abajo | Must |
-| Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; las tarjetas no llevan a una página propia | Must |
+| Obra terminada (grilla fija animada) | Obras terminadas marcadas para el inicio que cuentan con fotos reales (1.ª y 2.ª foto intercaladas), solo fotos, en 3 columnas. La sección es muy alta y su escenario queda fijo una pantalla: al bajar, las columnas suben y bajan a distinta velocidad, la grilla hace un leve zoom y las de los lados se abren, y al final aparece el botón "Ver todos los proyectos". El título "Obra terminada" queda al centro, sobre la grilla. Cada foto lleva a la página de su proyecto (su nombre solo lo leen los lectores de pantalla). En navegadores sin animaciones ligadas al scroll, con "reducir movimiento" y en pantallas de menos de 900 px es una grilla normal y quieta, con el título arriba y el botón abajo | Must |
+| Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; los que ya tienen vistas enlazan a su propia página y los que aún no tienen imagen quedan como tarjeta sin enlace | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Render" es una imagen hecha por computadora de un proyecto que todavía no se construye.*
 
 **Criterios de aceptación**
 
-- [auto] La grilla muestra todas las obras marcadas para el inicio en los datos, y cada una enlaza a su página de proyecto.
-- [auto] Los renders nunca aparecen mezclados con las obras terminadas.
+- [auto] La grilla muestra las obras marcadas para el inicio con fotos reales en los datos, y cada una enlaza a su página de proyecto.
+- [auto] Los renders nunca aparecen mezclados dentro de la grilla de obras terminadas.
 - [manual] La foto del proyecto destacado se ve completa en escritorio y en celular, y el texto se lee sobre ella.
 - [manual] Las fotos de la grilla que están más abajo se cargan recién al acercarse a ellas.
 - [manual] La animación avanza solo con el scroll y se ve fluida; el título queda por encima de la grilla y el botón aparece al final.
@@ -83,51 +83,51 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien busca un tipo de obra en particular (por ejemplo, un café). Que encuentre proyectos parecidos al suyo y vea sus datos.
 
-**Título:** Proyectos — 1903 Arquitectos [por aprobar]
-**Descripción:** Obras terminadas del estudio: cafés, restaurantes, locales comerciales y viviendas en Cajamarca y el norte del Perú. [por aprobar]
+**Título:** Proyectos — 1903 Arquitectos
+**Descripción:** Obras terminadas del estudio: cafés, restaurantes, locales comerciales y viviendas en Cajamarca y el norte del Perú.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Obra terminada | Todas las obras terminadas, con foto, nombre y ficha corta (lugar · m² · año) | Must |
 | Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría. Las categorías de la hoja son "Arquitectura", "Interiorismo comercial" e "Interiorismo residencial" | Should |
-| En desarrollo | Los renders, separados de la obra terminada, con la etiqueta "Render" | Must |
+| En desarrollo | Carrusel con los proyectos en diseño (renders), separados de la obra terminada y con la etiqueta "Render"; los que tienen vistas enlazan a su página propia | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "m²" son los metros cuadrados del proyecto.*
 
 **Criterios de aceptación**
 
 - [auto] Aparecen todas las obras terminadas de los datos, cada una con su enlace a su página.
-- [auto] Un proyecto con dos categorías aparece al elegir cualquiera de las dos.
+- [auto] Un proyecto con dos categorías aparece al elegir cualquiera de ellas.
 - [manual] Al elegir un filtro se muestran solo los proyectos de esa categoría, y "Todos" los vuelve a mostrar todos.
 - [manual] Los filtros se pueden usar con el teclado, y el filtro elegido se distingue de los demás sin depender solo del color.
 - [manual] Un dato pendiente se muestra como [corchetes], nunca como un dato inventado.
 
 ---
 
-## Proyecto (una página por obra) — `/proyectos/nombre-del-proyecto/`
+## Proyecto (una página por obra o render con vistas) — `/proyectos/nombre-del-proyecto/`
 
-**Para quién y qué debe lograr:** para quien quiere conocer una obra a fondo. Que entienda qué pidió el cliente, qué hizo el estudio y vea el resultado.
+**Para quién y qué debe lograr:** para quien quiere conocer un proyecto a fondo. Que entienda qué pidió el cliente, qué hizo el estudio y vea el resultado.
 
-**Título:** {Nombre} — {tipo} en {ciudad} · 1903 Arquitectos (por ejemplo, "Cafétos — cafetería en Cajamarca · 1903 Arquitectos")
-**Descripción:** la primera oración del encargo de cada proyecto [por aprobar, proyecto por proyecto]
+**Título:** {Nombre} — {tipo} en {ciudad} · 1903 Arquitectos (por ejemplo, "Cafétos — interiorismo comercial en Cajamarca · 1903 Arquitectos")
+**Descripción:** la primera oración del encargo de cada proyecto (recortada limpiamente a ~158 caracteres si supera ese largo), o un resumen con nombre, tipo y ciudad si aún falta el encargo.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Foto principal | A pantalla completa, fija "como ventana" en escritorio, con el título del proyecto a la izquierda y las migas de pan (`Inicio — Proyectos — {Nombre}`) a la derecha sobre un velo oscuro | Must (el efecto de ventana: Should) |
-| Información del proyecto | Antes de las fotos, en dos columnas: resumen (`Sobre el proyecto`), tabla `Datos del proyecto` (tipo, ubicación, año, área, estado y crédito `Fotografía: {nombre completo del fotógrafo}`), `El encargo` y `La solución` | Must |
-| Collages de fotos | Al 80 % del ancho en escritorio, en bloque cuadrado cerrado sin desfase (`Proyecto terminado`: 10–12 fotos en 3 columnas; `Proceso` opcional: 4–5 fotos en 2 columnas; `Renders` opcional: 10–12 fotos en 3 columnas), cada sección con su subtítulo y variación determinística acotada por proyecto respetando orientación; al pasar el cursor hacen zoom suave y al hacer clic se abren en grande | Must |
-| Proyecto anterior y siguiente | Enlaces a las obras vecinas en el orden de la lista | Must |
+| Foto principal | A pantalla completa, fija "como ventana" en escritorio, con el título del proyecto (y la píldora `Render` en proyectos en diseño) a la izquierda y las migas de pan (`Inicio — Proyectos — {Nombre}`) a la derecha sobre un velo oscuro | Must (el efecto de ventana: Should) |
+| Información del proyecto | Antes de las fotos, en dos columnas: resumen (`Sobre el proyecto`), tabla `Datos del proyecto` (tipo, ubicación, año, área, estado y crédito `Fotografía` o `Visualización`, con `1903 Arquitectos` cuando las tomas son del estudio), `El encargo` y `La solución` | Must |
+| Collages de fotos | Al 80 %–100 % del contenedor en bloque cuadrado cerrado sin desfase (`Proyecto terminado` en obras o `Renders` en proyectos en diseño, más `Proceso` y `Renders` opcionales), cada sección con su subtítulo y variación determinística acotada respetando orientación; al pasar el cursor hacen zoom suave y al hacer clic se abren en grande | Must |
+| Proyecto anterior y siguiente | Enlaces a las obras vecinas dentro de su propio grupo (obras terminadas entre sí; renders entre sí) | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Migas de pan" es la línea que muestra en qué parte de la web está el visitante y le permite volver atrás. "Texto alternativo" es la descripción de la foto para quien usa un lector de pantalla.*
 
 **Criterios de aceptación**
 
-- [auto] Cada obra terminada de los datos tiene su página, generada con la misma plantilla.
+- [auto] Cada obra terminada y cada proyecto en diseño con vistas reales tiene su página, generada con la misma plantilla.
 - [auto] La construcción de la web falla si a un proyecto le falta un dato obligatorio (nombre, tipo, ciudad o al menos una foto con su texto alternativo).
 - [auto] Ninguna foto se publica con datos EXIF (ver la ADR 0011).
 - [manual] Si el proyecto tiene fotos de `Proceso` o `Renders`, cada sección aparece con su subtítulo; si no, se omiten.
-- [manual] "Anterior" y "Siguiente" llevan a las obras correctas, y la primera y la última no dejan enlaces rotos.
-- [manual] El crédito del fotógrafo usa su nombre completo, no su usuario de Instagram.
+- [manual] "Anterior" y "Siguiente" llevan a los proyectos correctos dentro de su grupo, y el primero y el último no dejan enlaces rotos.
+- [manual] El crédito del fotógrafo usa su nombre completo o "1903 Arquitectos" cuando las fotos las tomó el estudio.
 
 ---
 
@@ -135,14 +135,14 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien quiere saber si el estudio puede hacer lo que necesita. Que reconozca su caso y escriba.
 
-**Título:** Servicios — 1903 Arquitectos [por aprobar]
-**Descripción:** Diseño arquitectónico, interiorismo, visualización 3D, coordinación de proyectos, supervisión y construcción de obra de inicio a fin. [por aprobar]
+**Título:** Servicios — 1903 Arquitectos
+**Descripción:** Diseño arquitectónico, interiorismo, visualización 3D, coordinación de proyectos, supervisión y construcción de obra de inicio a fin.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Servicios | 01 Diseño arquitectónico · 02 Diseño de interiores · 03 Modelado 3D y visualización · 04 Desarrollo y coordinación de proyectos · 05 Supervisión y asesoría · 06 Construcción de obra, de inicio a fin · 07 Lotizaciones y trámites municipales (con la etiqueta "Próximamente"), cada uno con una línea de lo que incluye [alcance de la construcción y descripción de lotizaciones y trámites: por confirmar] | Must |
 | Cómo trabajamos | 4 pasos: Conversamos → Diseñamos → Elegimos materiales → Construimos | Must |
-| Preguntas frecuentes | Preguntas aprobadas de la hoja (`Preguntas frecuentes` y `Preguntas (del PDF)`) que se abren y se cierran | Must |
+| Preguntas frecuentes | 14 preguntas aprobadas de la hoja (`Preguntas frecuentes` y `Preguntas (del PDF)`) que se abren y se cierran | Must |
 | Llamado a la acción | "¿Tienes un proyecto en mente?" con el botón a Contacto | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Llamado a la acción" es un bloque que invita al visitante a dar el siguiente paso.*
@@ -150,7 +150,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Criterios de aceptación**
 
 - [manual] No aparece "Elaboración de planos" como servicio aparte.
-- [manual] Solo se publican las preguntas frecuentes marcadas como aprobadas en la hoja.
+- [manual] Solo se publican las preguntas frecuentes aprobadas.
 - [manual] Las preguntas se abren y se cierran con el teclado.
 
 ---
@@ -159,12 +159,12 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para estudiantes y profesionales que quieren aprender un programa. Que elijan un curso y se inscriban.
 
-**Título:** Cursos de AutoCAD, V-Ray y Revit — 1903 Arquitectos [por aprobar]
-**Descripción:** Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú. [por aprobar]
+**Título:** Cursos de AutoCAD, V-Ray y Revit — 1903 Arquitectos
+**Descripción:** Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Cursos | Banda amarilla con una ficha por curso: nombre, modalidad, duración y fechas, y el botón "Inscribirme". Sin precio (ver la ADR 0006) | Must |
+| Cursos | Banda amarilla con introducción confirmada ("Los cursos virtuales se inscriben en Hotmart; los presenciales, por WhatsApp.") y una ficha por curso: nombre, modalidad, [duración y fechas], y el botón "Inscribirme". Sin precio (ver la ADR 0006) | Must |
 | Certificado | Certificado en asociación con el Colegio de Arquitectos del Perú, acompañado de su logotipo (`public/img/logo-cap.webp`) | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW.*
@@ -182,22 +182,22 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien quiere saber quién está detrás de la obra antes de confiar su proyecto. Que perciba un estudio joven con oficio probado.
 
-**Título:** Estudio — 1903 Arquitectos [por aprobar]
-**Descripción:** Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales. [por aprobar]
+**Título:** Estudio — 1903 Arquitectos
+**Descripción:** Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Por qué "1903" | La historia del nombre: el 19 del Jr. Amazonas 919, en Cajamarca, y el 03 del Jr. Amazonas 103, en Arequipa; se pronuncia "diecinueve cero tres" [texto por aprobar] | Must |
-| Misión y visión | Cada una por separado, en versión corta [por aprobar] | Must |
+| Por qué "1903" | La historia del nombre: el 19 del Jr. Amazonas 919, en Cajamarca, y el 03 de la calle Amazonas 103, en Arequipa; se pronuncia "diecinueve cero tres" (texto aprobado en la hoja) | Must |
+| Misión, visión y propósito | Cada una por separado, en versión corta aprobada | Must |
 | Equipo | Arq. Jorge Muñoz, Arq. Carla Llerena y Arq. Loren Bazán, solo con sus nombres [retratos pendientes] | Must |
-| Showroom | Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario; fotos de renders [fecha exacta y materiales por confirmar]. Cuando tenga su propia web, un enlace a ella | Must |
+| Showroom | Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario; render del showroom (`src/assets/showroom.jpg`) con etiqueta `Render` [fecha exacta y materiales por confirmar]. Cuando tenga su propia web, un enlace a ella | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW.*
 
 **Criterios de aceptación**
 
 - [manual] El equipo aparece sin cargos.
-- [manual] Las fotos del showroom llevan la etiqueta "Render" mientras sean renders.
+- [manual] La imagen del showroom lleva la etiqueta "Render" mientras sea un render.
 - [manual] Ningún texto se publica sin la aprobación del estudio; lo pendiente se muestra entre [corchetes].
 
 ---
@@ -206,13 +206,13 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien ya decidió escribir o visitar el estudio. Que lo haga sin fricción.
 
-**Título:** Contacto — 1903 Arquitectos [por aprobar]
-**Descripción:** Escríbenos por WhatsApp o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00. [por aprobar]
+**Título:** Contacto — 1903 Arquitectos
+**Descripción:** Escríbenos por WhatsApp o correo, o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Formulario | Asistente paso a paso sin listas desplegables (ver la ADR 0005): ¿qué quieres hacer? (Diseñar, Construir, Remodelar) · tipo de proyecto (Arquitectura, Interiorismo comercial, Interiorismo residencial) · preferencia de contacto (WhatsApp, Correo o Llamada) · idea opcional · nombre, contacto y casilla de consentimiento; redirige a WhatsApp o Gmail redactar (con alternativa `mailto:`), más acceso directo sin pasos | Must |
-| Mapa | Imagen exportada de OpenStreetMap con el crédito "© OpenStreetMap" y el botón "Cómo llegar", que abre Google Maps (ver la ADR 0007) | Must |
+| Mapa | Imagen de OpenStreetMap (`src/assets/mapa-estudio.png`) con el crédito "© OpenStreetMap" y el botón "Cómo llegar", que abre Google Maps (ver la ADR 0007) | Must |
 | Datos | Dirección, WhatsApp, correo y horario; "también te recibimos sin cita" | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW.*
@@ -232,17 +232,18 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Para quién y qué debe lograr:** para cualquier visitante que quiera saber qué pasa con sus datos. Que lo entienda sin ser abogado.
 
 **Título:** Aviso de privacidad — 1903 Arquitectos
+**Descripción:** Qué datos trata esta web, quién los recibe y cómo pedir acceso, corrección o borrado.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Aviso | Responsable de los datos (1903 ARQUITECTOS S.A.C., RUC 20613550225, Jr. Amancaes 262, Cajamarca) · qué mide la web y que no usa cookies · quiénes reciben datos (Cloudflare y WhatsApp) · enlaces a otros sitios con sus propias políticas · cómo pedir acceso, corrección o borrado de los datos (1903arq@gmail.com). Detalle en la ADR 0007 [texto por aprobar por el estudio] | Must |
+| Aviso | Responsable de los datos (`1903 ARQUITECTOS S.A.C.`, RUC `20613550225`, `Jr. Amancaes 262, Cajamarca`) · qué mide la web y que no usa cookies · quiénes reciben datos (Cloudflare y WhatsApp) · enlaces a otros sitios con sus propias políticas · cómo pedir acceso, corrección o borrado de los datos (`1903arq@gmail.com`). Detalle en la ADR 0007 (texto aprobado) | Must |
 
 *Leyenda: "Sección" es el bloque de la página. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Cookie" es un archivo pequeño que un sitio guarda en el navegador para reconocer al visitante.*
 
 **Criterios de aceptación**
 
 - [auto] La página está enlazada desde el pie y desde la casilla de consentimiento del formulario.
-- [manual] El texto fue aprobado por el estudio antes de publicarlo.
+- [manual] El texto coincide con la versión aprobada por el estudio.
 
 ---
 
@@ -251,10 +252,11 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Para quién y qué debe lograr:** para visitantes con discapacidad y para quien quiera comprobar el compromiso del estudio. Que sepa qué nivel cumple la web y a dónde escribir si algo no le funciona.
 
 **Título:** Declaración de accesibilidad — 1903 Arquitectos
+**Descripción:** Nivel de accesibilidad que busca esta web, limitaciones conocidas y dónde reportar un problema.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Declaración | Nivel que busca la web (WCAG 2.2 AA) · limitaciones conocidas · a dónde reportar un problema (1903arq@gmail.com). Detalle en la ADR 0013 | Must |
+| Declaración | Nivel que busca la web (WCAG 2.2 AA) · limitaciones conocidas · a dónde reportar un problema (`1903arq@gmail.com`). Detalle en la ADR 0013 | Must |
 
 *Leyenda: "Sección" es el bloque de la página. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "WCAG 2.2 AA" es el nivel de accesibilidad del estándar internacional que adopta la web.*
 
@@ -270,10 +272,11 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 **Para quién y qué debe lograr:** para quien entra a una dirección que no existe (por ejemplo, un enlace viejo o mal escrito). Que no se vaya: que encuentre el camino de vuelta.
 
 **Título:** Página no encontrada — 1903 Arquitectos
+**Descripción:** La página que buscas no existe.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Mensaje | Logo vertical del estudio, en vino, centrado · un mensaje breve que diga que la página no existe [texto por aprobar] · botones a Inicio y a Proyectos | Must |
+| Mensaje | Lámina arquitectónica con retícula y marcas de cota, `ERROR 404`, mensaje "Esta página no existe", patrón de baldosa, logo vertical y botón "Volver al inicio" | Must |
 
 *Leyenda: "Sección" es el bloque de la página. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Error 404" es el código que usa la web para avisar que una página no existe.*
 
@@ -289,4 +292,3 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 - **Inglés.** Va bajo `/en/` cuando se agregue (ver la ADR 0002).
 - **Envío del formulario por correo.** Cuando el dominio esté comprado y se pueda probar (ver la ADR 0005).
-- **Página propia para cada render.** Cuando el estudio entregue más vistas y una descripción de cada uno.

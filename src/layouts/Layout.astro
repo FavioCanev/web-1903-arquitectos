@@ -1,10 +1,13 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { getImage } from "astro:assets";
 import "@fontsource/jost/latin-400.css";
 import "@fontsource/jost/latin-500.css";
 import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/parallax.css";
+import { estudio } from "../config";
+import portadaDefecto from "../assets/proyectos/estacion-de-servicio-labanda/02.jpg";
 import BarraInfo from "../components/BarraInfo.astro";
 import Nav from "../components/Nav.astro";
 import Pie from "../components/Pie.astro";
@@ -15,8 +18,18 @@ interface Props {
   descripcion: string;
   /** Para la página 404: que no aparezca en Google. */
   noindex?: boolean;
+  /** Imagen para vistas previas al compartir enlaces (Open Graph / Twitter). */
+  imagen?: string;
+  /** Tipo Open Graph de la página. */
+  tipo?: "website" | "article";
+  /** Datos estructurados Schema.org (JSON-LD). */
+  jsonLd?: Record<string, unknown>;
 }
-const { titulo, descripcion, noindex = false } = Astro.props;
+const { titulo, descripcion, noindex = false, imagen, tipo = "website", jsonLd } = Astro.props;
+
+const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const imagenOg = imagen ?? (await getImage({ src: portadaDefecto, format: "jpeg", width: 1200 })).src;
+const imagenOgUrl = Astro.site ? new URL(imagenOg, Astro.site).href : imagenOg;
 ---
 
 <!doctype html>
@@ -27,7 +40,20 @@ const { titulo, descripcion, noindex = false } = Astro.props;
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {canonical && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content={estudio.nombre} />
+    <meta property="og:type" content={tipo} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={imagenOgUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={imagenOgUrl} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <ClientRouter />
   </head>
   <body>

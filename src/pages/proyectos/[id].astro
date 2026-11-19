@@ -26,22 +26,29 @@ const d = proyecto.data;
 const esRender = d.estado === "render";
 // La foto principal fija es un fondo de CSS: se genera una versión optimizada (WebP, 2000 px) para ella.
 const principal = d.fotos[0]?.src ? await getImage({ src: d.fotos[0].src, format: "webp", width: 2000 }) : undefined;
+const imagenOg = d.fotos[0]?.src ? (await getImage({ src: d.fotos[0].src, format: "jpeg", width: 1200 })).src : undefined;
 const enfoquePrincipal = d.fotos[0]?.enfoque ?? "50% 40%";
 const primeraOracion = d.encargo && !d.encargo.startsWith("[") ? d.encargo.split(/(?<=\.)\s+/)[0] : undefined;
-const descripcion = primeraOracion ?? `Conoce ${d.nombre}, un proyecto de ${d.tipo.toLowerCase()} de 1903 Arquitectos.`;
+const acortarSeo = (texto: string, max = 158) =>
+  texto.length <= max ? texto : `${texto.slice(0, max - 1).replace(/\s+\S*$/, "")}…`;
+const descripcion = acortarSeo(
+  primeraOracion ?? `Conoce ${d.nombre}, un proyecto de ${d.tipo.toLowerCase()} en ${d.ciudad} de 1903 Arquitectos.`,
+);
 const datos = [
   ["Tipo", d.tipo],
   ["Ubicación", d.ciudad],
   ["Año", datoOPendiente(d.anio, "Año")],
   ["Área", d.area ? `${d.area} m²` : "[m²]"],
   ["Estado", d.estado === "terminado" ? "Construido" : "En desarrollo"],
-  ["Fotografía", d.fotografo ?? "[Fotógrafo pendiente]"],
+  [esRender ? "Visualización" : "Fotografía", d.fotografo ?? "1903 Arquitectos"],
 ];
 ---
 
 <Layout
   titulo={tituloProyecto(d)}
   descripcion={descripcion}
+  imagen={imagenOg}
+  tipo="article"
 >
   <!-- Portada inspirada en Casa Mulix (Arkham Projects): foto fija con el título y las migas encima -->
   <section

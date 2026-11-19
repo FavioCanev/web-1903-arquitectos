@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getImage } from "astro:assets";
 import GrillaFija from "../components/GrillaFija.astro";
 import CarruselRenders from "../components/CarruselRenders.astro";
 import { estudio } from "../config";
@@ -17,11 +18,34 @@ const itemsGrilla = [
 ];
 const fotoPortada = destacado?.data.fotos[destacado.data.portada ?? 0];
 const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
+const imagenOg = fotoPortada?.src
+  ? (await getImage({ src: fotoPortada.src, format: "jpeg", width: 1200 })).src
+  : undefined;
+
+const datosEstructurados = {
+  "@context": "https://schema.org",
+  "@type": "ArchitectureFirm",
+  name: estudio.nombre,
+  legalName: estudio.razonSocial,
+  description:
+    "Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina.",
+  telephone: `+${estudio.whatsapp.numero}`,
+  email: estudio.correo,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Jr. Amancaes 262",
+    addressLocality: "Cajamarca",
+    addressCountry: "PE",
+  },
+  sameAs: [estudio.redes.instagram, estudio.redes.facebook],
+};
 ---
 
 <Layout
   titulo="1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca"
   descripcion="Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina."
+  imagen={imagenOg}
+  jsonLd={datosEstructurados}
 >
   <!-- La portada queda quieta mientras el listón baja desde la barra; --pausa-portada lo calcula Liston.astro -->
   <div class:list={["portada-pausa", "liston-sobre", { "portada-pausa--con-foto": hayFotoPortada }]}>
