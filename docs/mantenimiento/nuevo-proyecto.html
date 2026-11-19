@@ -1,0 +1,1855 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nuevo proyecto — 1903 Arquitectos</title>
+  <script src="lib/heic2any.min.js"></script>
+  <style>
+    /* Tokens del sistema de diseño (src/styles/tokens.css) */
+    :root {
+      --fondo: #fdfdfd;
+      --fondo-alt: #f6f1ea;
+      --vino: #53090a;
+      --vino-2: #822325;
+      --naranja: #f5700b;
+      --amarillo: #ffde58;
+      --claro: #fdfdfd;
+      --linea: #e4d8cc;
+      --pendiente: #ece6df;
+      --ok-fondo: #e6f4ea;
+      --ok-texto: #14532d;
+      --error-fondo: #fde8e8;
+      --error-texto: #7f1d1d;
+      --fuente: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+      --radio: 4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { color-scheme: light; }
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--vino);
+      font: 400 16px/1.55 var(--fuente);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--vino);
+      outline-offset: 2px;
+    }
+
+    .cabecera {
+      background: var(--vino);
+      color: var(--claro);
+      padding: 28px 24px;
+      border-bottom: 4px solid var(--amarillo);
+    }
+    .cabecera__interior {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .etiqueta {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amarillo);
+      margin-bottom: 6px;
+    }
+    .cabecera h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .cabecera p {
+      margin: 8px 0 0;
+      color: #f3d9c9;
+      max-width: 72ch;
+      font-size: 15px;
+    }
+
+    .contenedor {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+      display: grid;
+      gap: 32px;
+    }
+
+    .tarjeta {
+      background: var(--fondo);
+      border: 1px solid var(--linea);
+      border-radius: var(--radio);
+      padding: 24px;
+    }
+    .tarjeta--suave { background: var(--fondo-alt); }
+    .tarjeta h2 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .subtitulo {
+      margin: 0 0 20px;
+      color: var(--vino-2);
+      font-size: 15px;
+    }
+
+    .rejilla {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px 20px;
+    }
+    .col-2 { grid-column: 1 / -1; }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .campo label, .grupo-titulo {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--vino);
+    }
+    .obligatorio {
+      color: var(--vino-2);
+      font-weight: 400;
+      font-size: 13px;
+    }
+    .ayuda {
+      font-size: 13px;
+      color: var(--vino-2);
+      margin: 0;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--vino-2);
+      border-radius: var(--radio);
+      background: var(--fondo);
+      color: var(--vino);
+      font: inherit;
+      font-size: 15px;
+    }
+    textarea { min-height: 104px; resize: vertical; }
+
+    .fila-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .fila-inline > input { flex: 1 1 180px; }
+
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding: 8px 0;
+    }
+    .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .check input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--vino);
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: var(--radio);
+      padding: 11px 18px;
+      font: 500 15px/1.2 var(--fuente);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 150ms ease;
+    }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn--principal { background: var(--naranja); color: var(--vino); }
+    .btn--oscuro { background: var(--vino); color: var(--claro); }
+    .btn--suave { background: var(--pendiente); color: var(--vino); padding: 8px 13px; font-size: 14px; }
+    .btn--suave.activo { background: var(--vino); color: var(--claro); }
+    .btn--peligro { background: var(--error-fondo); color: var(--error-texto); padding: 8px 12px; font-size: 14px; }
+    .btn:not(:disabled):hover { opacity: 0.9; }
+
+    /* Selector visual de foto para portada de Inicio */
+    .portada-picker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .portada-thumb {
+      border: 2px solid var(--linea);
+      border-radius: var(--radio);
+      padding: 4px;
+      background: var(--fondo);
+      cursor: pointer;
+      display: grid;
+      gap: 4px;
+      text-align: center;
+      font: 500 12px/1.2 var(--fuente);
+      color: var(--vino);
+      width: 96px;
+    }
+    .portada-thumb img {
+      width: 100%;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+    }
+    .portada-thumb[aria-pressed="true"] {
+      border-color: var(--vino);
+      background: var(--amarillo);
+    }
+
+    /* Pestañas de secciones de fotos */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--linea);
+      padding-bottom: 12px;
+    }
+    .tab-btn {
+      border: 1px solid var(--linea);
+      background: var(--fondo-alt);
+      color: var(--vino);
+      border-radius: var(--radio);
+      padding: 9px 16px;
+      font: 500 14px/1.2 var(--fuente);
+      cursor: pointer;
+    }
+    .tab-btn[aria-selected="true"] {
+      background: var(--vino);
+      color: var(--claro);
+      border-color: var(--vino);
+    }
+
+    .zona-fotos {
+      border: 2px dashed var(--vino-2);
+      border-radius: var(--radio);
+      background: var(--fondo-alt);
+      padding: 26px 20px;
+      text-align: center;
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+    .zona-fotos.arrastrando {
+      background: #efe4d6;
+      border-color: var(--naranja);
+    }
+    .zona-fotos p { margin: 0; max-width: 64ch; }
+    .zona-fotos input[type="file"] { display: none; }
+
+    .lista-fotos {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .foto-item {
+      border: 1px solid var(--linea);
+      border-radius: var(--radio);
+      padding: 18px;
+      background: var(--fondo);
+      display: grid;
+      gap: 16px;
+    }
+    .foto-item__cabecera {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--linea);
+    }
+    .foto-item__titulo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .archivo-tag {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--fondo-alt);
+      padding: 3px 8px;
+      border-radius: var(--radio);
+      border: 1px solid var(--linea);
+    }
+    .insignia {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .insignia--ok { background: var(--ok-fondo); color: var(--ok-texto); }
+    .insignia--pendiente { background: var(--pendiente); color: var(--vino); }
+    .insignia--error { background: var(--error-fondo); color: var(--error-texto); }
+    .insignia--principal { background: var(--amarillo); color: var(--vino); }
+
+    .foto-item__cuerpo {
+      display: grid;
+      grid-template-columns: minmax(220px, 340px) minmax(140px, 190px) 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 840px) {
+      .foto-item__cuerpo { grid-template-columns: 1fr; }
+    }
+
+    .visor-titulo {
+      display: block;
+      font-size: 13px;
+      color: var(--vino-2);
+      margin-bottom: 6px;
+    }
+    .selector-enfoque {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      cursor: crosshair;
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid var(--linea);
+      background: var(--pendiente);
+      user-select: none;
+    }
+    .selector-enfoque img { display: block; width: 100%; height: auto; }
+    .punto-enfoque {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 3px solid var(--amarillo);
+      background: rgb(83 9 10 / 0.72);
+      box-shadow: 0 0 0 2px var(--vino);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .recorte-previo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid var(--linea);
+      background: var(--pendiente);
+    }
+    .recorte-previo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Vista previa en vivo de la página de proyecto */
+    .preview-barra {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .preview-marco {
+      border: 1px solid var(--linea);
+      border-radius: var(--radio);
+      overflow: hidden;
+      background: var(--fondo);
+      margin: 0 auto;
+      transition: max-width 200ms ease;
+    }
+    .preview-marco.movil { max-width: 390px; }
+
+    .pv-portada {
+      position: relative;
+      min-height: 320px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding: 28px 24px;
+      background-color: var(--pendiente);
+      background-size: cover;
+      background-position: center;
+      color: var(--vino);
+    }
+    .pv-portada.con-foto { color: var(--claro); background-color: var(--vino); }
+    .pv-portada.con-foto::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgb(0 0 0 / 0.42);
+    }
+    .pv-portada__cabecera {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .pv-portada__titulo {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.08;
+    }
+    .pv-portada__titulo::after {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 2px;
+      background: currentColor;
+      margin-top: 10px;
+    }
+    .pv-migas {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .pv-cuerpo {
+      padding: 32px 24px;
+      display: grid;
+      gap: 28px;
+    }
+    .pv-fila {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 12px 24px;
+      align-items: start;
+    }
+    .preview-marco.movil .pv-fila { grid-template-columns: 1fr; }
+    .pv-etiq {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--vino-2);
+      margin: 0;
+    }
+    .pv-datos {
+      border-top: 1px solid var(--linea);
+      margin: 0;
+    }
+    .pv-datos div {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--linea);
+      font-size: 14px;
+    }
+    .pv-datos dt {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--vino-2);
+    }
+    .pv-datos dd { margin: 0; }
+    .pv-collage-titulo {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--vino-2);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--linea);
+      margin: 0 0 12px;
+    }
+    .pv-collage {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+      gap: 6px;
+      height: calc(var(--filas, 2) * 140px);
+    }
+    .preview-marco.movil .pv-collage {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .pv-collage__col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 0;
+    }
+    .pv-collage__item {
+      flex: var(--peso, 1) 1 0;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--pendiente);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--vino-2);
+    }
+    .preview-marco.movil .pv-collage__item {
+      flex: none;
+      aspect-ratio: 4 / 3;
+    }
+    .pv-collage__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pv-pie {
+      background: var(--amarillo);
+      color: var(--vino);
+      padding: 18px 24px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .estado-lista {
+      margin: 0 0 18px;
+      padding: 14px 18px;
+      border-radius: var(--radio);
+      font-size: 15px;
+    }
+    .estado-lista--error { background: var(--error-fondo); color: var(--error-texto); }
+    .estado-lista--ok { background: var(--ok-fondo); color: var(--ok-texto); }
+    .estado-lista ul { margin: 8px 0 0; padding-left: 20px; }
+
+    .acciones-salida {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      background: #230607;
+      color: #fdfdfd;
+      border-radius: var(--radio);
+      overflow-x: auto;
+      font: 400 13px/1.5 var(--mono);
+      max-height: 320px;
+    }
+
+    .pasos {
+      margin: 18px 0 0;
+      padding: 16px 20px;
+      background: var(--fondo);
+      border-left: 4px solid var(--naranja);
+      border-radius: var(--radio);
+    }
+    .pasos h3 { margin: 0 0 8px; font-size: 16px; font-weight: 500; }
+    .pasos ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+    .pasos code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--fondo-alt);
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--linea);
+    }
+
+    .oculto { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera__interior">
+      <span class="etiqueta">1903 Arquitectos · Asistente local</span>
+      <h1>Preparar un proyecto nuevo para la web</h1>
+      <p>Funciona sin internet y sin instalar programas (incluyendo fotos .HEIC de iPhone). Reduce las imágenes a 2400 px, estampa el logo vertical abajo al centro (blanco o negro según contraste), borra todos los datos GPS ocultos y arma el archivo de datos listo para publicar.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <!-- 1. Datos del proyecto -->
+    <section class="tarjeta" aria-labelledby="sec-datos">
+      <h2 id="sec-datos">1. Datos del proyecto</h2>
+      <p class="subtitulo">Los campos obligatorios protegen el diseño. Si un dato opcional todavía no está confirmado, déjalo vacío.</p>
+
+      <div class="rejilla">
+        <div class="campo">
+          <label for="nombre">Nombre del proyecto <span class="obligatorio">(obligatorio)</span></label>
+          <input id="nombre" type="text" placeholder="Ej. Cafétos" autocomplete="off" />
+        </div>
+
+        <div class="campo">
+          <label for="slug">Nombre de archivo y carpeta <span class="obligatorio">(obligatorio)</span></label>
+          <input id="slug" type="text" placeholder="Ej. cafetos" autocomplete="off" />
+          <p class="ayuda">Solo minúsculas, números y guiones. Dirección en la web: <code>/proyectos/<span id="slug-preview">...</span>/</code></p>
+        </div>
+
+        <div class="campo">
+          <label for="estado">Estado de la obra <span class="obligatorio">(obligatorio)</span></label>
+          <select id="estado">
+            <option value="terminado">Obra terminada (portafolio principal)</option>
+            <option value="render">En desarrollo — solo render (sección aparte)</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="ciudad">Ciudad <span class="obligatorio">(obligatorio)</span></label>
+          <div class="fila-inline">
+            <input id="ciudad" type="text" value="Cajamarca" />
+            <button type="button" class="btn btn--suave" id="btn-ciudad-pendiente">Marcar pendiente</button>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="tipo">Tipo principal <span class="obligatorio">(obligatorio)</span></label>
+          <select id="tipo">
+            <option value="Interiorismo comercial">Interiorismo comercial</option>
+            <option value="Interiorismo residencial">Interiorismo residencial</option>
+            <option value="Arquitectura">Arquitectura</option>
+            <option value="__otro__">Otro...</option>
+          </select>
+          <input id="tipo-otro" class="oculto" type="text" placeholder="Escribe el tipo principal" aria-label="Otro tipo principal" />
+        </div>
+
+        <div class="campo">
+          <label for="orden">Número de orden <span class="obligatorio">(obligatorio)</span></label>
+          <input id="orden" type="number" step="1" value="12" />
+          <p class="ayuda">Define su posición en la lista y los botones de proyecto anterior y siguiente.</p>
+        </div>
+
+        <div class="campo col-2">
+          <span class="grupo-titulo">Categorías para filtrar en Proyectos <span class="obligatorio">(elige al menos una)</span></span>
+          <div class="opciones" id="categorias-lista">
+            <label class="check"><input type="checkbox" value="Interiorismo comercial" checked /> Interiorismo comercial</label>
+            <label class="check"><input type="checkbox" value="Interiorismo residencial" /> Interiorismo residencial</label>
+            <label class="check"><input type="checkbox" value="Arquitectura" /> Arquitectura</label>
+          </div>
+          <div class="fila-inline">
+            <input id="cat-extra" type="text" placeholder="Agregar otra categoría (opcional)" aria-label="Otra categoría" />
+            <button type="button" class="btn btn--suave" id="btn-cat-extra">Agregar categoría</button>
+          </div>
+        </div>
+
+        <div class="campo col-2">
+          <span class="grupo-titulo">Ubicación especial en el Inicio</span>
+          <div class="opciones">
+            <label class="check" id="wrap-inicio"><input id="inicio" type="checkbox" checked /> Mostrar en la grilla de Inicio</label>
+            <label class="check" id="wrap-destacado"><input id="destacado" type="checkbox" /> Proyecto destacado en la portada de Inicio</label>
+            <label class="check oculto" id="wrap-por-confirmar"><input id="porConfirmar" type="checkbox" /> Marcar render como «por confirmar»</label>
+          </div>
+          <div class="oculto" id="wrap-portada">
+            <span class="ayuda">Elige qué foto de «Proyecto terminado» aparecerá en la portada de Inicio:</span>
+            <div class="portada-picker" id="portada-picker"></div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="area">Área en m² (opcional)</label>
+          <input id="area" type="number" min="0.1" step="any" placeholder="Ej. 25" />
+        </div>
+
+        <div class="campo">
+          <label for="anio">Año (opcional)</label>
+          <input id="anio" type="number" min="1900" max="2100" step="1" placeholder="Ej. 2026" />
+        </div>
+
+        <div class="campo col-2">
+          <label for="fotografo">Crédito de fotografía (opcional)</label>
+          <div class="fila-inline">
+            <input id="fotografo" type="text" placeholder="Nombre completo del fotógrafo o estudio" />
+            <button type="button" class="btn btn--suave" data-foto-autor="Alejandro Cerna">Alejandro Cerna</button>
+            <button type="button" class="btn btn--suave" data-foto-autor="Ximena Cholán Terán">Ximena Cholán Terán</button>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="encargo">El encargo (opcional)</label>
+          <textarea id="encargo" placeholder="Qué pidió el cliente. Separa los párrafos con una línea en blanco."></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="solucion">La solución (opcional)</label>
+          <textarea id="solucion" placeholder="Qué propuso el estudio. Separa los párrafos con una línea en blanco."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Fotos del proyecto -->
+    <section class="tarjeta" aria-labelledby="sec-fotos">
+      <h2 id="sec-fotos">2. Fotos del proyecto (se limpian y firman en tu computadora)</h2>
+      <p class="subtitulo">Cada proyecto tiene una galería principal (<strong>Proyecto terminado</strong>, donde la Foto 1 es la portada fija) y puede sumar opcionalmente fotos de <strong>Proceso</strong> y <strong>Renders</strong>.</p>
+
+      <div class="tabs" role="tablist" aria-label="Sección de fotos">
+        <button type="button" class="tab-btn" role="tab" aria-selected="true" data-tab="fotos">Proyecto terminado (<span id="count-fotos">0</span>)</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="proceso">Proceso — opcional (<span id="count-proceso">0</span>)</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="renders">Renders — opcional (<span id="count-renders">0</span>)</button>
+      </div>
+
+      <div class="zona-fotos" id="zona-fotos">
+        <p><strong id="zona-titulo">Arrastra aquí las fotos para «Proyecto terminado»</strong><br />Acepta JPG, PNG, WebP, AVIF, TIFF, BMP y <strong>HEIC/HEIF de iPhone</strong>.</p>
+        <div class="fila-inline">
+          <button type="button" class="btn btn--principal" id="btn-elegir-fotos">Elegir fotos</button>
+          <button type="button" class="btn btn--suave" id="btn-foto-pendiente">Agregar espacio «Pendiente» sin foto</button>
+        </div>
+        <input id="input-fotos" type="file" accept="image/*,.heic,.heif,.avif,.webp,.tif,.tiff,.jfif,.bmp" multiple />
+      </div>
+
+      <div class="lista-fotos" id="lista-fotos" aria-live="polite"></div>
+    </section>
+
+    <!-- 3. Vista previa en vivo -->
+    <section class="tarjeta" aria-labelledby="sec-preview">
+      <div class="preview-barra">
+        <div>
+          <h2 id="sec-preview">3. Vista previa de cómo quedará la página</h2>
+          <p class="subtitulo" style="margin-bottom:0">Así se verá la página del proyecto con la foto principal fija, su ficha y el collage.</p>
+        </div>
+        <div class="fila-inline">
+          <button type="button" class="btn btn--suave activo" id="btn-vista-escritorio">Escritorio</button>
+          <button type="button" class="btn btn--suave" id="btn-vista-movil">Celular (390 px)</button>
+        </div>
+      </div>
+
+      <div class="preview-marco" id="preview-marco"></div>
+    </section>
+
+    <!-- 4. Revisión y descarga -->
+    <section class="tarjeta tarjeta--suave" aria-labelledby="sec-salida">
+      <h2 id="sec-salida">4. Revisión y descarga</h2>
+      <p class="subtitulo">Cuando no queden avisos, descarga el archivo de datos y las fotos ya limpias y renombradas.</p>
+
+      <div class="estado-lista" id="estado-lista" role="status" aria-live="polite"></div>
+
+      <div class="acciones-salida">
+        <button type="button" class="btn btn--principal" id="btn-descargar-json" disabled>1. Descargar <span id="nombre-json">proyecto.json</span></button>
+        <button type="button" class="btn btn--oscuro" id="btn-descargar-fotos" disabled>2. Descargar fotos de Proyecto terminado (<span id="dl-fotos">0</span>)</button>
+        <button type="button" class="btn btn--oscuro oculto" id="btn-descargar-proceso" disabled>Descargar fotos de Proceso (<span id="dl-proceso">0</span>)</button>
+        <button type="button" class="btn btn--oscuro oculto" id="btn-descargar-renders" disabled>Descargar fotos de Renders (<span id="dl-renders">0</span>)</button>
+        <button type="button" class="btn btn--suave" id="btn-copiar-json" disabled>Copiar JSON</button>
+      </div>
+
+      <pre id="vista-json" aria-label="Vista previa del archivo JSON"></pre>
+
+      <div class="pasos">
+        <h3>Cómo publicar este proyecto en 3 pasos (todo desde el navegador)</h3>
+        <ol>
+          <li><strong>Guarda en carpetas separadas si descargas más de una sección:</strong> limpia tu carpeta de descargas antes para que el navegador no renombre las fotos como <code>01 (1).jpg</code>.</li>
+          <li><strong>Sube las fotos limpias a Cloudflare R2 (almacén privado del estudio):</strong> entra a Cloudflare → R2 → bucket de la web, crea la carpeta <code id="ruta-fotos">...</code> y arrastra allí las fotos de Proyecto terminado (<code>01.jpg</code>, <code>02.jpg</code>…). Si agregaste Proceso o Renders, súbelas en las subcarpetas <code id="ruta-proceso">...</code> y <code id="ruta-renders">...</code>. <em>(Si temporalmente aún están usando GitHub para fotos, se suben a <code>src/assets/proyectos/</code> en la misma ruta).</em></li>
+          <li><strong>Sube la ficha a GitHub:</strong> entra al repositorio → carpeta <code>src/content/proyectos/</code> → <strong>Add file → Upload files</strong>, arrastra <code id="ruta-json">...</code> y pulsa <strong>Commit changes</strong>. Cloudflare publicará la web sola en ~2 minutos.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const LADO_MAXIMO = 2400;
+      const CALIDAD_JPEG = 0.88;
+      const RE_PENDIENTE = /^\[.*\]$/;
+      const RE_SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+      // Trazado oficial del logo vertical (public/img/logo-v-claro.svg)
+      const LOGO_SVG_PLANTILLA = (color) =>
+        `<svg width="46.067368mm" height="77.13121mm" viewBox="0 0 46.067368 77.13121" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-69.320001,-102.14777)"><path style="fill:${color}" d="m 146.54076,102.16877 v 5.16912 h 11.78125 l -6.49818,7.74467 -1.35986,1.62033 3.95751,3.32089 a 8.1337032,8.1337032 0 0 1 0.003,-5.8e-4 8.1337032,8.1337032 0 0 1 5.9e-4,0 8.1337032,8.1337032 0 0 1 1.543,-0.14767 8.1337032,8.1337032 0 0 1 8.1342,8.13304 8.1337032,8.1337032 0 0 1 -8.1342,8.1342 8.1337032,8.1337032 0 0 1 -5.81912,-2.45113 l -3.34763,3.98948 a 13.396577,13.396577 0 0 0 9.09466,3.55984 13.396577,13.396577 0 0 0 13.39634,-13.39634 13.396577,13.396577 0 0 0 -10.46266,-13.07194 l 6.23888,-7.43479 4.33716,-5.16912 h -6.74702 z" transform="matrix(0.88884556,0,0,0.88884556,-35.188136,53.737579)"/><path style="fill:${color}" d="m 130.74964,102.14829 a 13.396577,13.396577 0 0 0 -13.3966,13.3966 13.396577,13.396577 0 0 0 13.3966,13.39659 13.396577,13.396577 0 0 0 13.3966,-13.39659 13.396577,13.396577 0 0 0 -13.3966,-13.3966 z m 0.0315,5.29476 a 8.1337032,8.1337032 0 0 1 8.13336,8.13336 8.1337032,8.1337032 0 0 1 -8.13336,8.13387 8.1337032,8.1337032 0 0 1 -8.13387,-8.13387 8.1337032,8.1337032 0 0 1 8.13387,-8.13336 z" transform="matrix(0.8832465,0,0,0.8832465,-34.331661,54.32788)"/><path style="fill:${color}" d="m 100.93699,102.14829 a 13.396577,13.396577 0 0 0 -13.396597,13.3966 13.396577,13.396577 0 0 0 1.527555,6.14949 13.396577,13.396577 0 0 0 3.939295,4.6483 13.396577,13.396577 0 0 0 7.929747,2.5988 13.396577,13.396577 0 0 0 7.98453,-2.63911 8.1337032,8.1337032 0 0 1 0.18086,1.65003 v 0.11317 a 8.1337032,8.1337032 0 0 1 -8.13387,8.07702 8.1337032,8.1337032 0 0 1 -5.655982,-2.28874 l -3.323311,3.96099 a 13.396577,13.396577 0 0 0 8.947773,3.42615 13.396577,13.396577 0 0 0 10.85154,-5.54075 13.396577,13.396577 0 0 0 2.48201,-6.55774 v -2.5957 -9.7038 a 13.396577,13.396577 0 0 0 0.0631,-1.29811 13.396577,13.396577 0 0 0 -0.0631,-1.2976 13.396577,13.396577 0 0 0 0,-5.2e-4 v -5.1e-4 -0.16485 h -0.017 a 13.396577,13.396577 0 0 0 -13.3165,-11.93312 z m 0.0315,5.29476 a 8.1337032,8.1337032 0 0 1 8.13387,8.13336 8.1337032,8.1337032 0 0 1 -0.14676,1.53634 8.1337032,8.1337032 0 0 1 -2.74143,4.67982 8.1337032,8.1337032 0 0 1 -5.24568,1.91771 8.1337032,8.1337032 0 0 1 -5.245671,-1.91771 8.1337032,8.1337032 0 0 1 -2.749186,-4.72065 8.1337032,8.1337032 0 0 1 -0.139009,-1.49551 8.1337032,8.1337032 0 0 1 8.133866,-8.13336 z"/><path style="fill:${color}" d="m 79.49954,102.14777 -0.294039,0.35037 -7.458459,8.88886 3.958931,3.32228 3.499528,-4.17029 v 30.70097 h 3.218925 1.949752 v -2.32337 -34.53743 -2.23139 z"/></g><g transform="translate(-69.320001,-102.14777)"><path style="fill:${color}" d="m 138.14883,133.49989 a 2.2535,2.2543118 0 0 0 -2.25389,2.25445 2.2535,2.2543118 0 0 0 2.25389,2.25446 2.2535,2.2543118 0 0 0 1.2295,-0.36501 l 0.40794,0.40852 h 0.96733 l -0.86506,-0.86506 a 2.2535,2.2543118 0 0 0 0.51305,-1.43291 2.2535,2.2543118 0 0 0 -2.25276,-2.25445 z m -0.003,0.70967 a 1.5533212,1.5538802 0 0 1 1.55326,1.55382 1.5533212,1.5538802 0 0 1 -0.30681,0.92778 l -0.65543,-0.65543 h -0.96732 l 1.1018,1.1018 a 1.5533212,1.5538802 0 0 1 -0.7255,0.17968 1.5533212,1.5538802 0 0 1 -1.55325,-1.55383 1.5533212,1.5538802 0 0 1 1.55325,-1.55382 z" transform="matrix(0.91458481,0,0,0.91458481,-38.70456,50.143677)"/><path style="fill:${color}" d="m 129.60407,133.51967 a 1.337,1.3374811 0 0 0 -0.1017,0.007 1.337,1.3374811 0 0 0 -0.0678,0.0102 1.337,1.3374811 0 0 1 0.0678,-0.0107 1.337,1.3374811 0 0 1 0.1017,-0.007 z m 0,0 -0.37009,5.6e-4 h -0.68425 v 0.002 0.27855 0.27743 a 1.337,1.3280547 0 0 0 -5.6e-4,5.7e-4 v 5.6e-4 5.7e-4 0.12261 h 5.6e-4 v 0.25482 0.3328 0.0401 5.7e-4 0.35766 5.6e-4 5.7e-4 0.44298 5.6e-4 1.92844 0.39043 h 0.68425 v -0.39043 -1.39505 l 1.25097,1.78605 h 0.83454 l -1.2747,-1.82052 a 1.337,1.3374811 0 0 1 -5.6e-4,0 1.337,1.3374811 0 0 1 -0.13222,0.035 v -5.6e-4 a 1.337,1.3374811 0 0 1 -0.27291,0.0283 1.337,1.3374811 0 0 0 0.27291,-0.0283 1.337,1.3374811 0 0 0 0.13222,-0.035 1.337,1.3374811 0 0 0 5.6e-4,0 1.337,1.3374811 0 0 0 0.77917,-0.65656 h 0.001 5.7e-4 a 1.337,1.3374811 0 0 0 0.0192,-0.039 h 5.6e-4 a 1.337,1.3374811 0 0 0 0.13109,-0.57859 1.337,1.3374811 0 0 0 -0.17177,-0.65486 1.337,1.3374811 0 0 0 -0.34805,-0.40174 1.337,1.3374811 0 0 0 -5.7e-4,0 1.337,1.3374811 0 0 0 -0.55373,-0.25087 1.337,1.3374811 0 0 0 -0.0864,-0.0175 1.337,1.3374811 0 0 0 -0.14691,-0.0119 v -5.6e-4 z m -0.23731,0.0283 a 1.337,1.3374811 0 0 0 -0.13278,0.035 v -5.7e-4 a 1.337,1.3374811 0 0 1 0.13278,-0.0345 z m 0.5379,0.002 a 1.337,1.3374811 0 0 1 0.11979,0.0288 1.337,1.3374811 0 0 0 -0.0356,-0.0124 1.337,1.3374811 0 0 0 -0.0842,-0.0164 z m -0.67068,0.25144 v 0.40117 h 0.36614 a 0.63727075,0.63749999 0 0 1 0.035,-0.001 0.63727075,0.63749999 0 0 1 0.035,0.001 h 0.001 a 0.63727075,0.63749999 0 0 1 0.25144,0.0678 0.63727075,0.63749999 0 0 1 0.14351,0.0994 0.63727075,0.63749999 0 0 1 0.0605,0.0639 0.63727075,0.63749999 0 0 1 0.0508,0.0712 0.63727075,0.63749999 0 0 1 0.0927,0.2859 0.63727075,0.63749999 0 0 1 0.002,0.048 0.63727075,0.63749999 0 0 1 -0.24917,0.50569 0.63727075,0.63749999 0 0 1 -0.14409,0.0831 0.63727075,0.63749999 0 0 1 -0.19663,0.0475 h -0.0943 -0.003 v -5.7e-4 h -5.6e-4 a 0.63727075,0.63749999 0 0 1 -0.22037,-0.0593 0.63727075,0.63749999 0 0 1 -0.005,-0.003 1.337,1.3374811 0 0 1 0,5.6e-4 1.337,1.3374811 0 0 1 0.039,0.0616 l 0.18646,5.7e-4 h -0.18646 a 1.337,1.3374811 0 0 0 0,-5.7e-4 1.337,1.3374811 0 0 0 -0.0396,-0.0616 0.63727075,0.63749999 0 0 1 -0.0616,-0.0345 0.63727075,0.63749999 0 0 1 -0.0627,-0.0441 v -0.0898 -0.27065 -0.18364 -0.44637 -0.14125 h -5.7e-4 v -0.40061 z m -0.23053,0.95828 a 0.63727075,0.63749999 0 0 0 -0.003,0.0305 0.63727075,0.63749999 0 0 0 -0.002,0.0486 0.63727075,0.63749999 0 0 0 0.0192,0.15255 0.63727075,0.63749999 0 0 0 0.0226,0.0729 0.63727075,0.63749999 0 0 1 -0.0418,-0.22544 0.63727075,0.63749999 0 0 1 0.002,-0.0486 0.63727075,0.63749999 0 0 1 0.004,-0.0305 z m 0.0362,0.30512 a 1.337,1.3374811 0 0 1 0.001,0 v 5.6e-4 a 1.337,1.3374811 0 0 0 -5.7e-4,0 1.337,1.3374811 0 0 0 -5.6e-4,-5.6e-4 z m 0.16273,1.0566 a 1.337,1.3374811 0 0 0 5.6e-4,0 v 5.6e-4 a 1.337,1.3374811 0 0 0 0.0311,0.0102 v 5.7e-4 a 1.337,1.3374811 0 0 1 -0.0311,-0.0107 1.337,1.3374811 0 0 0 -5.6e-4,0 z" transform="matrix(0.91458481,0,0,0.91458481,-38.494356,50.143677)"/><path style="fill:${color}" d="m 121.82965,133.33603 -0.37687,0.80855 -0.90178,1.93409 -0.31924,0.68368 -0.55429,1.18938 h 0.75374 l 0.55486,-1.18938 h 1.68717 l 0.55429,1.18938 h 0.75431 l -0.55429,-1.18938 -0.31868,-0.68368 -0.90234,-1.93465 z m 0,1.61767 0.52491,1.12497 h -1.04981 z" transform="matrix(0.91458481,0,0,0.91458481,-38.244558,50.143677)"/></g></svg>`;
+
+      const $ = (id) => document.getElementById(id);
+
+      const state = {
+        slugManual: false,
+        categoriasTocadas: false,
+        tabActiva: "fotos", // "fotos" | "proceso" | "renders"
+        portadaIdx: 0,
+        secciones: {
+          fotos: [],
+          proceso: [],
+          renders: [],
+        },
+        siguienteId: 1,
+      };
+
+      const el = {
+        nombre: $("nombre"),
+        slug: $("slug"),
+        slugPreview: $("slug-preview"),
+        estado: $("estado"),
+        ciudad: $("ciudad"),
+        btnCiudadPendiente: $("btn-ciudad-pendiente"),
+        tipo: $("tipo"),
+        tipoOtro: $("tipo-otro"),
+        orden: $("orden"),
+        categoriasLista: $("categorias-lista"),
+        catExtra: $("cat-extra"),
+        btnCatExtra: $("btn-cat-extra"),
+        inicio: $("inicio"),
+        destacado: $("destacado"),
+        porConfirmar: $("porConfirmar"),
+        wrapInicio: $("wrap-inicio"),
+        wrapDestacado: $("wrap-destacado"),
+        wrapPorConfirmar: $("wrap-por-confirmar"),
+        wrapPortada: $("wrap-portada"),
+        portadaPicker: $("portada-picker"),
+        area: $("area"),
+        anio: $("anio"),
+        fotografo: $("fotografo"),
+        encargo: $("encargo"),
+        solucion: $("solucion"),
+        zonaFotos: $("zona-fotos"),
+        zonaTitulo: $("zona-titulo"),
+        inputFotos: $("input-fotos"),
+        btnElegirFotos: $("btn-elegir-fotos"),
+        btnFotoPendiente: $("btn-foto-pendiente"),
+        listaFotos: $("lista-fotos"),
+        countFotos: $("count-fotos"),
+        countProceso: $("count-proceso"),
+        countRenders: $("count-renders"),
+        previewMarco: $("preview-marco"),
+        btnVistaEscritorio: $("btn-vista-escritorio"),
+        btnVistaMovil: $("btn-vista-movil"),
+        estadoLista: $("estado-lista"),
+        btnDescargarJson: $("btn-descargar-json"),
+        btnDescargarFotos: $("btn-descargar-fotos"),
+        btnDescargarProceso: $("btn-descargar-proceso"),
+        btnDescargarRenders: $("btn-descargar-renders"),
+        btnCopiarJson: $("btn-copiar-json"),
+        nombreJson: $("nombre-json"),
+        dlFotos: $("dl-fotos"),
+        dlProceso: $("dl-proceso"),
+        dlRenders: $("dl-renders"),
+        vistaJson: $("vista-json"),
+        rutaFotos: $("ruta-fotos"),
+        rutaProceso: $("ruta-proceso"),
+        rutaRenders: $("ruta-renders"),
+        rutaJson: $("ruta-json"),
+      };
+
+      const nombresSeccion = {
+        fotos: "Proyecto terminado",
+        proceso: "Proceso",
+        renders: "Renders",
+      };
+
+      function aSlug(texto) {
+        return texto
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+      }
+
+      function esPendiente(texto) {
+        return RE_PENDIENTE.test(texto.trim());
+      }
+
+      function limpiarSegmentosJpeg(bytes) {
+        if (bytes.length < 2 || bytes[0] !== 0xff || bytes[1] !== 0xd8) return bytes;
+        const partes = [bytes.subarray(0, 2)];
+        let i = 2;
+        while (i + 1 < bytes.length) {
+          if (bytes[i] !== 0xff) {
+            partes.push(bytes.subarray(i));
+            break;
+          }
+          while (i + 1 < bytes.length && bytes[i + 1] === 0xff) i++;
+          if (i + 1 >= bytes.length) break;
+          const marca = bytes[i + 1];
+          if (marca === 0xda) {
+            partes.push(bytes.subarray(i));
+            break;
+          }
+          if (marca === 0x00 || marca === 0x01 || (marca >= 0xd0 && marca <= 0xd9)) {
+            partes.push(bytes.subarray(i, i + 2));
+            i += 2;
+            continue;
+          }
+          if (i + 3 >= bytes.length) {
+            partes.push(bytes.subarray(i));
+            break;
+          }
+          const largo = (bytes[i + 2] << 8) | bytes[i + 3];
+          if (largo < 2 || i + 2 + largo > bytes.length) {
+            partes.push(bytes.subarray(i));
+            break;
+          }
+          const esMetadato = marca === 0xfe || (marca >= 0xe1 && marca <= 0xef);
+          if (!esMetadato) partes.push(bytes.subarray(i, i + 2 + largo));
+          i += 2 + largo;
+        }
+        const total = partes.reduce((acc, p) => acc + p.length, 0);
+        const salida = new Uint8Array(total);
+        let offset = 0;
+        for (const p of partes) {
+          salida.set(p, offset);
+          offset += p.length;
+        }
+        return salida;
+      }
+
+      function segmentosProhibidos(bytes) {
+        if (bytes.length < 2 || bytes[0] !== 0xff || bytes[1] !== 0xd8) {
+          return ["no es un JPEG válido"];
+        }
+        const malos = [];
+        let i = 2;
+        while (i + 4 <= bytes.length) {
+          if (bytes[i] !== 0xff) break;
+          const marca = bytes[i + 1];
+          if (marca === 0xda) break;
+          const largo = (bytes[i + 2] << 8) | bytes[i + 3];
+          if (largo < 2) break;
+          if (
+            marca === 0xe1 ||
+            marca === 0xe2 ||
+            marca === 0xed ||
+            marca === 0xfe ||
+            (marca >= 0xe3 && marca <= 0xef)
+          ) {
+            malos.push(`segmento 0x${marca.toString(16).toUpperCase().padStart(2, "0")}`);
+          }
+          i += 2 + largo;
+        }
+        return malos;
+      }
+
+      function cargarImagenDesdeBlob(blob, nombre) {
+        return new Promise((resolve, reject) => {
+          const url = URL.createObjectURL(blob);
+          const img = new Image();
+          img.onload = () => {
+            URL.revokeObjectURL(url);
+            resolve(img);
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error(`No se pudo leer ${nombre}`));
+          };
+          img.src = url;
+        });
+      }
+
+      async function decodificarImagen(archivo) {
+        const ext = (archivo.name.split(".").pop() || "").toLowerCase();
+        const esHeic = ext === "heic" || ext === "heif" || archivo.type === "image/heic" || archivo.type === "image/heif";
+        try {
+          return await cargarImagenDesdeBlob(archivo, archivo.name);
+        } catch (err) {
+          if (!esHeic) throw err;
+          if (typeof window.heic2any !== "function") {
+            throw new Error("Este navegador no abre .heic directo y falta lib/heic2any.min.js. En Windows abre la foto en Fotos → Guardar como JPG.");
+          }
+          const convertido = await window.heic2any({ blob: archivo, toType: "image/png" });
+          const blobPng = Array.isArray(convertido) ? convertido[0] : convertido;
+          return await cargarImagenDesdeBlob(blobPng, archivo.name);
+        }
+      }
+
+      function luminanciaSrgb(r, g, b) {
+        const lin = (c) => {
+          const v = c / 255;
+          return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+      }
+
+      async function cargarLogoSvg(color) {
+        const svg = LOGO_SVG_PLANTILLA(color);
+        const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+        return await cargarImagenDesdeBlob(blob, "logo");
+      }
+
+      async function generarVersionLimpia(img, modoLogo) {
+        const origW = img.naturalWidth;
+        const origH = img.naturalHeight;
+        const mayor = Math.max(origW, origH);
+        const escala = mayor > LADO_MAXIMO ? LADO_MAXIMO / mayor : 1;
+        const ancho = Math.round(origW * escala);
+        const alto = Math.round(origH * escala);
+
+        const canvas = document.createElement("canvas");
+        canvas.width = ancho;
+        canvas.height = alto;
+        const ctx = canvas.getContext("2d", { colorSpace: "srgb" });
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, ancho, alto);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(img, 0, 0, ancho, alto);
+
+        let colorLogoUsado = "ninguno";
+        if (modoLogo !== "ninguno") {
+          const altoLogo = Math.max(48, Math.round(Math.min(ancho, alto) * 0.068));
+          const anchoLogo = Math.max(24, Math.round(altoLogo * (46.067368 / 77.13121)));
+          const margenInf = Math.max(24, Math.round(alto * 0.032));
+          const x = Math.floor((ancho - anchoLogo) / 2);
+          const y = Math.max(0, alto - altoLogo - margenInf);
+
+          let usarBlanco = true;
+          if (modoLogo === "negro") {
+            usarBlanco = false;
+          } else if (modoLogo === "auto") {
+            const datos = ctx.getImageData(x, y, anchoLogo, altoLogo).data;
+            let sr = 0, sg = 0, sb = 0;
+            const totalPx = datos.length / 4;
+            for (let p = 0; p < datos.length; p += 4) {
+              sr += datos[p];
+              sg += datos[p + 1];
+              sb += datos[p + 2];
+            }
+            const lFondo = luminanciaSrgb(sr / totalPx, sg / totalPx, sb / totalPx);
+            const lBlanco = luminanciaSrgb(253, 253, 253);
+            const lNegro = luminanciaSrgb(26, 26, 26);
+            const cBlanco = (Math.max(lBlanco, lFondo) + 0.05) / (Math.min(lBlanco, lFondo) + 0.05);
+            const cNegro = (Math.max(lNegro, lFondo) + 0.05) / (Math.min(lNegro, lFondo) + 0.05);
+            usarBlanco = cBlanco >= cNegro;
+          }
+          colorLogoUsado = usarBlanco ? "blanco" : "negro";
+          const logoImg = await cargarLogoSvg(usarBlanco ? "#FDFDFD" : "#1A1A1A");
+          ctx.drawImage(logoImg, x, y, anchoLogo, altoLogo);
+        }
+
+        const blobBruto = await new Promise((res, rej) => {
+          canvas.toBlob(
+            (b) => (b ? res(b) : rej(new Error("El navegador no pudo generar el JPEG."))),
+            "image/jpeg",
+            CALIDAD_JPEG
+          );
+        });
+
+        const bytes = limpiarSegmentosJpeg(new Uint8Array(await blobBruto.arrayBuffer()));
+        const blob = new Blob([bytes], { type: "image/jpeg" });
+        const problemas = segmentosProhibidos(bytes);
+        if (Math.max(ancho, alto) > LADO_MAXIMO) {
+          problemas.push(`supera ${LADO_MAXIMO} px (${ancho}x${alto})`);
+        }
+
+        return {
+          blob,
+          previewUrl: URL.createObjectURL(blob),
+          ancho,
+          alto,
+          kb: Math.round(blob.size / 1024),
+          colorLogoUsado,
+          problemas,
+        };
+      }
+
+      async function agregarArchivos(files) {
+        const destino = state.tabActiva;
+        for (const archivo of files) {
+          const entrada = {
+            id: state.siguienteId++,
+            pendiente: false,
+            cargando: true,
+            nombreOriginal: archivo.name,
+            alt: "",
+            enfoqueX: 50,
+            enfoqueY: 40,
+            modoLogo: "auto",
+            imgBase: null,
+            limpia: null,
+            errorCarga: "",
+          };
+          state.secciones[destino].push(entrada);
+          renderTodo();
+          try {
+            entrada.imgBase = await decodificarImagen(archivo);
+            entrada.limpia = await generarVersionLimpia(entrada.imgBase, entrada.modoLogo);
+          } catch (err) {
+            entrada.errorCarga = err.message || "Error al procesar la foto";
+          } finally {
+            entrada.cargando = false;
+            renderTodo();
+          }
+        }
+      }
+
+      async function cambiarModoLogo(foto, nuevoModo) {
+        if (!foto.imgBase) return;
+        foto.modoLogo = nuevoModo;
+        foto.cargando = true;
+        renderTodo();
+        try {
+          if (foto.limpia?.previewUrl) URL.revokeObjectURL(foto.limpia.previewUrl);
+          foto.limpia = await generarVersionLimpia(foto.imgBase, nuevoModo);
+        } catch (err) {
+          foto.errorCarga = err.message || "Error al regenerar el logo";
+        } finally {
+          foto.cargando = false;
+          renderTodo();
+        }
+      }
+
+      function agregarPendiente() {
+        state.secciones[state.tabActiva].push({
+          id: state.siguienteId++,
+          pendiente: true,
+          cargando: false,
+          nombreOriginal: "",
+          alt: "[Descripción pendiente]",
+          enfoqueX: 50,
+          enfoqueY: 40,
+          modoLogo: "auto",
+          imgBase: null,
+          limpia: null,
+          errorCarga: "",
+        });
+        renderTodo();
+      }
+
+      function moverFoto(seccion, indice, destino) {
+        const lista = state.secciones[seccion];
+        if (destino < 0 || destino >= lista.length) return;
+        const [item] = lista.splice(indice, 1);
+        lista.splice(destino, 0, item);
+        if (seccion === "fotos" && state.portadaIdx >= lista.length) state.portadaIdx = 0;
+        renderTodo();
+      }
+
+      function quitarFoto(seccion, indice) {
+        const lista = state.secciones[seccion];
+        const [eliminada] = lista.splice(indice, 1);
+        if (eliminada?.limpia?.previewUrl) URL.revokeObjectURL(eliminada.limpia.previewUrl);
+        if (seccion === "fotos" && state.portadaIdx >= lista.length) {
+          state.portadaIdx = Math.max(0, lista.length - 1);
+        }
+        renderTodo();
+      }
+
+      function descargarBlob(blob, nombreArchivo) {
+        const url = URL.createObjectURL(blob);
+        const enlace = document.createElement("a");
+        enlace.href = url;
+        enlace.download = nombreArchivo;
+        document.body.appendChild(enlace);
+        enlace.click();
+        enlace.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+      }
+
+      function renderPortadaPicker() {
+        el.portadaPicker.innerHTML = "";
+        const fotos = state.secciones.fotos;
+        if (!fotos.length) {
+          el.portadaPicker.innerHTML = '<span class="ayuda">Agrega fotos en «Proyecto terminado» para elegir la de portada.</span>';
+          return;
+        }
+        fotos.forEach((f, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "portada-thumb";
+          btn.setAttribute("aria-pressed", String(state.portadaIdx === idx));
+          if (f.limpia?.previewUrl) {
+            const img = document.createElement("img");
+            img.src = f.limpia.previewUrl;
+            img.alt = "";
+            img.style.objectPosition = `${f.enfoqueX}% ${f.enfoqueY}%`;
+            btn.appendChild(img);
+          }
+          const lbl = document.createElement("span");
+          lbl.textContent = idx === 0 ? "Foto 1 (principal)" : `Foto ${idx + 1}`;
+          btn.appendChild(lbl);
+          btn.addEventListener("click", () => {
+            state.portadaIdx = idx;
+            renderPortadaPicker();
+            actualizarSalida();
+          });
+          el.portadaPicker.appendChild(btn);
+        });
+      }
+
+      function renderFotos() {
+        el.countFotos.textContent = String(state.secciones.fotos.length);
+        el.countProceso.textContent = String(state.secciones.proceso.length);
+        el.countRenders.textContent = String(state.secciones.renders.length);
+
+        const seccion = state.tabActiva;
+        const lista = state.secciones[seccion];
+        el.zonaTitulo.textContent = `Arrastra aquí las fotos para «${nombresSeccion[seccion]}»`;
+        el.listaFotos.innerHTML = "";
+
+        let numReal = 0;
+        lista.forEach((foto, idx) => {
+          const numeroArchivo = !foto.pendiente ? `${String(++numReal).padStart(2, "0")}.jpg` : null;
+
+          const card = document.createElement("article");
+          card.className = "foto-item";
+
+          const cabecera = document.createElement("div");
+          cabecera.className = "foto-item__cabecera";
+
+          const tituloWrap = document.createElement("div");
+          tituloWrap.className = "foto-item__titulo";
+
+          const ordenTexto = document.createElement("span");
+          ordenTexto.textContent =
+            seccion === "fotos" && idx === 0 ? "Foto 1" : `Foto ${idx + 1}`;
+          tituloWrap.appendChild(ordenTexto);
+
+          if (seccion === "fotos" && idx === 0) {
+            const badgePrinc = document.createElement("span");
+            badgePrinc.className = "insignia insignia--principal";
+            badgePrinc.textContent = "Foto principal del proyecto";
+            tituloWrap.appendChild(badgePrinc);
+          }
+
+          if (numeroArchivo) {
+            const tag = document.createElement("span");
+            tag.className = "archivo-tag";
+            tag.textContent = numeroArchivo;
+            tituloWrap.appendChild(tag);
+          }
+
+          const insignia = document.createElement("span");
+          insignia.className = "insignia ";
+          if (foto.pendiente) {
+            insignia.className += "insignia--pendiente";
+            insignia.textContent = "Recuadro pendiente (sin archivo)";
+          } else if (foto.cargando) {
+            insignia.className += "insignia--pendiente";
+            insignia.textContent = "Procesando y limpiando EXIF...";
+          } else if (foto.errorCarga) {
+            insignia.className += "insignia--error";
+            insignia.textContent = foto.errorCarga;
+          } else if (foto.limpia.problemas.length) {
+            insignia.className += "insignia--error";
+            insignia.textContent = `Falló verificación: ${foto.limpia.problemas.join(", ")}`;
+          } else {
+            const infoLogo =
+              foto.limpia.colorLogoUsado === "ninguno" ? "sin logo" : `logo ${foto.limpia.colorLogoUsado}`;
+            insignia.className += "insignia--ok";
+            insignia.textContent = `Limpia (sin GPS/EXIF, ${infoLogo}) · ${foto.limpia.ancho}×${foto.limpia.alto} px · ${foto.limpia.kb} KB`;
+          }
+          tituloWrap.appendChild(insignia);
+          cabecera.appendChild(tituloWrap);
+
+          const controles = document.createElement("div");
+          controles.className = "fila-inline";
+
+          if (seccion === "fotos" && idx > 0) {
+            const btnPrincipal = document.createElement("button");
+            btnPrincipal.type = "button";
+            btnPrincipal.className = "btn btn--suave";
+            btnPrincipal.textContent = "Usar como foto principal";
+            btnPrincipal.addEventListener("click", () => moverFoto(seccion, idx, 0));
+            controles.appendChild(btnPrincipal);
+          }
+
+          if (!foto.pendiente && foto.limpia && !foto.limpia.problemas.length) {
+            const btnDesc = document.createElement("button");
+            btnDesc.type = "button";
+            btnDesc.className = "btn btn--suave";
+            btnDesc.textContent = `Descargar ${numeroArchivo}`;
+            btnDesc.addEventListener("click", () => descargarBlob(foto.limpia.blob, numeroArchivo));
+            controles.appendChild(btnDesc);
+          }
+
+          const btnSubir = document.createElement("button");
+          btnSubir.type = "button";
+          btnSubir.className = "btn btn--suave";
+          btnSubir.textContent = "Subir";
+          btnSubir.disabled = idx === 0;
+          btnSubir.addEventListener("click", () => moverFoto(seccion, idx, idx - 1));
+
+          const btnBajar = document.createElement("button");
+          btnBajar.type = "button";
+          btnBajar.className = "btn btn--suave";
+          btnBajar.textContent = "Bajar";
+          btnBajar.disabled = idx === lista.length - 1;
+          btnBajar.addEventListener("click", () => moverFoto(seccion, idx, idx + 1));
+
+          const btnQuitar = document.createElement("button");
+          btnQuitar.type = "button";
+          btnQuitar.className = "btn btn--peligro";
+          btnQuitar.textContent = "Quitar";
+          btnQuitar.addEventListener("click", () => quitarFoto(seccion, idx));
+
+          controles.append(btnSubir, btnBajar, btnQuitar);
+          cabecera.appendChild(controles);
+          card.appendChild(cabecera);
+
+          const cuerpo = document.createElement("div");
+          cuerpo.className = "foto-item__cuerpo";
+
+          if (!foto.pendiente && foto.limpia) {
+            const enfoqueValor = `${foto.enfoqueX}% ${foto.enfoqueY}%`;
+
+            const colSelector = document.createElement("div");
+            const lblSel = document.createElement("span");
+            lblSel.className = "visor-titulo";
+            lblSel.textContent = `Haz clic para fijar el enfoque (${enfoqueValor})`;
+            const selector = document.createElement("div");
+            selector.className = "selector-enfoque";
+            const imgSel = document.createElement("img");
+            imgSel.src = foto.limpia.previewUrl;
+            imgSel.alt = "";
+            const punto = document.createElement("span");
+            punto.className = "punto-enfoque";
+            punto.style.left = `${foto.enfoqueX}%`;
+            punto.style.top = `${foto.enfoqueY}%`;
+
+            selector.addEventListener("click", (ev) => {
+              const rect = selector.getBoundingClientRect();
+              foto.enfoqueX = Math.max(0, Math.min(100, Math.round(((ev.clientX - rect.left) / rect.width) * 100)));
+              foto.enfoqueY = Math.max(0, Math.min(100, Math.round(((ev.clientY - rect.top) / rect.height) * 100)));
+              const nuevo = `${foto.enfoqueX}% ${foto.enfoqueY}%`;
+              punto.style.left = `${foto.enfoqueX}%`;
+              punto.style.top = `${foto.enfoqueY}%`;
+              lblSel.textContent = `Haz clic para fijar el enfoque (${nuevo})`;
+              imgRecorte.style.objectPosition = nuevo;
+              renderPortadaPicker();
+              renderPreviewPagina();
+              actualizarSalida();
+            });
+
+            selector.append(imgSel, punto);
+            colSelector.append(lblSel, selector);
+
+            const colRecorte = document.createElement("div");
+            const lblRec = document.createElement("span");
+            lblRec.className = "visor-titulo";
+            lblRec.textContent = "Recorte centrado";
+            const recorteBox = document.createElement("div");
+            recorteBox.className = "recorte-previo";
+            const imgRecorte = document.createElement("img");
+            imgRecorte.src = foto.limpia.previewUrl;
+            imgRecorte.alt = "";
+            imgRecorte.style.objectPosition = enfoqueValor;
+            recorteBox.appendChild(imgRecorte);
+            colRecorte.append(lblRec, recorteBox);
+
+            cuerpo.append(colSelector, colRecorte);
+          }
+
+          const colAlt = document.createElement("div");
+          colAlt.className = "campo";
+          if (foto.pendiente) colAlt.style.gridColumn = "1 / -1";
+
+          const altId = `alt-${foto.id}`;
+          const lblAlt = document.createElement("label");
+          lblAlt.setAttribute("for", altId);
+          lblAlt.innerHTML = 'Texto alternativo para lectores de pantalla <span class="obligatorio">(obligatorio)</span>';
+
+          const inpAlt = document.createElement("textarea");
+          inpAlt.id = altId;
+          inpAlt.rows = 3;
+          inpAlt.style.minHeight = "82px";
+          inpAlt.placeholder = "Describe lo visible en la foto (ej. Barra de madera con lámparas colgantes y muro rojo).";
+          inpAlt.value = foto.alt;
+          inpAlt.addEventListener("input", () => {
+            foto.alt = inpAlt.value;
+            actualizarSalida();
+          });
+
+          const ayudaAlt = document.createElement("p");
+          ayudaAlt.className = "ayuda";
+          ayudaAlt.textContent = foto.pendiente
+            ? "Mientras no haya archivo, puedes dejar [Descripción pendiente]."
+            : "No puede ir vacío ni entre [corchetes] cuando ya tiene foto.";
+
+          colAlt.append(lblAlt, inpAlt, ayudaAlt);
+
+          if (!foto.pendiente && foto.imgBase) {
+            const logoId = `logo-${foto.id}`;
+            const lblLogo = document.createElement("label");
+            lblLogo.setAttribute("for", logoId);
+            lblLogo.style.marginTop = "8px";
+            lblLogo.textContent = "Color del logo vertical";
+            const selLogo = document.createElement("select");
+            selLogo.id = logoId;
+            selLogo.innerHTML = `
+              <option value="auto">Automático (según contraste)</option>
+              <option value="blanco">Forzar blanco</option>
+              <option value="negro">Forzar negro</option>
+              <option value="ninguno">Sin logo</option>
+            `;
+            selLogo.value = foto.modoLogo;
+            selLogo.addEventListener("change", () => cambiarModoLogo(foto, selLogo.value));
+            colAlt.append(lblLogo, selLogo);
+          }
+
+          cuerpo.appendChild(colAlt);
+          card.appendChild(cuerpo);
+          el.listaFotos.appendChild(card);
+        });
+      }
+
+      function renderBloqueCollagePreview(titulo, lista) {
+        if (!lista.length) return "";
+        const numCols = lista.length <= 1 ? 1 : lista.length <= 4 ? 2 : 3;
+        const columnas = Array.from({ length: numCols }, (_, c) => lista.filter((_, i) => i % numCols === c));
+        const maxPorCol = Math.max(...columnas.map((col) => col.length), 1);
+        const variaciones = [1.18, 0.86, 1.04, 0.92, 1.12];
+
+        const colsHtml = columnas
+          .map((col, c) => {
+            const itemsHtml = col
+              .map((foto, idxEnCol) => {
+                const indiceGlobal = idxEnCol * numCols + c;
+                const base = foto.limpia ? foto.limpia.alto / foto.limpia.ancho : 1;
+                const peso = (base * variaciones[(indiceGlobal + c * 2) % variaciones.length]).toFixed(3);
+                const contenido = foto.limpia?.previewUrl
+                  ? `<img src="${foto.limpia.previewUrl}" alt="" style="object-position:${foto.enfoqueX}% ${foto.enfoqueY}%" />`
+                  : "Pendiente";
+                return `<div class="pv-collage__item" style="--peso:${peso}">${contenido}</div>`;
+              })
+              .join("");
+            return `<div class="pv-collage__col">${itemsHtml}</div>`;
+          })
+          .join("");
+
+        return `
+          <div>
+            <h3 class="pv-collage-titulo">${titulo}</h3>
+            <div class="pv-collage" style="--cols:${numCols};--filas:${maxPorCol}">${colsHtml}</div>
+          </div>
+        `;
+      }
+
+      function escaparHtml(t) {
+        return t.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      }
+
+      function renderPreviewPagina() {
+        const nombre = escaparHtml(el.nombre.value.trim() || "Nombre del proyecto");
+        const tipo = escaparHtml(obtenerTipo() || "Tipo");
+        const ciudad = escaparHtml(el.ciudad.value.trim() || "Cajamarca");
+        const area = el.area.value.trim() ? `${escaparHtml(el.area.value.trim())} m²` : "[m²]";
+        const anio = el.anio.value.trim() ? escaparHtml(el.anio.value.trim()) : "[Año]";
+        const estadoTxt = el.estado.value === "terminado" ? "Construido" : "En desarrollo";
+        const fotografo = escaparHtml(el.fotografo.value.trim() || "[Fotógrafo pendiente]");
+        const encargo = escaparHtml(el.encargo.value.trim() || "[Qué pidió el cliente, 2–3 líneas.]").replace(/\n\n/g, "</p><p>");
+        const solucion = escaparHtml(el.solucion.value.trim() || "[Qué hizo el estudio, 2–3 líneas.]").replace(/\n\n/g, "</p><p>");
+
+        const principal = state.secciones.fotos[0];
+        const estiloPortada = principal?.limpia?.previewUrl
+          ? `style="background-image:url(${principal.limpia.previewUrl});background-position:${principal.enfoqueX}% ${principal.enfoqueY}%"`
+          : "";
+
+        el.previewMarco.innerHTML = `
+          <div class="pv-portada ${principal?.limpia ? "con-foto" : ""}" ${estiloPortada}>
+            <div class="pv-portada__cabecera">
+              <h3 class="pv-portada__titulo">${nombre}</h3>
+              <span class="pv-migas">Inicio — Proyectos — ${nombre}</span>
+            </div>
+            ${!principal?.limpia ? `<div style="align-self:center;justify-self:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase">Foto principal pendiente · ${nombre}</div>` : ""}
+          </div>
+          <div class="pv-cuerpo">
+            <div class="pv-fila">
+              <p class="pv-etiq">Sobre el proyecto</p>
+              <div>
+                <strong style="font-size:20px;font-weight:500">${nombre}</strong>
+                <p style="margin:4px 0 0;color:var(--vino-2)">${tipo} en ${ciudad}.</p>
+              </div>
+            </div>
+            <div class="pv-fila">
+              <p class="pv-etiq">Datos del proyecto</p>
+              <dl class="pv-datos">
+                <div><dt>Tipo</dt><dd>${tipo}</dd></div>
+                <div><dt>Ubicación</dt><dd>${ciudad}</dd></div>
+                <div><dt>Año</dt><dd>${anio}</dd></div>
+                <div><dt>Área</dt><dd>${area}</dd></div>
+                <div><dt>Estado</dt><dd>${estadoTxt}</dd></div>
+                <div><dt>Fotografía</dt><dd>${fotografo}</dd></div>
+              </dl>
+            </div>
+            <div class="pv-fila">
+              <p class="pv-etiq">El encargo</p>
+              <div><p style="margin:0">${encargo}</p></div>
+            </div>
+            <div class="pv-fila">
+              <p class="pv-etiq">La solución</p>
+              <div><p style="margin:0">${solucion}</p></div>
+            </div>
+            ${renderBloqueCollagePreview("Proyecto terminado", state.secciones.fotos)}
+            ${renderBloqueCollagePreview("Proceso", state.secciones.proceso)}
+            ${renderBloqueCollagePreview("Renders", state.secciones.renders)}
+          </div>
+          <div class="pv-pie">
+            <span>1903 Arquitectos © 2026</span>
+            <span>Jr. Amancaes 262, Cajamarca · WhatsApp 924 285 500</span>
+          </div>
+        `;
+      }
+
+      function obtenerTipo() {
+        return el.tipo.value === "__otro__" ? el.tipoOtro.value.trim() : el.tipo.value;
+      }
+
+      function obtenerCategorias() {
+        return [...el.categoriasLista.querySelectorAll('input[type="checkbox"]:checked')].map((c) => c.value);
+      }
+
+      function sincronizarCategoriaPorDefecto() {
+        if (state.categoriasTocadas) return;
+        const tipo = obtenerTipo();
+        if (!tipo) return;
+        for (const cb of el.categoriasLista.querySelectorAll('input[type="checkbox"]')) {
+          cb.checked = cb.value === tipo;
+        }
+      }
+
+      function validarListaFotos(lista, nombreVisible, subcarpeta, slug, errores) {
+        const json = [];
+        const limpias = [];
+        let numReal = 0;
+
+        lista.forEach((foto, i) => {
+          const alt = foto.alt.trim();
+          if (foto.pendiente) {
+            if (!alt) errores.push(`${nombreVisible}, foto ${i + 1}: falta el texto alternativo (puedes usar [Descripción pendiente]).`);
+            json.push({ alt: alt || "[Descripción pendiente]" });
+          } else {
+            const archivoNombre = `${String(++numReal).padStart(2, "0")}.jpg`;
+            if (foto.cargando) errores.push(`${nombreVisible}, foto ${i + 1}: todavía se está procesando.`);
+            else if (foto.errorCarga) errores.push(`${nombreVisible}, foto ${i + 1}: ${foto.errorCarga}`);
+            else if (!foto.limpia || foto.limpia.problemas.length) {
+              errores.push(`${nombreVisible}, foto ${i + 1}: no pasó la verificación de limpieza.`);
+            } else {
+              limpias.push({ nombre: archivoNombre, blob: foto.limpia.blob });
+            }
+
+            if (!alt) errores.push(`${nombreVisible}, foto ${i + 1}: falta describir qué se ve en el texto alternativo.`);
+            else if (esPendiente(alt)) errores.push(`${nombreVisible}, foto ${i + 1}: como ya tiene archivo, el texto alternativo no puede quedar [pendiente].`);
+
+            const ruta = subcarpeta
+              ? `../../assets/proyectos/${slug || "proyecto"}/${subcarpeta}/${archivoNombre}`
+              : `../../assets/proyectos/${slug || "proyecto"}/${archivoNombre}`;
+
+            json.push({
+              src: ruta,
+              alt,
+              enfoque: `${foto.enfoqueX}% ${foto.enfoqueY}%`,
+            });
+          }
+        });
+        return { json, limpias };
+      }
+
+      function construirDatos() {
+        const errores = [];
+        const nombre = el.nombre.value.trim();
+        const slug = el.slug.value.trim();
+        const tipo = obtenerTipo();
+        const categorias = obtenerCategorias();
+        const ciudad = el.ciudad.value.trim();
+        const estado = el.estado.value;
+        const esTerminado = estado === "terminado";
+        const ordenTexto = el.orden.value.trim();
+        const orden = Number(ordenTexto);
+
+        if (!nombre) errores.push("Falta el nombre del proyecto.");
+        if (!slug || !RE_SLUG.test(slug)) {
+          errores.push("El nombre de archivo (slug) debe usar solo minúsculas, números y guiones (ej. cafe-san-luis).");
+        }
+        if (!tipo) errores.push("Falta el tipo principal del proyecto.");
+        if (categorias.length === 0) errores.push("Marca al menos una categoría.");
+        if (!ciudad) errores.push("Falta la ciudad (o usa el botón Marcar pendiente).");
+        if (ordenTexto === "" || !Number.isInteger(orden)) errores.push("El número de orden debe ser un entero.");
+
+        const destacado = esTerminado && el.destacado.checked;
+        let areaNum;
+        if (el.area.value.trim() !== "") {
+          areaNum = Number(el.area.value.trim());
+          if (!Number.isFinite(areaNum) || areaNum <= 0) errores.push("El área en m² debe ser mayor que 0.");
+        }
+
+        let anioNum;
+        if (el.anio.value.trim() !== "") {
+          anioNum = Number(el.anio.value.trim());
+          if (!Number.isInteger(anioNum) || anioNum < 1900 || anioNum > 2100) {
+            errores.push("El año debe ser un número entero válido (ej. 2026).");
+          }
+        }
+
+        if (state.secciones.fotos.length === 0) {
+          errores.push("Agrega al menos una foto en «Proyecto terminado» (o un espacio «Pendiente»).");
+        }
+
+        const resFotos = validarListaFotos(state.secciones.fotos, "Proyecto terminado", "", slug, errores);
+        const resProceso = validarListaFotos(state.secciones.proceso, "Proceso", "proceso", slug, errores);
+        const resRenders = validarListaFotos(state.secciones.renders, "Renders", "renders", slug, errores);
+
+        const obj = { nombre, tipo, categorias, ciudad, estado };
+        if (estado === "render" && el.porConfirmar.checked) obj.porConfirmar = true;
+        obj.orden = Number.isInteger(orden) ? orden : 0;
+        if (destacado) obj.destacado = true;
+        if (destacado && state.portadaIdx > 0 && state.portadaIdx < state.secciones.fotos.length) {
+          obj.portada = state.portadaIdx;
+        }
+        if (esTerminado && el.inicio.checked) obj.inicio = true;
+        if (areaNum !== undefined && Number.isFinite(areaNum) && areaNum > 0) obj.area = areaNum;
+        if (anioNum !== undefined && Number.isInteger(anioNum)) obj.anio = anioNum;
+        if (el.fotografo.value.trim()) obj.fotografo = el.fotografo.value.trim();
+        if (el.encargo.value.trim()) obj.encargo = el.encargo.value.trim().replace(/\r\n/g, "\n");
+        if (el.solucion.value.trim()) obj.solucion = el.solucion.value.trim().replace(/\r\n/g, "\n");
+        obj.fotos = resFotos.json;
+        if (resProceso.json.length) obj.proceso = resProceso.json;
+        if (resRenders.json.length) obj.renders = resRenders.json;
+
+        return {
+          errores,
+          slug,
+          obj,
+          limpiasFotos: resFotos.limpias,
+          limpiasProceso: resProceso.limpias,
+          limpiasRenders: resRenders.limpias,
+        };
+      }
+
+      function actualizarSalida() {
+        const { errores, slug, obj, limpiasFotos, limpiasProceso, limpiasRenders } = construirDatos();
+        const archivoJson = `${slug || "proyecto"}.json`;
+
+        el.slugPreview.textContent = slug || "...";
+        el.nombreJson.textContent = archivoJson;
+        el.dlFotos.textContent = String(limpiasFotos.length);
+        el.dlProceso.textContent = String(limpiasProceso.length);
+        el.dlRenders.textContent = String(limpiasRenders.length);
+        el.btnDescargarProceso.classList.toggle("oculto", limpiasProceso.length === 0);
+        el.btnDescargarRenders.classList.toggle("oculto", limpiasRenders.length === 0);
+
+        el.rutaFotos.textContent = `${slug || "<slug>"}/`;
+        el.rutaProceso.textContent = `${slug || "<slug>"}/proceso/`;
+        el.rutaRenders.textContent = `${slug || "<slug>"}/renders/`;
+        el.rutaJson.textContent = `${archivoJson}`;
+        el.vistaJson.textContent = JSON.stringify(obj, null, 2) + "\n";
+
+        if (errores.length === 0) {
+          const total = limpiasFotos.length + limpiasProceso.length + limpiasRenders.length;
+          const resumen = total === 1 ? "1 foto limpia y verificada" : `${total} fotos limpias y verificadas`;
+          el.estadoLista.className = "estado-lista estado-lista--ok";
+          el.estadoLista.textContent = `Todo listo: ${archivoJson} cumple las reglas de la web (${resumen}).`;
+        } else {
+          el.estadoLista.className = "estado-lista estado-lista--error";
+          const titulo = document.createElement("strong");
+          titulo.textContent = `Completa ${errores.length} punto(s) antes de descargar:`;
+          const ul = document.createElement("ul");
+          for (const msg of errores) {
+            const li = document.createElement("li");
+            li.textContent = msg;
+            ul.appendChild(li);
+          }
+          el.estadoLista.innerHTML = "";
+          el.estadoLista.append(titulo, ul);
+        }
+
+        const valido = errores.length === 0;
+        el.btnDescargarJson.disabled = !valido;
+        el.btnCopiarJson.disabled = !valido;
+        el.btnDescargarFotos.disabled = !valido || limpiasFotos.length === 0;
+        el.btnDescargarProceso.disabled = !valido || limpiasProceso.length === 0;
+        el.btnDescargarRenders.disabled = !valido || limpiasRenders.length === 0;
+      }
+
+      function renderTodo() {
+        renderFotos();
+        renderPortadaPicker();
+        renderPreviewPagina();
+        actualizarSalida();
+      }
+
+      // Pestañas
+      for (const tab of document.querySelectorAll("[data-tab]")) {
+        tab.addEventListener("click", () => {
+          state.tabActiva = tab.dataset.tab;
+          for (const otro of document.querySelectorAll("[data-tab]")) {
+            otro.setAttribute("aria-selected", String(otro === tab));
+          }
+          renderFotos();
+        });
+      }
+
+      // Vista previa escritorio / celular
+      el.btnVistaEscritorio.addEventListener("click", () => {
+        el.previewMarco.classList.remove("movil");
+        el.btnVistaEscritorio.classList.add("activo");
+        el.btnVistaMovil.classList.remove("activo");
+      });
+      el.btnVistaMovil.addEventListener("click", () => {
+        el.previewMarco.classList.add("movil");
+        el.btnVistaMovil.classList.add("activo");
+        el.btnVistaEscritorio.classList.remove("activo");
+      });
+
+      // Eventos del formulario
+      el.nombre.addEventListener("input", () => {
+        if (!state.slugManual) el.slug.value = aSlug(el.nombre.value);
+        renderPreviewPagina();
+        actualizarSalida();
+      });
+
+      el.slug.addEventListener("input", () => {
+        state.slugManual = el.slug.value.trim() !== "";
+        actualizarSalida();
+      });
+
+      el.estado.addEventListener("change", () => {
+        const esRender = el.estado.value === "render";
+        el.wrapPorConfirmar.classList.toggle("oculto", !esRender);
+        el.wrapInicio.classList.toggle("oculto", esRender);
+        el.wrapDestacado.classList.toggle("oculto", esRender);
+        if (esRender) {
+          el.inicio.checked = false;
+          el.destacado.checked = false;
+          el.wrapPortada.classList.add("oculto");
+          if (el.orden.value === "12") el.orden.value = "16";
+        } else {
+          el.porConfirmar.checked = false;
+          if (el.orden.value === "16") el.orden.value = "12";
+        }
+        renderPreviewPagina();
+        actualizarSalida();
+      });
+
+      el.btnCiudadPendiente.addEventListener("click", () => {
+        el.ciudad.value = "[Ciudad pendiente]";
+        renderPreviewPagina();
+        actualizarSalida();
+      });
+
+      el.tipo.addEventListener("change", () => {
+        el.tipoOtro.classList.toggle("oculto", el.tipo.value !== "__otro__");
+        sincronizarCategoriaPorDefecto();
+        renderPreviewPagina();
+        actualizarSalida();
+      });
+
+      el.tipoOtro.addEventListener("input", () => {
+        sincronizarCategoriaPorDefecto();
+        renderPreviewPagina();
+        actualizarSalida();
+      });
+
+      el.categoriasLista.addEventListener("change", () => {
+        state.categoriasTocadas = true;
+        actualizarSalida();
+      });
+
+      el.btnCatExtra.addEventListener("click", () => {
+        const valor = el.catExtra.value.trim();
+        if (!valor) return;
+        const yaExiste = [...el.categoriasLista.querySelectorAll("input")].some(
+          (i) => i.value.toLowerCase() === valor.toLowerCase()
+        );
+        if (!yaExiste) {
+          const lbl = document.createElement("label");
+          lbl.className = "check";
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.value = valor;
+          cb.checked = true;
+          lbl.append(cb, document.createTextNode(` ${valor}`));
+          el.categoriasLista.appendChild(lbl);
+        }
+        el.catExtra.value = "";
+        state.categoriasTocadas = true;
+        actualizarSalida();
+      });
+
+      el.destacado.addEventListener("change", () => {
+        el.wrapPortada.classList.toggle("oculto", !el.destacado.checked);
+        renderPortadaPicker();
+        actualizarSalida();
+      });
+
+      for (const btn of document.querySelectorAll("[data-foto-autor]")) {
+        btn.addEventListener("click", () => {
+          el.fotografo.value = btn.dataset.fotoAutor;
+          renderPreviewPagina();
+          actualizarSalida();
+        });
+      }
+
+      [el.ciudad, el.orden, el.inicio, el.porConfirmar, el.area, el.anio, el.fotografo, el.encargo, el.solucion].forEach(
+        (nodo) => {
+          nodo.addEventListener("input", () => {
+            renderPreviewPagina();
+            actualizarSalida();
+          });
+          nodo.addEventListener("change", () => {
+            renderPreviewPagina();
+            actualizarSalida();
+          });
+        }
+      );
+
+      // Carga de fotos
+      el.btnElegirFotos.addEventListener("click", () => el.inputFotos.click());
+      el.inputFotos.addEventListener("change", () => {
+        if (el.inputFotos.files?.length) agregarArchivos([...el.inputFotos.files]);
+        el.inputFotos.value = "";
+      });
+      el.btnFotoPendiente.addEventListener("click", agregarPendiente);
+
+      el.zonaFotos.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        el.zonaFotos.classList.add("arrastrando");
+      });
+      el.zonaFotos.addEventListener("dragleave", () => el.zonaFotos.classList.remove("arrastrando"));
+      el.zonaFotos.addEventListener("drop", (e) => {
+        e.preventDefault();
+        el.zonaFotos.classList.remove("arrastrando");
+        const archivos = [...(e.dataTransfer?.files || [])].filter((f) => {
+          const ext = (f.name.split(".").pop() || "").toLowerCase();
+          return f.type.startsWith("image/") || ["heic", "heif", "avif", "webp", "tif", "tiff", "jfif", "bmp"].includes(ext);
+        });
+        if (archivos.length) agregarArchivos(archivos);
+      });
+
+      // Descargas
+      el.btnDescargarJson.addEventListener("click", () => {
+        const { errores, slug, obj } = construirDatos();
+        if (errores.length) return;
+        const blob = new Blob([JSON.stringify(obj, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
+        descargarBlob(blob, `${slug}.json`);
+      });
+
+      const conectarDescargaFotos = (boton, selector) => {
+        boton.addEventListener("click", () => {
+          const datos = construirDatos();
+          const lista = datos[selector];
+          if (datos.errores.length || !lista.length) return;
+          lista.forEach((foto, i) => setTimeout(() => descargarBlob(foto.blob, foto.nombre), i * 250));
+        });
+      };
+      conectarDescargaFotos(el.btnDescargarFotos, "limpiasFotos");
+      conectarDescargaFotos(el.btnDescargarProceso, "limpiasProceso");
+      conectarDescargaFotos(el.btnDescargarRenders, "limpiasRenders");
+
+      el.btnCopiarJson.addEventListener("click", async () => {
+        const { errores, obj } = construirDatos();
+        if (errores.length) return;
+        await navigator.clipboard.writeText(JSON.stringify(obj, null, 2) + "\n");
+        const textoOriginal = el.btnCopiarJson.textContent;
+        el.btnCopiarJson.textContent = "Copiado";
+        setTimeout(() => (el.btnCopiarJson.textContent = textoOriginal), 1500);
+      });
+
+      renderTodo();
+    })();
+  </script>
+</body>
+</html>

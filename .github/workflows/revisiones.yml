@@ -1,5 +1,5 @@
-# Revisiones automáticas de cada pull request (ADR 0013 y 0014):
-# tipos y plantillas, prueba del mensaje de WhatsApp, construcción, enlaces internos y accesibilidad.
+# Revisiones automáticas de cada pull request (ADR 0011, 0013 y 0014):
+# tipos y plantillas, prueba del mensaje de WhatsApp, fotos sin metadatos, construcción, enlaces internos y accesibilidad.
 name: Revisiones
 
 on:
@@ -22,6 +22,8 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm test
+      - run: python3 -m pip install --break-system-packages pillow
+      - run: npm run fotos
       - run: npm run build
       - run: npm run enlaces
       - run: npm run accesibilidad

@@ -12,9 +12,10 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
+    "fotos": "python docs/mantenimiento/preparar_fotos.py --solo-verificar",
     "enlaces": "node tests/enlaces.mjs",
     "accesibilidad": "start-server-and-test \"astro preview\" http://localhost:4321 \"pa11y-ci --config tests/pa11y.config.cjs\"",
-    "revisar": "npm run check && npm test && npm run build && npm run enlaces && npm run accesibilidad"
+    "revisar": "npm run check && npm test && npm run fotos && npm run build && npm run enlaces && npm run accesibilidad"
   },
   "dependencies": {
     "@fontsource/jost": "5.3.0",

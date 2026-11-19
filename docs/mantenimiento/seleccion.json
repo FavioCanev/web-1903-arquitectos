@@ -1,0 +1,254 @@
+{
+  "tacos-cajamarquinos-jr-ayacucho": {
+    "carpeta": "2. Tacos Cajamarquinos - Ayacucho",
+    "fotos": [
+      "1.png",
+      "3.png",
+      "2.png",
+      "4.png"
+    ],
+    "carpeta_renders": "../drive-fotos/renders-tacos-ayacucho",
+    "renders": [
+      "Copia de 1 (3) (1).png",
+      { "archivo": "Copia de 1 (4).png", "logo": false },
+      { "archivo": "Copia de 10.png", "logo": false }
+    ]
+  },
+  "san-luis-cafe": {
+    "carpeta": "1. Café San Luis",
+    "fotos": [
+      "3.png",
+      "5.png",
+      "4.png",
+      "1.png",
+      "2.png"
+    ],
+    "carpeta_renders": "../drive-fotos/renders-san-luis-cafe",
+    "renders": [
+      { "archivo": "Copia de 1-1.png", "logo": false },
+      { "archivo": "Copia de 2-2.png", "logo": false },
+      { "archivo": "Copia de 3-3.png", "logo": false },
+      { "archivo": "Copia de 5-5.png", "logo": false }
+    ]
+  },
+  "estacion-de-servicio-labanda": {
+    "carpeta": "../drive-fotos-sync/terminados/estacion-de-servicio-labanda",
+    "fotos": [
+      "la banda 7 .png",
+      "la banda 8 .png",
+      "la banda 6 .png",
+      "la banda 4.HEIC",
+      "la banda 5.HEIC",
+      "la banda 16 .jpg",
+      "la banda 17 .jpg"
+    ],
+    "carpeta_proceso": "../drive-fotos-sync/terminados/estacion-de-servicio-labanda",
+    "proceso": [
+      "la banda 18 .jpg",
+      "la banda 20 .jpg",
+      "la banda 1.HEIC",
+      "la banda 12 .jpg",
+      "la banda 14 .jpg"
+    ]
+  },
+  "cafetos": {
+    "carpeta": "4. Cafetos Café",
+    "fotos": [
+      "IMG_9642.jpg",
+      "IMG_9641.jpg",
+      "IMG_9660.jpg",
+      "IMG_9638.jpg",
+      "IMG_9639.jpg",
+      "IMG_9648.jpg",
+      "IMG_9664.jpg"
+    ],
+    "carpeta_proceso": "../drive-fotos-sync/terminados/cafetos",
+    "proceso": [
+      "Copia de 20240605_110012.jpg",
+      "Copia de 20240605_110519.jpg",
+      "Copia de 20240611_182507.jpg",
+      "Copia de IMG_20240605_135548_843.jpg"
+    ],
+    "carpeta_renders": "../drive-fotos/renders-cafetos",
+    "renders": [
+      "Copia de 1.jpg",
+      "Copia de 2.jpg",
+      "Copia de 3.jpg",
+      "Copia de d.png",
+      "Copia de e.png",
+      "Copia de f.png",
+      "Copia de g.png",
+      "Copia de h.png"
+    ]
+  },
+  "refugio-vv": {
+    "carpeta": "5. Refugio VV",
+    "fotos": [
+      "IMG_9353.jpg",
+      "IMG_9425.jpg",
+      "IMG_9497.jpg",
+      "IMG_9554.jpg",
+      "IMG_20250801_120120.jpg",
+      "IMG_9399.jpg",
+      "IMG_9338.jpg",
+      "IMG_9570.jpg",
+      "IMG_9614.jpg",
+      "IMG_9594.jpg"
+    ],
+    "carpeta_proceso": "../drive-fotos-sync/terminados/refugio-vv",
+    "proceso": [
+      "refugio 61 .jpg",
+      "refugio 62 .jpg",
+      "refugio 63 .jpg",
+      "refugio 64 .jpg"
+    ]
+  },
+  "estancia-del-alba": {
+    "carpeta": "../drive-fotos-sync/terminados/estancia-del-alba",
+    "fotos": [
+      "Copia de IMG_7455.jpg",
+      "Copia de IMG_7448.jpg",
+      "Copia de IMG_7469.jpg",
+      "Copia de IMG_7467.jpg",
+      "estancia alba 2.HEIC",
+      "estancia alba 1.HEIC",
+      "estancia alba 3.HEIC",
+      "estancia alba 4.HEIC",
+      "estancia alba 7.HEIC",
+      "estancia alba 12.HEIC",
+      "estancia alba 8 .HEIC",
+      "estancia alba 5.HEIC"
+    ],
+    "carpeta_proceso": "../drive-fotos-sync/terminados/estancia-del-alba",
+    "proceso": [
+      "estancia alba 6.HEIC",
+      "estancia alba 9.HEIC",
+      "estancia alba 11.HEIC",
+      "estancia alba 16 .HEIC"
+    ],
+    "carpeta_renders": "../drive-fotos/renders-estancia-alba",
+    "renders": [
+      "Copia de enhanced_1 (2).png",
+      "Copia de enhanced_2 (2).png",
+      "Copia de enhanced_3 (3).png",
+      "Copia de enhanced_4.png",
+      "Copia de enhanced_7 (1).png",
+      "Copia de 5.png",
+      "Copia de 8.png",
+      "Copia de 9.png",
+      "Copia de 10.png",
+      "Copia de 11.png"
+    ]
+  },
+  "la-chola-cruz-de-piedra": {
+    "carpeta": "../drive-fotos/chola-cruz-de-piedra",
+    "fotos": [
+      "la chola plaza 2 .png",
+      "la chola plaza 1 .jpg",
+      "la chola plaza 3 .jpg",
+      "la chola plaza 6 .png",
+      "la chola plaza 4 .png",
+      "20220112_184608.jpg",
+      "20220112_190528.jpg",
+      "20220112_190703.jpg"
+    ]
+  },
+  "cafeteria-rafael": {
+    "carpeta": "../drive-fotos/cafeteria-rafael",
+    "fotos": [
+      "20220803_165309.jpg",
+      "20220803_170420.jpg",
+      "20220630_094011.jpg",
+      "20220630_094429.jpg",
+      "20220803_165452.jpg",
+      "20220803_170119.jpg",
+      "20220803_170233.jpg",
+      "20220803_170538.jpg"
+    ]
+  },
+  "frutaliss": {
+    "carpeta": "../drive-fotos/frutaliss",
+    "fotos": [
+      "20230118_093048.jpg",
+      "20230118_092510.jpg",
+      "20230118_092650.jpg",
+      "20230118_093035.jpg",
+      "20230118_093125.jpg",
+      "20230118_092027.jpg",
+      "20230118_092202.jpg",
+      "20230118_092622.jpg"
+    ]
+  },
+  "casa-de-playa": {
+    "carpeta": "../drive-fotos/casas de playa/casas de playa",
+    "fotos": [
+      { "archivo": "PARA IG 1.png", "logo": false },
+      { "archivo": "PARA IG 2.png", "logo": false },
+      { "archivo": "Copia de 1 (2).png", "logo": false },
+      { "archivo": "Copia de 1 (3.).png", "logo": false },
+      { "archivo": "Copia de 1 (4).png", "logo": false },
+      { "archivo": "Copia de 1 (5).png", "logo": false },
+      { "archivo": "Copia de 3 (2).png", "logo": false },
+      { "archivo": "Copia de 4 (2).png", "logo": false },
+      { "archivo": "Copia de 5 (2).png", "logo": false }
+    ]
+  },
+  "galeria-bazan": {
+    "carpeta": "../drive-fotos/galeria bazan/galeria bazan",
+    "fotos": [
+      { "archivo": "Copia de 3 (1).png", "logo": false },
+      { "archivo": "Copia de 4 (1).png", "logo": false },
+      { "archivo": "Copia de 1 (1).png", "logo": false },
+      { "archivo": "Copia de 7.png", "logo": false },
+      { "archivo": "Copia de 4.png", "logo": false },
+      { "archivo": "Copia de 1.png", "logo": false },
+      { "archivo": "Copia de 2.png", "logo": false },
+      { "archivo": "Copia de 3.png", "logo": false }
+    ]
+  },
+  "la-chola-la-roja": {
+    "carpeta": "../drive-fotos-sync/terminados/la-chola-la-roja",
+    "carpeta_proceso": "../drive-fotos-sync/terminados/la-chola-la-roja",
+    "proceso": [
+      "la chola roja 1 .jpg",
+      "la chola roja 2 .jpg",
+      "la chola roja 3 .jpg",
+      "la chola roja 3.jpg",
+      "la chola roja 6 .jpg"
+    ]
+  },
+  "tacos-cajamarquinos-la-colmena": {
+    "carpeta": "../drive-fotos-sync/renders/tacos-cajamarquinos-la-colmena",
+    "carpeta_renders": "../drive-fotos-sync/renders/tacos-cajamarquinos-la-colmena",
+    "renders": [
+      "m.png",
+      "6.png",
+      "5-1.png",
+      "8.png",
+      "A.png",
+      { "archivo": "2.png", "logo": false },
+      { "archivo": "3.png", "logo": false },
+      { "archivo": "4.png", "logo": false },
+      { "archivo": "5.png", "logo": false }
+    ]
+  },
+  "jardin-porongo": {
+    "carpeta": "../drive-fotos-sync/renders/jardin-porongo",
+    "fotos": [
+      "Copia de BARRA 1.png",
+      "fachada exterio 02.png",
+      "fachada exterio 03.png",
+      "fachada exterio 04.png"
+    ]
+  },
+  "casa-brisa-morin": {
+    "carpeta": "../drive-fotos/Porongo",
+    "fotos": [
+      { "archivo": "Copia de 5.png", "logo": false },
+      { "archivo": "Copia de 1-1.png", "logo": false },
+      { "archivo": "Copia de 2.png", "logo": false },
+      { "archivo": "Copia de 7.png", "logo": false },
+      { "archivo": "Copia de 8.png", "logo": false }
+    ]
+  }
+}

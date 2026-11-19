@@ -18,7 +18,6 @@
 !/src/
 !/public/
 !/tests/
-!/scripts/
 !/.github/
 
 !/logo/
@@ -31,3 +30,7 @@
 
 # Herramientas locales
 .impeccable/
+
+# Caché de Python
+**/__pycache__/
+*.pyc
