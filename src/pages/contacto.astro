@@ -1,50 +1,173 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import mapaEstudio from "../assets/mapa-estudio.png";
 import { enlaceComoLlegar, estudio } from "../config";
-import { enlaceWhatsapp } from "../lib/whatsapp";
+import { enlaceGmail, enlaceWhatsapp } from "../lib/whatsapp";
 
-const tipos = ["Arquitectura", "Interiorismo comercial", "Interiorismo residencial"];
 const acciones = ["Diseñar", "Construir", "Remodelar"];
+const tipos = ["Arquitectura", "Interiorismo comercial", "Interiorismo residencial"];
+const canales = [
+  { nombre: "WhatsApp", detalle: "Respuesta rápida por chat" },
+  { nombre: "Correo", detalle: "Abre Gmail con tu consulta lista" },
+  { nombre: "Llamada", detalle: "Te llamamos al número que dejes" },
+];
+const correoDirecto = enlaceGmail("Consulta desde la web de 1903 Arquitectos", "Hola, 1903 Arquitectos. Quisiera consultar sobre un proyecto.");
 ---
 
 <Layout
   titulo="Contacto — 1903 Arquitectos"
-  descripcion="Escríbenos por WhatsApp o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00."
+  descripcion="Escríbenos por WhatsApp o correo, o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00."
 >
   <section class="seccion contacto sobre-vino">
     <div class="contenedor">
       <div class="cabecera">
         <div><span class="etiqueta">Contacto</span><h1 class="h2">¿Tienes un proyecto en mente?</h1></div>
-        <p class="texto-2">Escríbenos o visítanos en el estudio, también sin cita.</p>
+        <p class="texto-2">Cuéntanos en pocos clics qué necesitas, o escríbenos directamente.</p>
       </div>
 
       <div class="grilla">
-        <div>
-          <!-- Mejora progresiva (ADR 0005): sin JavaScript solo se ve el botón de WhatsApp -->
-          <div data-sin-js>
-            <a class="boton boton--primario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
+        <div class="bloque-form">
+          <h2 class="solo-lectores">Asistente de contacto paso a paso</h2>
+
+          <!-- Mejora progresiva (ADR 0005): sin JavaScript quedan visibles los accesos directos -->
+          <div class="contacto-directo" data-sin-js>
+            <p class="texto-2">Escríbenos directamente por tu canal preferido:</p>
+            <div class="botones">
+              <a class="boton boton--primario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
+              <a class="boton boton--secundario" href={correoDirecto} target="_blank" rel="noopener">Escribir por Gmail</a>
+            </div>
           </div>
-          <form class="formulario" novalidate hidden data-formulario>
-            <label class="campo">Nombre<input name="nombre" type="text" autocomplete="name" /></label>
-            <label class="campo">WhatsApp o teléfono (opcional)<input name="telefono" type="tel" autocomplete="tel" /></label>
-            <label class="campo">Tipo de proyecto
-              <select name="tipo">{tipos.map((t) => <option>{t}</option>)}</select>
-            </label>
-            <label class="campo">¿Qué quieres hacer?
-              <select name="accion">{acciones.map((a) => <option>{a}</option>)}</select>
-            </label>
-            <label class="campo">Cuéntanos tu idea<textarea name="mensaje"></textarea></label>
-            <label class="consentimiento">
-              <input type="checkbox" name="consentimiento" />
-              <span>Acepto el <a href="/privacidad/">aviso de privacidad</a> y que el estudio use mis datos para responder mi consulta.</span>
-            </label>
-            <p class="errores" role="alert" data-errores></p>
-            <div><button class="boton boton--primario" type="submit">Enviar por WhatsApp</button></div>
+
+          <form class="asistente" novalidate hidden data-formulario>
+            <div class="progreso" aria-live="polite">
+              <span class="progreso__texto" data-progreso-texto>Paso 1 de 5</span>
+              <div class="progreso__barra" aria-hidden="true"><span class="progreso__relleno" data-progreso-barra></span></div>
+            </div>
+
+            <fieldset class="paso" data-paso="1">
+              <legend class="paso__titulo">¿Qué es lo que quieres hacer?</legend>
+              <p class="paso__ayuda texto-2">Elige una opción para avanzar.</p>
+              <div class="opciones">
+                {acciones.map((a) => (
+                  <button type="button" class="opcion" data-elegir="accion" data-valor={a} aria-pressed="false">{a}</button>
+                ))}
+              </div>
+              <input type="hidden" name="accion" value="" />
+            </fieldset>
+
+            <fieldset class="paso" data-paso="2" hidden>
+              <legend class="paso__titulo">¿Qué tipo de proyecto es?</legend>
+              <p class="paso__ayuda texto-2">Selecciona la categoría que mejor encaja.</p>
+              <div class="opciones">
+                {tipos.map((t) => (
+                  <button type="button" class="opcion" data-elegir="tipo" data-valor={t} aria-pressed="false">{t}</button>
+                ))}
+              </div>
+              <input type="hidden" name="tipo" value="" />
+              <div class="paso__pie"><button type="button" class="volver" data-volver="1">← Anterior</button></div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="3" hidden>
+              <legend class="paso__titulo">¿Cómo prefieres que te contactemos?</legend>
+              <p class="paso__ayuda texto-2">Adaptamos el envío según tu preferencia.</p>
+              <div class="opciones">
+                {canales.map((c) => (
+                  <button type="button" class="opcion" data-elegir="canal" data-valor={c.nombre} aria-pressed="false">
+                    <span class="opcion__nombre">{c.nombre}</span>
+                    <span class="opcion__detalle">{c.detalle}</span>
+                  </button>
+                ))}
+              </div>
+              <input type="hidden" name="canal" value="" />
+              <div class="paso__pie"><button type="button" class="volver" data-volver="2">← Anterior</button></div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="4" hidden>
+              <legend class="paso__titulo">¿Quieres contarnos algo más de tu idea?</legend>
+              <p class="paso__ayuda texto-2">Este paso es opcional; puedes omitirlo si prefieres hablarlo directo.</p>
+              <div class="campo">
+                <label class="solo-lectores" for="contacto-mensaje">Cuéntanos tu idea (opcional)</label>
+                <textarea id="contacto-mensaje" name="mensaje" placeholder="Medidas aproximadas, ubicación, plazos o cualquier detalle que quieras adelantar..."></textarea>
+              </div>
+              <div class="paso__acciones">
+                <button type="button" class="volver" data-volver="3">← Anterior</button>
+                <div class="botones">
+                  <button type="button" class="boton boton--secundario" data-ir="5">Omitir</button>
+                  <button type="button" class="boton boton--primario" data-ir="5">Continuar</button>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="5" hidden>
+              <legend class="paso__titulo">Tus datos de contacto</legend>
+              <div class="resumen">
+                <span data-resumen-texto></span>
+                <button type="button" class="volver" data-volver="1">Cambiar respuestas</button>
+              </div>
+
+              <div class="campo">
+                <label for="contacto-nombre">Nombre <span class="pequeno">(obligatorio)</span></label>
+                <input id="contacto-nombre" name="nombre" type="text" autocomplete="name" required aria-required="true" aria-describedby="error-nombre" />
+                <p class="error-campo" id="error-nombre" data-error-de="nombre"></p>
+              </div>
+
+              <div class="campo" data-grupo-telefono>
+                <label for="contacto-telefono">WhatsApp o teléfono <span class="pequeno" data-etiqueta-telefono>(opcional)</span></label>
+                <input id="contacto-telefono" name="telefono" type="tel" autocomplete="tel" aria-describedby="error-telefono" />
+                <p class="error-campo" id="error-telefono" data-error-de="telefono"></p>
+              </div>
+
+              <div class="campo" data-grupo-correo hidden>
+                <label for="contacto-correo">Tu correo electrónico <span class="pequeno">(opcional)</span></label>
+                <input id="contacto-correo" name="correo" type="email" autocomplete="email" />
+              </div>
+
+              <div>
+                <label class="consentimiento">
+                  <input type="checkbox" name="consentimiento" required aria-required="true" aria-describedby="error-consentimiento" />
+                  <span>Acepto el <a href="/privacidad/">aviso de privacidad</a> y que el estudio use mis datos para responder mi consulta. <span class="pequeno">(obligatorio)</span></span>
+                </label>
+                <p class="error-campo" id="error-consentimiento" data-error-de="consentimiento"></p>
+              </div>
+
+              <p class="errores" role="alert" data-errores></p>
+
+              <div class="paso__acciones">
+                <button type="button" class="volver" data-volver="4">← Anterior</button>
+                <div class="botones">
+                  <button class="boton boton--primario" type="submit" data-btn-enviar>Enviar por WhatsApp</button>
+                  <button class="boton boton--secundario" type="button" data-btn-secundario hidden>Enviar por Gmail</button>
+                </div>
+              </div>
+              <p class="alternativa-correo" data-alternativa-correo hidden>
+                ¿Usas Outlook o Apple Mail en vez de Gmail? <button type="button" class="enlace-inline" data-btn-mailto>Abrir en tu aplicación de correo</button>
+              </p>
+            </fieldset>
+
+            <div class="atajo-directo">
+              <p class="pequeno texto-2">¿Prefieres contactarnos tú directamente sin pasos?</p>
+              <div class="atajo-directo__enlaces">
+                <a href={enlaceWhatsapp()} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+                <span aria-hidden="true">·</span>
+                <a href={correoDirecto} target="_blank" rel="noopener">Escribir por Gmail</a>
+              </div>
+            </div>
           </form>
         </div>
 
         <div>
-          <div class="pendiente mapa r-16x9">Mapa pendiente · {estudio.direccion}</div>
+          <h2 class="solo-lectores">Información y ubicación</h2>
+          <a class="mapa-enlace" href={enlaceComoLlegar} target="_blank" rel="noopener">
+            <Picture
+              src={mapaEstudio}
+              alt={`Mapa de ubicación del estudio y showroom de 1903 Arquitectos en ${estudio.direccion}, esquina con Jr. Arnaldo Márquez — abrir en Google Maps (se abre en otra pestaña)`}
+              formats={["avif", "webp"]}
+              widths={[480, 796]}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </a>
           <p class="credito-mapa pequeno">© OpenStreetMap</p>
           <a class="boton boton--secundario" href={enlaceComoLlegar} target="_blank" rel="noopener">Cómo llegar<span class="solo-lectores"> (se abre en otra pestaña)</span></a>
           <dl class="datos">
@@ -61,37 +184,170 @@ const acciones = ["Diseñar", "Construir", "Remodelar"];
 </Layout>
 
 <script>
-  import { enlaceWhatsapp, mensajeContacto } from "../lib/whatsapp";
+  import { asuntoContacto, enlaceGmail, enlaceMailto, enlaceWhatsapp, mensajeContacto } from "../lib/whatsapp";
 
-  // El formulario no guarda nada: arma el mensaje y abre WhatsApp para que el visitante lo envíe (ADR 0005).
-  // Se reinicia en cada cambio de página (ADR 0012).
   document.addEventListener("astro:page-load", () => {
     const formulario = document.querySelector<HTMLFormElement>("[data-formulario]");
     if (!formulario) return;
+
     formulario.hidden = false;
     document.querySelector<HTMLElement>("[data-sin-js]")?.setAttribute("hidden", "");
+
+    const pasos = [...formulario.querySelectorAll<HTMLElement>("[data-paso]")];
+    const progresoTexto = formulario.querySelector<HTMLElement>("[data-progreso-texto]")!;
+    const progresoBarra = formulario.querySelector<HTMLElement>("[data-progreso-barra]")!;
+    const resumenTexto = formulario.querySelector<HTMLElement>("[data-resumen-texto]")!;
+    const grupoTelefono = formulario.querySelector<HTMLElement>("[data-grupo-telefono]")!;
+    const etiquetaTelefono = formulario.querySelector<HTMLElement>("[data-etiqueta-telefono]")!;
+    const inputTelefono = formulario.querySelector<HTMLInputElement>("#contacto-telefono")!;
+    const grupoCorreo = formulario.querySelector<HTMLElement>("[data-grupo-correo]")!;
+    const btnEnviar = formulario.querySelector<HTMLButtonElement>("[data-btn-enviar]")!;
+    const btnSecundario = formulario.querySelector<HTMLButtonElement>("[data-btn-secundario]")!;
+    const alternativaCorreo = formulario.querySelector<HTMLElement>("[data-alternativa-correo]")!;
+    const btnMailto = formulario.querySelector<HTMLButtonElement>("[data-btn-mailto]")!;
     const errores = formulario.querySelector<HTMLElement>("[data-errores]")!;
+
+    const estado: Record<"accion" | "tipo" | "canal", string> = {
+      accion: "",
+      tipo: "",
+      canal: "",
+    };
+
+    function actualizarPasoFinal() {
+      resumenTexto.textContent = [estado.accion, estado.tipo, estado.canal].filter(Boolean).join(" · ");
+
+      const esCorreo = estado.canal === "Correo";
+      const esLlamada = estado.canal === "Llamada";
+
+      grupoTelefono.hidden = esCorreo;
+      grupoCorreo.hidden = !esCorreo;
+      inputTelefono.required = esLlamada;
+      inputTelefono.setAttribute("aria-required", String(esLlamada));
+      etiquetaTelefono.textContent = esLlamada ? "(obligatorio para llamarte)" : "(opcional)";
+
+      if (esCorreo) {
+        btnEnviar.textContent = "Abrir en Gmail";
+        btnSecundario.hidden = true;
+        alternativaCorreo.hidden = false;
+      } else if (esLlamada) {
+        btnEnviar.textContent = "Solicitar llamada por WhatsApp";
+        btnSecundario.textContent = "O pedir llamada por Gmail";
+        btnSecundario.hidden = false;
+        alternativaCorreo.hidden = true;
+      } else {
+        btnEnviar.textContent = "Enviar por WhatsApp";
+        btnSecundario.hidden = true;
+        alternativaCorreo.hidden = true;
+      }
+    }
+
+    function irAPaso(num: number, enfocar = true) {
+      pasos.forEach((p) => {
+        p.hidden = Number(p.dataset.paso) !== num;
+      });
+      progresoTexto.textContent = `Paso ${num} de ${pasos.length}`;
+      progresoBarra.style.width = `${(num / pasos.length) * 100}%`;
+      if (num === 5) actualizarPasoFinal();
+      if (enfocar) {
+        const activo = pasos.find((p) => Number(p.dataset.paso) === num);
+        const foco = activo?.querySelector<HTMLElement>("button, input, textarea");
+        foco?.focus();
+      }
+    }
+
+    irAPaso(1, false);
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-elegir]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const campo = btn.dataset.elegir as keyof typeof estado;
+        const valor = btn.dataset.valor ?? "";
+        estado[campo] = valor;
+
+        const oculto = formulario.querySelector<HTMLInputElement>(`input[name="${campo}"]`);
+        if (oculto) oculto.value = valor;
+
+        formulario.querySelectorAll<HTMLButtonElement>(`[data-elegir="${campo}"]`).forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+
+        const pasoActual = Number(btn.closest<HTMLElement>("[data-paso]")?.dataset.paso ?? 1);
+        irAPaso(Math.min(pasos.length, pasoActual + 1));
+      });
+    });
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-volver]").forEach((btn) => {
+      btn.addEventListener("click", () => irAPaso(Number(btn.dataset.volver ?? 1)));
+    });
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-ir]").forEach((btn) => {
+      btn.addEventListener("click", () => irAPaso(Number(btn.dataset.ir ?? 5)));
+    });
+
+    function validarYConstruir(): { asunto: string; cuerpo: string } | null {
+      const datos = new FormData(formulario!);
+      const texto = (campo: string) => String(datos.get(campo) ?? "");
+      const requiereTel = estado.canal === "Llamada";
+
+      const validaciones: [string, boolean, string][] = [
+        ["nombre", Boolean(texto("nombre").trim()), "Escribe tu nombre."],
+        ["telefono", !requiereTel || Boolean(texto("telefono").trim()), "Déjanos tu número para poder llamarte."],
+        ["consentimiento", Boolean(datos.get("consentimiento")), "Marca la casilla del aviso de privacidad para continuar."],
+      ];
+
+      let primeroInvalido: HTMLElement | null = null;
+      const faltas: string[] = [];
+      for (const [campo, valido, aviso] of validaciones) {
+        const control = formulario!.querySelector<HTMLElement>(`[name="${campo}"]`);
+        const errorEl = formulario!.querySelector<HTMLElement>(`[data-error-de="${campo}"]`);
+        if (control) control.setAttribute("aria-invalid", String(!valido));
+        if (errorEl) errorEl.textContent = valido ? "" : aviso;
+        if (!valido) {
+          faltas.push(aviso);
+          primeroInvalido ??= control;
+        }
+      }
+
+      errores.textContent = faltas.length > 0 ? `Revisa ${faltas.length} ${faltas.length === 1 ? "campo obligatorio" : "campos obligatorios"} antes de enviar.` : "";
+      if (primeroInvalido) {
+        primeroInvalido.focus();
+        return null;
+      }
+
+      const payload = {
+        nombre: texto("nombre"),
+        telefono: texto("telefono"),
+        correo: texto("correo"),
+        tipo: estado.tipo || "Sin especificar",
+        accion: estado.accion || "Consultar",
+        canal: estado.canal || "WhatsApp",
+        mensaje: texto("mensaje"),
+      };
+      return {
+        asunto: asuntoContacto(payload),
+        cuerpo: mensajeContacto(payload),
+      };
+    }
 
     formulario.addEventListener("submit", (evento) => {
       evento.preventDefault();
-      const datos = new FormData(formulario);
-      const texto = (campo: string) => String(datos.get(campo) ?? "");
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      const url = estado.canal === "Correo"
+        ? enlaceGmail(resultado.asunto, resultado.cuerpo)
+        : enlaceWhatsapp(resultado.cuerpo);
+      window.open(url, "_blank", "noopener");
+    });
 
-      const faltas: string[] = [];
-      if (!texto("nombre").trim()) faltas.push("Escribe tu nombre.");
-      if (!texto("mensaje").trim()) faltas.push("Cuéntanos tu idea en el mensaje.");
-      if (!datos.get("consentimiento")) faltas.push("Marca la casilla del aviso de privacidad para poder enviar tu consulta.");
-      errores.textContent = faltas.join(" ");
-      if (faltas.length > 0) return;
+    btnSecundario.addEventListener("click", () => {
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      window.open(enlaceGmail(resultado.asunto, resultado.cuerpo), "_blank", "noopener");
+    });
 
-      const mensaje = mensajeContacto({
-        nombre: texto("nombre"),
-        telefono: texto("telefono"),
-        tipo: texto("tipo"),
-        accion: texto("accion"),
-        mensaje: texto("mensaje"),
-      });
-      window.open(enlaceWhatsapp(mensaje), "_blank", "noopener");
+    btnMailto.addEventListener("click", () => {
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      window.location.href = enlaceMailto(resultado.asunto, resultado.cuerpo);
     });
   });
 </script>
@@ -99,26 +355,84 @@ const acciones = ["Diseñar", "Construir", "Remodelar"];
 <style>
   .contacto { background: var(--vino); color: var(--claro); --velo: var(--velo-vino); }
   .contacto :global(.etiqueta), .contacto .texto-2 { color: var(--sobre-vino); }
-  .grilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e8); }
+  .grilla { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: start; }
+  .grilla > div { grid-column: span 6; }
   [hidden] { display: none !important; }
-  .formulario { display: grid; gap: var(--e3); }
-  .campo { display: grid; gap: var(--e1); font-size: 14px; }
-  .campo input, .campo select, .campo textarea {
-    min-height: 50px; padding: 12px 14px; background: transparent; color: var(--claro);
-    border: 1px solid #c9918d; border-radius: var(--radio); font: 400 16px/1.4 var(--fuente);
+
+  .contacto-directo { display: grid; gap: var(--e3); }
+  .asistente {
+    display: grid; gap: var(--e4);
+    padding: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--borde-vino);
+    border-radius: var(--radio);
+    background: rgb(253 253 253 / 0.03);
   }
-  .campo select { color-scheme: light; }
-  /* La lista desplegable se abría oscura e ilegible (cambio pedido del 02/11/2026) */
-  .campo select option { background: var(--fondo); color: var(--vino); }
+  .progreso { display: grid; gap: var(--e1); }
+  .progreso__texto { font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); }
+  .progreso__barra { height: 4px; width: 100%; background: rgb(253 253 253 / 0.14); border-radius: 999px; overflow: hidden; }
+  .progreso__relleno { display: block; height: 100%; width: 20%; background: var(--amarillo); transition: width var(--dur-media) var(--curva); }
+
+  .paso { border: 0; margin: 0; padding: 0; display: grid; gap: var(--e3); }
+  .paso__titulo { font-size: var(--t-l); font-weight: 500; line-height: 1.2; padding: 0; margin-bottom: 4px; color: var(--claro); }
+  .paso__ayuda { font-size: var(--t-s); }
+  .opciones { display: grid; gap: var(--e2); }
+  .opcion {
+    width: 100%; min-height: 56px; padding: 14px 18px;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px;
+    background: rgb(253 253 253 / 0.04); color: var(--claro);
+    border: 1.5px solid var(--borde-vino); border-radius: var(--radio);
+    font: 500 var(--t-m)/1.3 var(--fuente); text-align: left; cursor: pointer;
+    transition: background-color var(--dur-corta) var(--curva), border-color var(--dur-corta) var(--curva), transform var(--dur-corta) var(--curva);
+  }
+  .opcion:hover { border-color: var(--amarillo); background: rgb(255 222 88 / 0.14); transform: translateY(-1px); }
+  .opcion[aria-pressed="true"] { background: var(--amarillo); color: var(--vino); border-color: var(--amarillo); }
+  .opcion__detalle { font-size: var(--t-xs); font-weight: 400; opacity: 0.88; }
+
+  .paso__pie { display: flex; justify-content: flex-start; }
+  .paso__acciones { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e3); }
+  .volver, .enlace-inline {
+    background: none; border: 0; padding: 6px 0; color: var(--sobre-vino);
+    font: 500 var(--t-s)/1.2 var(--fuente); cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+  .volver:hover, .enlace-inline:hover { color: var(--amarillo); }
+
+  .resumen {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e2);
+    padding: 10px 14px; border: 1px solid var(--borde-vino); border-radius: var(--radio);
+    font-size: var(--t-s); color: var(--amarillo);
+  }
+  .campo { display: grid; gap: var(--e1); font-size: var(--t-s); }
+  .campo input, .campo textarea {
+    min-height: 50px; padding: 12px 14px; background: transparent; color: var(--claro);
+    border: 1px solid var(--borde-vino); border-radius: var(--radio); font: 400 var(--t-m)/1.4 var(--fuente);
+  }
+  .campo textarea::placeholder { color: rgb(243 217 201 / 0.65); }
+  .campo [aria-invalid="true"] { border-color: var(--amarillo); }
   .campo textarea { min-height: 120px; }
-  .consentimiento { display: flex; gap: var(--e2); align-items: flex-start; font-size: 14px; }
+  .consentimiento { display: flex; gap: var(--e2); align-items: flex-start; font-size: var(--t-s); }
   .consentimiento input { width: 24px; height: 24px; flex: none; accent-color: var(--naranja); }
-  .errores { color: var(--amarillo); font-weight: 500; }
-  .errores:empty { display: none; }
-  .mapa { background: #6a1f20; color: var(--sobre-vino); --velo: rgb(106 31 32); }
+  .error-campo, .errores { color: var(--amarillo); font-size: var(--t-s); font-weight: 500; }
+  .error-campo:empty, .errores:empty { display: none; }
+  .consentimiento + .error-campo { margin-top: var(--e1); }
+  .alternativa-correo { font-size: var(--t-s); color: var(--sobre-vino); }
+
+  .atajo-directo {
+    border-top: 1px solid rgb(201 145 141 / 0.35);
+    padding-top: var(--e3);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e2);
+  }
+  .atajo-directo__enlaces { display: flex; gap: var(--e2); align-items: center; font-size: var(--t-s); }
+
+  .mapa-enlace {
+    display: block; overflow: hidden; border-radius: var(--radio);
+    border: 1px solid var(--borde-vino); background: var(--pendiente-vino); box-shadow: none;
+    transition: border-color var(--dur-corta) var(--curva);
+  }
+  .mapa-enlace:hover, .mapa-enlace:focus-visible { border-color: var(--amarillo); }
+  .mapa-enlace :global(img) { display: block; width: 100%; height: auto; }
   .credito-mapa { color: var(--sobre-vino); margin: var(--e1) 0 var(--e3); }
   .datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); margin: var(--e4) 0 var(--e2); }
-  .datos dt { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); margin-bottom: 4px; }
-  .datos dd { margin: 0; font-size: 15px; }
-  @media (max-width: 900px) { .grilla { grid-template-columns: minmax(0, 1fr); gap: var(--e6); } }
+  .datos dt { font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); margin-bottom: 4px; }
+  .datos dd { margin: 0; font-size: var(--t-s); }
+  @media (max-width: 900px) { .grilla > div { grid-column: 1 / -1; } }
 </style>

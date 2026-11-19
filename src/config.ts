@@ -21,13 +21,12 @@ export const estudio = {
   },
 } as const;
 
-// Botón "Cómo llegar": abre Google Maps con la dirección (ADR 0007).
-export const enlaceComoLlegar = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(estudio.direccion)}`;
+// Botón "Cómo llegar": abre la ubicación exacta del estudio y showroom en Google Maps (ADR 0007).
+export const enlaceComoLlegar = "https://maps.app.goo.gl/NxuVdNC9sqFBTAAT6";
 
 export const navegacion = [
   { texto: "Proyectos", href: "/proyectos/" },
   { texto: "Servicios", href: "/servicios/" },
   { texto: "Cursos", href: "/cursos/" },
   { texto: "Estudio", href: "/estudio/" },
-  { texto: "Contacto", href: "/contacto/" },
 ] as const;

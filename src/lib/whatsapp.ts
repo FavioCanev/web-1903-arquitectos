@@ -9,24 +9,44 @@ export function enlaceWhatsapp(mensaje?: string): string {
 export interface DatosContacto {
   nombre: string;
   telefono?: string;
+  correo?: string;
   tipo: string;
   accion: string;
-  mensaje: string;
+  canal?: string;
+  mensaje?: string;
 }
 
-/** Texto que el formulario de contacto deja escrito en WhatsApp (ADR 0005). */
+/** Asunto sugerido al abrir Gmail o el programa de correo desde Contacto. */
+export function asuntoContacto(datos: Pick<DatosContacto, "accion" | "tipo" | "nombre">): string {
+  return `Consulta web: ${datos.accion} — ${datos.tipo} (${datos.nombre.trim()})`;
+}
+
+/** Texto que el formulario de contacto deja escrito en WhatsApp o correo (ADR 0005). */
 export function mensajeContacto(datos: DatosContacto): string {
   const telefono = datos.telefono?.trim();
+  const correo = datos.correo?.trim();
+  const idea = datos.mensaje?.trim();
   return [
     `Hola, ${estudio.nombre}. Soy ${datos.nombre.trim()}.`,
-    `Tipo de proyecto: ${datos.tipo}`,
     `Quiero: ${datos.accion}`,
+    `Tipo de proyecto: ${datos.tipo}`,
+    datos.canal ? `Prefiero que me contacten por: ${datos.canal}` : null,
     telefono ? `Mi número: ${telefono}` : null,
-    "",
-    datos.mensaje.trim(),
+    correo ? `Mi correo: ${correo}` : null,
+    idea ? `\n${idea}` : null,
   ]
-    .filter((linea) => linea !== null)
+    .filter((linea): linea is string => Boolean(linea))
     .join("\n");
+}
+
+/** Arma el enlace de Gmail web con destinatario, asunto y cuerpo prellenados. */
+export function enlaceGmail(asunto: string, cuerpo: string): string {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(estudio.correo)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+}
+
+/** Alternativa estándar mailto: para clientes de correo locales (Apple Mail, Outlook). */
+export function enlaceMailto(asunto: string, cuerpo: string): string {
+  return `mailto:${estudio.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 }
 
 /** Mensaje de inscripción a un curso presencial (ADR 0006). */
