@@ -29,12 +29,14 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - Carpeta `docs/mantenimiento/` que reúne el script `preparar_fotos.py` (con soporte `.heic`/formatos alternativos y logo vertical adaptativo según contraste), el asistente visual `nuevo-proyecto.html` (con vista previa en vivo de la página de proyecto, selector de foto principal/portada y soporte `.heic` local sin internet) y el manual ilustrado para el estudio (`manual-de-mantenimiento.md` y `.pdf` con capturas y guía de errores).
 - Secciones opcionales de fotos `proceso` y `renders` en el esquema de proyectos (`src/content.config.ts`) y soporte en `docs/mantenimiento/preparar_fotos.py`.
 - Fotos reales y datos completos de la hoja para La Chola - Cruz de piedra, Cafetería Rafael y Frutaliss, además de las secciones `renders` de Cafétos, Estancia del Alba, San Luis Café y Tacos Cajamarquinos - Jr. Ayacucho.
-- Sincronización con Google Drive y la hoja de cálculo: nuevas fotos terminadas y sección `Proceso` en Hito - complejo de estación de servicio Labanda y Estancia del Alba; área, encargo y solución en Estancia del Alba, Tacos Cajamarquinos - La Colmena y Eco Lounge - Jardín Porongo; sección `Proceso` en Cafétos, Refugio VV y La Chola - La roja; sección `Renders` en Tacos Cajamarquinos - La Colmena; render de Eco Lounge - Jardín Porongo; nuevo proyecto Casa Brisa Morín en «Proyectos en diseño»; y tres preguntas frecuentes aprobadas del PDF en `/servicios/`.
+- Sincronización con Google Drive y la hoja de cálculo: nuevas fotos terminadas y sección `Proceso` en Hito - complejo de estación de servicio Labanda y Estancia del Alba; área, encargo y solución en Estancia del Alba, Tacos Cajamarquinos - La Colmena y Eco Lounge - Jardín Porongo; sección `Proceso` en Cafétos, Refugio VV y La Chola - La roja; sección `Renders` en Tacos Cajamarquinos - La Colmena; nuevo proyecto Casa Brisa Morín (ampliado a 12 renders desde Drive) y nuevo proyecto Horizonte Bazán - Rooftop en «Proyectos en diseño»; actualización completa de Eco Lounge - Jardín Porongo (9 renders, incluyendo las 2 fachadas reparadas); páginas propias para los proyectos en diseño con vistas reales (`Ayni - Bazán`, `La colina - casa Lozada`, `Eco Lounge - Jardín Porongo`, `Casa Brisa Morín` y `Horizonte Bazán - Rooftop`); crédito de fotografía/visualización `1903 Arquitectos` en proyectos tomados por el estudio; y tres preguntas frecuentes aprobadas del PDF en `/servicios/`.
+- Metadatos SEO en todas las páginas (`Open Graph`, `Twitter Card`, `canonical` al configurar `site`, `public/robots.txt` y datos estructurados `ArchitectureFirm` JSON-LD en Inicio).
 - Componente `CollageProyecto.astro` (con zoom suave al pasar el cursor y visor en grande al hacer clic) y proyecto de prueba (`src/content/proyectos/proyecto-de-prueba.json`) con las tres secciones de collage y los textos al final.
 - Mapa estático de ubicación de OpenStreetMap (`src/assets/mapa-estudio.png`) con enlace directo a Google Maps en `src/pages/contacto.astro` y `src/config.ts`, junto con el render del showroom de materiales y oficinas (`src/assets/showroom.jpg`) en `src/pages/estudio.astro`.
 
 ### Cambiado
 
+- Sección «Obra terminada» del Inicio (`src/components/GrillaFija.astro`): en móvil y tablet pasa a mostrarse en una grilla de 2 columnas escalonadas (con 1 foto por proyecto) para reducir el recorrido vertical.
 - Auditoría y mejoras de estructura UI/UX (Fases 1 y 2):
   - Grilla modular de 12 columnas (`--columnas`, `--canal`, `.grilla-12`) y escala tipográfica de 6 pasos (`--t-xs` a `--t-2xl`) en `src/styles/tokens.css` y `src/styles/base.css`, con la clase compartida `.pildora` y tokens para colores que estaban sueltos.
   - Corte intermedio de tablet (2 columnas entre 601 px y 900 px) en `MosaicoProyectos.astro`, `GrillaFija.astro`, `servicios.astro` (pasos), `cursos.astro` y `estudio.astro`.
@@ -80,6 +82,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 ### Corregido
 
 - En la página de proyecto, la descripción para buscadores toma la primera oración del encargo cuando existe, y la foto principal respeta su punto de enfoque y desactiva el fondo fijo en celulares y Safari de iOS. En el Inicio, el titular de la portada solo pasa a blanco cuando hay foto.
+- Se quitan los avisos pendientes ya aprobados en `/privacidad/` y `/cursos/`.
 
 ### Eliminado
 

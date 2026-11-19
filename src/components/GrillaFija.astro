@@ -28,6 +28,18 @@ lista.forEach((item, i) => {
 const centroArriba = columnas[1].slice(0, 1);
 const centroAbajo = columnas[1].slice(1);
 const maxFilas = Math.max(columnas[0].length, columnas[1].length, columnas[2].length);
+
+// En móvil/tablet se muestran en 2 columnas escalonadas (1 foto por proyecto): calculamos aquí las clases en orden del DOM.
+let indiceMovil = 0;
+const conClase = (itemsGrupo: ItemGrilla[]) =>
+  itemsGrupo.map((item) => ({
+    ...item,
+    clase: item.indiceFoto > 0 ? "grilla-fija__extra" : indiceMovil++ % 2 === 1 ? "grilla-fija__der" : undefined,
+  }));
+const colIzq = conClase(columnas[0]);
+const centroArribaItems = conClase(centroArriba);
+const centroAbajoItems = conClase(centroAbajo);
+const colDer = conClase(columnas[2]);
 ---
 
 <section class="grilla-fija" style={`--filas: ${maxFilas};`} aria-labelledby="titulo-construidos">
@@ -44,18 +56,18 @@ const maxFilas = Math.max(columnas[0].length, columnas[1].length, columnas[2].le
       <div class="grilla-fija__grilla">
         <div class="grilla-fija__columnas">
           <div class="grilla-fija__col">
-            {columnas[0].map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+            {colIzq.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
           </div>
           <div class="grilla-fija__col grilla-fija__col--centro">
             <div class="grilla-fija__centro-parte grilla-fija__centro-parte--arriba">
-              {centroArriba.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+              {centroArribaItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
             </div>
             <div class="grilla-fija__centro-parte grilla-fija__centro-parte--abajo">
-              {centroAbajo.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+              {centroAbajoItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
             </div>
           </div>
           <div class="grilla-fija__col">
-            {columnas[2].map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+            {colDer.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
           </div>
         </div>
       </div>
@@ -102,13 +114,20 @@ const maxFilas = Math.max(columnas[0].length, columnas[1].length, columnas[2].le
   .grilla-fija__centro-parte { display: contents; }
   .grilla-fija__col:nth-child(2) { margin-top: var(--e12); }
   @media (max-width: 900px) {
-    .grilla-fija__columnas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grilla-fija__col:nth-child(2) { margin-top: var(--e8); }
-    .grilla-fija__extra { display: none; }
+    .grilla-fija__columnas {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--e3);
+      padding-bottom: var(--e4);
+    }
+    .grilla-fija__col { display: contents; }
+    .grilla-fija__col:nth-child(2) { margin-top: 0; }
+    .grilla-fija__columnas :global(.grilla-fija__extra) { display: none; }
+    .grilla-fija__columnas :global(.grilla-fija__der) { transform: translateY(var(--e4)); }
   }
   @media (max-width: 600px) {
-    .grilla-fija__columnas { grid-template-columns: minmax(0, 1fr); }
-    .grilla-fija__col:nth-child(2) { margin-top: 0; }
+    .grilla-fija__escenario { gap: var(--e4); }
+    .grilla-fija__columnas { gap: 12px; padding-bottom: var(--e3); }
+    .grilla-fija__columnas :global(.grilla-fija__der) { transform: translateY(var(--e3)); }
   }
 
   /* Versión animada. Si una tarjeta recibe el foco con el teclado, vuelve la grilla normal para que se vea
