@@ -68,13 +68,14 @@ Los comandos del proyecto:
 | `npm run preview` | Sirve la web ya construida, tal como la verá el visitante |
 | `npm run check` | Revisa los tipos de TypeScript y las plantillas de Astro |
 | `npm test` | Corre las pruebas (hoy, la del mensaje de WhatsApp) |
+| `npm run fotos` | Revisa que todas las fotos de `src/assets/proyectos/` sean JPEG de hasta 2400 px y sin datos EXIF |
 | `npm run enlaces` | Revisa que no haya enlaces internos rotos (después de `npm run build`) |
 | `npm run accesibilidad` | Revisa cada página con pa11y-ci, contra WCAG 2.2 AA (después de `npm run build`). Necesita Chrome: si no se encuentra solo, indica su ruta en la variable `PA11Y_CHROME` |
 | `npm run revisar` | Corre todo lo anterior, en el mismo orden que las revisiones automáticas de GitHub |
 
 *Leyenda: "Comando" es lo que se escribe en la terminal, dentro de la carpeta del proyecto. "Qué hace" explica para qué sirve.*
 
-Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content/proyectos/`; su nombre es la dirección de su página (por ejemplo, `cafetos.json` da `/proyectos/cafetos/`). Si falta un dato obligatorio, `npm run build` falla y dice cuál. Los datos del estudio (WhatsApp, correo, dirección, horario y redes) están en `src/config.ts`.
+Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content/proyectos/`; su nombre es la dirección de su página (por ejemplo, `cafetos.json` da `/proyectos/cafetos/`). Si falta un dato obligatorio, `npm run build` falla y dice cuál. Para preparar un proyecto nuevo sin usar la terminal ni editar JSON a mano, abre `docs/mantenimiento/nuevo-proyecto.html` en el navegador (reduce las fotos, estampa el logo vertical, quita sus datos EXIF y genera el archivo JSON; el paso a paso está en [Manual de mantenimiento](docs/mantenimiento/manual-de-mantenimiento.md)). Los datos del estudio (WhatsApp, correo, dirección, horario y redes) están en `src/config.ts`.
 
 ## Cómo se publica
 
@@ -102,7 +103,7 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
   *Leyenda: "Tipo" es la palabra con la que empieza el mensaje del commit, seguida de dos puntos (por ejemplo, `fix: corrige el número de WhatsApp`). "Cuándo se usa" explica qué clase de cambio describe. Un "commit" es cada cambio guardado en el historial del repositorio.*
 
 - **Versiones:** se numeran con [versionado semántico](https://semver.org/lang/es/): 0.x mientras se construye y **1.0.0 el día de la publicación**. Cada versión se registra en el `CHANGELOG.md`.
-- **Revisiones automáticas:** CodeQL revisa la seguridad del código en cada cambio ([ADR 0014](docs/adr/0014-analisis-de-seguridad-codeql.md)). Con cada *pull request* también corren la construcción, la prueba del mensaje de WhatsApp, los enlaces rotos y la accesibilidad ([ADR 0013](docs/adr/0013-accesibilidad-wcag-2-2-aa.md)), definidas en `.github/workflows/revisiones.yml`.
+- **Revisiones automáticas:** CodeQL revisa la seguridad del código en cada cambio ([ADR 0014](docs/adr/0014-analisis-de-seguridad-codeql.md)). Con cada *pull request* también corren la construcción, las pruebas, la verificación de fotos sin datos EXIF ([ADR 0011](docs/adr/0011-fotos-en-cloudflare-r2.md)), los enlaces rotos y la accesibilidad ([ADR 0013](docs/adr/0013-accesibilidad-wcag-2-2-aa.md)), definidas en `.github/workflows/revisiones.yml`.
 - **Lista blanca:** el repositorio es público y solo sube los archivos nombrados en `.gitignore`. Cada carpeta o archivo nuevo hay que agregarlo a esa lista ([ADR 0010](docs/adr/0010-repositorio-publico-lista-blanca.md)).
 
 ## Documentación
@@ -113,7 +114,7 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
 | [Mapa del sitio](docs/mapa-del-sitio.md) | Cada página, sus secciones, su prioridad y los criterios para darla por terminada |
 | [Estructura del proyecto](docs/ESTRUCTURA.md) | Qué hay en cada carpeta y cuál es el código de la web |
 | [Arquitectura](docs/arquitectura.md) | Cómo está hecha la web, con diagramas, metas de calidad y riesgos |
-| Manual de mantenimiento | [Pendiente] El paso a paso de los cambios frecuentes y el traspaso |
+| [Manual de mantenimiento](docs/mantenimiento/manual-de-mantenimiento.md) | El paso a paso con capturas para agregar proyectos, actualizar datos, resolver errores y hacer el traspaso (también en PDF en `docs/mantenimiento/`) |
 
 *Leyenda: "Documento" es el archivo, con su enlace. "Qué explica" resume su contenido.*
 

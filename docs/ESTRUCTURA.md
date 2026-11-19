@@ -2,14 +2,14 @@
 
 Este documento explica **qué hay en cada carpeta** del proyecto y cuál es el código de la web. Sirve para quien llega sin contexto y se pregunta "¿cuál es el proyecto en sí?".
 
-**El código de la web está en la raíz del repositorio**, en las carpetas `src/`, `public/`, `tests/`, `scripts/` y `.github/`, y en los archivos `package.json`, `package-lock.json`, `astro.config.mjs` y `tsconfig.json`. Todo lo demás es documentación, gráficos o material interno. Cómo está organizado el código por dentro está en [`arquitectura.md`](arquitectura.md), en el nivel 3.
+**El código de la web está en la raíz del repositorio**, en las carpetas `src/`, `public/`, `tests/` y `.github/`, y en los archivos `package.json`, `package-lock.json`, `astro.config.mjs` y `tsconfig.json`. Todo lo demás es documentación, herramientas de mantenimiento (`docs/mantenimiento/`), gráficos o material interno. Cómo está organizado el código por dentro está en [`arquitectura.md`](arquitectura.md), en el nivel 3.
 
 ```
 Arquitectos1903/
-├── src/  public/  tests/  scripts/  .github/   El código de la web y sus herramientas
+├── src/  public/  tests/  .github/             El código de la web y sus revisiones
 ├── package.json  package-lock.json
 ├── astro.config.mjs  tsconfig.json
-├── docs/  README.md  CHANGELOG.md  LICENSE     La documentación
+├── docs/  README.md  CHANGELOG.md  LICENSE     Documentación y herramientas de mantenimiento
 ├── logo/  wireframes/                          Los gráficos
 ├── material/                                   El material interno (no se sube)
 └── BRIEF.md  CLAUDE.md  AGENTS.md              Las instrucciones de trabajo (no se suben)
@@ -20,11 +20,11 @@ Arquitectos1903/
 | `src/` | Las páginas, los componentes, los estilos, los datos de los proyectos y el resto del código de la web | Sí |
 | `public/` | Archivos que la web entrega tal cual: logos y patrón de baldosa en SVG | Sí |
 | `tests/` | La prueba del mensaje de WhatsApp, las pruebas de esquemas, el revisor de enlaces y la configuración de la revisión de accesibilidad | Sí |
-| `scripts/` | El programa en Python que prepara las fotos para la web (las reduce a 2400 px, las pasa a sRGB y borra sus datos EXIF) y la lista de fotos elegidas | Sí |
+| `docs/mantenimiento/` | El programa en Python (`preparar_fotos.py`), la lista de fotos elegidas (`seleccion.json`), el asistente visual en el navegador (`nuevo-proyecto.html`, con soporte `.heic` en `lib/`) y el manual ilustrado con sus capturas y PDF (`manual-de-mantenimiento.md` / `.pdf`) | Sí |
 | `.github/` | Las revisiones automáticas que corren en cada *pull request* | Sí |
 | `package.json`, `package-lock.json` | La lista de herramientas (dependencias) y sus versiones exactas, y los comandos del proyecto | Sí |
 | `astro.config.mjs`, `tsconfig.json` | La configuración de Astro y de TypeScript | Sí |
-| `docs/` | Las decisiones de arquitectura (ADR), el mapa del sitio, la arquitectura y este documento | Sí |
+| `docs/` | Las decisiones de arquitectura (ADR), el mapa del sitio, la arquitectura, el mantenimiento (`docs/mantenimiento/`) y este documento | Sí |
 | `README.md`, `CHANGELOG.md`, `LICENSE` | Cómo arrancar el proyecto, el registro de cambios y los derechos | Sí |
 | `logo/` | Los logos originales y, en `logo/vectorizado/`, los vectorizados | Solo `logo/vectorizado/` |
 | `wireframes/` | Los wireframes iniciales y el PDF de los wireframes v2 | Solo el PDF de los wireframes v2 |

@@ -32,10 +32,9 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 |---|---|---|
 | Enlace "Saltar al contenido" | Primer elemento de la página; solo se ve al navegar con el teclado | Must |
 | Barra superior | "Cajamarca, Perú" y la hora de Cajamarca en vivo | Must (la hora en vivo: Should) |
-| Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · Contacto · botón "Escríbenos" (lleva a Contacto). En celular, los enlaces se agrupan en un menú | Must |
+| Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · botón único "Contacto" (lleva a Contacto). En celular, botón hamburguesa con ícono de tres líneas que despliega el menú | Must |
 | Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, desenrollándose de un rollo cilíndrico a medida que se avanza en la página (ver la [ADR 0015](adr/0015-liston-como-rollo-a-la-derecha.md)); oculto en pantallas de hasta 600 px | Should |
-| Botón flotante de WhatsApp | Siempre visible; abre WhatsApp con el número del estudio | Must |
-| Pie de página | Logo grande · contacto (sin repetir los enlaces de la barra de navegación, que ya está fija en todas las páginas): correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · Instagram y Facebook · Aviso de privacidad · Declaración de accesibilidad · "1903 Arquitectos © 2026". Patrón de baldosa de borde a borde | Must |
+| Pie de página | Logo grande sobre fondo amarillo (`--amarillo`) en toda la web · contacto: correo (1903arq@gmail.com), "Atención en todo el Perú · WhatsApp 924 285 500" [texto por aprobar], horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (Jr. Amancaes 262, Cajamarca) · enlaces del mapa del sitio · Patrón de baldosa de borde a borde · Franja inferior con "1903 Arquitectos © 2026" a la izquierda, Instagram y Facebook al centro como íconos circulares, y Aviso de privacidad · Declaración de accesibilidad a la derecha | Must |
 
 *Leyenda: "Elemento" es la parte que se repite en todas las páginas. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW (ver arriba). El RUC no va en el pie: está en el aviso de privacidad, donde la Ley 29733 pide identificar al responsable de los datos.*
 
@@ -47,7 +46,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 - [manual] Al presionar Tab por primera vez aparece el enlace "Saltar al contenido", y al usarlo el foco salta al contenido principal.
 - [manual] Todos los enlaces y botones se pueden usar con el teclado, con el foco visible.
 - [manual] La hora de la barra superior es la de Cajamarca y se actualiza sola, también después de cambiar de página.
-- [manual] El botón flotante y el WhatsApp del pie abren WhatsApp con el número 924 285 500.
+- [manual] El WhatsApp del pie abre WhatsApp con el número 924 285 500.
 - [manual] En una pantalla de 390 px de ancho no aparece barra de desplazamiento horizontal.
 - [manual] Con "reducir movimiento" activado, nada se desplaza ni se anima, salvo fundidos simples.
 
@@ -114,15 +113,10 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Foto principal | A pantalla completa, fija "como ventana" mientras el contenido pasa por encima | Must (el efecto de ventana: Should) |
-| Migas de pan | Inicio / Proyectos / {Nombre} | Must |
-| Título y ficha | Nombre, tipo y ciudad · ficha: lugar, m², año y tipo | Must |
-| Encargo y solución | Qué pidió el cliente y qué hizo el estudio, de 2 a 3 líneas cada uno | Must |
-| Galería | Fotos con su texto alternativo, en el orden que indique el estudio. Cada foto va a un bloque de su misma orientación (las horizontales, al bloque ancho 3:2; las verticales, a bloques 2:3 en filas de 7+5 y de 4+4+4), para que se vea entera | Must |
-| Fotos con desplazamiento | Las fotos de la galería suben o bajan suavemente con el scroll | Should |
-| Crédito | "Fotografía: {nombre completo del fotógrafo}" | Must |
+| Foto principal | A pantalla completa, fija "como ventana" en escritorio, con el título del proyecto a la izquierda y las migas de pan (`Inicio — Proyectos — {Nombre}`) a la derecha sobre un velo oscuro | Must (el efecto de ventana: Should) |
+| Información del proyecto | Antes de las fotos, en dos columnas: resumen (`Sobre el proyecto`), tabla `Datos del proyecto` (tipo, ubicación, año, área, estado y crédito `Fotografía: {nombre completo del fotógrafo}`), `El encargo` y `La solución` | Must |
+| Collages de fotos | Al 80 % del ancho en escritorio, en bloque cuadrado cerrado sin desfase (`Proyecto terminado`: 10–12 fotos en 3 columnas; `Proceso` opcional: 4–5 fotos en 2 columnas; `Renders` opcional: 10–12 fotos en 3 columnas), cada sección con su subtítulo y variación determinística acotada por proyecto respetando orientación; al pasar el cursor hacen zoom suave y al hacer clic se abren en grande | Must |
 | Proyecto anterior y siguiente | Enlaces a las obras vecinas en el orden de la lista | Must |
-| Pie | Con el fondo amarillo de la banda de Cursos | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Migas de pan" es la línea que muestra en qué parte de la web está el visitante y le permite volver atrás. "Texto alternativo" es la descripción de la foto para quien usa un lector de pantalla.*
 
@@ -131,6 +125,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 - [auto] Cada obra terminada de los datos tiene su página, generada con la misma plantilla.
 - [auto] La construcción de la web falla si a un proyecto le falta un dato obligatorio (nombre, tipo, ciudad o al menos una foto con su texto alternativo).
 - [auto] Ninguna foto se publica con datos EXIF (ver la ADR 0011).
+- [manual] Si el proyecto tiene fotos de `Proceso` o `Renders`, cada sección aparece con su subtítulo; si no, se omiten.
 - [manual] "Anterior" y "Siguiente" llevan a las obras correctas, y la primera y la última no dejan enlaces rotos.
 - [manual] El crédito del fotógrafo usa su nombre completo, no su usuario de Instagram.
 
@@ -147,7 +142,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 |---|---|---|
 | Servicios | 01 Diseño arquitectónico · 02 Diseño de interiores · 03 Modelado 3D y visualización · 04 Desarrollo y coordinación de proyectos · 05 Supervisión y asesoría · 06 Construcción de obra, de inicio a fin · 07 Lotizaciones y trámites municipales (con la etiqueta "Próximamente"), cada uno con una línea de lo que incluye [alcance de la construcción y descripción de lotizaciones y trámites: por confirmar] | Must |
 | Cómo trabajamos | 4 pasos: Conversamos → Diseñamos → Elegimos materiales → Construimos | Must |
-| Preguntas frecuentes | Cuatro preguntas principales que se abren y se cierran (las marcadas "Sí" en la hoja); las secundarias irán en otro lugar | Must |
+| Preguntas frecuentes | Preguntas aprobadas de la hoja (`Preguntas frecuentes` y `Preguntas (del PDF)`) que se abren y se cierran | Must |
 | Llamado a la acción | "¿Tienes un proyecto en mente?" con el botón a Contacto | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Llamado a la acción" es un bloque que invita al visitante a dar el siguiente paso.*
@@ -170,7 +165,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Cursos | Banda amarilla con una ficha por curso: nombre, modalidad, duración y fechas, y el botón "Inscribirme". Sin precio (ver la ADR 0006) | Must |
-| Certificado | Certificado en asociación con el Colegio de Arquitectos del Perú | Must |
+| Certificado | Certificado en asociación con el Colegio de Arquitectos del Perú, acompañado de su logotipo (`public/img/logo-cap.webp`) | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW.*
 
@@ -216,7 +211,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Formulario | Nombre, teléfono (opcional), tipo de proyecto (Arquitectura, Interiorismo comercial, o Interiorismo residencial), qué quiere hacer (diseñar, construir o remodelar) y mensaje; casilla de consentimiento con enlace al aviso de privacidad; botón "Enviar por WhatsApp" (ver la ADR 0005) | Must |
+| Formulario | Asistente paso a paso sin listas desplegables (ver la ADR 0005): ¿qué quieres hacer? (Diseñar, Construir, Remodelar) · tipo de proyecto (Arquitectura, Interiorismo comercial, Interiorismo residencial) · preferencia de contacto (WhatsApp, Correo o Llamada) · idea opcional · nombre, contacto y casilla de consentimiento; redirige a WhatsApp o Gmail redactar (con alternativa `mailto:`), más acceso directo sin pasos | Must |
 | Mapa | Imagen exportada de OpenStreetMap con el crédito "© OpenStreetMap" y el botón "Cómo llegar", que abre Google Maps (ver la ADR 0007) | Must |
 | Datos | Dirección, WhatsApp, correo y horario; "también te recibimos sin cita" | Must |
 
@@ -226,8 +221,8 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 - [auto] Con nombre, mensaje y la casilla marcada, el formulario arma un enlace de WhatsApp al 924 285 500 con todos los datos escritos.
 - [auto] Sin la casilla de consentimiento marcada, el formulario no se envía y explica por qué.
-- [manual] Sin JavaScript, el formulario no aparece y en su lugar se ve el botón "Escríbenos por WhatsApp".
-- [manual] La lista desplegable se lee bien al abrirla.
+- [manual] Sin JavaScript, el asistente paso a paso no aparece y en su lugar quedan los accesos directos a WhatsApp y Gmail.
+- [manual] Los botones de opción avanzan automáticamente y el botón «← Anterior» permite corregir cualquier respuesta.
 - [manual] El botón "Cómo llegar" abre Google Maps en otra pestaña, con la dirección del estudio.
 
 ---

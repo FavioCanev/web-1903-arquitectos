@@ -21,10 +21,43 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 - Las fotos se optimizan al construir (AVIF y WebP, varios tamaños, carga diferida).
 - Proyectos nuevos: Refugio VV, Estación de servicio Labanda y Tacos Cajamarquinos - La Colmena (este, con sus datos y fotos [pendientes]).
 - Ícono de la pestaña (favicon) en SVG: logo vertical en blanco sobre un cuadrado vino.
-- Fichas de decisión [ADR 0015](docs/adr/0015-liston-como-rollo-a-la-derecha.md) (listón como rollo a la derecha y velo en los textos, que reemplaza a la ADR 0009) y [ADR 0016](docs/adr/0016-animaciones-con-css-y-grilla-fija.md) (animaciones con CSS nativo y grilla fija en el Inicio, que reemplaza a la ADR 0012).
+- Fichas de decisión [ADR 0015](docs/adr/0015-liston-como-rollo-a-la-derecha.md) (listón como rollo a la derecha y velo en los textos, que reemplaza a la ADR 0009), [ADR 0016](docs/adr/0016-animaciones-con-css-y-grilla-fija.md) (animaciones con CSS nativo y grilla fija en el Inicio, que reemplaza a la ADR 0012) y [ADR 0017](docs/adr/0017-entradas-al-scroll-y-microinteracciones.md) (entradas suaves de bloques al hacer scroll y micro-interacciones en CSS nativo; reemplaza a la ADR 0016).
+- Esqueleto de carga animado (`shimmer` en `--pendiente`) dentro de los marcos de fotos (`Foto.astro` y `CollageProyecto.astro`) mientras descargan las imágenes (`src/styles/base.css` y `src/layouts/Layout.astro`).
+- Logotipo del Colegio de Arquitectos del Perú (`public/img/logo-cap.webp`) en la sección «Certificado» de `src/pages/cursos.astro`.
+- Soporte de enlaces directos prellenados a Gmail redactar (`enlaceGmail`, `asuntoContacto` y alternativa `enlaceMailto`) en `src/lib/whatsapp.ts`.
+- Revisión automática de fotos limpias (`npm run fotos`, integrada en `npm run revisar` y en `.github/workflows/revisiones.yml`) para comprobar que todo archivo de `src/assets/proyectos/` sea `.jpg` de hasta 2400 px y sin metadatos EXIF.
+- Carpeta `docs/mantenimiento/` que reúne el script `preparar_fotos.py` (con soporte `.heic`/formatos alternativos y logo vertical adaptativo según contraste), el asistente visual `nuevo-proyecto.html` (con vista previa en vivo de la página de proyecto, selector de foto principal/portada y soporte `.heic` local sin internet) y el manual ilustrado para el estudio (`manual-de-mantenimiento.md` y `.pdf` con capturas y guía de errores).
+- Secciones opcionales de fotos `proceso` y `renders` en el esquema de proyectos (`src/content.config.ts`) y soporte en `docs/mantenimiento/preparar_fotos.py`.
+- Fotos reales y datos completos de la hoja para La Chola - Cruz de piedra, Cafetería Rafael y Frutaliss, además de las secciones `renders` de Cafétos, Estancia del Alba, San Luis Café y Tacos Cajamarquinos - Jr. Ayacucho.
+- Sincronización con Google Drive y la hoja de cálculo: nuevas fotos terminadas y sección `Proceso` en Hito - complejo de estación de servicio Labanda y Estancia del Alba; área, encargo y solución en Estancia del Alba, Tacos Cajamarquinos - La Colmena y Eco Lounge - Jardín Porongo; sección `Proceso` en Cafétos, Refugio VV y La Chola - La roja; sección `Renders` en Tacos Cajamarquinos - La Colmena; render de Eco Lounge - Jardín Porongo; nuevo proyecto Casa Brisa Morín en «Proyectos en diseño»; y tres preguntas frecuentes aprobadas del PDF en `/servicios/`.
+- Componente `CollageProyecto.astro` (con zoom suave al pasar el cursor y visor en grande al hacer clic) y proyecto de prueba (`src/content/proyectos/proyecto-de-prueba.json`) con las tres secciones de collage y los textos al final.
+- Mapa estático de ubicación de OpenStreetMap (`src/assets/mapa-estudio.png`) con enlace directo a Google Maps en `src/pages/contacto.astro` y `src/config.ts`, junto con el render del showroom de materiales y oficinas (`src/assets/showroom.jpg`) en `src/pages/estudio.astro`.
 
 ### Cambiado
 
+- Auditoría y mejoras de estructura UI/UX (Fases 1 y 2):
+  - Grilla modular de 12 columnas (`--columnas`, `--canal`, `.grilla-12`) y escala tipográfica de 6 pasos (`--t-xs` a `--t-2xl`) en `src/styles/tokens.css` y `src/styles/base.css`, con la clase compartida `.pildora` y tokens para colores que estaban sueltos.
+  - Corte intermedio de tablet (2 columnas entre 601 px y 900 px) en `MosaicoProyectos.astro`, `GrillaFija.astro`, `servicios.astro` (pasos), `cursos.astro` y `estudio.astro`.
+  - Filtro de categorías en `MosaicoProyectos.astro` con `:nth-child(... of :not([hidden]))` para conservar el escalonado al filtrar.
+  - Recorrido de `GrillaFija.astro` ajustado de `420vh` a `280vh`.
+  - Formulario de `contacto.astro` con campos obligatorios marcados, errores ligados por campo (`aria-invalid`, `aria-describedby`), foco al primer error y encabezados `h2` para lectores de pantalla.
+  - Jerarquía de títulos (`h2` en `/proyectos/`) y nombre accesible (`aria-label`) en `TarjetaProyecto.astro` cuando `soloFoto` está activo; eliminado `tabindex="-1"` de `<main>` en `Layout.astro` y agregado `loading="lazy"` al logo de `Pie.astro`.
+  - Ficha de proyecto (`src/pages/proyectos/[id].astro`) y `CollageProyecto.astro` unificados a la escala tipográfica (`--t-xl`) y a la grilla de 12 columnas (`4 + 8` y ancho completo del contenedor).
+- Auditoría UI/UX (Fase 3):
+  - `CarruselRenders.astro`: carril de borde a borde (*full-bleed*) y botones Anterior/Siguiente accesibles de 44 × 44 px.
+  - `TarjetaProyecto.astro`: tipo apilado debajo del nombre del proyecto.
+  - `Pie.astro`: columna de mapa del sitio en 12 columnas y altura mínima de 24 px en enlaces sueltos (WCAG 2.5.8).
+  - `src/pages/proyectos/[id].astro`: enlaces anterior/siguiente en una columna por debajo de 600 px.
+  - `src/pages/cursos.astro`: estado "Inscripción próximamente" con estilo de etiqueta `.pildora` en lugar de botón falso.
+- Página de cada proyecto (`src/pages/proyectos/[id].astro`) rediseñada siguiendo la referencia de `Casa Mulix` (Arkham Projects): foto principal con título y migas de pan encima, seguida de la ficha e información en dos columnas (`Sobre el proyecto`, `Datos del proyecto`, `El encargo` y `La solución`) y debajo los collages cuadrados al 80 % del ancho por sección (`Proyecto terminado`, y opcionalmente `Proceso` y `Renders`) sin desplazamiento parallax.
+- Pie de página (`src/components/Pie.astro`): Instagram y Facebook pasan de enlaces de texto en la columna superior al centro de la franja inferior como íconos vectoriales circulares.
+- Micro-interacciones al pasar el cursor y enfocar en «Proyecto anterior» y «Proyecto siguiente» (`src/pages/proyectos/[id].astro`), zoom suave en las fotos de tarjetas (`src/components/TarjetaProyecto.astro`), transiciones suaves de borde/subrayado en botones secundarios y enlaces (`src/styles/base.css`), y entradas suaves de bloques al hacer scroll en CSS nativo (`src/styles/parallax.css`).
+- Página de error `404` (`src/pages/404.astro`) renovada con lámina de retícula arquitectónica, cotas, `404` tipográfico, logo vertical y franja de baldosa del estudio.
+- Barra de navegación (`src/config.ts`, `src/components/Nav.astro`): eliminado el enlace duplicado a `/contacto/`, el botón naranja pasa a llamarse «Contacto», y en móvil se usa un ícono hamburguesa SVG de tres barras.
+- Pie de página amarillo (`--amarillo`) unificado en todo el sitio (`src/components/Pie.astro`, `src/layouts/Layout.astro`), y retiro del botón flotante de WhatsApp (`BotonWhatsapp.astro`).
+- Página de Contacto (`src/pages/contacto.astro`): asistente paso a paso con botones (sin listas desplegables) para elegir acción, tipo de proyecto, canal preferido (`WhatsApp`, `Correo` o `Llamada`), idea opcional y datos finales con salida a WhatsApp o Gmail redactar prellenado (más acceso directo).
+- Collage de proyecto (`src/components/CollageProyecto.astro`): distribución determinística por semilla de proyecto y sección respetando orientación horizontal/vertical con límites acotados, 2 columnas para 2–5 fotos (`Proceso`) y proyecto de prueba ajustado a 11 terminado / 5 proceso / 10 renders.
+- Grilla fija del Inicio (`src/components/GrillaFija.astro` y `src/styles/parallax.css`): excluida `GrillaFija` de la animación de entrada `revelar-bloque` para que sus fotos no se desvanezcan al desplazarse dentro de la sección, retirado el fondo del velo detrás de «Proyectos · Obra terminada», y abierto un espacio vertical en la columna central para que el texto y el botón reposen sobre el fondo blanco entre las fotografías sin mover los márgenes horizontales.
 - El material interno del estudio (presentaciones, prototipo, referencias, capturas, datos y documentos) pasa a la carpeta `material/`. No cambia lo que se sube al repositorio.
 - Categorías: "Arquitectura comercial" pasa a "Arquitectura", "Vivienda" a "Interiorismo residencial" y "Hotel" desaparece (pasa a "Interiorismo comercial"). "Cocina Labanda" y "Estación de servicio Labanda" son un solo proyecto, y "Otro" sale del tipo de proyecto del formulario. El formulario de contacto y las descripciones de Inicio y Proyectos usan los nombres nuevos.
 - Datos de la hoja: nombres nuevos, lugar, m², año, fotógrafo, encargo y solución de los proyectos que ya los tienen; "Dormitorio Amyra" y "Casa con terraza y mesa de tronco" son un solo proyecto, "Refugio VV"; "Cocina Labanda" pasa a "Hito - complejo de estación de servicio Labanda"; "La Chola" es ahora "La Chola - Cruz de piedra".
@@ -51,6 +84,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 ### Eliminado
 
 - Los pies de foto de la galería de cada proyecto (en el esquema, la plantilla y los archivos de datos); cada foto conserva su texto alternativo y el crédito del fotógrafo.
+- El archivo de datos `proyecto-de-prueba.json`, reemplazado por las secciones `Proceso` y `Renders` en los proyectos reales.
 
 ## [0.3.0] — 09/11/2026
 

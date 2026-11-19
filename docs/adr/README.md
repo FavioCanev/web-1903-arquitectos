@@ -21,7 +21,8 @@ Las fichas aprobadas no se editan. Si una decisión cambia, se escribe una ficha
 | [0013](0013-accesibilidad-wcag-2-2-aa.md) | Accesibilidad: WCAG 2.2 nivel AA | Aceptada | 06/11/2026 |
 | [0014](0014-analisis-de-seguridad-codeql.md) | Análisis de seguridad del código con CodeQL | Aceptada | 06/11/2026 |
 | [0015](0015-liston-como-rollo-a-la-derecha.md) | Listón como rollo a la derecha y velo en los textos | Aceptada | 16/11/2026 |
-| [0016](0016-animaciones-con-css-y-grilla-fija.md) | Animaciones con CSS nativo y grilla fija en el Inicio | Aceptada | 16/11/2026 |
+| [0016](0016-animaciones-con-css-y-grilla-fija.md) | Animaciones con CSS nativo y grilla fija en el Inicio | Reemplazada por la [0017](0017-entradas-al-scroll-y-microinteracciones.md) | 16/11/2026 |
+| [0017](0017-entradas-al-scroll-y-microinteracciones.md) | Entradas al hacer scroll y micro-interacciones en CSS nativo | Aceptada | 17/11/2026 |
 
 *Leyenda: "N.º" es el número de la ficha, que fija su orden; al hacer clic se abre la ficha. "Decisión" es su título. "Estado" indica si la decisión está vigente (Aceptada), en discusión (Propuesta) o fue cambiada por otra (Reemplazada). "Fecha" es el día en que se tomó la decisión; algunas fichas se completaron días después, y lo indican en su encabezado.*
 

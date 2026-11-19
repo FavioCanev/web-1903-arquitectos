@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Estado | Aceptada (reemplaza a la [ADR 0012](0012-estrategia-de-animacion.md)) |
+| Estado | Reemplazada por la [ADR 0017](0017-entradas-al-scroll-y-microinteracciones.md) |
 | Fecha | 16/11/2026 |
 | Quién decide | 1903 Arquitectos (aprobó la grilla fija) y Favio Canevaro Asto (decidió la implementación técnica) |
 

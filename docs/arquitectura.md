@@ -97,7 +97,7 @@ flowchart TB
 | Parte | Qué hace | Dónde vive | Ficha |
 |---|---|---|---|
 | Repositorio | Guarda el código, los textos de las páginas y un archivo de datos por proyecto, con todo su historial de cambios | GitHub, público, con lista blanca de archivos | ADR 0001 y 0010 |
-| Revisiones automáticas | En cada cambio, comprueban que la web se construya, que no haya enlaces rotos ni errores de accesibilidad y que el código no tenga fallas de seguridad | GitHub | ADR 0013 y 0014 |
+| Revisiones automáticas | En cada cambio, comprueban los tipos, las pruebas, que las fotos sean JPEG sin datos EXIF y de hasta 2400 px, que la web se construya, que no haya enlaces rotos ni errores de accesibilidad y que el código no tenga fallas de seguridad | GitHub | ADR 0011, 0013 y 0014 |
 | R2 | Guarda las fotos maestras (2400 px, sin datos EXIF); las originales quedan en el Drive del estudio | Cloudflare, cuenta del estudio | ADR 0011 |
 | Construcción | Astro toma el código y las fotos de R2, genera todas las páginas y cada foto en varios tamaños y formatos | Cloudflare | ADR 0001, 0004 y 0011 |
 | Web publicada | Los archivos listos que reciben los visitantes, desde servidores cercanos a cada uno | Cloudflare | ADR 0004 |
@@ -135,7 +135,7 @@ Usamos los atributos de calidad de la norma **ISO/IEC 25010** como lista de lo q
 
 | Riesgo | Efecto si pasa | Cómo se reduce |
 |---|---|---|
-| La web depende de una sola persona para cada cambio | Los cambios esperan si esa persona no está disponible | Manual de mantenimiento con el paso a paso de los cambios frecuentes y una sección de traspaso; *fork* del repositorio en la cuenta del estudio al terminar las prácticas (ADR 0003 y 0004) |
+| La web depende de una sola persona para cada cambio | Los cambios esperan si esa persona no está disponible | Asistente visual en el navegador (`docs/mantenimiento/nuevo-proyecto.html`) para preparar proyectos y fotos sin código; manual ilustrado (`docs/mantenimiento/manual-de-mantenimiento.md` y `.pdf`) con el paso a paso de los cambios frecuentes, resolución de errores y una sección de traspaso; *fork* del repositorio en la cuenta del estudio al terminar las prácticas (ADR 0003 y 0004) |
 | Cloudflare cambia sus productos o su plan gratuito | Hay que reconfigurar la publicación o las fotos | Como la web es estática, se puede mudar a GitHub Pages o Netlify sin cambiar el código; las fotos pueden volver al repositorio (ADR 0004 y 0011) |
 | R2 no está disponible al construir la web | No se puede publicar una versión nueva | La web ya publicada sigue en línea; se publica cuando R2 vuelva (ADR 0011) |
 | Faltan datos o fotos del estudio cerca del 15/11/2026 | Páginas incompletas el día de la publicación | Lo que falta se muestra entre [corchetes] y nunca se inventa; las prioridades del mapa del sitio dicen qué puede esperar ([mapa del sitio](mapa-del-sitio.md)) |
@@ -154,7 +154,7 @@ flowchart TB
         proyectos["content/proyectos/*.json<br/>(un archivo por proyecto)"]
         esquemas["lib/esquemas.ts<br/>(reglas de cada foto)"]
         esquema["content.config.ts<br/>(revisa los datos al construir)"]
-        fotos["assets/proyectos/<br/>(preparadas con scripts/preparar_fotos.py)"]
+        fotos["assets/proyectos/<br/>(preparadas con docs/mantenimiento/preparar_fotos.py)"]
     end
 
     subgraph logica["Funciones"]
@@ -168,7 +168,7 @@ flowchart TB
     end
 
     subgraph piezas["Piezas de las páginas"]
-        tarjetas["GrillaFija · TarjetaProyecto ·<br/>MosaicoProyectos · CarruselRenders · Foto"]
+        tarjetas["GrillaFija · TarjetaProyecto ·<br/>MosaicoProyectos · CarruselRenders ·<br/>CollageProyecto · Foto"]
     end
 
     paginas["pages/*.astro<br/>(una por página; proyectos/[id] genera<br/>la de cada obra)"]
@@ -198,10 +198,10 @@ flowchart TB
 | `src/content.config.ts` | El esquema de los proyectos (apoyado en `src/lib/esquemas.ts`): si falta un dato obligatorio o un texto alternativo, la construcción falla | ADR 0001 y 0013 |
 | `src/content/proyectos/` | Un archivo JSON por proyecto; su nombre es la dirección de la página | ADR 0001 y 0002 |
 | `src/assets/proyectos/` | Fotos reales reducidas a 2400 px y sin metadatos (plan B temporal antes de subirlas a R2) | ADR 0011 |
-| `scripts/` | `preparar_fotos.py` y `seleccion.json`: reducen las fotos, las pasan a sRGB, borran sus datos EXIF y verifican los archivos escritos | ADR 0011 |
+| `docs/mantenimiento/` | `preparar_fotos.py` y `seleccion.json` (aceptan `.heic` y formatos alternativos, reducen a 2400 px, pasan a sRGB, estampan el logo vertical adaptativo, borran EXIF y verifican), `nuevo-proyecto.html` (asistente visual en el navegador con vista previa de la página de proyecto y soporte `.heic` sin internet) y `manual-de-mantenimiento.md` / `.pdf` | ADR 0011 |
 | `src/lib/` | Funciones sin diseño: `esquemas.ts` valida las fotos; `whatsapp.ts` arma los enlaces y mensajes de WhatsApp (tiene su prueba); `proyectos.ts` consulta y ordena los proyectos | ADR 0005, 0006 y 0013 |
 | `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, enrutador, enlace "Saltar al contenido", barra superior, navegación, pie, listón y botón de WhatsApp | ADR 0013 y 0016 |
-| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (`GrillaFija`, `TarjetaProyecto`, `MosaicoProyectos`, `CarruselRenders` y `Foto`) | ADR 0015 y 0016 |
+| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (`GrillaFija`, `TarjetaProyecto`, `MosaicoProyectos`, `CarruselRenders`, `CollageProyecto` y `Foto`) | ADR 0015 y 0016 |
 | `src/pages/` | Una página por archivo; `proyectos/[id].astro` genera la página de cada obra terminada | ADR 0002 |
 | `src/styles/` | `tokens.css`: todas las variables de diseño (colores, espaciado, tiempos de animación y velos); `base.css`: los estilos que se repiten y los velos del listón; `parallax.css`: desplazamiento ligado al scroll en CSS. Los estilos propios de cada pieza viven dentro de ella | ADR 0008, 0015 y 0016 |
 | `public/img/` | Los logos y el patrón de baldosa (`patron.svg` y `patron-final.svg`), en SVG | — |
@@ -215,4 +215,4 @@ flowchart TB
 - **Todo script se reinicia en cada cambio de página.** Con el enrutador de Astro, un script que corre solo al cargar la web deja de funcionar después de navegar; por eso los scripts escuchan el evento `astro:page-load` (ADR 0016). El listón es la excepción: se mantiene vivo entre páginas con `transition:persist`.
 - **Mejora progresiva.** El formulario de contacto, los filtros de proyectos y el menú de celular los activa un script; sin JavaScript, la página muestra el botón de WhatsApp, todos los proyectos y todos los enlaces.
 - **Un dato pendiente se escribe entre [corchetes]**, nunca inventado; un dato obligatorio que falte hace fallar la construcción.
-- **Fotos preparadas y recuadro "Pendiente":** las fotos disponibles se preparan con `scripts/preparar_fotos.py` (2400 px, sRGB, sin datos EXIF) y Astro las optimiza desde `src/assets/proyectos/` (plan B temporal de la ADR 0011 hasta pasarlas a R2). Mientras un proyecto o espacio no tenga su archivo (`src`), la web muestra el recuadro "Pendiente".
+- **Fotos preparadas y recuadro "Pendiente":** las fotos disponibles se preparan con `docs/mantenimiento/preparar_fotos.py` o `docs/mantenimiento/nuevo-proyecto.html` (2400 px, sRGB, logo vertical adaptativo, sin datos EXIF) y Astro las optimiza desde `src/assets/proyectos/` (plan B temporal de la ADR 0011 hasta pasarlas a R2). Mientras un proyecto o espacio no tenga su archivo (`src`), la web muestra el recuadro "Pendiente".
