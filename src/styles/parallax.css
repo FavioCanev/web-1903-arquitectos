@@ -62,7 +62,8 @@
   to { translate: 0 calc(var(--parallax, 40) * 1px); }
 }
 
+/* Solo desplazamiento vertical (sin opacity: 0) para mantener contraste WCAG 2.2 AA en todo el scroll. */
 @keyframes revelar-bloque {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(22px); }
+  to { transform: translateY(0); }
 }

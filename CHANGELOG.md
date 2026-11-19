@@ -81,6 +81,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Corregido
 
+- `@keyframes revelar-bloque` en `src/styles/parallax.css` anima únicamente `translateY` (sin `opacity: 0`) para conservar contraste WCAG 2.2 AA desde la carga inicial y pasar `pa11y-ci` en todas las páginas.
 - Menú móvil y pie de página sin salto de diseño ni avisos de HTML5/accesibilidad (`Nav.astro`, `Pie.astro`, `BarraInfo.astro`, `estudio.astro` y `<meta>` en `pages.yml`): marcado síncrono de `data-js`, dimensiones explícitas en los logos, `<span>` para la hora dinámica, `role="group"` en redes sociales y texto alternativo conciso en el showroom.
 - En `src/styles/parallax.css`, las animaciones ligadas al scroll usan propiedades largas (en lugar del shorthand `animation:`) para evitar que LightningCSS genere sintaxis inválida al construir para producción, y se suma el efecto parallax a la foto de portada del Inicio (`src/pages/index.astro`).
 - En la página de proyecto, la descripción para buscadores toma la primera oración del encargo cuando existe, y la foto principal respeta su punto de enfoque y desactiva el fondo fijo en celulares y Safari de iOS. En el Inicio, el titular de la portada solo pasa a blanco cuando hay foto.
