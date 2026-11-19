@@ -26,5 +26,32 @@
     {
       "alt": "[Descripción pendiente]"
     }
+  ],
+  "proceso": [
+    {
+      "src": "../../assets/proyectos/la-chola-la-roja/proceso/01.jpg",
+      "alt": "Segundo nivel en obra con estructura metálica negra, barandas y cerramientos de drywall.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-la-roja/proceso/02.jpg",
+      "alt": "Operario pintando el cielo raso metálico entre perfiles y materiales de construcción.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-la-roja/proceso/03.jpg",
+      "alt": "Doble altura de la escalera con barandas metálicas y muros de drywall sin empastar.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-la-roja/proceso/04.jpg",
+      "alt": "Vista de la terraza superior en obra con cobertura metálica traslúcida hacia la ciudad.",
+      "enfoque": "50% 45%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-la-roja/proceso/05.jpg",
+      "alt": "Visita técnica de obra con cascos frente al mural colorido recién pintado en el local.",
+      "enfoque": "50% 50%"
+    }
   ]
 }

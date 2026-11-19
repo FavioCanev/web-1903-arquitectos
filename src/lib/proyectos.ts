@@ -12,6 +12,10 @@ export async function rendersEnDesarrollo(): Promise<Proyecto[]> {
   return (await getCollection("proyectos", (p) => p.data.estado === "render")).sort(porOrden);
 }
 
+/** Los renders con al menos una imagen real ya tienen su propia página de proyecto. */
+export const tienePagina = (p: Proyecto) =>
+  p.data.estado === "terminado" || p.data.fotos.some((f) => Boolean(f.src));
+
 export const urlProyecto = (p: Proyecto) => `/proyectos/${p.id}/`;
 
 /** Un dato que el estudio aún no entregó se muestra entre corchetes, nunca inventado. */

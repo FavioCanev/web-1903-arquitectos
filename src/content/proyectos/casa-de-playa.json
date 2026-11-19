@@ -12,6 +12,46 @@
       "src": "../../assets/proyectos/casa-de-playa/01.jpg",
       "alt": "Render de una casa de playa con volúmenes blancos, ventanales y un muro de concreto, rodeada de vegetación.",
       "enfoque": "53% 56%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/02.jpg",
+      "alt": "Render en esquina de los volúmenes superiores blancos sobre muros de concreto expuesto y jardín frontal.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/03.jpg",
+      "alt": "Render de la fachada principal con cubierta inclinada de madera vista, revestimiento pétreo y ventanales horizontales.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/04.jpg",
+      "alt": "Render exterior desde el jardín mostrando la jardinera curva de piedra, grandes mamparas y alero de madera.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/05.jpg",
+      "alt": "Render de la terraza vidriada en el segundo nivel sobre volumen de piedra natural y terraza exterior.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/06.jpg",
+      "alt": "Render del acceso lateral enmarcado en muros de piedra con techo inclinado de madera y vista al mar.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/07.jpg",
+      "alt": "Render de la escalera interior de concreto con jardinera integrada en madera y doble altura acristalada.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/08.jpg",
+      "alt": "Render frontal de la escalera de concreto con vegetación interior y luminarias suspendidas de madera.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-de-playa/09.jpg",
+      "alt": "Render de la sala interior con sofá de cuero, muro de concreto visto y volumen cenital de madera iluminado.",
+      "enfoque": "50% 52%"
     }
   ]
 }

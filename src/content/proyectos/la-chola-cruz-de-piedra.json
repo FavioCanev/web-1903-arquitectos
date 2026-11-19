@@ -10,21 +10,48 @@
   "inicio": true,
   "area": 100.9,
   "anio": 2019,
+  "encargo": "Ubicado en un solo nivel dentro de una casona del Centro Histórico de Cajamarca, el proyecto nace de la necesidad de consolidar el primer local de gran formato para una marca de comida rápida con fuertes raíces locales. El cliente buscaba un espacio con alto impacto visual capaz de atraer al público, pero que al mismo tiempo dialogara con la identidad de la marca y respetara la preexistencia arquitectónica del inmueble: muros de barro, vigas de madera en el techo y arcos decorados que debían ser puestos en valor e integrados de forma armónica.",
+  "solucion": "Se planteó una intervención de contraste equilibrado donde la arquitectura patrimonial se fusiona con una estética contemporánea y vibrante de identidad andina:\n\nTratamiento de techos y atmósfera: Para integrar la estructura original de madera sin restarle protagonismo, se diseñó un falso cielo suspendido compuesto por telares tradicionales cajamarquinos (aguayos) y tramas de hilos tensados de colores. Esto aporta calidez, textura y dinamismo visual, complementado con luminarias colgantes tipo filamento y cajas de madera empotradas que generan una iluminación acogedora.\n\nRescate patrimonial y color: Se conservaron los muros existentes aplicando una paleta de tonos tierra, ocres y ladrillo visto que evocan la materialidad tradicional, contrastados con nichos arquitectónicos iluminados con luces LED de colores vibrantes que enmarcan piezas de arte contemporáneo local.\n\nMobiliario funcional y contemporáneo: Pensando en la dinámica de un local de comida rápida, se diseñó una barra de atención robusta en concreto pulido con encimeras e insertos de madera natural, acompañada de mesas y bancas de líneas simples en madera y hierro negro que optimizan el flujo de comensales.\n\nIdentidad gráfica: El espacio se remata con intervenciones artísticas en muro —como un mural de estilo pop andino y una pintura tradicional de la mujer cajamarquina— que refuerzan el concepto de la marca y convierten el local en un punto visualmente memorable.",
   "fotos": [
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/01.jpg",
+      "alt": "Salón principal del local con mesas y bancas de madera, barra de atención al fondo y telares cajamarquinos suspendidos en el techo.",
+      "enfoque": "50% 50%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/02.jpg",
+      "alt": "Vista longitudinal del comedor hacia los nichos iluminados de colores en la pared y los aguayos colgantes en el cielorraso.",
+      "enfoque": "50% 45%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/03.jpg",
+      "alt": "Área de mesas junto al cuadro tradicional de la mujer cajamarquina y un mural colorido al fondo.",
+      "enfoque": "50% 48%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/04.jpg",
+      "alt": "Techo decorado con telares cajamarquinos, hilos de colores y cajas de madera iluminadas sobre la pared con la pintura tradicional.",
+      "enfoque": "50% 45%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/05.jpg",
+      "alt": "Dos nichos iluminados con luz amarilla y violeta que enmarcan máscaras andinas decoradas con flores y sombreros.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/06.jpg",
+      "alt": "Escultura en muro de rostro dorado con ramas cubiertas de pompones de colores.",
+      "enfoque": "50% 42%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/07.jpg",
+      "alt": "Detalle de la barra de concreto pulido con tablero y nichos de madera natural.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/08.jpg",
+      "alt": "Comensal en una mesa de madera junto al acceso del local, frente a la pintura cajamarquina y el techo de telares.",
+      "enfoque": "50% 45%"
     }
   ]
 }

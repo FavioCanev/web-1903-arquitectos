@@ -10,19 +10,44 @@
   "inicio": true,
   "fotos": [
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/cafeteria-rafael/01.jpg",
+      "alt": "Salón principal de Cafetería Rafael con piso ajedrezado en blanco y terracota, luminarias hexagonales de madera y banca tapizada.",
+      "enfoque": "50% 50%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/cafeteria-rafael/02.jpg",
+      "alt": "Vista de la cafetería hacia el letrero luminoso de Rafael Café rodeado de plantas colgantes sobre muro oscuro.",
+      "enfoque": "50% 48%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/cafeteria-rafael/03.jpg",
+      "alt": "Mesas de madera y sillones frente al muro de listones con el letrero luminoso de Rafael Café y lámparas hexagonales.",
+      "enfoque": "50% 48%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/cafeteria-rafael/04.jpg",
+      "alt": "Rincón de mesa junto a la ventana delimitado por una celosía vertical de madera y enredaderas.",
+      "enfoque": "50% 50%"
     },
     {
-      "alt": "[Descripción pendiente]"
+      "src": "../../assets/proyectos/cafeteria-rafael/05.jpg",
+      "alt": "Barra alta con taburetes tapizados frente a un panel de listones de madera e iluminación lineal.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafeteria-rafael/06.jpg",
+      "alt": "Pizarra de bienvenida en el acceso sobre el piso ajedrezado, con vista a la celosía de madera y los hexágonos del techo.",
+      "enfoque": "50% 55%"
+    },
+    {
+      "src": "../../assets/proyectos/cafeteria-rafael/07.jpg",
+      "alt": "Acceso vidriado con maceta de palma y vista interior hacia el letrero luminoso de Rafael Café.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafeteria-rafael/08.jpg",
+      "alt": "Detalle de arreglo floral en florero de vidrio sobre una mesa de madera con luminarias hexagonales al fondo.",
+      "enfoque": "50% 50%"
     }
   ]
 }

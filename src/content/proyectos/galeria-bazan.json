@@ -12,6 +12,41 @@
       "src": "../../assets/proyectos/galeria-bazan/01.jpg",
       "alt": "Render de una galería con pinturas y piezas en los muros, una banca de madera al centro y un patio con un árbol al fondo.",
       "enfoque": "49% 52%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/02.jpg",
+      "alt": "Render frontal de la sala de exposición con puerta de madera, estanterías laterales con cerámicos y banca central.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/03.jpg",
+      "alt": "Render de detalle de la banca de madera con vasijas cerámicas y escultura lítica andina al fondo.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/04.jpg",
+      "alt": "Render de la escalera en tono terracota con visitantes, máscara festiva andina en el muro y piso estampado.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/05.jpg",
+      "alt": "Render de la doble altura de escalera con muros de concreto visto, volúmenes terracota y celosía de ladrillo.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/06.jpg",
+      "alt": "Render de la sala de reuniones con mesa lineal, pantalla mural y mampara hacia la doble altura.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/07.jpg",
+      "alt": "Render del estudio y mesa de trabajo frente a la estantería de madera y muro translúcido de bloques de vidrio.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/galeria-bazan/08.jpg",
+      "alt": "Render de la oficina con estantería modular de madera, mesa de reuniones y vista panorámica hacia la ciudad.",
+      "enfoque": "50% 48%"
     }
   ]
 }

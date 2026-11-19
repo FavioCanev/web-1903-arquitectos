@@ -39,5 +39,27 @@
       "alt": "Mesas de madera con sillas y banca tapizada bajo lámparas de mimbre y farolillos, con cuadros en la pared.",
       "enfoque": "54% 51%"
     }
+  ],
+  "renders": [
+    {
+      "src": "../../assets/proyectos/san-luis-cafe/renders/01.jpg",
+      "alt": "Render de la sala principal de San Luis Café con mesa larga, taburetes, vigas de madera y lámparas de fibras naturales.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/san-luis-cafe/renders/02.jpg",
+      "alt": "Render frontal hacia el arco con el letrero luminoso San Luis, cuadros botánicos y mesas altas.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/san-luis-cafe/renders/03.jpg",
+      "alt": "Render de detalle de la mesa con servicio de café frente al nicho iluminado de San Luis.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/san-luis-cafe/renders/04.jpg",
+      "alt": "Render de la zona de mesas con arcos iluminados en la pared, uno con la frase Que llueva café.",
+      "enfoque": "50% 50%"
+    }
   ]
 }

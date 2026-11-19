@@ -1,0 +1,41 @@
+{
+  "nombre": "Casa Brisa Morín",
+  "tipo": "Arquitectura",
+  "categorias": [
+    "Arquitectura"
+  ],
+  "ciudad": "Trujillo",
+  "estado": "render",
+  "orden": 16,
+  "area": 1000,
+  "anio": 2025,
+  "encargo": "Ubicado en un terreno de 1,000 m² en Puerto Morín, Trujillo, el proyecto consiste en el diseño de una vivienda vacacional familiar que integra un bloque independiente de dos niveles destinado a hospedaje. El programa de la casa principal contempla un primer nivel con sala, comedor, cocina, terraza, zona de parrilla, lavandería, piscina, estacionamiento, dormitorio de servicio y un patio amplio; un segundo nivel con dos dormitorios principales con baño propio y balcón; y una terraza panorámica en el tercer piso. Como condicionantes clave, se solicitó garantizar la iluminación natural, dirigir las visuales principales hacia el mar en orientación noroeste, asegurar un ingreso diferenciado para el área de hospedaje e incorporar techos inclinados capaces de proteger del sol intenso y aprovechar las brisas marinas para refrescar los ambientes.",
+  "solucion": "Se planteó una volumetría contemporánea y cálida definida por cubiertas inclinadas a un agua con estructura de madera vista y amplios aleros, diseñadas estratégicamente para generar sombra profunda frente a la radiación solar y canalizar las brisas costeras hacia el interior. La materialidad combina el carácter robusto del concreto expuesto en muros perimetrales y elementos estructurales con la calidez del ladrillo caravista y revestimientos de madera natural, logrando una transición armónica entre la intimidad de los ingresos y la apertura hacia el paisaje.\n\nEn el primer nivel, el área social se vuelca completamente hacia el patio y la piscina mediante grandes mamparas corredizas de piso a techo con perfilería negra, orientando la vida exterior y las vistas hacia el noroeste. Los accesos se resolvieron de manera diferenciada a través de volúmenes jerarquizados en ladrillo y celosías verticales de madera que resguardan la privacidad entre la residencia familiar y el módulo de hospedaje. En el interior, el recorrido vertical se convierte en un punto focal mediante una escalera flotante de concreto y madera acompañada de jardineras integradas e iluminación cálida indirecta, reforzando en todo momento el vínculo entre la arquitectura, la luz natural y la vegetación.",
+  "fotos": [
+    {
+      "src": "../../assets/proyectos/casa-brisa-morin/01.jpg",
+      "alt": "Render de la terraza cubierta en madera vista con barandas de tronco, ladrillo tejido y vista abierta en Casa Brisa Morín.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-brisa-morin/02.jpg",
+      "alt": "Render frontal de la barra social de madera y concreto bajo cubierta de listones con iluminación cálida.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-brisa-morin/03.jpg",
+      "alt": "Render lateral de la barra de concreto y madera junto al muro de ladrillo tejido.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-brisa-morin/04.jpg",
+      "alt": "Render de detalle de la esquina facetada en madera de la barra con encimera de concreto pulido e iluminación inferior.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/casa-brisa-morin/05.jpg",
+      "alt": "Render de detalle del cielorraso de listones de madera y luminarias colgantes geométricas.",
+      "enfoque": "50% 45%"
+    }
+  ]
+}

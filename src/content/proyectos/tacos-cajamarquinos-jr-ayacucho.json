@@ -34,5 +34,22 @@
       "alt": "Detalle del techo con papel picado de colores y una piñata, junto a un muro rojo con cuadros enmarcados.",
       "enfoque": "49% 49%"
     }
+  ],
+  "renders": [
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/01.jpg",
+      "alt": "Render de la barra azul con arcos iluminados, piso de losetas estampadas y sillas amarillas.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/02.jpg",
+      "alt": "Render frontal de la barra de atención azul con listones rojos ondulados en el cielorraso.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/03.jpg",
+      "alt": "Render del salón principal con guirnaldas de papel picado multicolor, escalera de madera y mesas con sillas amarillas.",
+      "enfoque": "50% 50%"
+    }
   ]
 }

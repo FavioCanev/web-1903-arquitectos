@@ -30,6 +30,53 @@
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/03.jpg",
       "alt": "Puerta doble de madera tallada, enmarcada en piedra, sobre un muro de ladrillo.",
       "enfoque": "49% 49%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/04.jpg",
+      "alt": "Comedor exterior con mesa cilíndrica y bancas corridas de piedra bajo muros de ladrillo y estructura metálica.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/05.jpg",
+      "alt": "Vista frontal de mesa y bancas de piedra sobre piso de baldosas estampadas, rodeadas de ladrillo visto y piedra.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/06.jpg",
+      "alt": "Detalle de fachada revestida con piedra de río sobre zócalo de ladrillo y ventana vertical.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/07.jpg",
+      "alt": "Fachada exterior de dos niveles con puerta principal de madera, zócalo de piedra y cubierta metálica.",
+      "enfoque": "50% 45%"
+    }
+  ],
+  "proceso": [
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/01.jpg",
+      "alt": "Construcción de la marquesina metálica verde de la estación de combustible con losa en obra.",
+      "enfoque": "50% 45%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/02.jpg",
+      "alt": "Vista general del avance de obra de la estación de servicio con la estructura metálica instalada.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/03.jpg",
+      "alt": "Interior en obra con muros de ladrillo artesanal, puntales de madera y techo metálico en montaje.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/04.jpg",
+      "alt": "Andamios instalados junto a los muros de ladrillo y la escalera interior durante la construcción.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/05.jpg",
+      "alt": "Obreros trabajando sobre andamios en el acabado de los muros de ladrillo de la fachada.",
+      "enfoque": "50% 45%"
     }
   ]
 }

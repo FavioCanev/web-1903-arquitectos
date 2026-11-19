@@ -49,5 +49,69 @@
       "alt": "Detalle de un muro rojo y un cielorraso curvo de madera con luz indirecta.",
       "enfoque": "50% 52%"
     }
+  ],
+  "proceso": [
+    {
+      "src": "../../assets/proyectos/cafetos/proceso/01.jpg",
+      "alt": "Nicho rojo curvo con el letrero de Cafétos recién instalado durante los últimos acabados de obra.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/proceso/02.jpg",
+      "alt": "Barra principal en montaje bajo el cielorraso reticular de madera con iluminación lineal.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/proceso/03.jpg",
+      "alt": "Pruebas de iluminación y mobiliario con escalera de obra antes de la apertura.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/proceso/04.jpg",
+      "alt": "Detalle de prueba de luz indirecta entre el muro texturado blanco y el revestimiento rojo curvo.",
+      "enfoque": "50% 50%"
+    }
+  ],
+  "renders": [
+    {
+      "src": "../../assets/proyectos/cafetos/renders/01.jpg",
+      "alt": "Render de Cafétos mostrando la atención en mesa junto al nicho rojo curvo y la barra bajo el cielo reticular de madera.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/02.jpg",
+      "alt": "Render de la vista frontal hacia la barra de Cafétos y el techo cuadriculado de madera con iluminación integrada.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/03.jpg",
+      "alt": "Render del salón con el mural ilustrado de Cafétos, la barra en L y mesas con sillones burdeos.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/04.jpg",
+      "alt": "Render en primer plano del nicho curvo rojo con el logotipo de Cafétos y una mesa para dos personas.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/05.jpg",
+      "alt": "Render de la zona de preparación y vitrina de exhibición con el cielorraso reticular de madera.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/06.jpg",
+      "alt": "Render de la esquina de la barra frente al mural gráfico y la vitrina iluminada.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/07.jpg",
+      "alt": "Render de la mesa junto al mural de colores y las paredes texturadas en blanco.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/cafetos/renders/08.jpg",
+      "alt": "Render general mostrando el nicho curvo rojo, el mostrador de atención y los arcos de madera.",
+      "enfoque": "50% 50%"
+    }
   ]
 }

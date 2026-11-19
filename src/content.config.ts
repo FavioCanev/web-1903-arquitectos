@@ -33,6 +33,10 @@ const proyectos = defineCollection({
     encargo: z.string().optional(),
     solucion: z.string().optional(),
     fotos: z.array(esquemaFoto(image)).min(1),
+    /** Fotos opcionales del proceso de obra; si hay al menos una, se muestra la sección "Proceso". */
+    proceso: z.array(esquemaFoto(image)).optional(),
+    /** Renders opcionales del proyecto; si hay al menos uno, se muestra la sección "Renders". */
+    renders: z.array(esquemaFoto(image)).optional(),
     }),
 });
 

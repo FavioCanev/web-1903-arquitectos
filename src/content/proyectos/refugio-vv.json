@@ -60,5 +60,27 @@
       "alt": "Detalle de un panel de madera calada con trama de rejilla.",
       "enfoque": "42% 53%"
     }
+  ],
+  "proceso": [
+    {
+      "src": "../../assets/proyectos/refugio-vv/proceso/01.jpg",
+      "alt": "Horno de barro y barra de terraza en albañilería sin revestir durante la ejecución de la obra.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/proceso/02.jpg",
+      "alt": "Estructura de la isla de cocina en concreto antes de colocar encimeras y carpintería de madera.",
+      "enfoque": "50% 52%"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/proceso/03.jpg",
+      "alt": "Proceso de pintado y acabado del muro texturado con relieves y vigas en la cocina.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/refugio-vv/proceso/04.jpg",
+      "alt": "Vista de la terraza y horno de barro en construcción bajo la estructura metálica y madera.",
+      "enfoque": "50% 50%"
+    }
   ]
 }
