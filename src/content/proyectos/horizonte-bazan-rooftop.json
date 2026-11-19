@@ -1,0 +1,62 @@
+{
+  "nombre": "Horizonte Bazán - Rooftop",
+  "tipo": "Interiorismo comercial",
+  "categorias": [
+    "Interiorismo comercial"
+  ],
+  "ciudad": "Cajamarca",
+  "estado": "render",
+  "orden": 17,
+  "area": 61.5,
+  "anio": 2024,
+  "fotografo": "1903 Arquitectos",
+  "encargo": "Ubicado en la azotea del quinto nivel de una edificación situada en la pendiente de ascenso a la colina Santa Apolonia, en Cajamarca, el proyecto abarca el diseño de un rooftop bar de 61.5 m² con visuales panorámicas de 360 grados hacia toda la ciudad. El programa requerido incluye una barra principal, zona de boxes, un pequeño escenario y servicios higiénicos, debiendo integrar y camuflar los ductos de ventilación provenientes de los departamentos inferiores, además de responder eficazmente a las exigencias climáticas de altura: fuerte asoleamiento, vientos y lluvias constantes.",
+  "solucion": "Para responder al clima cajamarquino sin bloquear el paisaje, se diseñó una cubierta en forma de \"V\" invertida (a dos aguas invertidas) que proyecta sus aleros hacia el exterior para ampliar el ángulo visual hacia el horizonte y proteger del sol y los vientos. El encuentro central de ambas pendientes incorpora una canaleta oculta que recolecta y evacúa las aguas pluviales de manera eficiente, mientras que la geometría general absorbe los ductos existentes dentro de volúmenes curvos que ordenan el espacio.\n\nEn el interior, se creó una atmósfera cálida y sofisticada con una paleta dominada por tonos terracota texturizados, revestimientos cerámicos esmaltados con relieve geométrico y pisos con patrones tradicionales en tonos vino y arena. La barra principal se resuelve con un revestimiento modular curvo y encimera oscura, acompañada de taburetes tapizados con estructura metálica dorada, repisas retroiluminadas, lámparas colgantes de vidrio ámbar labrado y una luminaria lineal escultórica suspendida que refuerza el carácter contemporáneo y acogedor del local.",
+  "fotos": [
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/01.jpg",
+      "alt": "Render de la barra principal curva en cerámica terracota con relieve, taburetes dorados y luminaria lineal suspendida en Horizonte Bazán.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/02.jpg",
+      "alt": "Render frontal de la barra principal con chef atendiendo frente a las repisas retroiluminadas en terracota.",
+      "enfoque": "50% 45%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/03.jpg",
+      "alt": "Render de la zona de mesas junto a la banca curva, el ventanal panorámico hacia Cajamarca y la barra al fondo.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/04.jpg",
+      "alt": "Render longitudinal del salón con cubierta en V invertida, jardineras divisorias y vista al escenario con guitarras.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/05.jpg",
+      "alt": "Render del área de mesas junto a la baranda perimetral y ventanales con vista abierta a la ciudad de Cajamarca.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/06.jpg",
+      "alt": "Render lateral hacia la barra curva de cerámica esmaltada, piso estampado y cuadros sobre muro terracota.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/07.jpg",
+      "alt": "Render del escenario elevado con guitarras acústicas y cuadros iluminados bajo la cubierta inclinada.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/08.jpg",
+      "alt": "Render lateral del escenario y pasillo junto a los ventanales panorámicos en altura.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/horizonte-bazan-rooftop/09.jpg",
+      "alt": "Render del salón hacia el escenario con artista junto a las guitarras, jardineras y vistas a Cajamarca.",
+      "enfoque": "50% 48%"
+    }
+  ]
+}

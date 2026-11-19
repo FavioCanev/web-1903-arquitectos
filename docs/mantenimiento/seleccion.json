@@ -236,17 +236,43 @@
     "carpeta": "../drive-fotos-sync/renders/jardin-porongo",
     "fotos": [
       "Copia de BARRA 1.png",
+      "Copia de P. MESA 1.png",
+      "Gemini_Generated_Image_p46ho6p46ho6p46h.png",
+      "Gemini_Generated_Image_ph7qyvph7qyvph7q.png",
+      "fachada exterio 01.jpg",
+      "fachada exterio 01.5.jpg",
       "fachada exterio 02.png",
       "fachada exterio 03.png",
       "fachada exterio 04.png"
     ]
   },
+  "horizonte-bazan-rooftop": {
+    "carpeta": "../drive-fotos-sync/renders/horizonte-bazan-rooftop",
+    "fotos": [
+      "Copia de 1.png",
+      "Copia de 3.1.png",
+      "Copia de 4.png",
+      "Copia de 8.png",
+      "Copia de 10.png",
+      "Copia de 2.1.png",
+      "Copia de 5.png",
+      "Copia de 7.png",
+      "Copia de 9.1.png"
+    ]
+  },
   "casa-brisa-morin": {
-    "carpeta": "../drive-fotos/Porongo",
+    "carpeta": "../drive-fotos-sync/renders/casa-brisa-morin",
     "fotos": [
       { "archivo": "Copia de 5.png", "logo": false },
-      { "archivo": "Copia de 1-1.png", "logo": false },
+      { "archivo": "Copia de 6.png", "logo": false },
+      { "archivo": "Copia de 1.png", "logo": false },
       { "archivo": "Copia de 2.png", "logo": false },
+      { "archivo": "Copia de 3.png", "logo": false },
+      { "archivo": "Copia de 4.png", "logo": false },
+      "Copia de 1 (2).png",
+      "Copia de 2 (2).png",
+      "Copia de 3 (2).png",
+      "Copia de 4 (2).png",
       { "archivo": "Copia de 7.png", "logo": false },
       { "archivo": "Copia de 8.png", "logo": false }
     ]

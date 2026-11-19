@@ -8,6 +8,7 @@
   "estado": "terminado",
   "orden": 10,
   "inicio": true,
+  "fotografo": "1903 Arquitectos",
   "fotos": [
     {
       "src": "../../assets/proyectos/cafeteria-rafael/01.jpg",
