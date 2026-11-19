@@ -1,0 +1,92 @@
+# VISTA PREVIA TEMPORAL PARA REVISIÓN DEL ESTUDIO EN GITHUB PAGES.
+# RECORDATORIO (ADR 0004): apagar GitHub Pages en Settings -> Pages, eliminar este archivo
+# y retirar ASTRO_BASE de astro.config.mjs cuando la web se publique en Cloudflare (1903arq.com).
+name: Vista previa temporal (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+      - run: npm run build
+        env:
+          ASTRO_BASE: /web-1903-arquitectos
+      - name: Prefijar rutas internas y bloquear indexación en la vista previa
+        shell: bash
+        run: |
+          node <<'EOF'
+          import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+          import { join } from "node:path";
+
+          const base = "/web-1903-arquitectos";
+          const dist = "dist";
+
+          function recorrer(carpeta, fn) {
+            for (const nombre of readdirSync(carpeta)) {
+              const ruta = join(carpeta, nombre);
+              if (statSync(ruta).isDirectory()) recorrer(ruta, fn);
+              else fn(ruta, nombre);
+            }
+          }
+
+          recorrer(dist, (ruta, nombre) => {
+            if (nombre.endsWith(".html")) {
+              let html = readFileSync(ruta, "utf8");
+              html = html.replace(
+                /(href|src)=(")(\/(?!\/|web-1903-arquitectos(?:\/|"))[^"]*)/g,
+                `$1=$2${base}$3`,
+              );
+              html = html.replace(
+                /url\((["']?)(\/(?!\/|web-1903-arquitectos\/)[^"')]+)\1\)/g,
+                `url($1${base}$2$1)`,
+              );
+              if (!/name="robots"/i.test(html)) {
+                html = html.replace("</head>", '  <meta name="robots" content="noindex, nofollow" />\n  </head>');
+              }
+              writeFileSync(ruta, html, "utf8");
+            } else if (nombre.endsWith(".css")) {
+              let css = readFileSync(ruta, "utf8");
+              css = css.replace(
+                /url\((["']?)(\/(?!\/|web-1903-arquitectos\/)[^"')]+)\1\)/g,
+                `url($1${base}$2$1)`,
+              );
+              writeFileSync(ruta, css, "utf8");
+            }
+          });
+
+          writeFileSync(join(dist, "robots.txt"), "User-agent: *\nDisallow: /\n", "utf8");
+          writeFileSync(join(dist, ".nojekyll"), "", "utf8");
+          EOF
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
