@@ -5,13 +5,67 @@ import { rendersEnDesarrollo } from "../lib/proyectos";
 const renders = await rendersEnDesarrollo();
 ---
 
-<!-- Desplazamiento horizontal nativo: se desliza con el dedo, el mouse y el teclado (flechas, con el foco en el carrusel) -->
-<div class="carrusel" tabindex="0" role="region" aria-label="Proyectos en diseño: desliza para ver más">
-  {renders.map((p) => <TarjetaProyecto proyecto={p} />)}
+<!-- Desplazamiento horizontal nativo: se desliza con el dedo, el mouse y el teclado; con JS agrega flechas -->
+<div class="carrusel-marco" data-carrusel-marco>
+  <div class="carrusel-controles" hidden data-carrusel-controles>
+    <button type="button" class="carrusel-btn" data-carrusel-dir="-1" aria-label="Proyecto anterior en diseño">&#8592;</button>
+    <button type="button" class="carrusel-btn" data-carrusel-dir="1" aria-label="Siguiente proyecto en diseño">&#8594;</button>
+  </div>
+  <div class="carrusel" tabindex="0" role="region" aria-label="Proyectos en diseño: desliza para ver más" data-carrusel>
+    {renders.map((p) => <TarjetaProyecto proyecto={p} />)}
+  </div>
 </div>
 
+<script>
+  document.addEventListener("astro:page-load", () => {
+    for (const marco of document.querySelectorAll<HTMLElement>("[data-carrusel-marco]")) {
+      const carrusel = marco.querySelector<HTMLElement>("[data-carrusel]");
+      const controles = marco.querySelector<HTMLElement>("[data-carrusel-controles]");
+      const prev = marco.querySelector<HTMLButtonElement>('[data-carrusel-dir="-1"]');
+      const next = marco.querySelector<HTMLButtonElement>('[data-carrusel-dir="1"]');
+      if (!carrusel || !controles || !prev || !next || marco.dataset.listo) continue;
+      marco.dataset.listo = "true";
+      controles.hidden = false;
+
+      const actualizar = () => {
+        prev.disabled = carrusel.scrollLeft <= 2;
+        next.disabled = carrusel.scrollLeft + carrusel.clientWidth >= carrusel.scrollWidth - 2;
+      };
+
+      const mover = (dir: number) => {
+        const tarjeta = carrusel.querySelector<HTMLElement>(".tarjeta");
+        const paso = tarjeta ? tarjeta.offsetWidth + parseFloat(getComputedStyle(carrusel).gap || "0") : carrusel.clientWidth * 0.8;
+        carrusel.scrollBy({ left: dir * paso, behavior: "smooth" });
+      };
+
+      prev.addEventListener("click", () => mover(-1));
+      next.addEventListener("click", () => mover(1));
+      carrusel.addEventListener("scroll", actualizar, { passive: true });
+      addEventListener("resize", actualizar);
+      actualizar();
+    }
+  });
+</script>
+
 <style>
-  .carrusel { display: grid; grid-auto-flow: column; grid-auto-columns: 40%; gap: var(--e4); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--e3); scrollbar-color: var(--vino-2) transparent; }
+  .carrusel-marco { display: grid; gap: var(--e3); }
+  .carrusel-controles { display: flex; justify-content: flex-end; gap: var(--e1); }
+  .carrusel-controles[hidden] { display: none; }
+  .carrusel-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--vino-2);
+    background: var(--fondo); color: var(--vino); font-size: 18px; line-height: 1;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+    transition: background-color var(--dur-corta) var(--curva), opacity var(--dur-corta) var(--curva);
+  }
+  .carrusel-btn:hover:not(:disabled) { background: var(--linea); }
+  .carrusel-btn:disabled { opacity: 0.35; cursor: default; }
+
+  .carrusel {
+    display: grid; grid-auto-flow: column; grid-auto-columns: clamp(280px, 38vw, 460px); gap: var(--e4);
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--margen) * -1); padding: 0 var(--margen) var(--e3);
+    scroll-padding-inline: var(--margen); scrollbar-color: var(--vino-2) transparent;
+  }
   .carrusel > :global(*) { scroll-snap-align: start; }
   @media (max-width: 900px) { .carrusel { grid-auto-columns: 82%; gap: var(--e3); } }
 </style>

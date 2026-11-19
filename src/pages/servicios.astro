@@ -19,13 +19,23 @@ const pasos = [
   { nombre: "Construimos", texto: "Llevamos la obra de inicio a fin." },
 ];
 
-// De la hoja, pestaña "Preguntas frecuentes": solo las filas "Sí" (las principales), sin el número y en el orden de ese
-// número. Las "SECUNDARIO" irán en otro lugar.
+// De la hoja, pestaña "Preguntas frecuentes": primero las filas "Sí" (en el orden de su número) y después las
+// filas "SECUNDARIO" dentro de la misma sección, sin los números delante.
 const preguntas = [
   {"pregunta": "¿Qué información o documentos necesitan que les entregue para poder empezar a diseñar?", "respuesta": "Para iniciar, necesitamos el levantamiento topográfico del terreno, el certificado de parámetros urbanísticos o regulaciones de la zona y, si las hay, fotos del entorno, en caso contrario se podría realizar una visita a campo. Sin embargo, lo más importante para nosotros es un \"brief\" o lista de tus necesidades de espacio, tu presupuesto estimado y que nos compartas cómo imaginas tu día a día en el lugar."},
   {"pregunta": "Me gusta su enfoque regional, pero ¿cómo se aseguran de que el diseño también refleje mis gustos personales y mi estilo de vida?", "respuesta": "Nuestro proceso es de co-creación. El arraigo local pone las reglas del clima, la luz y los materiales idóneos para el lugar, pero tú pones las reglas de cómo se habita. Diseñamos a partir de tus rutinas, pasatiempos y necesidades familiares. El resultado final es una fusión perfecta: una arquitectura que pertenece a su entorno, pero que se siente 100% tuya."},
   {"pregunta": "¿De qué manera nos mostrarán las propuestas de diseño para que podamos entenderlas bien?", "respuesta": "Sabemos que interpretar planos técnicos puede ser difícil. Por eso, te presentaremos el proyecto de forma muy visual y didáctica. Utilizamos combinaciones de bocetos conceptuales, planos arquitectónicos simplificados, maquetas de estudio de materiales y renders (imágenes 3D hiperrealistas). Así podrás previsualizar con total claridad los volúmenes, la luz natural y las texturas antes de aprobar el diseño."},
-  {"pregunta": "¿Trabajan fuera de Cajamarca?", "respuesta": "[Respuesta pendiente]"},
+  {"pregunta": "¿Trabajan fuera de Cajamarca?", "respuesta": "¡Por supuesto! Nos encanta llevar nuestro trabajo a distintas partes del país, aunque nuestra sede principal está en Cajamarca. Ya hemos desarrollado proyectos en Trujillo, Arequipa y Tumbes, y estamos listos para viajar o trabajar de forma remota según lo que tu proyecto necesite."},
+  {"pregunta": "¿Cuántas opciones de diseño nos presentan y cuántas modificaciones podemos hacerle al proyecto?", "respuesta": "En la fase inicial te presentaremos un concepto base sólido con variantes de distribución para explorar el potencial del terreno. Una vez elegida la dirección, pasamos a una etapa de retroalimentación donde realizamos hasta 3 rondas de revisiones y ajustes finos. Nuestro objetivo es que firmes el diseño definitivo sintiéndote completamente seguro y entusiasmado, antes de pasar a planos técnicos."},
+  {"pregunta": "El clima de la región es complejo (mucho calor / frío / lluvia), ¿cómo lo consideran en la etapa de diseño?", "respuesta": "Ese es el núcleo de nuestra arquitectura. Diseñamos bajo principios bioclimáticos, analizando el recorrido del sol y los vientos predominantes de la zona. Usamos la arquitectura contemporánea para reinterpretar soluciones tradicionales como patios interiores, ventilaciones cruzadas, aleros pronunciados o muros de gran masa térmica. Diseñamos para que tu espacio sea naturalmente confortable, reduciendo al mínimo el uso de aire acondicionado o calefacción artificial."},
+  {"pregunta": "¿Cuánto tiempo toma la etapa de diseño antes de poder tramitar los permisos o construir?", "respuesta": "Un diseño maduro y bien detallado toma aproximadamente entre 2 y 4 meses, dependiendo de la complejidad y escala del proyecto. Este tiempo se divide entre la conceptualización, el desarrollo de planos arquitectónicos y la elaboración de los proyectos de ingenierías (estructural, eléctrica, sanitaria). Invertir el tiempo correcto en esta etapa es lo que garantiza que la construcción fluya rápido y sin costosos errores de improvisación."},
+  {"pregunta": "¿Ustedes nos ayudan a elegir los materiales y acabados de la región, o debemos buscarlos nosotros?", "respuesta": "Nosotros nos encargamos de todo el proceso de curaduría y selección de materiales. Como parte del diseño, creamos un moodboard o paleta de texturas físicas y digitales con muestras reales de las piedras, maderas, tierras o textiles artesanales de la zona. Te guiaremos para elegir combinaciones que no solo se vean espectaculares y contemporáneas, sino que también cumplan con los estándares técnicos de resistencia y durabilidad para tu proyecto."},
+  {"pregunta": "¿El diseño contempla también el paisajismo y la relación del proyecto con la naturaleza que lo rodea?", "respuesta": "Totalmente. Para nuestro estudio, la arquitectura no termina en los muros; el entorno es parte de la obra. Diseñamos el proyecto integrando el paisaje exterior desde el primer día, planificando visuales hacia la naturaleza, integrando vegetación nativa que requiera poco riego y diseñando espacios de transición como terrazas o patios. El objetivo es que el interior y el exterior dialoguen de manera fluida y armónica."},
+  {"pregunta": "¿Qué pasa si el diseño que nos gusta supera el presupuesto que tenemos pensado invertir?", "respuesta": "Para evitar sorpresas, diseñamos con una \"conciencia de costos\" desde la primera línea. Conforme avanzamos en las propuestas de diseño, vamos realizando estimaciones económicas paramétricas. Si en algún momento una idea arquitectónica supera el presupuesto objetivo, te propondremos alternativas de optimización antes de pasar a la etapa ejecutiva, ya sea ajustando sutilmente el área, modulando etapas constructivas o modificando ciertos acabados, sin perder la esencia ni la calidad del espacio."},
+  {"pregunta": "¿También construyen?", "respuesta": "Sí, ofrecemos el servicio integral de ejecución de obra de inicio a fin. Contamos con un equipo propio de profesionales y personal técnico calificado para llevar el proyecto del plano a la realidad, garantizando el cumplimiento de los plazos, el presupuesto y los más altos estándares de calidad."},
+  {"pregunta": "¿Cuánto cuesta un proyecto?", "respuesta": "Cada presupuesto es personalizado. Depende del área, el tipo y la complejidad del diseño, la ubicación, el nivel de detalle y la cantidad de planos, renders o entregables que necesites."},
+  {"pregunta": "¿Cuánto tiempo toma?", "respuesta": "El plazo mínimo es un mes, pero se define según la magnitud del servicio que contrates. Te lo indicamos en la cotización."},
+  {"pregunta": "¿Puedo pedir servicios que no estaban en la cotización?", "respuesta": "Sí. Los servicios adicionales se cotizan por separado."},
 ];
 ---
 
@@ -40,7 +50,7 @@ const preguntas = [
         {servicios.map((s, i) => (
           <li class="servicio">
             <span class="servicio__num">{String(i + 1).padStart(2, "0")}</span>
-            <h2 class="h3">{s.nombre}{s.proximamente && <span class="pronto">Próximamente</span>}</h2>
+            <h2 class="h3">{s.nombre}{s.proximamente && <span class="pildora pronto">Próximamente</span>}</h2>
             <p class="servicio__lista">{s.incluye}</p>
           </li>
         ))}
@@ -78,19 +88,22 @@ const preguntas = [
 
 <style>
   .servicios { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
-  .servicio { display: grid; grid-template-columns: 64px 1fr 1.3fr; gap: var(--e4); padding: var(--e4) 0; border-bottom: 1px solid var(--linea); align-items: baseline; }
-  .servicio__num { font-size: 14px; letter-spacing: 0.1em; color: var(--vino-2); }
-  .servicio__lista { font-size: 15px; color: var(--vino-2); }
-  .pronto { margin-left: var(--e2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid var(--vino-2); border-radius: 999px; padding: 5px 12px; vertical-align: middle; font-weight: 400; }
+  .servicio { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e2) var(--canal); padding: var(--e4) 0; border-bottom: 1px solid var(--linea); align-items: baseline; }
+  .servicio__num { grid-column: span 1; font-size: var(--t-s); letter-spacing: 0.1em; color: var(--vino-2); }
+  .servicio .h3 { grid-column: span 4; }
+  .servicio__lista { grid-column: span 7; font-size: var(--t-s); color: var(--vino-2); max-width: 62ch; }
+  .pronto { margin-left: var(--e2); vertical-align: middle; }
 
-  .pasos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--e4); list-style: none; padding: 0; margin: 0; }
-  .paso { display: grid; gap: var(--e2); padding-top: var(--e3); border-top: 2px solid var(--vino); min-width: 0; align-content: start; }
-  .paso__num { font-size: 56px; line-height: 1; font-weight: 500; color: var(--vino); }
+  .pasos { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); list-style: none; padding: 0; margin: 0; }
+  .paso { grid-column: span 3; display: grid; gap: var(--e2); padding-top: var(--e3); border-top: 2px solid var(--vino); min-width: 0; align-content: start; }
+  .paso__num { font-size: var(--t-xl); line-height: 1; font-weight: 500; color: var(--vino); }
 
-  .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--e8); }
+  .faq { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); }
+  .faq > div:first-child { grid-column: span 4; }
+  .faq > div:last-child { grid-column: span 8; }
   details { border-bottom: 1px solid var(--linea); }
   details:first-child { border-top: 1px solid var(--linea); }
-  summary { cursor: pointer; padding: var(--e3) 0; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: var(--e2); }
+  summary { cursor: pointer; padding: var(--e3) 0; font-size: var(--t-m); font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: var(--e2); }
   summary::after { content: "+"; color: var(--vino-2); }
   details[open] summary::after { content: "−"; }
   details p { padding-bottom: var(--e3); }
@@ -98,9 +111,12 @@ const preguntas = [
   .llamado .contenedor { display: flex; justify-content: space-between; align-items: center; gap: var(--e4); flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    .servicio { grid-template-columns: 48px 1fr; }
-    .servicio__lista { grid-column: 2; }
-    .pasos { grid-template-columns: minmax(0, 1fr); }
-    .faq { grid-template-columns: minmax(0, 1fr); gap: var(--e6); }
+    .servicio .h3 { grid-column: span 11; }
+    .servicio__lista { grid-column: 2 / -1; }
+    .paso { grid-column: span 6; }
+    .faq > div:first-child, .faq > div:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .paso { grid-column: 1 / -1; }
   }
 </style>

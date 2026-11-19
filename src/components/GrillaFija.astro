@@ -5,32 +5,59 @@
 import TarjetaProyecto from "./TarjetaProyecto.astro";
 import type { Proyecto } from "../lib/proyectos";
 
-interface Props {
-  proyectos: Proyecto[];
+interface ItemGrilla {
+  proyecto: Proyecto;
+  indiceFoto: number;
 }
-const { proyectos } = Astro.props;
 
-// Tres columnas: la tarjeta 1 va a la columna 1, la 2 a la 2, la 3 a la 3, la 4 a la 1…
-const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
+interface Props {
+  proyectos?: Proyecto[];
+  items?: ItemGrilla[];
+}
+const { proyectos = [], items } = Astro.props;
+const lista: ItemGrilla[] = items ?? proyectos.map((proyecto) => ({ proyecto, indiceFoto: 0 }));
+
+// Tres columnas con carga simétrica izquierda/derecha: primero los lados (0 y 2) y luego el centro (1),
+// de modo que izquierda y derecha siempre tengan la misma altura y cantidad de tarjetas.
+const columnas: ItemGrilla[][] = [[], [], []];
+lista.forEach((item, i) => {
+  columnas[[0, 2, 1][i % 3]].push(item);
+});
+// Una sola tarjeta arriba en el centro para que el hueco blanco siempre se abra justo detrás del título y el botón;
+// el resto continúa hacia abajo al terminar la animación fija.
+const centroArriba = columnas[1].slice(0, 1);
+const centroAbajo = columnas[1].slice(1);
+const maxFilas = Math.max(columnas[0].length, columnas[1].length, columnas[2].length);
 ---
 
-<section class="grilla-fija" aria-labelledby="titulo-construidos">
-  <div class="grilla-fija__escenario">
-    <div class="grilla-fija__panel">
-      <div class="grilla-fija__titulo">
-        <span class="etiqueta">Proyectos</span>
-        <h2 class="h2" id="titulo-construidos">Obra terminada</h2>
+<section class="grilla-fija" style={`--filas: ${maxFilas};`} aria-labelledby="titulo-construidos">
+  <div class="grilla-fija__pista">
+    <div class="grilla-fija__escenario">
+      <div class="grilla-fija__panel">
+        <div class="grilla-fija__titulo">
+          <span class="etiqueta">Proyectos</span>
+          <h2 class="h2" id="titulo-construidos">Obra terminada</h2>
+        </div>
+        <a class="boton boton--primario grilla-fija__boton" href="/proyectos/">Ver todos los proyectos</a>
       </div>
-      <a class="boton boton--primario grilla-fija__boton" href="/proyectos/">Ver todos los proyectos</a>
-    </div>
 
-    <div class="grilla-fija__grilla">
-      <div class="grilla-fija__columnas">
-        {columnas.map((tarjetas) => (
+      <div class="grilla-fija__grilla">
+        <div class="grilla-fija__columnas">
           <div class="grilla-fija__col">
-            {tarjetas.map((p) => <TarjetaProyecto proyecto={p} soloFoto />)}
+            {columnas[0].map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
           </div>
-        ))}
+          <div class="grilla-fija__col grilla-fija__col--centro">
+            <div class="grilla-fija__centro-parte grilla-fija__centro-parte--arriba">
+              {centroArriba.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+            </div>
+            <div class="grilla-fija__centro-parte grilla-fija__centro-parte--abajo">
+              {centroAbajo.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+            </div>
+          </div>
+          <div class="grilla-fija__col">
+            {columnas[2].map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.indiceFoto > 0 ? "grilla-fija__extra" : undefined} soloFoto />)}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -50,13 +77,18 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
 <style>
   .grilla-fija {
     --alto-nav: 76px;          /* altura de la barra de navegación (Nav.astro) */
-    --alto-seccion: 420vh;     /* cuánto dura el recorrido; más alto = animación más lenta */
+    --alto-seccion: 280vh;     /* cuánto dura la animación fija; debajo continúa la sección mostrando el resto de tarjetas */
     --alto-escenario: calc(100vh - var(--alto-nav));
     --abre: 12vw;              /* cuánto se abren hacia afuera las columnas de los lados */
+    --hueco-centro: clamp(230px, 31vh, 296px); /* ventana blanca entre las fotos del centro para el título y botón */
+    --ancho-col: calc((min(72vw, 960px) - 2 * var(--e4)) / 3);
+    --alto-tarjeta: calc(var(--ancho-col) * 1.25);
+    background: var(--fondo);
   }
 
   /* Respaldo (Firefox hoy, "reducir movimiento" y pantallas angostas): grilla normal y quieta,
      con el título arriba y el botón abajo. */
+  .grilla-fija__pista { display: contents; }
   .grilla-fija__escenario {
     max-width: var(--ancho); margin: 0 auto; padding: var(--seccion) var(--margen);
     display: flex; flex-direction: column; gap: var(--e6);
@@ -67,8 +99,14 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
   .grilla-fija__boton { order: 2; align-self: flex-start; }
   .grilla-fija__columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e4); }
   .grilla-fija__col { display: flex; flex-direction: column; gap: var(--e6); min-width: 0; }
+  .grilla-fija__centro-parte { display: contents; }
   .grilla-fija__col:nth-child(2) { margin-top: var(--e12); }
   @media (max-width: 900px) {
+    .grilla-fija__columnas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grilla-fija__col:nth-child(2) { margin-top: var(--e8); }
+    .grilla-fija__extra { display: none; }
+  }
+  @media (max-width: 600px) {
     .grilla-fija__columnas { grid-template-columns: minmax(0, 1fr); }
     .grilla-fija__col:nth-child(2) { margin-top: 0; }
   }
@@ -78,10 +116,15 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
       .grilla-fija:not(:has(:focus-visible)) {
+        overflow: clip;
+        /* Al terminar la pista fija, la sección continúa hacia abajo lo justo para mostrar todas las filas
+           sin que "Proyectos en diseño" las tape ni quede vacío excesivo. */
+        padding-bottom: max(0px, calc(1.12 * ((var(--filas, 6) - 1) * var(--alto-tarjeta) + (var(--filas, 6) - 2) * var(--e6) + 0.5 * var(--hueco-centro)) - 0.5 * var(--alto-escenario) + var(--seccion)));
+      }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__pista {
+        display: block;
         height: var(--alto-seccion);
         view-timeline: --recorrido block;
-        /* Aire blanco antes de la sección siguiente: 50 % del alto de una foto (ancho de columna × 5/4). */
-        margin-bottom: calc((min(72vw, 960px) - 2 * var(--e4)) / 3 * 1.25 * 0.5);
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__escenario {
         position: sticky; top: var(--alto-nav); height: var(--alto-escenario);
@@ -99,21 +142,27 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
         padding: var(--e4) var(--e6); /* solo el texto, sin bloque de fondo, como en la referencia (Favio, 10/11/2026) */
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { pointer-events: auto; align-self: auto; }
-      /* La etiqueta y el título van centrados entre sí (cada uno mide lo que mide su texto) */
+      /* La etiqueta y el título van centrados entre sí sin caja ni velo detrás, como en la referencia */
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__titulo { display: grid; justify-items: center; }
+      .grilla-fija__titulo .etiqueta,
+      .grilla-fija__titulo .h2 { background: none; box-shadow: none; }
 
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__grilla {
-        width: 100%; height: 100%; overflow: clip; display: grid; place-items: start center;
+        width: 100%; height: 100%; overflow: visible; clip-path: inset(0 -50vw -5000px -50vw);
+        display: grid; place-items: start center;
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas {
         width: min(72vw, 960px); align-items: start;
+        transform-origin: 50% calc(var(--alto-escenario) * 0.5);
       }
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(2) { margin-top: 0; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__centro-parte { display: flex; flex-direction: column; gap: var(--e6); }
 
       /* Todas las animaciones recorren el tramo en que el escenario está fijo: desde que su borde superior
          toca la barra hasta que la sección termina. */
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas,
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col,
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__centro-parte,
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton {
         animation-timing-function: linear;
         animation-fill-mode: both;
@@ -121,39 +170,47 @@ const columnas = [0, 1, 2].map((c) => proyectos.filter((_, i) => i % 3 === c));
         animation-range: cover calc(100vh - var(--alto-nav)) cover var(--alto-seccion);
       }
 
-      /* Fase 2 (40–85 %): zoom leve de toda la grilla. */
+      /* Fase 2 (50–85 %): zoom leve de toda la grilla al centro del escenario. */
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__columnas { animation-name: grilla-zoom; }
 
-      /* Fases 1 y 2: cada columna sube o baja a su propia velocidad; las de los lados se abren hacia afuera. */
-      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col { animation-name: grilla-sube, grilla-abre; --lado: -1; }
-      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(2) { animation-name: grilla-baja; }
-      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(3) { animation-name: grilla-sube-tarde, grilla-abre; --lado: 1; }
+      /* Fases 1 y 2 (recreación de la referencia): lados bajan simétricos y centro sube hasta encajar 3×2 en 50 %;
+         entre 50 % y 85 % la grilla hace zoom y se abre en cruz (lados en X, centro arriba/abajo en Y). */
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col { animation-name: grilla-baja-lados, grilla-abre; --lado: -1; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col--centro { animation-name: grilla-sube-centro; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__col:nth-child(3) { animation-name: grilla-baja-lados, grilla-abre; --lado: 1; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__centro-parte--arriba { animation-name: grilla-centro-arriba; }
+      .grilla-fija:not(:has(:focus-visible)) .grilla-fija__centro-parte--abajo { animation-name: grilla-centro-abajo; }
 
-      /* Fase 3 (85–95 %): aparece el botón. */
+      /* Fase 3 (85–95 %): aparece el botón en el claro central. */
       .grilla-fija:not(:has(:focus-visible)) .grilla-fija__boton { animation-name: grilla-boton; }
     }
   }
 
   @keyframes grilla-zoom {
-    0%, 40% { scale: 1; }
+    0%, 50% { scale: 1; }
     85%, 100% { scale: 1.12; }
   }
-  /* Columnas 1 y 3: entran desde abajo y terminan mostrando sus últimas tarjetas. */
-  @keyframes grilla-sube {
-    0% { translate: 0 var(--alto-escenario); }
-    85%, 100% { translate: 0 min(0px, calc(var(--alto-escenario) - 100%)); }
-  }
-  @keyframes grilla-sube-tarde {
-    0%, 8% { translate: 0 var(--alto-escenario); }
-    85%, 100% { translate: 0 min(0px, calc(var(--alto-escenario) - 100%)); }
-  }
-  /* Columna 2: entra desde arriba y termina con su primera tarjeta a la vista. */
-  @keyframes grilla-baja {
+  /* Columnas laterales (idénticas y simétricas): parten ocultas arriba y bajan juntas hasta encajar en el 50 %. */
+  @keyframes grilla-baja-lados {
     0% { translate: 0 -100%; }
-    85%, 100% { translate: 0 0; }
+    50%, 100% { translate: 0 calc(0.5 * var(--alto-escenario) - var(--alto-tarjeta) - 0.5 * var(--e6)); }
+  }
+  /* Columna central: parte oculta abajo y sube hasta encajar alineada con los lados en el 50 %. */
+  @keyframes grilla-sube-centro {
+    0% { translate: 0 var(--alto-escenario); }
+    50%, 100% { translate: 0 calc(0.5 * var(--alto-escenario) - var(--alto-tarjeta) - 0.5 * var(--e6)); }
+  }
+  /* Al abrirse al final (50–85 %), el centro se separa en vertical y los lados en horizontal sin cambiar los márgenes. */
+  @keyframes grilla-centro-arriba {
+    0%, 50% { translate: 0 0; }
+    85%, 100% { translate: 0 calc(-0.5 * var(--hueco-centro) + 0.5 * var(--e6)); }
+  }
+  @keyframes grilla-centro-abajo {
+    0%, 50% { translate: 0 0; }
+    85%, 100% { translate: 0 calc(0.5 * var(--hueco-centro) - 0.5 * var(--e6)); }
   }
   @keyframes grilla-abre {
-    0%, 40% { transform: translateX(0); }
+    0%, 50% { transform: translateX(0); }
     85%, 100% { transform: translateX(calc(var(--lado) * var(--abre))); }
   }
   @keyframes grilla-boton {

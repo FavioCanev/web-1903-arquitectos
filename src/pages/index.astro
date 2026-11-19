@@ -9,7 +9,12 @@ import { obrasTerminadas, urlProyecto } from "../lib/proyectos";
 
 const obras = await obrasTerminadas();
 const destacado = obras.find((p) => p.data.destacado);
-const delInicio = obras.filter((p) => p.data.inicio);
+const delInicio = obras.filter((p) => p.data.inicio && p.data.fotos.some((f) => f.src));
+// Dos pasadas para intercalar la primera y segunda foto de cada obra terminada (18 fotos reales en la grilla).
+const itemsGrilla = [
+  ...delInicio.map((proyecto) => ({ proyecto, indiceFoto: 0 })),
+  ...delInicio.filter((p) => Boolean(p.data.fotos[1]?.src)).map((proyecto) => ({ proyecto, indiceFoto: 1 })),
+];
 const fotoPortada = destacado?.data.fotos[destacado.data.portada ?? 0];
 const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
 ---
@@ -33,7 +38,7 @@ const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
       <div class="inicio__contenido">
         {!fotoPortada?.src && <span class="inicio__nota parallax-portada sobre-liston">Foto pendiente · {destacado?.data.nombre}</span>}
         <h1 class="h1 parallax-portada sobre-liston">{estudio.lema}</h1>
-        <div class="botones sobre-liston">
+        <div class="botones parallax-portada sobre-liston">
           <a class="boton boton--primario" href="/proyectos/">Ver proyectos</a>
           <a class="boton boton--secundario" href={enlaceWhatsapp()}>Escríbenos por WhatsApp</a>
         </div>
@@ -42,7 +47,7 @@ const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
   </section>
   </div>
 
-  <GrillaFija proyectos={delInicio} />
+  <GrillaFija items={itemsGrilla} />
 
   <section class="seccion seccion--alt liston-sobre">
     <div class="contenedor sobre-liston">
@@ -61,7 +66,7 @@ const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
   .portada-pausa { display: grid; }
   .portada-pausa > .inicio__fondo,
   .portada-pausa > .inicio { grid-area: 1 / 1; position: sticky; top: var(--alto-nav, 0px); }
-  .inicio__fondo { z-index: 0; border-radius: 0; padding: 0; contain: size; } /* la foto llena el espacio que da la portada, no lo agranda */
+  .inicio__fondo { z-index: 0; border-radius: 0; padding: 0; contain: size; overflow: clip; height: 100%; } /* la foto llena el espacio de la portada y nunca se desborda debajo */
   .inicio__fondo :global(.inicio__imagen) { width: 100%; height: 100%; }
   /* La foto de la portada es un enlace al proyecto. El contenido va encima, así que deja pasar los clics
      (solo los botones los reciben) para que un clic en la foto llegue al enlace. */
@@ -70,7 +75,7 @@ const hayFotoPortada = Boolean(fotoPortada?.src && destacado);
   /* Velo oscuro plano sobre la foto (negro al 40 %, sin degradado): da contraste al titular blanco (WCAG 2.2 AA, ADR 0013) */
   .inicio__fondo a::after { content: ""; background: rgb(0 0 0 / 0.4); pointer-events: none; }
   .inicio__fondo a:focus-visible { outline-offset: -6px; }
-  .inicio { pointer-events: none; }
+  .inicio { pointer-events: none; overflow: clip; }
   .inicio .botones { pointer-events: auto; }
   .inicio { z-index: var(--capa-contenido); --velo: var(--velo-pendiente); } /* el velo toma el color del fondo de la portada */
   .inicio .inicio__foto { background: transparent; }

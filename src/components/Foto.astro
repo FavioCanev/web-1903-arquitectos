@@ -22,7 +22,7 @@ const { src, alt, pendiente = "Foto pendiente", clase = "r-4x5", eager = false, 
 
 {src
   ? (
-    <div class:list={["marco", clase]}>
+    <div class:list={["marco", "foto-esqueleto", clase]}>
       <Picture src={src} alt={alt} formats={["avif", "webp"]} widths={[480, 800, 1200, 1600]} sizes={sizes} loading={eager ? "eager" : "lazy"} style={`object-position:${enfoque}`} />
     </div>
   )

@@ -7,24 +7,33 @@ body {
   margin: 0;
   background: var(--fondo);
   color: var(--vino);
-  font: 400 17px/1.6 var(--fuente);
+  font: 400 var(--t-m)/1.6 var(--fuente);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 img { display: block; max-width: 100%; }
-a { color: inherit; }
+a { color: inherit; transition: color var(--dur-corta) var(--curva), text-decoration-color var(--dur-corta) var(--curva); }
+:where(main, .pie) a:not(.boton, .tarjeta, .pie__red):hover { text-decoration-color: var(--naranja); text-underline-offset: 4px; }
 h1, h2, h3, p, figure { margin: 0; }
 
 .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--margen); }
+.grilla-12 { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); }
 .seccion { padding: var(--seccion) 0; }
 .seccion--alt { background: var(--fondo-alt); }
 
-/* Capas del listón (ADR 0009, versión 2 en prueba). Por defecto, cada bloque de la página queda por encima
-   del listón: el listón pasa detrás de su fondo y de su contenido. En los bloques marcados "liston-sobre",
-   el listón pasa por encima del fondo, y solo lo que se eleva con "sobre-liston" queda por encima de él. */
-.barra-info, main > :not(.liston-sobre), .pie { position: relative; z-index: var(--capa-contenido); }
-.sobre-liston { position: relative; z-index: var(--capa-contenido); }
+/* Capas del listón (ADR 0015). El listón (z-index: 1) pasa por encima del fondo de cada sección y del pie,
+   y por detrás de la barra superior, las fotos, tarjetas y textos (z-index: 2). */
+.barra-info,
+main > :not(.liston-sobre) > .contenedor,
+.contenido > .contenedor,
+.sobre-liston,
+.grilla-fija__escenario,
+.pie > .contenedor,
+.pie__patron {
+  position: relative;
+  z-index: var(--capa-contenido);
+}
 /* Velo del listón (opción b, 10/11/2026): todo texto lleva un velo del color de su fondo, un rectángulo con las
    esquinas apenas redondeadas que cubre el texto de inicio a fin y le baja la opacidad al listón cuando pasa por
    detrás, para que el texto siempre se lea (WCAG 2.2 AA, ADR 0013). Sobre un fondo liso el velo no se nota, porque
@@ -32,7 +41,7 @@ h1, h2, h3, p, figure { margin: 0; }
 :root { --velo: var(--velo-fondo); }
 .seccion--alt { --velo: var(--velo-fondo-alt); }
 .pendiente { --velo: var(--velo-pendiente); }
-:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render, a:not(.boton, .tarjeta)):not(.boton--primario, .boton--primario *) {
+:where(main, .pie) :where(h1, h2, h3, h4, p, li, dt, dd, label, summary, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .pildora, a:not(.boton, .tarjeta)):not(.boton--primario, .boton--primario *) {
   background-color: var(--velo);
   box-shadow: 0 0 0 4px var(--velo);
   border-radius: 6px;
@@ -40,7 +49,7 @@ h1, h2, h3, p, figure { margin: 0; }
 /* El rectángulo mide lo que mide el texto, no el ancho de su bloque: así no tapa el listón donde no hay texto.
    Solo en los elementos que contienen texto y nada más: un <li> o un <label> con una foto, un campo o un bloque
    dentro (el equipo, el formulario) conserva su ancho. */
-:where(main, .pie) :where(h1, h2, h3, h4, p, dt, dd, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .marca-render),
+:where(main, .pie) :where(h1, h2, h3, h4, p, dt, dd, .etiqueta, .tarjeta__datos, .tarjeta__tipo, .pildora),
 :where(main, .pie) :where(li, label):not(:has(input, select, textarea, div, figure, img, ul, ol, p, h1, h2, h3, h4)) {
   width: fit-content;
   max-width: 100%;
@@ -54,12 +63,17 @@ h1, h2, h3, p, figure { margin: 0; }
 .saltar:focus { top: var(--e2); }
 
 /* Tipografía */
-.etiqueta { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--vino-2); margin-bottom: var(--e2); }
-.h1 { font-size: clamp(40px, 6vw, 88px); line-height: 1.02; font-weight: 500; letter-spacing: -0.02em; }
-.h2 { font-size: clamp(30px, 3.6vw, 52px); line-height: 1.08; font-weight: 500; letter-spacing: -0.015em; }
-.h3 { font-size: 22px; line-height: 1.2; font-weight: 500; }
+.etiqueta { display: block; font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--vino-2); margin-bottom: var(--e2); }
+.h1 { font-size: var(--t-2xl); line-height: 1.02; font-weight: 500; letter-spacing: -0.02em; }
+.h2 { font-size: var(--t-xl); line-height: 1.08; font-weight: 500; letter-spacing: -0.015em; }
+.h3 { font-size: var(--t-l); line-height: 1.2; font-weight: 500; }
 .texto-2 { color: var(--vino-2); }
-.pequeno { font-size: 14px; }
+.pequeno { font-size: var(--t-s); }
+.pildora {
+  display: inline-block; justify-self: start; font-size: var(--t-xs); font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--vino-2);
+  border-radius: 999px; padding: 6px var(--e2); color: var(--vino-2);
+}
 .cabecera { display: flex; justify-content: space-between; align-items: end; gap: var(--e3); margin-bottom: var(--e6); flex-wrap: wrap; }
 .cabecera p { max-width: 42ch; }
 
@@ -68,7 +82,7 @@ h1, h2, h3, p, figure { margin: 0; }
   display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--e3);
   border-radius: 999px; font: 500 15px/1 var(--fuente); letter-spacing: 0.02em;
   text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
-  transition: transform var(--dur-corta) var(--curva);
+  transition: transform var(--dur-corta) var(--curva), border-color var(--dur-corta) var(--curva);
 }
 .boton:hover { transform: translateY(-2px); }
 .boton--primario { background: var(--naranja); color: var(--vino); }
@@ -78,6 +92,7 @@ h1, h2, h3, p, figure { margin: 0; }
 .pendiente { --boton-fondo: var(--fondo); }
 .sobre-vino, .contacto { --boton-fondo: var(--claro); }
 .boton--secundario { background: var(--boton-fondo); color: var(--vino); }
+.boton--secundario:hover, .boton--secundario:focus-visible { border-color: var(--vino-2); }
 .botones { display: flex; flex-wrap: wrap; gap: var(--e2); }
 :focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
 .sobre-vino :focus-visible, .contacto :focus-visible { outline-color: var(--amarillo); }
@@ -87,6 +102,22 @@ h1, h2, h3, p, figure { margin: 0; }
   display: grid; place-items: center; text-align: center; width: 100%;
   background: var(--pendiente); color: var(--vino-2); border-radius: var(--radio);
   font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: var(--e2);
+}
+
+/* Esqueleto de carga en marcos de fotos mientras descargan en conexiones lentas */
+.foto-esqueleto {
+  background-color: var(--pendiente);
+  background-image: linear-gradient(90deg, transparent 0%, rgb(253 253 253 / 0.55) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: esqueleto-brillo 1.6s ease-in-out infinite;
+}
+.foto-esqueleto[data-cargada] { background-image: none; animation: none; }
+@keyframes esqueleto-brillo {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .foto-esqueleto { background-image: none; animation: none; }
 }
 .r-4x5 { aspect-ratio: 4 / 5; }
 .r-3x2 { aspect-ratio: 3 / 2; }

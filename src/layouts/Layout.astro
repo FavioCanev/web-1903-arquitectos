@@ -9,16 +9,14 @@ import BarraInfo from "../components/BarraInfo.astro";
 import Nav from "../components/Nav.astro";
 import Pie from "../components/Pie.astro";
 import Liston from "../components/Liston.astro";
-import BotonWhatsapp from "../components/BotonWhatsapp.astro";
 
 interface Props {
   titulo: string;
   descripcion: string;
   /** Para la página 404: que no aparezca en Google. */
   noindex?: boolean;
-  pieAmarillo?: boolean;
 }
-const { titulo, descripcion, noindex = false, pieAmarillo = false } = Astro.props;
+const { titulo, descripcion, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,10 +35,24 @@ const { titulo, descripcion, noindex = false, pieAmarillo = false } = Astro.prop
     <Liston />
     <BarraInfo />
     <Nav />
-    <main id="contenido" tabindex="-1">
+    <main id="contenido">
       <slot />
     </main>
-    <Pie amarillo={pieAmarillo} />
-    <BotonWhatsapp />
+    <Pie />
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        document.querySelectorAll<HTMLImageElement>(".foto-esqueleto img").forEach((img) => {
+          const caja = img.closest<HTMLElement>(".foto-esqueleto");
+          if (!caja) return;
+          if (img.complete) {
+            caja.dataset.cargada = "1";
+          } else {
+            const marcar = () => { caja.dataset.cargada = "1"; };
+            img.addEventListener("load", marcar, { once: true });
+            img.addEventListener("error", marcar, { once: true });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

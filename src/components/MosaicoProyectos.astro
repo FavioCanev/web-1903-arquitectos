@@ -4,25 +4,31 @@ import type { Proyecto } from "../lib/proyectos";
 
 interface Props {
   proyectos: Proyecto[];
+  nivel?: "h2" | "h3";
 }
-const { proyectos } = Astro.props;
+const { proyectos, nivel = "h3" } = Astro.props;
 ---
 
 <div class="mosaico" data-mosaico>
-  {proyectos.map((p) => <TarjetaProyecto proyecto={p} clase="parallax" />)}
+  {proyectos.map((p) => <TarjetaProyecto proyecto={p} clase="parallax" nivel={nivel} />)}
 </div>
 
 <style>
   .mosaico { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--e6) var(--e4); }
-  /* Ritmo escalonado, como Jalo */
-  .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: var(--e12); }
+  /* Ritmo escalonado, como Jalo; `of :not([hidden])` mantiene el desfase al filtrar */
+  .mosaico > :global(.tarjeta:nth-child(3n + 2 of :not([hidden]))) { margin-top: var(--e12); }
   /* Parallax (prueba): cada columna se mueve a su propia velocidad, como en las grillas editoriales */
   .mosaico > :global(.tarjeta) { --parallax: 0; }
-  .mosaico > :global(.tarjeta:nth-child(3n + 2)) { --parallax: 70; }
-  .mosaico > :global(.tarjeta:nth-child(3n)) { --parallax: 30; }
+  .mosaico > :global(.tarjeta:nth-child(3n + 2 of :not([hidden]))) { --parallax: 70; }
+  .mosaico > :global(.tarjeta:nth-child(3n of :not([hidden]))) { --parallax: 30; }
   @media (max-width: 900px) {
     .mosaico > :global(.tarjeta) { --parallax: 0; }
+    .mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mosaico > :global(.tarjeta:nth-child(3n + 2 of :not([hidden]))) { margin-top: 0; }
+    .mosaico > :global(.tarjeta:nth-child(2n of :not([hidden]))) { margin-top: var(--e8); }
+  }
+  @media (max-width: 600px) {
     .mosaico { grid-template-columns: minmax(0, 1fr); }
-    .mosaico > :global(.tarjeta:nth-child(3n + 2)) { margin-top: 0; }
+    .mosaico > :global(.tarjeta:nth-child(2n of :not([hidden]))) { margin-top: 0; }
   }
 </style>

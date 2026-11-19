@@ -1,29 +1,28 @@
 ---
-import { estudio } from "../config";
+import { estudio, navegacion } from "../config";
 import { enlaceWhatsapp } from "../lib/whatsapp";
 
-interface Props {
-  /** Solo la página de proyecto lleva el pie amarillo (pedido del 02/11/2026). */
-  amarillo?: boolean;
-}
-const { amarillo = false } = Astro.props;
+const enlacesMapa = [...navegacion, { texto: "Contacto", href: "/contacto/" }];
 ---
 
-<footer class:list={["pie", { "pie--amarillo": amarillo }]}>
+<footer class="pie">
   <div class="contenedor">
-    <a class="pie__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" /></a>
+    <a class="pie__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" loading="lazy" /></a>
 
-    <div class="pie__columnas">
+    <div class="pie__columnas grilla-12">
       <div class="pie__contacto">
         <p><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></p>
         <p>Atención en todo el Perú · <a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></p>
         <p>{estudio.horario.semana}<br />{estudio.horario.sabado}</p>
         <p>{estudio.direccion}</p>
       </div>
-      <ul>
-        <li><a href={estudio.redes.instagram}>Instagram</a></li>
-        <li><a href={estudio.redes.facebook}>Facebook</a></li>
-      </ul>
+      <nav class="pie__mapa" aria-label="Mapa del sitio">
+        <ul>
+          {enlacesMapa.map((item) => (
+            <li><a href={item.href}>{item.texto}</a></li>
+          ))}
+        </ul>
+      </nav>
     </div>
   </div>
 
@@ -32,22 +31,45 @@ const { amarillo = false } = Astro.props;
   <div class="contenedor">
     <div class="pie__legal">
       <span>{estudio.nombre} © 2026</span>
+      <div class="pie__redes" aria-label="Redes sociales">
+        <a class="pie__red" href={estudio.redes.instagram} aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+        <a class="pie__red" href={estudio.redes.facebook} aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z" />
+          </svg>
+        </a>
+      </div>
       <span><a href="/privacidad/">Aviso de privacidad</a> · <a href="/accesibilidad/">Declaración de accesibilidad</a></span>
     </div>
   </div>
 </footer>
 
 <style>
-  .pie { padding: var(--e12) 0 var(--e4); }
+  .pie { padding: var(--e12) 0 var(--e6); background: var(--amarillo); --velo: var(--velo-amarillo); }
+  .pie > .contenedor { position: relative; z-index: var(--capa-contenido); }
+  .pie__logo { display: inline-block; width: fit-content; }
   .pie__logo img { width: min(560px, 80vw); height: auto; }
-  .pie__columnas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e6); margin-top: var(--e8); }
-  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e1); align-content: start; }
-  .pie__contacto { display: grid; gap: var(--e1); align-content: start; font-size: 15px; }
+  .pie__columnas { margin-top: var(--e8); align-items: start; }
+  .pie__contacto { grid-column: span 8; display: grid; gap: var(--e1); align-content: start; font-size: var(--t-s); }
+  .pie__mapa { grid-column: span 4; }
+  .pie__mapa ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e1); font-size: var(--t-s); }
+  .pie__mapa a, .pie__legal a { display: inline-flex; align-items: center; min-height: 24px; }
   /* De borde a borde, con 16 px de aire entre baldosas (pedido del 02/11/2026) */
   .pie__patron { height: 56px; margin: var(--e8) 0 var(--e4); background: url("/img/patron.svg") center / 72px 56px repeat-x; }
-  .pie__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--e2); font-size: 13px; color: var(--vino-2); border-top: 1px solid var(--linea); padding-top: var(--e3); }
-  .pie--amarillo { background: var(--amarillo); --velo: var(--velo-amarillo); }
-  .pie--amarillo .pie__legal { color: var(--vino); border-top-color: rgba(83, 9, 10, 0.25); }
-  /* En celular se deja aire abajo para que el botón flotante de WhatsApp no tape los enlaces legales */
-  @media (max-width: 900px) { .pie__columnas { grid-template-columns: minmax(0, 1fr); } .pie { padding-bottom: var(--e12); } }
+  .pie__legal { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--e3); font-size: var(--t-xs); color: var(--vino); border-top: 1px solid var(--linea-vino); padding-top: var(--e3); }
+  .pie__legal > :last-child { justify-self: end; text-align: right; }
+  .pie__redes { display: flex; align-items: center; gap: var(--e2); }
+  .pie__red { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(83, 9, 10, 0.4); color: var(--vino); background-color: transparent; box-shadow: none; transition: border-color var(--dur-corta) var(--curva), background-color var(--dur-corta) var(--curva); }
+  .pie__red:hover { border-color: var(--vino); background-color: rgba(83, 9, 10, 0.08); }
+  @media (max-width: 900px) {
+    .pie__contacto, .pie__mapa { grid-column: 1 / -1; }
+    .pie__legal { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+    .pie__legal > :last-child { justify-self: start; text-align: left; }
+  }
 </style>

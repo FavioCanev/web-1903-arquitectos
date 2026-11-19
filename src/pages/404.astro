@@ -4,24 +4,92 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout titulo="Página no encontrada — 1903 Arquitectos" descripcion="La página que buscas no existe." noindex>
   <section class="seccion">
-    <div class="contenedor centro">
-      <!-- Logo vertical en vino: se pinta con una máscara del SVG claro, para no duplicar el archivo -->
-      <div class="logo" role="img" aria-label="1903 Arquitectos"></div>
-      <h1 class="h2">Esta página no existe</h1>
-      <p class="texto-2">[Mensaje por aprobar.] Puede que el enlace sea antiguo o esté mal escrito.</p>
-      <div class="botones">
-        <a class="boton boton--primario" href="/">Ir al inicio</a>
-        <a class="boton boton--secundario" href="/proyectos/">Ver proyectos</a>
+    <div class="contenedor">
+      <div class="lamina-404">
+        <span class="marca-cota marca-cota--tl" aria-hidden="true"></span>
+        <span class="marca-cota marca-cota--tr" aria-hidden="true"></span>
+        <span class="marca-cota marca-cota--bl" aria-hidden="true"></span>
+        <span class="marca-cota marca-cota--br" aria-hidden="true"></span>
+
+        <p class="codigo-404" aria-hidden="true">ERROR<br />404</p>
+        <h1 class="h2">Esta página no existe</h1>
+        <p class="texto-2">Puede que el enlace sea antiguo o esté mal escrito.</p>
+
+        <div class="botones">
+          <a class="boton boton--primario" href="/">Volver al inicio</a>
+        </div>
+
+        <div class="patron-404" aria-hidden="true"></div>
+        <div class="logo" role="img" aria-label="1903 Arquitectos"></div>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .centro { display: grid; justify-items: center; text-align: center; gap: var(--e3); }
+  .lamina-404 {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(44px, 7vw, 72px) clamp(24px, 5vw, 56px) clamp(76px, 9vw, 92px);
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: var(--e3);
+    background-color: var(--fondo-alt);
+    background-image:
+      linear-gradient(to right, rgb(83 9 10 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(83 9 10 / 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    border: 1px solid var(--linea);
+    --velo: var(--velo-fondo-alt);
+  }
+  .marca-cota {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--vino-2);
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+  }
+  .marca-cota--tl { top: 14px; left: 14px; border-top-width: 1.5px; border-left-width: 1.5px; }
+  .marca-cota--tr { top: 14px; right: 14px; border-top-width: 1.5px; border-right-width: 1.5px; }
+  .marca-cota--bl { bottom: 14px; left: 14px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+  .marca-cota--br { bottom: 14px; right: 14px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+  .codigo-404 {
+    margin: 0;
+    font-size: clamp(48px, 8vw, 76px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: 0.04em;
+    color: var(--vino);
+  }
+  .lamina-404 .h2 { margin: 0; }
+  .lamina-404 .texto-2 { max-width: 44ch; margin: 0; }
+  .botones { justify-content: center; margin-top: var(--e1); }
+  .patron-404 {
+    width: 100%;
+    max-width: 360px;
+    height: 28px;
+    margin-top: var(--e2);
+    background: url("/img/patron.svg") center / 36px 28px repeat-x;
+    opacity: 0.9;
+  }
   .logo {
-    width: 120px; aspect-ratio: 46.07 / 77.13; background: var(--vino);
+    position: absolute;
+    right: 32px;
+    bottom: 28px;
+    width: 44px;
+    aspect-ratio: 46.07 / 77.13;
+    background: var(--vino);
     mask: url("/img/logo-v-claro.svg") center / contain no-repeat;
     -webkit-mask: url("/img/logo-v-claro.svg") center / contain no-repeat;
+  }
+  @media (max-width: 600px) {
+    .lamina-404 { padding-bottom: 88px; }
+    .patron-404 { max-width: 240px; }
+    .logo { right: 24px; bottom: 22px; width: 34px; }
   }
 </style>
