@@ -10,7 +10,7 @@ const esActual = (href: string) => ruta.startsWith(href);
 
 <header class="nav">
   <nav class="contenedor" aria-label="Principal">
-    <a class="nav__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" width="170" height="34" /></a>
+    <a class="nav__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" width="85" height="34" /></a>
     <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-lista" aria-label="Abrir menú">
       <svg class="nav__icono nav__icono--abrir" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <line x1="4" y1="7" x2="20" y2="7" />
@@ -30,6 +30,7 @@ const esActual = (href: string) => ruta.startsWith(href);
     <a class="boton boton--primario nav__escribenos" href="/contacto/" aria-current={esActual("/contacto/") ? "page" : undefined}>Contacto</a>
   </nav>
 </header>
+<script is:inline>document.querySelector(".nav")?.setAttribute("data-js", "");</script>
 
 <script>
   // Menú de celular. Sin JavaScript los enlaces quedan siempre a la vista (mejora progresiva).

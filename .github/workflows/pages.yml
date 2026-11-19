@@ -61,7 +61,7 @@ jobs:
                 `url($1${base}$2$1)`,
               );
               if (!/name="robots"/i.test(html)) {
-                html = html.replace("</head>", '  <meta name="robots" content="noindex, nofollow" />\n  </head>');
+                html = html.replace("</head>", '  <meta name="robots" content="noindex, nofollow">\n  </head>');
               }
               writeFileSync(ruta, html, "utf8");
             } else if (nombre.endsWith(".css")) {
