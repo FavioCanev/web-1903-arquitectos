@@ -51,8 +51,28 @@
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/08.jpg",
-      "alt": "Comensal en una mesa de madera junto al acceso del local, frente a la pintura cajamarquina y el techo de telares.",
+      "alt": "Mesa de madera junto al acceso del local frente a la pintura tradicional cajamarquina y el techo de telares.",
       "enfoque": "50% 45%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/09.jpg",
+      "alt": "Tres nichos iluminados en amarillo, magenta y morado con máscaras andinas bajo los aguayos y cajas de luz del techo.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/10.jpg",
+      "alt": "Vista vertical simétrica del pasillo entre mesas hacia los tres nichos iluminados de colores bajo los telares.",
+      "enfoque": "50% 48%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/11.jpg",
+      "alt": "Vista vertical de la barra completa de concreto pulido y ladrillo visto bajo la trama de aguayos suspendidos.",
+      "enfoque": "50% 50%"
+    },
+    {
+      "src": "../../assets/proyectos/la-chola-cruz-de-piedra/12.jpg",
+      "alt": "Detalle vertical del nicho iluminado en amarillo con máscara andina florida sobre el muro claro.",
+      "enfoque": "50% 50%"
     }
   ]
 }

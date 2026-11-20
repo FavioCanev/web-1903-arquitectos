@@ -1,11 +1,16 @@
 {
   "tacos-cajamarquinos-jr-ayacucho": {
-    "carpeta": "2. Tacos Cajamarquinos - Ayacucho",
+    "carpeta": "../drive-fotos-sync/terminados/tacos-cajamarquinos-jr-ayacucho",
     "fotos": [
-      "1.png",
-      "3.png",
-      "2.png",
-      "4.png"
+      "Copia de 1.png",
+      "Copia de 3.png",
+      "Copia de 2.png",
+      "Copia de 4.png",
+      "Copia de 5.png",
+      "Copia de 6.png",
+      "Copia de 7.png",
+      "Copia de 8.png",
+      "Copia de 9.png"
     ],
     "carpeta_renders": "../drive-fotos/renders-tacos-ayacucho",
     "renders": [
@@ -15,13 +20,23 @@
     ]
   },
   "san-luis-cafe": {
-    "carpeta": "1. Café San Luis",
+    "carpeta": "../drive-fotos-sync/terminados/san-luis-cafe",
     "fotos": [
-      "3.png",
-      "5.png",
-      "4.png",
-      "1.png",
-      "2.png"
+      "Copia de 3.png",
+      "Copia de 5.png",
+      "Copia de 4.png",
+      "Copia de 1.png",
+      "Copia de 2.png",
+      "Copia de 12.png",
+      "Copia de 10.png",
+      "Copia de 11.png",
+      "Copia de 13.png",
+      "Copia de 14.png",
+      "Copia de 15.jpg",
+      "Copia de 6.jpg",
+      "Copia de 7.jpg",
+      "Copia de 8.jpg",
+      "Copia de 9.png"
     ],
     "carpeta_renders": "../drive-fotos/renders-san-luis-cafe",
     "renders": [
@@ -60,7 +75,8 @@
       "IMG_9638.jpg",
       "IMG_9639.jpg",
       "IMG_9648.jpg",
-      "IMG_9664.jpg"
+      "IMG_9664.jpg",
+      { "archivo": "cafetos 8 .png", "logo": false }
     ],
     "carpeta_proceso": "../drive-fotos-sync/terminados/cafetos",
     "proceso": [
@@ -141,16 +157,20 @@
     ]
   },
   "la-chola-cruz-de-piedra": {
-    "carpeta": "../drive-fotos/chola-cruz-de-piedra",
+    "carpeta": "../drive-fotos-sync/terminados/la-chola-cruz-de-piedra-nuevo",
     "fotos": [
       "la chola plaza 2 .png",
-      "la chola plaza 1 .jpg",
+      "la chola plaza 1 .png",
       "la chola plaza 3 .jpg",
       "la chola plaza 6 .png",
       "la chola plaza 4 .png",
-      "20220112_184608.jpg",
-      "20220112_190528.jpg",
-      "20220112_190703.jpg"
+      "la chola plaza 8 .jpg",
+      "la chola plaza 11 .png",
+      "la chola la plaza 13 .png",
+      "la chola plaza 7 .png",
+      "la chola plaza 10 .png",
+      "la chola plaza 12  .png",
+      "la chola plaza 5 .png"
     ]
   },
   "cafeteria-rafael": {
@@ -169,10 +189,10 @@
   "frutaliss": {
     "carpeta": "../drive-fotos/frutaliss",
     "fotos": [
-      "20230118_093048.jpg",
+      "20230118_093035.jpg",
       "20230118_092510.jpg",
       "20230118_092650.jpg",
-      "20230118_093035.jpg",
+      "20230118_093048.jpg",
       "20230118_093125.jpg",
       "20230118_092027.jpg",
       "20230118_092202.jpg",
