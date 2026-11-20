@@ -13,51 +13,61 @@
     {
       "src": "../../assets/proyectos/refugio-vv/01.jpg",
       "alt": "Sala de doble altura con ventanales, celosía de madera, sillón de cuero y sofá blanco.",
+      "altEn": "Double-height living room with tall windows, a wooden lattice screen, leather armchair, and white sofa.",
       "enfoque": "56% 47%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/02.jpg",
       "alt": "Terraza cubierta con una larga mesa de tronco de madera, sillas verdes y vigas de madera bajo un techo con tragaluz.",
+      "altEn": "Covered terrace featuring a long live-edge timber dining table, green chairs, and wood beams under a skylight roof.",
       "enfoque": "50% 40%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/03.jpg",
       "alt": "Cocina con isla blanca, muebles de madera clara y un muro terracota, con un comedor redondo de madera al frente.",
+      "altEn": "Kitchen with white island, pale wood cabinetry, and terracotta wall facing a round wooden dining table.",
       "enfoque": "44% 48%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/04.jpg",
       "alt": "Sala con celosía de madera al fondo, sillón blanco, sillón de cuero y un mueble de madera.",
+      "altEn": "Living room with a wooden lattice backdrop, white armchair, leather armchair, and wooden console.",
       "enfoque": "54% 45%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/05.jpg",
       "alt": "Dormitorio con cabecero tapizado de tablas redondeadas y una luz lineal que dibuja una curva en el muro.",
+      "altEn": "Bedroom featuring a vertical rounded-slat upholstered headboard and curved linear accent lighting along the wall.",
       "enfoque": "52% 55%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/06.jpg",
       "alt": "Barra de la terraza con taburetes, horno de barro y mesa de madera, abierta al jardín.",
+      "altEn": "Terrace bar counter with stools, traditional clay oven, and wooden table opening onto the garden.",
       "enfoque": "51% 46%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/07.jpg",
       "alt": "Sillón de cuero junto a una celosía de madera, sobre piso de madera.",
+      "altEn": "Leather armchair beside a wooden lattice partition on hardwood flooring.",
       "enfoque": "58% 39%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/08.jpg",
       "alt": "Puerta de madera con vitral de colores junto a repisas con cuadros, y un comedor de madera.",
+      "altEn": "Wooden door with stained-glass insert next to framed art shelves and a wooden dining area.",
       "enfoque": "49% 51%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/09.jpg",
       "alt": "Comedor de madera junto a ventanas con marco de madera y vista al paisaje.",
+      "altEn": "Wooden dining set beside timber-framed windows opening onto the surrounding landscape.",
       "enfoque": "49% 54%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/10.jpg",
       "alt": "Detalle de un panel de madera calada con trama de rejilla.",
+      "altEn": "Close-up detail of a carved wooden grid lattice panel.",
       "enfoque": "42% 53%"
     }
   ],
@@ -65,21 +75,25 @@
     {
       "src": "../../assets/proyectos/refugio-vv/proceso/01.jpg",
       "alt": "Horno de barro y barra de terraza en albañilería sin revestir durante la ejecución de la obra.",
+      "altEn": "Clay oven and terrace bar masonry prior to plastering during construction.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/proceso/02.jpg",
       "alt": "Estructura de la isla de cocina en concreto antes de colocar encimeras y carpintería de madera.",
+      "altEn": "Concrete kitchen island base prior to countertop and timber cabinetry installation.",
       "enfoque": "50% 52%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/proceso/03.jpg",
       "alt": "Proceso de pintado y acabado del muro texturado con relieves y vigas en la cocina.",
+      "altEn": "Painting and finishing of the relief-textured wall and timber ceiling beams in the kitchen.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/refugio-vv/proceso/04.jpg",
       "alt": "Vista de la terraza y horno de barro en construcción bajo la estructura metálica y madera.",
+      "altEn": "View of the terrace and clay oven under construction beneath the steel and wood roof frame.",
       "enfoque": "50% 50%"
     }
   ]

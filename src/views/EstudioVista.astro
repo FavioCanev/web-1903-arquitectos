@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getImage } from "astro:assets";
+import Foto from "../components/Foto.astro";
+import renderShowroom from "../assets/showroom.jpg";
+import { enlaceComoLlegar } from "../config";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const e = textos(lang).estudioPagina;
+const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1200 })).src;
+---
+
+<Layout
+  lang={lang}
+  titulo={e.titulo}
+  descripcion={e.descripcion}
+  imagen={imagenOg}
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="historia">
+        <div>
+          <span class="etiqueta">{e.etiqueta}</span>
+          <h1 class="h2">{e.h1}</h1>
+          <p class="texto-2 historia__intro">{e.intro}</p>
+        </div>
+        <div class="textos">
+          <div class="bloque"><span class="etiqueta">{e.misionEtiqueta}</span><p>{e.mision}</p></div>
+          <div class="bloque"><span class="etiqueta">{e.visionEtiqueta}</span><p>{e.vision}</p></div>
+          <div class="bloque"><span class="etiqueta">{e.propositoEtiqueta}</span><p>{e.proposito}</p></div>
+        </div>
+      </div>
+      <h2 class="solo-lectores">{e.equipoHeading}</h2>
+      <ul class="equipo">
+        {e.equipo.map((nombre) => (
+          <li><div class="pendiente r-4x5">{e.retratoPendiente}</div><h3 class="h3">{nombre}</h3></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor showroom">
+      <div class="showroom__media">
+        <span class="pildora showroom__marca">{e.render}</span>
+        <Foto
+          src={renderShowroom}
+          alt={e.showroomAlt}
+          clase="r-4x5 showroom__foto"
+          sizes="(max-width: 900px) 100vw, 45vw"
+          enfoque="50% 50%"
+        />
+      </div>
+      <div class="showroom__texto">
+        <span class="etiqueta">{e.showroomEtiqueta}</span>
+        <h2 class="h2">{e.showroomTitulo}</h2>
+        <p class="texto-2 showroom__nota">{e.showroomNota}</p>
+        <a class="boton boton--secundario" href={enlaceComoLlegar} target="_blank" rel="noopener">{e.comoLlegar}<span class="solo-lectores">{e.abreNuevaPestana}</span></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .historia { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: start; }
+  .historia > div { grid-column: span 6; }
+  .historia__intro { margin-top: var(--e3); max-width: 46ch; }
+  .textos { display: grid; gap: var(--e6); }
+  .bloque { display: grid; gap: var(--e1); padding-top: var(--e3); border-top: 1px solid var(--linea); }
+  .equipo { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); list-style: none; padding: 0; margin: var(--e12) 0 0; }
+  .equipo li { grid-column: span 4; display: grid; gap: var(--e2); min-width: 0; }
+  .showroom { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: center; }
+  .showroom__media { grid-column: span 5; }
+  .showroom__texto { grid-column: span 7; }
+  .showroom__foto { border-radius: var(--radio); }
+  .showroom__marca { margin-bottom: var(--e2); }
+  .showroom__nota { margin: var(--e3) 0; }
+  @media (max-width: 900px) {
+    .historia > div, .showroom__media, .showroom__texto { grid-column: 1 / -1; }
+    .equipo li { grid-column: span 6; }
+  }
+  @media (max-width: 600px) {
+    .equipo li { grid-column: 1 / -1; }
+  }
+</style>

@@ -12,7 +12,9 @@
   "anio": 2022,
   "fotografo": "1903 Arquitectos",
   "encargo": "Transformar un inmueble originalmente concebido como departamento en el primer restaurante de TACOS CAJAMARQUINOS, ubicado en el tradicional barrio de La Colmena, Cajamarca. El desafío consistió en renovar un espacio condicionado por su distribución residencial, ambientes fragmentados y una altura limitada de piso a cielo raso, convirtiéndolo en un establecimiento gastronómico funcional y de fuerte identidad comercial. El cliente buscaba trasladar la esencia, el color y el espíritu festivo de México al interior del local, mediante una intervención temática concentrada principalmente en muros y cielos rasos, integrando estratégicamente las áreas de cocina, almacén, comensales y caja principal, sin perder la funcionalidad del espacio.",
+  "encargoEn": "To convert a residential apartment in Cajamarca’s traditional La Colmena neighborhood into the very first TACOS CAJAMARQUINOS restaurant. The main challenge was overcoming segmented residential rooms and low ceiling height to craft a functional hospitality venue with bold commercial identity—channeling Mexican color, craft, and celebratory atmosphere primarily through wall and ceiling interventions while cleanly connecting kitchen, storage, cashier, and dining zones.",
   "solucion": "La propuesta parte de convertir las limitaciones espaciales en oportunidades de diseño, utilizando los muros y el cielo raso como protagonistas de una experiencia inmersiva inspirada en la cultura mexicana. Se desarrolla una composición de colores intensos, elementos gráficos tradicionales, papel picado multicolor, ilustraciones de catrinas y una exhibición de platos ornamentales que transforman las superficies verticales en elementos narrativos. El cielo raso incorpora recursos geométricos curvos, detalles de iluminación y luminarias artesanales de fibras tejidas que aportan profundidad, movimiento y calidez, contrarrestando visualmente la reducida altura de los ambientes. La madera, con un tejido en cielo raso, ademas de estas tiras curvas con cintas led y los revestimientos de apariencia pétrea equilibran la intensidad cromática, consolidando una atmósfera contemporánea con una marcada identidad cultural.\n\nLa intervención articula las áreas de cocina, almacén, comensales y caja principal, aprovechando la distribución existente para establecer una experiencia comercial coherente y funcional. La caja se convierte en un punto focal mediante un mostrador de madera, iluminación decorativa y elementos representativos de la marca, mientras que las zonas de consumo incorporan mobiliario cálido, textiles coloridos y composiciones gráficas que refuerzan la temática mexicana. El resultado es un espacio que trasciende su origen residencial para convertirse en un restaurante con personalidad propia, donde cada elemento arquitectónico y decorativo comunica la identidad de TACOS CAJAMARQUINOS, transformando un local de dimensiones limitadas en una experiencia gastronómica envolvente y memorable.",
+  "solucionEn": "Rather than fighting the compact footprint, the design turns walls and ceilings into the main storytelling canvas. Saturated pigments, folk illustrations of Catrinas, multicolored papel picado, and a feature display of hand-painted ceramic plates transform vertical planes into an immersive narrative. Curved ceiling bands with concealed LED strips, woven wooden weaves, and artisan fiber pendants create visual depth and movement that lift the low ceiling plane, balanced by natural timber and stone-textured surfaces.\n\nRespecting the existing layout, kitchen, storage, cashier counter, and dining rooms are arranged for smooth service. A bespoke wooden reception counter anchors the entry, while warm seating and colorful textiles carry the identity through the dining spaces—turning a former apartment into a vibrant, memorable dining experience.",
   "fotos": [
     {
       "alt": "[Descripción pendiente]"
@@ -34,46 +36,55 @@
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/01.jpg",
       "alt": "Render del ingreso y mostrador de caja en madera bajo tiras de papel picado multicolor y muros amarillos.",
+      "altEn": "Render of the entrance and wooden cashier counter beneath multicolored papel picado garlands and yellow walls.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/02.jpg",
       "alt": "Render del salón de comensales con luminarias tejidas, guirnaldas de papel picado y mesas con manteles coloridos.",
+      "altEn": "Render of the dining room featuring woven pendant lights, papel picado garlands, and colorful tablecloths.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/03.jpg",
       "alt": "Render en primer plano desde una mesa hacia el comedor decorado con ilustraciones de catrinas y papel picado.",
+      "altEn": "Table-level foreground render looking into the dining space decorated with Catrina artwork and papel picado.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/04.jpg",
       "alt": "Render de la barra lateral con taburetes altos frente al muro exhibidor de platos decorativos.",
+      "altEn": "Render of the side bar counter with high stools facing the decorative ceramic plate display wall.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/05.jpg",
       "alt": "Render frontal del muro negro con exhibición vertical de platos cerámicos pintados y molduras.",
+      "altEn": "Front render of the black gallery wall showcasing painted ceramic plates framed by crisp moldings.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/06.jpg",
       "alt": "Vista axonométrica general mostrando las dos salas de comensales, la caja y la cocina del local.",
+      "altEn": "General axonometric view showing both dining halls, cashier counter, and kitchen layout.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/07.jpg",
       "alt": "Vista axonométrica inversa de la distribución completa del restaurante en La Colmena.",
+      "altEn": "Reverse axonometric view of the complete restaurant floor plan in La Colmena.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/08.jpg",
       "alt": "Corte arquitectónico longitudinal mostrando cocina, sala principal, caja y sala secundaria.",
+      "altEn": "Longitudinal architectural section illustrating the kitchen, main dining room, cashier, and secondary room.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-la-colmena/renders/09.jpg",
       "alt": "Corte transversal del local destacando la sala de comensales, el mostrador de caja y los acabados en muro.",
+      "altEn": "Cross section highlighting the dining area, wooden cashier counter, and decorative wall finishes.",
       "enfoque": "50% 50%"
     }
   ]

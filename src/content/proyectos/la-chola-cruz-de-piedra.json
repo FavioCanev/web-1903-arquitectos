@@ -12,66 +12,80 @@
   "anio": 2019,
   "fotografo": "1903 Arquitectos",
   "encargo": "Ubicado en un solo nivel dentro de una casona del Centro Histórico de Cajamarca, el proyecto nace de la necesidad de consolidar el primer local de gran formato para una marca de comida rápida con fuertes raíces locales. El cliente buscaba un espacio con alto impacto visual capaz de atraer al público, pero que al mismo tiempo dialogara con la identidad de la marca y respetara la preexistencia arquitectónica del inmueble: muros de barro, vigas de madera en el techo y arcos decorados que debían ser puestos en valor e integrados de forma armónica.",
+  "encargoEn": "Located on the ground floor of a heritage mansion in Cajamarca’s Historic Center, this project establishes the flagship large-format location for a locally rooted fast-casual dining brand. The client sought a visually bold space able to draw passersby while echoing brand identity and honoring the historic fabric—earth walls, timber ceiling beams, and ornamental arches—by bringing them into dialogue with the new intervention.",
   "solucion": "Se planteó una intervención de contraste equilibrado donde la arquitectura patrimonial se fusiona con una estética contemporánea y vibrante de identidad andina:\n\nTratamiento de techos y atmósfera: Para integrar la estructura original de madera sin restarle protagonismo, se diseñó un falso cielo suspendido compuesto por telares tradicionales cajamarquinos (aguayos) y tramas de hilos tensados de colores. Esto aporta calidez, textura y dinamismo visual, complementado con luminarias colgantes tipo filamento y cajas de madera empotradas que generan una iluminación acogedora.\n\nRescate patrimonial y color: Se conservaron los muros existentes aplicando una paleta de tonos tierra, ocres y ladrillo visto que evocan la materialidad tradicional, contrastados con nichos arquitectónicos iluminados con luces LED de colores vibrantes que enmarcan piezas de arte contemporáneo local.\n\nMobiliario funcional y contemporáneo: Pensando en la dinámica de un local de comida rápida, se diseñó una barra de atención robusta en concreto pulido con encimeras e insertos de madera natural, acompañada de mesas y bancas de líneas simples en madera y hierro negro que optimizan el flujo de comensales.\n\nIdentidad gráfica: El espacio se remata con intervenciones artísticas en muro —como un mural de estilo pop andino y una pintura tradicional de la mujer cajamarquina— que refuerzan el concepto de la marca y convierten el local en un punto visualmente memorable.",
+  "solucionEn": "The design balances heritage preservation with a vibrant, contemporary Andean aesthetic:\n\nCeiling and atmosphere: Rather than competing with the original timber beams, a suspended canopy woven from traditional Cajamarcan textiles (aguayos) and taut colored threads adds warmth, texture, and rhythm, paired with filament pendants and recessed wooden light boxes.\n\nHeritage and color: Existing earth walls were restored in ochre, clay, and exposed brick tones, contrasted by brightly backlit architectural niches displaying contemporary local artwork and masks.\n\nFunctional furniture: Built for fast-casual flow, a solid polished-concrete counter inlaid with natural wood works alongside clean-lined timber and black iron tables and benches.\n\nGraphic identity: Custom wall artworks—including an Andean pop mural and a traditional portrait of a Cajamarcan woman—anchor the brand story and make the interior unmistakable.",
   "fotos": [
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/01.jpg",
       "alt": "Salón principal del local con mesas y bancas de madera, barra de atención al fondo y telares cajamarquinos suspendidos en el techo.",
+      "altEn": "Main dining room with wooden tables and benches, service counter in the background, and Cajamarcan woven textiles suspended overhead.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/02.jpg",
       "alt": "Vista longitudinal del comedor hacia los nichos iluminados de colores en la pared y los aguayos colgantes en el cielorraso.",
+      "altEn": "Longitudinal view of the dining room toward colorful backlit wall niches and hanging aguayo textiles on the ceiling.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/03.jpg",
       "alt": "Área de mesas junto al cuadro tradicional de la mujer cajamarquina y un mural colorido al fondo.",
+      "altEn": "Dining area beside a traditional painting of a Cajamarcan woman and a vibrant mural in the background.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/04.jpg",
       "alt": "Techo decorado con telares cajamarquinos, hilos de colores y cajas de madera iluminadas sobre la pared con la pintura tradicional.",
+      "altEn": "Ceiling canopy decorated with Cajamarcan weavings, colored threads, and lit wooden boxes above the traditional wall painting.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/05.jpg",
       "alt": "Dos nichos iluminados con luz amarilla y violeta que enmarcan máscaras andinas decoradas con flores y sombreros.",
+      "altEn": "Two wall niches lit in yellow and violet framing Andean masks adorned with flowers and hats.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/06.jpg",
       "alt": "Escultura en muro de rostro dorado con ramas cubiertas de pompones de colores.",
+      "altEn": "Wall-mounted gilded face sculpture surrounded by branches adorned with colorful pom-poms.",
       "enfoque": "50% 42%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/07.jpg",
       "alt": "Detalle de la barra de concreto pulido con tablero y nichos de madera natural.",
+      "altEn": "Detail of the polished concrete counter featuring a natural wood top and recessed timber niches.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/08.jpg",
       "alt": "Mesa de madera junto al acceso del local frente a la pintura tradicional cajamarquina y el techo de telares.",
+      "altEn": "Wooden dining table near the entrance facing the traditional Cajamarcan painting beneath the textile ceiling.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/09.jpg",
       "alt": "Tres nichos iluminados en amarillo, magenta y morado con máscaras andinas bajo los aguayos y cajas de luz del techo.",
+      "altEn": "Three illuminated niches in yellow, magenta, and purple displaying Andean masks beneath hanging aguayos and ceiling light boxes.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/10.jpg",
       "alt": "Vista vertical simétrica del pasillo entre mesas hacia los tres nichos iluminados de colores bajo los telares.",
+      "altEn": "Symmetrical vertical view down the aisle toward the three colorfully lit niches beneath woven textiles.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/11.jpg",
       "alt": "Vista vertical de la barra completa de concreto pulido y ladrillo visto bajo la trama de aguayos suspendidos.",
+      "altEn": "Vertical view of the full polished concrete and exposed brick counter beneath the suspended aguayo canopy.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-cruz-de-piedra/12.jpg",
       "alt": "Detalle vertical del nicho iluminado en amarillo con máscara andina florida sobre el muro claro.",
+      "altEn": "Vertical close-up of a yellow-lit wall niche framing a floral Andean mask against the plaster wall.",
       "enfoque": "50% 50%"
     }
   ]

@@ -11,66 +11,80 @@
   "anio": 2025,
   "fotografo": "1903 Arquitectos",
   "encargo": "Ubicado en un terreno de 1,000 m² en Puerto Morín, Trujillo, el proyecto consiste en el diseño de una vivienda vacacional familiar que integra un bloque independiente de dos niveles destinado a hospedaje. El programa de la casa principal contempla un primer nivel con sala, comedor, cocina, terraza, zona de parrilla, lavandería, piscina, estacionamiento, dormitorio de servicio y un patio amplio; un segundo nivel con dos dormitorios principales con baño propio y balcón; y una terraza panorámica en el tercer piso. Como condicionantes clave, se solicitó garantizar la iluminación natural, dirigir las visuales principales hacia el mar en orientación noroeste, asegurar un ingreso diferenciado para el área de hospedaje e incorporar techos inclinados capaces de proteger del sol intenso y aprovechar las brisas marinas para refrescar los ambientes.",
+  "encargoEn": "Located on a 1,000 m² coastal lot in Puerto Morín, Trujillo, the project designs a family vacation residence incorporating a separate two-story guest wing. The main house program comprises a ground floor with living room, dining area, kitchen, terrace, barbecue zone, laundry room, swimming pool, parking, service bedroom, and spacious courtyard; a second floor with two primary en-suite bedrooms and balconies; and a third-level panoramic roof terrace. Key requirements included abundant natural daylight, framing main views northwest toward the ocean, providing an independent entrance for guests, and incorporating sloped roofs to shade against intense coastal sun while channeling sea breezes indoors.",
   "solucion": "Se planteó una volumetría contemporánea y cálida definida por cubiertas inclinadas a un agua con estructura de madera vista y amplios aleros, diseñadas estratégicamente para generar sombra profunda frente a la radiación solar y canalizar las brisas costeras hacia el interior. La materialidad combina el carácter robusto del concreto expuesto en muros perimetrales y elementos estructurales con la calidez del ladrillo caravista y revestimientos de madera natural, logrando una transición armónica entre la intimidad de los ingresos y la apertura hacia el paisaje.\n\nEn el primer nivel, el área social se vuelca completamente hacia el patio y la piscina mediante grandes mamparas corredizas de piso a techo con perfilería negra, orientando la vida exterior y las vistas hacia el noroeste. Los accesos se resolvieron de manera diferenciada a través de volúmenes jerarquizados en ladrillo y celosías verticales de madera que resguardan la privacidad entre la residencia familiar y el módulo de hospedaje. En el interior, el recorrido vertical se convierte en un punto focal mediante una escalera flotante de concreto y madera acompañada de jardineras integradas e iluminación cálida indirecta, reforzando en todo momento el vínculo entre la arquitectura, la luz natural y la vegetación.",
+  "solucionEn": "The proposal shapes a warm, contemporary volume defined by mono-pitched roofs with exposed timber framing and generous eaves, positioned to cast deep shade and draw coastal breezes through the living spaces. The material palette pairs exposed architectural concrete along perimeter walls and structural elements with the warmth of face brick and natural wood cladding, balancing sheltered entryways with open seaside vistas.\n\nOn the ground floor, the main social area opens completely onto the courtyard and pool via floor-to-ceiling black-framed sliding glass doors oriented northwest toward the ocean. Separate entrances are articulated through brick volumes and vertical wooden louvers that preserve privacy between the family home and the guest block. Inside, vertical circulation becomes a focal feature through a floating concrete-and-wood staircase lined with integrated planters and warm indirect lighting, reinforcing the connection between architecture, daylight, and greenery throughout.",
   "fotos": [
     {
       "src": "../../assets/proyectos/casa-brisa-morin/01.jpg",
       "alt": "Render de la terraza cubierta en madera vista con barandas de tronco, ladrillo tejido y vista abierta en Casa Brisa Morín.",
+      "altEn": "Render of the timber-roofed terrace with log railings, woven brickwork, and open coastal views at Casa Brisa Morín.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/02.jpg",
       "alt": "Render de la terraza panorámica cubierta de madera y ladrillo tejido con sala exterior y vista al entorno costero.",
+      "altEn": "Render of the panoramic roof terrace in timber and woven brick with outdoor seating overlooking the coast.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/03.jpg",
       "alt": "Render frontal de la barra social de madera y concreto bajo cubierta de listones con iluminación cálida.",
+      "altEn": "Front render of the wood and concrete social bar beneath a slatted timber canopy with warm lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/04.jpg",
       "alt": "Render lateral de la barra de concreto y madera junto al muro de ladrillo tejido.",
+      "altEn": "Side render of the concrete and wood bar beside the woven brick wall.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/05.jpg",
       "alt": "Render de la zona de parrilla exterior en concreto y madera con estanterías abiertas y vista al mar.",
+      "altEn": "Render of the outdoor barbecue zone in concrete and wood with open shelving and ocean views.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/06.jpg",
       "alt": "Render de la cocina y parrilla exterior con muebles bajos de malla metálica negra bajo techo de listones de madera.",
+      "altEn": "Render of the outdoor kitchen and grill with black metal mesh lower cabinetry beneath a slatted timber roof.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/07.jpg",
       "alt": "Render de la doble altura sobre la escalera con jardinera interior de concreto, muro visto y ventanal vertical.",
+      "altEn": "Render of the double-height stairwell with concrete indoor planter, exposed concrete wall, and tall vertical glazing.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/08.jpg",
       "alt": "Render desde el descanso superior de la escalera de concreto y madera junto a la jardinera iluminada.",
+      "altEn": "Render from the upper landing of the concrete and wood staircase alongside an illuminated indoor planter.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/09.jpg",
       "alt": "Render de la escalera interior de concreto y madera frente al ventanal de doble altura hacia el patio.",
+      "altEn": "Render of the interior concrete and wood staircase facing the double-height courtyard window.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/10.jpg",
       "alt": "Render frontal del arranque de la escalera acompañado de jardinera lineal con vegetación e iluminación cálida.",
+      "altEn": "Front render of the staircase base accompanied by a linear planter with lush greenery and warm accent lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/11.jpg",
       "alt": "Render de detalle de la esquina facetada en madera de la barra con encimera de concreto pulido e iluminación inferior.",
+      "altEn": "Detail render of the faceted wooden bar corner with a polished concrete countertop and under-counter lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/casa-brisa-morin/12.jpg",
       "alt": "Render de detalle del cielorraso de listones de madera y luminarias colgantes geométricas.",
+      "altEn": "Detail render of the slatted wood ceiling and geometric pendant fixtures.",
       "enfoque": "50% 45%"
     }
   ]

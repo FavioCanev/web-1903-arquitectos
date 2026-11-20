@@ -14,41 +14,50 @@
   "anio": 2026,
   "fotografo": "Alejandro Cerna",
   "encargo": "Desarrollar un complejo integral de servicios de carácter contemporáneo, ubicado en un terreno de 3,015 m² en el distrito de Llacanora, Cajamarca, en un entorno privilegiado por su riqueza paisajística y proximidad al río Cajamarquino. El proyecto, con frente a la carretera hacia San Marcos y acceso lateral desde un pasaje, plantea integrar una estación de combustible, restaurante, market, áreas administrativas y una zona residencial. El principal desafío consistió en concebir una arquitectura comercial funcional, visualmente distintiva y en armonía con el paisaje, capaz de reinterpretar la identidad local mediante materiales, texturas y elementos arquitectónicos propios de Llacanora, transformando un establecimiento de servicio convencional en un referente arquitectónico para el sector.",
+  "encargoEn": "To develop a contemporary, full-service roadside complex on a 3,015 m² site in Llacanora, Cajamarca, framed by a scenic valley landscape near the Cajamarquino River. Fronting the highway toward San Marcos with secondary access from a side lane, the program brings together a fuel station, restaurant, convenience market, administrative offices, and a residential wing. The main challenge was creating functional, distinctive commercial architecture in dialogue with the surrounding landscape—reinterpreting Llacanora’s local identity through regional materials, textures, and architectural craft to turn a conventional service stop into an architectural landmark.",
   "solucion": "La propuesta arquitectónica se concibe a partir del diálogo entre la contemporaneidad y la identidad constructiva de Llacanora, integrando materiales de apariencia natural como el ladrillo expuesto, revestimientos pétreos y madera, en contraste con estructuras metálicas de líneas definidas y amplias superficies acristaladas. La composición incorpora columnas revestidas con piezas de tonalidades tierra, muros de ladrillo artesanal, asi como la piedra, la teja, la misma tierra en diferentes tonos como amarillo, beige, marron y rojizo, elementos de carpintería con detalles ornamentales y pavimentos decorativos que evocan la tradición local. Las cubiertas metálicas de gran extensión y los paños translúcidos aportan ligereza, protección e iluminación natural, estableciendo un equilibrio entre la expresión industrial propia de una estación de servicios y la calidez de la arquitectura regional.\n\nLa organización del complejo articula cinco componentes funcionales: grifo, restaurante, market, administración y residencia, planteando una relación entre las actividades comerciales, operativas y privadas. La estación de combustible presenta una imagen contemporánea mediante marquesinas de geometría horizontal, mientras que los espacios complementarios desarrollan un lenguaje arquitectónico de mayor riqueza material y espacial. Los ambientes incorporan aperturas visuales hacia el paisaje y elementos que favorecen la continuidad entre interior y exterior. El resultado es un complejo que trasciende su función de abastecimiento para convertirse en un punto de encuentro y permanencia, donde la identidad de Llacanora se reinterpreta desde una arquitectura contemporánea, funcional y vinculada a su entorno natural.",
+  "solucionEn": "The architectural proposal bridges contemporary lines with Llacanora’s building traditions, pairing natural-looking exposed brick, river stone cladding, and timber against crisp steel structures and expansive glazing. Columns clad in earth-toned tiles, handcrafted brick masonry, clay roof tiles, earthen palettes ranging from ochre and beige to reddish brown, carved joinery, and patterned tile floors all honor regional heritage. Broad steel canopies and translucent panels bring lightness, shelter, and daylight, balancing the industrial clarity of a fuel station with regional warmth.\n\nThe site plan weaves together five distinct functions—fuel forecourt, restaurant, market, administration, and residence—organizing commercial, operational, and private zones cleanly. While the fuel canopy adopts horizontal geometry, the hospitality and retail spaces unfold with richer material depth and framed views out toward the valley, turning a routine stopover into a welcoming architectural destination rooted in Llacanora.",
   "fotos": [
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/01.jpg",
       "alt": "Interior techado con columnas de ladrillo, muros bajos de piedra y un piso de baldosas estampadas en blanco y negro.",
+      "altEn": "Covered interior with brick columns, low stone walls, and black-and-white patterned tile flooring.",
       "enfoque": "46% 43%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/02.jpg",
       "alt": "Pasillo junto a un muro de ladrillo rojizo y una banca de piedra, bajo una estructura metálica con cubierta.",
+      "altEn": "Covered walkway beside a reddish brick wall and stone bench beneath an exposed steel roof structure.",
       "enfoque": "49% 43%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/03.jpg",
       "alt": "Puerta doble de madera tallada, enmarcada en piedra, sobre un muro de ladrillo.",
+      "altEn": "Carved double wooden doors framed in natural stone set within an exposed brick wall.",
       "enfoque": "49% 49%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/04.jpg",
       "alt": "Comedor exterior con mesa cilíndrica y bancas corridas de piedra bajo muros de ladrillo y estructura metálica.",
+      "altEn": "Outdoor dining area with a cylindrical stone table and built-in stone benches beside brick walls and a steel roof frame.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/05.jpg",
       "alt": "Vista frontal de mesa y bancas de piedra sobre piso de baldosas estampadas, rodeadas de ladrillo visto y piedra.",
+      "altEn": "Front view of the stone table and benches on patterned tiles, framed by exposed brick and river stone masonry.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/06.jpg",
       "alt": "Detalle de fachada revestida con piedra de río sobre zócalo de ladrillo y ventana vertical.",
+      "altEn": "Facade detail clad in river stone above a brick plinth next to a tall vertical window.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/07.jpg",
       "alt": "Fachada exterior de dos niveles con puerta principal de madera, zócalo de piedra y cubierta metálica.",
+      "altEn": "Two-story exterior facade with wooden main entrance, stone base, and steel roof overhang.",
       "enfoque": "50% 45%"
     }
   ],
@@ -56,26 +65,31 @@
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/01.jpg",
       "alt": "Construcción de la marquesina metálica verde de la estación de combustible con losa en obra.",
+      "altEn": "Construction of the green steel fuel station canopy with concrete slab work underway.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/02.jpg",
       "alt": "Vista general del avance de obra de la estación de servicio con la estructura metálica instalada.",
+      "altEn": "Wide view of construction progress on the service complex with primary steel framing erected.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/03.jpg",
       "alt": "Interior en obra con muros de ladrillo artesanal, puntales de madera y techo metálico en montaje.",
+      "altEn": "Interior under construction showing handcrafted brick walls, timber shoring, and steel roofing assembly.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/04.jpg",
       "alt": "Andamios instalados junto a los muros de ladrillo y la escalera interior durante la construcción.",
+      "altEn": "Scaffolding set up beside brick walls and the interior staircase during construction.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estacion-de-servicio-labanda/proceso/05.jpg",
       "alt": "Obreros trabajando sobre andamios en el acabado de los muros de ladrillo de la fachada.",
+      "altEn": "Workers on scaffolding finishing the exterior brick masonry facade.",
       "enfoque": "50% 45%"
     }
   ]

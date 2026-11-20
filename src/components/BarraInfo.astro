@@ -1,12 +1,36 @@
 ---
 import { estudio } from "../config";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+
+interface Props {
+  lang?: Idioma;
+  urlEs?: string;
+  urlEn?: string;
+}
+const { lang = "es", urlEs = "/", urlEn = "/en/" } = Astro.props;
+const t = textos(lang);
 ---
 
 <div class="barra-info">
   <div class="contenedor">
-    <span>{estudio.ciudad}</span>
-    <!-- La hora la escribe el script; sin JavaScript queda vacía -->
-    <span>Hora local <span data-hora data-zona={estudio.zonaHoraria}></span></span>
+    <span>{t.meta.ciudad}</span>
+    <div class="barra-info__der">
+      <!-- La hora la escribe el script; sin JavaScript queda vacía -->
+      <span class="barra-info__reloj">
+        <span class="barra-info__etiqueta-hora">{t.meta.horaLocal} </span><span data-hora data-zona={estudio.zonaHoraria}></span>
+      </span>
+      <span class="barra-info__sep" aria-hidden="true">|</span>
+      <nav class="barra-info__idioma" aria-label={t.meta.cambiarIdioma}>
+        {lang === "es"
+          ? <span class="barra-info__lang barra-info__lang--activo" lang="es"><span class="solo-lectores">{t.meta.idiomaActual}: </span>ES</span>
+          : <a class="barra-info__lang" href={urlEs} hreflang="es" lang="es" aria-label={t.meta.irAEspanol}>ES</a>}
+        <span class="barra-info__div" aria-hidden="true">/</span>
+        {lang === "en"
+          ? <span class="barra-info__lang barra-info__lang--activo" lang="en"><span class="solo-lectores">{t.meta.idiomaActual}: </span>EN</span>
+          : <a class="barra-info__lang" href={urlEn} hreflang="en" lang="en" aria-label={t.meta.irAIngles}>EN</a>}
+      </nav>
+    </div>
   </div>
 </div>
 
@@ -15,8 +39,9 @@ import { estudio } from "../config";
   let temporizador: number | undefined;
 
   function pintarHora() {
+    const idioma = document.documentElement.lang === "en" ? "en-GB" : "es-PE";
     document.querySelectorAll<HTMLElement>("[data-hora]").forEach((el) => {
-      el.textContent = new Intl.DateTimeFormat("es-PE", {
+      el.textContent = new Intl.DateTimeFormat(idioma, {
         hour: "2-digit",
         minute: "2-digit",
         hour12: false,
@@ -35,4 +60,25 @@ import { estudio } from "../config";
 <style>
   .barra-info { background: var(--vino); color: var(--claro); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
   .contenedor { display: flex; justify-content: space-between; gap: var(--e2); min-height: 36px; align-items: center; }
+  .barra-info__der { display: flex; align-items: center; gap: var(--e2); }
+  .barra-info__sep { opacity: 0.45; user-select: none; }
+  .barra-info__idioma { display: inline-flex; align-items: center; gap: 2px; }
+  .barra-info__div { opacity: 0.55; user-select: none; }
+  .barra-info__lang {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 28px; min-height: 36px; padding: 0 4px;
+    text-decoration: none; color: var(--sobre-vino);
+    transition: color var(--dur-corta) var(--curva), text-decoration-color var(--dur-corta) var(--curva);
+  }
+  a.barra-info__lang:hover { color: var(--claro); text-decoration: underline; text-underline-offset: 4px; }
+  .barra-info__lang--activo {
+    color: var(--amarillo); font-weight: 500;
+    text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px;
+  }
+  .barra-info :focus-visible { outline: 2px solid var(--amarillo); outline-offset: -3px; border-radius: 2px; }
+  @media (max-width: 600px) {
+    .barra-info { letter-spacing: 0.1em; }
+    .barra-info__etiqueta-hora { display: none; }
+    .barra-info__der { gap: var(--e1); }
+  }
 </style>

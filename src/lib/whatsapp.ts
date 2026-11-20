@@ -1,4 +1,5 @@
 import { estudio } from "../config";
+import type { Idioma } from "../i18n/rutas";
 
 /** Arma el enlace que abre WhatsApp con el número del estudio y, si se da, un mensaje ya escrito. */
 export function enlaceWhatsapp(mensaje?: string): string {
@@ -17,15 +18,29 @@ export interface DatosContacto {
 }
 
 /** Asunto sugerido al abrir Gmail o el programa de correo desde Contacto. */
-export function asuntoContacto(datos: Pick<DatosContacto, "accion" | "tipo" | "nombre">): string {
-  return `Consulta web: ${datos.accion} — ${datos.tipo} (${datos.nombre.trim()})`;
+export function asuntoContacto(datos: Pick<DatosContacto, "accion" | "tipo" | "nombre">, lang: Idioma = "es"): string {
+  const prefijo = lang === "en" ? "Website inquiry" : "Consulta web";
+  return `${prefijo}: ${datos.accion} — ${datos.tipo} (${datos.nombre.trim()})`;
 }
 
 /** Texto que el formulario de contacto deja escrito en WhatsApp o correo (ADR 0005). */
-export function mensajeContacto(datos: DatosContacto): string {
+export function mensajeContacto(datos: DatosContacto, lang: Idioma = "es"): string {
   const telefono = datos.telefono?.trim();
   const correo = datos.correo?.trim();
   const idea = datos.mensaje?.trim();
+  if (lang === "en") {
+    return [
+      `Hello, ${estudio.nombre}. My name is ${datos.nombre.trim()}.`,
+      `I want to: ${datos.accion}`,
+      `Project type: ${datos.tipo}`,
+      datos.canal ? `Preferred contact method: ${datos.canal}` : null,
+      telefono ? `Phone number: ${telefono}` : null,
+      correo ? `Email address: ${correo}` : null,
+      idea ? `\n${idea}` : null,
+    ]
+      .filter((linea): linea is string => Boolean(linea))
+      .join("\n");
+  }
   return [
     `Hola, ${estudio.nombre}. Soy ${datos.nombre.trim()}.`,
     `Quiero: ${datos.accion}`,
@@ -50,6 +65,9 @@ export function enlaceMailto(asunto: string, cuerpo: string): string {
 }
 
 /** Mensaje de inscripción a un curso presencial (ADR 0006). */
-export function mensajeCurso(nombreCurso: string): string {
+export function mensajeCurso(nombreCurso: string, lang: Idioma = "es"): string {
+  if (lang === "en") {
+    return `Hello, I would like to enroll in the ${nombreCurso} course`;
+  }
   return `Hola, quiero inscribirme en el curso de ${nombreCurso}`;
 }

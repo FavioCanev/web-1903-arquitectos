@@ -3,6 +3,8 @@
 // pantalla. Al bajar, la página no se mueve: avanza una animación de CSS ligada al scroll (sin JavaScript).
 // Donde no hay animaciones ligadas al scroll, con "reducir movimiento" o en pantallas angostas, es una grilla normal.
 import TarjetaProyecto from "./TarjetaProyecto.astro";
+import { ruta, type Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
 import type { Proyecto } from "../lib/proyectos";
 
 interface ItemGrilla {
@@ -13,8 +15,10 @@ interface ItemGrilla {
 interface Props {
   proyectos?: Proyecto[];
   items?: ItemGrilla[];
+  lang?: Idioma;
 }
-const { proyectos = [], items } = Astro.props;
+const { proyectos = [], items, lang = "es" } = Astro.props;
+const t = textos(lang);
 const lista: ItemGrilla[] = items ?? proyectos.map((proyecto) => ({ proyecto, indiceFoto: 0 }));
 
 // Tres columnas con carga simétrica izquierda/derecha: primero los lados (0 y 2) y luego el centro (1),
@@ -47,27 +51,27 @@ const colDer = conClase(columnas[2]);
     <div class="grilla-fija__escenario">
       <div class="grilla-fija__panel">
         <div class="grilla-fija__titulo">
-          <span class="etiqueta">Proyectos</span>
-          <h2 class="h2" id="titulo-construidos">Obra terminada</h2>
+          <span class="etiqueta">{t.grillaFija.etiqueta}</span>
+          <h2 class="h2" id="titulo-construidos">{t.grillaFija.titulo}</h2>
         </div>
-        <a class="boton boton--primario grilla-fija__boton" href="/proyectos/">Ver todos los proyectos</a>
+        <a class="boton boton--primario grilla-fija__boton" href={ruta("proyectos", lang)}>{t.grillaFija.boton}</a>
       </div>
 
       <div class="grilla-fija__grilla">
         <div class="grilla-fija__columnas">
           <div class="grilla-fija__col">
-            {colIzq.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
+            {colIzq.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto lang={lang} />)}
           </div>
           <div class="grilla-fija__col grilla-fija__col--centro">
             <div class="grilla-fija__centro-parte grilla-fija__centro-parte--arriba">
-              {centroArribaItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
+              {centroArribaItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto lang={lang} />)}
             </div>
             <div class="grilla-fija__centro-parte grilla-fija__centro-parte--abajo">
-              {centroAbajoItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
+              {centroAbajoItems.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto lang={lang} />)}
             </div>
           </div>
           <div class="grilla-fija__col">
-            {colDer.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto />)}
+            {colDer.map((item) => <TarjetaProyecto proyecto={item.proyecto} indiceFoto={item.indiceFoto} clase={item.clase} soloFoto lang={lang} />)}
           </div>
         </div>
       </div>

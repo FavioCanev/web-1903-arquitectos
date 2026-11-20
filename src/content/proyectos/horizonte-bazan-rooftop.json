@@ -11,51 +11,62 @@
   "anio": 2024,
   "fotografo": "1903 Arquitectos",
   "encargo": "Ubicado en la azotea del quinto nivel de una edificación situada en la pendiente de ascenso a la colina Santa Apolonia, en Cajamarca, el proyecto abarca el diseño de un rooftop bar de 61.5 m² con visuales panorámicas de 360 grados hacia toda la ciudad. El programa requerido incluye una barra principal, zona de boxes, un pequeño escenario y servicios higiénicos, debiendo integrar y camuflar los ductos de ventilación provenientes de los departamentos inferiores, además de responder eficazmente a las exigencias climáticas de altura: fuerte asoleamiento, vientos y lluvias constantes.",
+  "encargoEn": "Set on the fifth-floor rooftop of a building climbing the slope toward Santa Apolonia hill in Cajamarca, this project designs a 61.5 m² rooftop bar offering 360-degree panoramic views over the city. The brief calls for a main bar, lounge booths, a small stage, and restrooms, while concealing vertical ventilation shafts rising from lower apartments and withstanding high-altitude weather—intense sun, strong winds, and frequent rain.",
   "solucion": "Para responder al clima cajamarquino sin bloquear el paisaje, se diseñó una cubierta en forma de \"V\" invertida (a dos aguas invertidas) que proyecta sus aleros hacia el exterior para ampliar el ángulo visual hacia el horizonte y proteger del sol y los vientos. El encuentro central de ambas pendientes incorpora una canaleta oculta que recolecta y evacúa las aguas pluviales de manera eficiente, mientras que la geometría general absorbe los ductos existentes dentro de volúmenes curvos que ordenan el espacio.\n\nEn el interior, se creó una atmósfera cálida y sofisticada con una paleta dominada por tonos terracota texturizados, revestimientos cerámicos esmaltados con relieve geométrico y pisos con patrones tradicionales en tonos vino y arena. La barra principal se resuelve con un revestimiento modular curvo y encimera oscura, acompañada de taburetes tapizados con estructura metálica dorada, repisas retroiluminadas, lámparas colgantes de vidrio ámbar labrado y una luminaria lineal escultórica suspendida que refuerza el carácter contemporáneo y acogedor del local.",
+  "solucionEn": "To shelter guests from Cajamarca’s highland climate without blocking the skyline, the roof forms an inverted butterfly profile whose outward-sloping eaves widen views toward the horizon while deflecting wind and sun. A concealed central gutter collects and drains rainwater cleanly, while existing building shafts are absorbed into curved architectural volumes that organize the plan.\n\nInside, textured terracotta surfaces, geometric glazed ceramic reliefs, and patterned burgundy-and-sand tiles create an intimate, inviting atmosphere. The main bar pairs modular curved tiles with a dark countertop, gold-framed upholstered barstools, backlit shelving, fluted amber glass pendants, and a sculptural linear light suspension that elevates the rooftop lounge.",
   "fotos": [
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/01.jpg",
       "alt": "Render de la barra principal curva en cerámica terracota con relieve, taburetes dorados y luminaria lineal suspendida en Horizonte Bazán.",
+      "altEn": "Render of the curved terracotta relief bar counter with brass-toned stools and suspended linear light at Horizonte Bazán.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/02.jpg",
       "alt": "Render frontal de la barra principal con chef atendiendo frente a las repisas retroiluminadas en terracota.",
+      "altEn": "Front render of the main bar with a bartender in front of backlit terracotta display shelves.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/03.jpg",
       "alt": "Render de la zona de mesas junto a la banca curva, el ventanal panorámico hacia Cajamarca y la barra al fondo.",
+      "altEn": "Render of the booth seating area beside the curved bench, panoramic windows over Cajamarca, and the bar beyond.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/04.jpg",
       "alt": "Render longitudinal del salón con cubierta en V invertida, jardineras divisorias y vista al escenario con guitarras.",
+      "altEn": "Longitudinal render of the lounge beneath the butterfly roof showing planter dividers and the stage with acoustic guitars.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/05.jpg",
       "alt": "Render del área de mesas junto a la baranda perimetral y ventanales con vista abierta a la ciudad de Cajamarca.",
+      "altEn": "Render of window-side tables beside the perimeter railing overlooking the Cajamarca cityscape.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/06.jpg",
       "alt": "Render lateral hacia la barra curva de cerámica esmaltada, piso estampado y cuadros sobre muro terracota.",
+      "altEn": "Side render looking toward the glazed ceramic curved bar, patterned floor tiles, and framed art on a terracotta wall.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/07.jpg",
       "alt": "Render del escenario elevado con guitarras acústicas y cuadros iluminados bajo la cubierta inclinada.",
+      "altEn": "Render of the raised stage with acoustic guitars and spotlighted artwork beneath the sloped roof.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/08.jpg",
       "alt": "Render lateral del escenario y pasillo junto a los ventanales panorámicos en altura.",
+      "altEn": "Side render of the stage and walkway alongside full-height panoramic rooftop windows.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/horizonte-bazan-rooftop/09.jpg",
       "alt": "Render del salón hacia el escenario con artista junto a las guitarras, jardineras y vistas a Cajamarca.",
+      "altEn": "Render looking across the lounge toward the stage with a performer beside guitars, planters, and views over Cajamarca.",
       "enfoque": "50% 48%"
     }
   ]

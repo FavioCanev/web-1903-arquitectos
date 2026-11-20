@@ -12,46 +12,56 @@
   "anio": 2023,
   "fotografo": "1903 Arquitectos",
   "encargo": "Desarrollar una propuesta de diseño interior para FRUTALISS, un restaurante especializado en alimentación saludable, transformando un espacio de 75 m² en un ambiente acogedor, elegante y visualmente atractivo, capaz de transmitir frescura, bienestar y conexión con la naturaleza. El principal desafío consistió en integrar funcionalmente las áreas de preparación, barra de atención, servicios higiénicos y zona de comensales, construyendo una identidad espacial que refleje la filosofía de la marca. El cliente buscaba incorporar abundante vegetación natural, iluminación cuidadosamente diseñada y un cielo raso de geometría sencilla pero distintiva, capaz de generar un recorrido visual que conduzca al usuario desde el ingreso hacia la barra principal, convirtiendo el espacio en una invitación a descubrir una experiencia gastronómica saludable.",
+  "encargoEn": "To develop an interior design concept for FRUTALISS, a healthy-dining restaurant, transforming a 75 m² space into a warm, refined, and inviting setting that conveys freshness, wellness, and a connection to nature. The primary challenge lay in seamlessly integrating kitchen prep, service bar, restrooms, and dining room while shaping a spatial identity aligned with the brand’s ethos—incorporating abundant live greenery, layered lighting, and a distinctive ceiling geometry guiding guests from the entrance toward the main counter.",
   "solucion": "La propuesta de FRUTALISS se concibe bajo el concepto de naturaleza, calidez y elegancia contemporánea, integrando la vegetación como protagonista del diseño interior. Se desarrolla una composición de madera en tonalidades cálidas, superficies claras de apariencia marmoleada y mobiliario de líneas orgánicas, complementada con jardines interiores, maceteros suspendidos y elementos vegetales que aportan frescura y vitalidad. Los muros incorporan revestimientos de madera, composiciones de volúmenes geométricos y detalles decorativos que generan profundidad y dinamismo, mientras que la iluminación cálida mediante luminarias colgantes construye una atmósfera íntima, confortable y sofisticada.\n\nComo elemento arquitectónico distintivo, se diseña un cielo raso con molduras geométricas de madera dispuestas longitudinalmente, cuya composición dirige la mirada hacia la barra de atención, convirtiéndola en el punto focal del establecimiento. La distribución organiza estratégicamente las áreas de preparación, barra, servicios higiénicos y comensales, aprovechando los 75 m² para favorecer una circulación fluida y una experiencia confortable. La combinación de vegetación suspendida, mobiliario de madera, asientos tapizados en negro y una iluminación equilibrada consolida una identidad contemporánea y natural. El resultado es un espacio donde la arquitectura y la naturaleza convergen para transformar la alimentación saludable en una experiencia sensorial, invitando al usuario a permanecer, disfrutar y conectar con la esencia de FRUTALISS.",
+  "solucionEn": "The proposal brings together nature, warmth, and contemporary restraint, placing live plants at the heart of the interior. Warm-toned wood cladding, light marble-effect floors, and curved furniture pair with hanging planters and vertical greenery to inject freshness and vitality. Geometric timber wall reliefs add depth, while warm pendant fixtures create a relaxed, intimate dining atmosphere.\n\nAs the defining architectural gesture, a ceiling with longitudinal wooden ribs draws sightlines directly toward the service counter, anchoring the room. Optimizing all 75 m², the layout separates kitchen prep, bar, restrooms, and dining seating for effortless circulation—turning healthy dining into a tactile, restorative spatial experience.",
   "fotos": [
     {
       "src": "../../assets/proyectos/frutaliss/01.jpg",
       "alt": "Perspectiva central hacia la barra de atención mostrando las líneas geométricas de madera en el techo y los paneles laterales con vegetación.",
+      "altEn": "Central perspective toward the service counter showing geometric timber ceiling ribs and plant-lined side panels.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/02.jpg",
       "alt": "Vista general del restaurante desde el ingreso hacia la barra, bajo el cielorraso con molduras geométricas de madera.",
+      "altEn": "General view of the restaurant from the entrance toward the counter beneath the geometric wooden ceiling.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/03.jpg",
       "alt": "Zona de mesas frente al muro de listones de madera, cubos con plantas y el logotipo luminoso de Frutaliss.",
+      "altEn": "Dining tables facing the slatted wood wall, planter cubes, and illuminated Frutaliss logo.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/04.jpg",
       "alt": "Salón principal de Frutaliss con piso marmoleado claro, mesas de madera, banca negra, vegetación suspendida y el logotipo iluminado en la pared.",
+      "altEn": "Main dining area at Frutaliss with light marble-look flooring, wood tables, black bench seating, hanging greenery, and illuminated wall logo.",
       "enfoque": "52% 48%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/05.jpg",
       "alt": "Comedor con comensales sentados bajo luminarias colgantes cálidas y jardineras suspendidas.",
+      "altEn": "Dining room with guests seated beneath warm pendant fixtures and suspended planters.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/06.jpg",
       "alt": "Detalle de silla curva de madera y mesa junto al muro revestido en madera con vegetación.",
+      "altEn": "Detail of a curved wooden chair and table next to the timber-clad wall with indoor greenery.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/07.jpg",
       "alt": "Mesa de madera con número de mesa y código QR frente a paneles de madera con macetas.",
+      "altEn": "Wooden dining table with table number and QR stand in front of wood wall panels with potted plants.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/frutaliss/08.jpg",
       "alt": "Detalle de cajones de madera en muro con enredaderas naturales sobre la banca tapizada en negro.",
+      "altEn": "Detail of recessed wooden wall planters with trailing vines above the black upholstered bench.",
       "enfoque": "50% 50%"
     }
   ]

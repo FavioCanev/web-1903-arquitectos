@@ -1,22 +1,32 @@
 ---
-import { estudio, navegacion } from "../config";
+import { estudio } from "../config";
+import { ruta, type Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
 import { enlaceWhatsapp } from "../lib/whatsapp";
 
-const enlacesMapa = [...navegacion, { texto: "Contacto", href: "/contacto/" }];
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
+const enlacesMapa = [
+  ...t.nav.items.map((item) => ({ texto: item.texto, href: ruta(item.clave, lang) })),
+  { texto: t.pie.contacto, href: ruta("contacto", lang) },
+];
 ---
 
 <footer class="pie">
   <div class="contenedor">
-    <a class="pie__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" width="560" height="224" loading="lazy" /></a>
+    <a class="pie__logo" href={ruta("inicio", lang)}><img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="560" height="224" loading="lazy" /></a>
 
     <div class="pie__columnas grilla-12">
       <div class="pie__contacto">
         <p><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></p>
-        <p>Atención en todo el Perú · <a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></p>
-        <p>{estudio.horario.semana}<br />{estudio.horario.sabado}</p>
+        <p>{t.estudio.atencionPeru} · <a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></p>
+        <p>{t.estudio.horarioSemana}<br />{t.estudio.horarioSabado}</p>
         <p>{estudio.direccion}</p>
       </div>
-      <nav class="pie__mapa" aria-label="Mapa del sitio">
+      <nav class="pie__mapa" aria-label={t.pie.mapaLabel}>
         <ul>
           {enlacesMapa.map((item) => (
             <li><a href={item.href}>{item.texto}</a></li>
@@ -31,7 +41,7 @@ const enlacesMapa = [...navegacion, { texto: "Contacto", href: "/contacto/" }];
   <div class="contenedor">
     <div class="pie__legal">
       <span>{estudio.nombre} © 2026</span>
-      <div class="pie__redes" role="group" aria-label="Redes sociales">
+      <div class="pie__redes" role="group" aria-label={t.pie.redesLabel}>
         <a class="pie__red" href={estudio.redes.instagram} aria-label="Instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -45,7 +55,7 @@ const enlacesMapa = [...navegacion, { texto: "Contacto", href: "/contacto/" }];
           </svg>
         </a>
       </div>
-      <span><a href="/privacidad/">Aviso de privacidad</a> · <a href="/accesibilidad/">Declaración de accesibilidad</a></span>
+      <span><a href={ruta("privacidad", lang)}>{t.pie.privacidad}</a> · <a href={ruta("accesibilidad", lang)}>{t.pie.accesibilidad}</a></span>
     </div>
   </div>
 </footer>

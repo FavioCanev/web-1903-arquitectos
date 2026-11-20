@@ -11,51 +11,62 @@
   "anio": 2026,
   "fotografo": "1903 Arquitectos",
   "encargo": "Ubicado en el entorno natural de Baños del Inca, Cajamarca, el proyecto consiste en el diseño integral de un bar campestre condicionado por la preexistencia de tres árboles en el terreno, destacando uno de gran porte que actúa como eje articulador de la zona de mesas y baile. El cliente requería cubrir gran parte del patio principal y el área de boxes sin perder el ingreso de luz natural ni la conexión directa con el paisaje. Estéticamente, se buscó lograr una atmósfera rústica propia del campo, enriquecida con detalles coloniales, desarrollando un programa completo que incluye escenario, barra principal, zona de mesas, boxes, tratamiento decorativo en muros, así como el diseño de la fachada exterior y una fachada interior vinculada al estacionamiento.",
+  "encargoEn": "Set within the countryside of Baños del Inca, Cajamarca, this project designs a garden lounge bar organized around three existing trees on the site—anchored by one mature tree at the heart of the seating and dance floor. The client needed weather protection over most of the main courtyard and lounge booths without losing natural daylight or visual connection to the outdoors. Visually, the brief called for a rustic countryside atmosphere with subtle colonial accents across a full program: stage, main bar, dining tables, booths, feature walls, street facade, and parking courtyard facade.",
   "solucion": "Se planteó una arquitectura permeable y luminosa que dialoga con la naturaleza existente mediante una estructura metálica negra de líneas ligeras y cubiertas translúcidas de policarbonato alveolar, permitiendo proteger el patio y los boxes sin sacrificar el paso de luz natural ni la presencia de los árboles preexistentes. El área social conserva el césped natural como pavimento principal e integra jardineras curvas retroiluminadas que abrazan la vegetación y enredaderas de buganvilla que trepan por la estructura, reforzando la sensación de estar inmerso en un jardín abierto.\n\nPara aportar el carácter rústico-colonial con un lenguaje contemporáneo, se diseñó una arquería perimetral de medio punto con acabados oscuros tipo piedra veteada y muros texturizados en tonos terracota y arena, acompañados de celosías de barro cocido y cilindros ornamentales iluminadas con luz cálida rasante. En la barra principal, este concepto se traduce en un mostrador curvo de acabado pétreo claro con encimera de madera, respaldado por un muro oscuro con formas orgánicas, ondas textiles suspendidas en el techo, vegetación colgante y luminarias tipo jaula que consolidan una atmósfera nocturna acogedora y sofisticada tanto en el interior como hacia las fachadas.",
+  "solucionEn": "The architecture adopts a light, permeable black steel frame topped with translucent polycarbonate roofing, sheltering the courtyard and booths while preserving daylight and weaving around the existing trees. Natural lawn remains underfoot throughout the social area, paired with curved backlit planters and climbing bougainvillea that immerse guests in an open garden setting.\n\nTo reinterpret rustic-colonial character in a contemporary key, a perimeter arcade of dark stone-textured semicircular arches meets terracotta- and sand-toned walls, fired clay screens, and grazing warm illumination. At the main bar, a curved light stone counter with a timber top sits beneath undulating suspended textiles, trailing plants, and cage pendant lights—creating a warm, evocative evening atmosphere inside and along both facades.",
   "fotos": [
     {
       "src": "../../assets/proyectos/jardin-porongo/01.jpg",
       "alt": "Render de la barra principal de Eco Lounge Jardín Porongo con mostrador curvo iluminado, ondas textiles en el techo y vegetación colgante.",
+      "altEn": "Render of the main bar at Eco Lounge Jardín Porongo featuring a lit curved counter, flowing ceiling textiles, and hanging greenery.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/02.jpg",
       "alt": "Render interior de mesas altas y comensales frente a la barra iluminada de Eco Lounge Jardín Porongo.",
+      "altEn": "Interior render of high-top tables and guests facing the illuminated bar at Eco Lounge Jardín Porongo.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/03.jpg",
       "alt": "Render nocturno del área de mesas altas iluminada bajo el techo translúcido de Eco Lounge Jardín Porongo.",
+      "altEn": "Evening render of the high-table garden seating glowing beneath the translucent canopy at Eco Lounge Jardín Porongo.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/04.jpg",
       "alt": "Render exterior de Eco Lounge Jardín Porongo mostrando el pórtico iluminado con el nombre del local.",
+      "altEn": "Exterior render of Eco Lounge Jardín Porongo highlighting the illuminated entrance portico and signage.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/05.jpg",
       "alt": "Render panorámico de la fachada completa al atardecer con iluminación vertical en tonos pastel, letrero de Jardín y área Fuego.",
+      "altEn": "Wide dusk render of the full facade with pastel vertical wall lighting, the Jardín sign, and the Fuego area.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/06.jpg",
       "alt": "Render panorámico de la fachada al atardecer con iluminación vertical cálida en muros texturados y acceso en madera.",
+      "altEn": "Wide twilight render of the facade showcasing warm vertical illumination on textured walls and timber entry.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/07.jpg",
       "alt": "Render exterior desde la calle mostrando el ingreso principal de Eco Lounge Jardín Porongo con iluminación rasante.",
+      "altEn": "Street-view render of the main entrance to Eco Lounge Jardín Porongo accented with grazing wall lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/08.jpg",
       "alt": "Render exterior de los muros blancos texturados, celosías de barro cocido y arquería de Eco Lounge Jardín Porongo.",
+      "altEn": "Exterior render showing textured white walls, fired clay lattice screens, and the colonnade at Eco Lounge Jardín Porongo.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/jardin-porongo/09.jpg",
       "alt": "Render en escorzo de la fachada iluminada de Eco Lounge Jardín Porongo con cobertura metálica inclinada y jardineras.",
+      "altEn": "Foreshortened facade render of Eco Lounge Jardín Porongo with its sloped metal canopy and illuminated planters.",
       "enfoque": "50% 50%"
     }
   ]

@@ -109,8 +109,8 @@ La web está armada con **tres piezas separadas** para que sea rápida, segura y
 | Qué quieres cambiar | Dónde está en GitHub | Qué editar |
 |---|---|---|
 | **WhatsApp, correo, dirección, horario o redes** | `src/config.ts` | Edita el texto entre comillas del dato que cambió y pulsa **Commit changes** |
-| **Fechas, duración o enlace de Hotmart de un curso** | `src/pages/cursos.astro` | Busca el nombre del curso en la lista superior del archivo, cambia la fecha o el enlace y pulsa **Commit changes** |
-| **Preguntas frecuentes** | `src/pages/servicios.astro` | Busca el texto de la pregunta o respuesta y actualízalo entre comillas |
+| **Fechas, duración o enlace de Hotmart de un curso** | `src/i18n/textos.ts` | Busca la sección `cursos` (en español e inglés), cambia la fecha o agrega el enlace de Hotmart y pulsa **Commit changes** |
+| **Preguntas frecuentes** | `src/i18n/textos.ts` | Busca la sección `servicios` (en español e inglés), localiza la pregunta o respuesta y actualízala entre comillas |
 
 *Leyenda: "Qué quieres cambiar" es la información visible en la web. "Dónde está en GitHub" es la ruta del archivo dentro del repositorio. "Qué editar" indica qué parte modificar con el lápiz de GitHub.*
 

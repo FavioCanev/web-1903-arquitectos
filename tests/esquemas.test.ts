@@ -20,4 +20,21 @@ describe("esquemaFoto", () => {
     const foto = { src: "cafetos/01.jpg", alt: "Barra de madera con lámparas colgantes" };
     expect(esquema.safeParse(foto).success).toBe(true);
   });
+
+  it("con archivo rechaza altEn [pendiente] y acepta altEn real", () => {
+    expect(
+      esquema.safeParse({
+        src: "cafetos/01.jpg",
+        alt: "Barra de madera",
+        altEn: "[Pending description]",
+      }).success,
+    ).toBe(false);
+    expect(
+      esquema.safeParse({
+        src: "cafetos/01.jpg",
+        alt: "Barra de madera",
+        altEn: "Wooden counter",
+      }).success,
+    ).toBe(true);
+  });
 });

@@ -1,18 +1,25 @@
 ---
 import TarjetaProyecto from "./TarjetaProyecto.astro";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
 import { rendersEnDesarrollo } from "../lib/proyectos";
 
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
 const renders = await rendersEnDesarrollo();
 ---
 
 <!-- Desplazamiento horizontal nativo: se desliza con el dedo, el mouse y el teclado; con JS agrega flechas -->
 <div class="carrusel-marco" data-carrusel-marco>
   <div class="carrusel-controles" hidden data-carrusel-controles>
-    <button type="button" class="carrusel-btn" data-carrusel-dir="-1" aria-label="Proyecto anterior en diseño">&#8592;</button>
-    <button type="button" class="carrusel-btn" data-carrusel-dir="1" aria-label="Siguiente proyecto en diseño">&#8594;</button>
+    <button type="button" class="carrusel-btn" data-carrusel-dir="-1" aria-label={t.carrusel.anterior}>&#8592;</button>
+    <button type="button" class="carrusel-btn" data-carrusel-dir="1" aria-label={t.carrusel.siguiente}>&#8594;</button>
   </div>
-  <div class="carrusel" tabindex="0" role="region" aria-label="Proyectos en diseño: desliza para ver más" data-carrusel>
-    {renders.map((p) => <TarjetaProyecto proyecto={p} />)}
+  <div class="carrusel" tabindex="0" role="region" aria-label={t.carrusel.regionLabel} data-carrusel>
+    {renders.map((p) => <TarjetaProyecto proyecto={p} lang={lang} />)}
   </div>
 </div>
 

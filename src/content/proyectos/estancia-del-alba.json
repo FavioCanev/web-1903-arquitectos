@@ -12,66 +12,80 @@
   "anio": 2025,
   "fotografo": "Alejandro Cerna",
   "encargo": "El proyecto abarca el diseño integral de las áreas comunes distribuidas a lo largo de los tres niveles del hotel: recepción, sala de lectura y juegos, cafetín, una zona fotográfica (instagrameable) con curaduría estilo museo y las áreas de terraza-balcón. El cliente buscaba consolidar la identidad de marca del hotel bajo una estética elegante y contemporánea que, al mismo tiempo, estableciera un vínculo auténtico con la cultura cajamarquina, logrando ambientes serenos y acogedores pero con un alto atractivo visual para el huésped.",
+  "encargoEn": "The commission encompasses the comprehensive interior design of the hotel’s common areas across three floors: reception lobby, reading and games lounge, coffee corner, a museum-curated photo spot, and terrace-balcony zones. The client sought to establish a refined, contemporary brand identity rooted in Cajamarcan culture—creating calm, welcoming atmospheres with strong visual appeal for guests.",
   "solucion": "Se desarrolló un lenguaje espacial que fusiona la calidez de los materiales naturales con geometrías orgánicas e iluminación escénica, logrando un equilibrio entre sofisticación y tradición regional. Para plasmar la identidad local sin perder elegancia, se incorporaron murales con patrones geométricos inspirados en la textilería tradicional cajamarquina en tonos tierra, terracota y azul profundo, integrados de forma fluida con revestimientos curvos de madera oscura y celosías reticularizadas.\n\nPara zonificar los ambientes abiertos y aportar dinamismo visual, se diseñaron falsos cielos suspendidos con volúmenes circulares, desniveles curvos, casetones de madera y discos flotantes en distintas tonalidades, todos realzados con iluminación LED cálida perimetral que genera una atmósfera relajante. En la recepción, el ingreso se jerarquizó mediante un mostrador de líneas limpias en contraste gris antracita, blanco y madera, respaldado por una retícula luminosa que enmarca el logotipo retroiluminado del hotel y luminarias colgantes de fibras tejidas. Finalmente, en las zonas de estar y lectura se diseñaron estanterías curvas de piso a techo y bancas continuas en madera natural que acompañan la arquitectura del lugar, conectando visualmente los interiores con las vistas panorámicas hacia el paisaje exterior a través de amplias mamparas.",
+  "solucionEn": "The spatial language blends warm natural materials with organic geometries and atmospheric lighting to balance refinement and regional heritage. Geometric wall murals inspired by traditional Cajamarcan weaving—in earth, terracotta, and deep blue tones—pair seamlessly with curved dark wood paneling and gridded timber screens.\n\nSuspended ceiling planes with circular volumes, curved recesses, wooden coffers, and floating discs ringed by warm perimeter LED lighting define each open-plan zone while creating a calm ambiance. At reception, a crisp desk combining charcoal gray, white, and timber anchors the entry in front of a backlit wooden grid framing the hotel logo and woven fiber pendants. Floor-to-ceiling curved bookcases and continuous timber benches follow the building’s geometry, opening views out toward the surrounding valley through expansive floor-to-ceiling windows.",
   "fotos": [
     {
       "src": "../../assets/proyectos/estancia-del-alba/01.jpg",
       "alt": "Salón con mesas redondas y sillas, un muro de madera con una línea ondulada y discos de madera colgados del cielorraso, en tonos sepia.",
+      "altEn": "Lounge with round tables and chairs, curved wood wall paneling, and suspended wooden ceiling discs in warm sepia tones.",
       "enfoque": "46% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/02.jpg",
       "alt": "Mesas redondas con sillas junto a una banca de madera y discos colgantes en el cielorraso, en tonos sepia.",
+      "altEn": "Round tables and chairs beside a timber bench beneath suspended ceiling discs in warm sepia tones.",
       "enfoque": "66% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/03.jpg",
       "alt": "Un hombre sentado a una mesa al fondo del salón, bajo discos de madera colgantes, en tonos sepia.",
+      "altEn": "Guest seated at a table at the far end of the lounge beneath floating wooden ceiling discs.",
       "enfoque": "45% 51%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/04.jpg",
       "alt": "Un hombre sentado junto a una biblioteca curva con libros y juegos de mesa, bajo discos de madera colgantes, en tonos sepia.",
+      "altEn": "Guest seated beside a curved bookcase stocked with books and board games under suspended wooden discs.",
       "enfoque": "51% 53%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/05.jpg",
       "alt": "Recepción del hotel con mostrador en contraste antracita, blanco y madera, retícula luminosa de madera en el cielorraso y logotipo retroiluminado.",
+      "altEn": "Hotel reception desk in charcoal, white, and timber beneath an illuminated wooden ceiling grid and backlit hotel logo.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/06.jpg",
       "alt": "Zona de estar con mesas redondas frente a un muro curvo con patrones geométricos textiles y repisas de madera.",
+      "altEn": "Lounge seating with round tables facing a curved wall featuring geometric textile motifs and wooden shelving.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/07.jpg",
       "alt": "Vista de la recepción y el pasillo con banca lineal de madera y emblema circular iluminado en el muro.",
+      "altEn": "View across reception and hallway with a linear wooden bench and illuminated circular wall emblem.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/08.jpg",
       "alt": "Sala de espera junto al ventanal con banca corrida de madera y el logotipo iluminado del hotel sobre el muro.",
+      "altEn": "Window-side waiting area with continuous timber seating and the illuminated hotel logo on the wall.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/09.jpg",
       "alt": "Corredor interior con columna cilíndrica rematada en plafón circular iluminado y revestimiento de madera.",
+      "altEn": "Interior corridor featuring a cylindrical column crowned by an illuminated circular ceiling soffit and timber cladding.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/10.jpg",
       "alt": "Mueble de apoyo en madera y blanco frente a una retícula de madera iluminada y estantería lateral.",
+      "altEn": "Wood and white service console in front of an illuminated wooden lattice backdrop and side shelving.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/11.jpg",
       "alt": "Estantería curva de madera de piso a techo junto a la columna estructural y la mampara de vidrio.",
+      "altEn": "Floor-to-ceiling curved wooden shelving unit beside a structural column and full-height glass wall.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/12.jpg",
       "alt": "Detalle de mesa redonda y banca curva de madera junto al revestimiento oscuro y muro texturado.",
+      "altEn": "Detail of a round table and curved timber bench next to dark wood paneling and a textured wall.",
       "enfoque": "50% 52%"
     }
   ],
@@ -79,21 +93,25 @@
     {
       "src": "../../assets/proyectos/estancia-del-alba/proceso/01.jpg",
       "alt": "Instalación de luminarias y acabado del cielorraso circular con plásticos protectores sobre el área textil.",
+      "altEn": "Lighting installation and circular ceiling finishing with protective sheeting over the textile area.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/proceso/02.jpg",
       "alt": "Montaje en obra de la estantería curva y los discos colgantes del cielorraso.",
+      "altEn": "On-site assembly of the curved shelving unit and suspended ceiling discs.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/proceso/03.jpg",
       "alt": "Avance de obra en el salón principal con el cielorraso en proceso de armado y escalera de trabajo.",
+      "altEn": "Construction progress in the main lounge showing ceiling framing assembly and a work ladder.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/proceso/04.jpg",
       "alt": "Instalación de la banca corrida y los paneles curvos de madera sobre muro en preparación.",
+      "altEn": "Installation of the continuous wooden bench and curved timber wall panels during finishing.",
       "enfoque": "50% 50%"
     }
   ],
@@ -101,51 +119,61 @@
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/01.jpg",
       "alt": "Render de la banca curva con nichos circulares de madera e iluminación cálida hacia la ventana.",
+      "altEn": "Render of the curved bench with circular wooden wall niches and warm indirect lighting beside the window.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/02.jpg",
       "alt": "Render del muro con aro iluminado, vasijas cerámicas en el piso y repisas circulares en Estancia del Alba.",
+      "altEn": "Render of the backlit circular wall ring, floor ceramic vessels, and round shelves at Estancia del Alba.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/03.jpg",
       "alt": "Render frontal del asiento circular iluminado junto al logotipo metálico EA y vasijas artesanales.",
+      "altEn": "Front render of the illuminated circular seat beside the metallic EA logo and artisan ceramic vessels.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/04.jpg",
       "alt": "Render de la sala curva de estar con cojines textiles y nichos circulares en la pared.",
+      "altEn": "Render of the curved lounge seating with woven cushions and circular display niches.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/05.jpg",
       "alt": "Render del espacio de espera enfrentando las dos bancas curvas frente al ventanal con vista al paisaje.",
+      "altEn": "Render of the waiting lounge showing opposing curved benches facing the landscape window.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/06.jpg",
       "alt": "Render longitudinal del pasillo de espera entre bancas curvas y luminarias de riel.",
+      "altEn": "Longitudinal render of the waiting corridor lined with curved benches and track lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/07.jpg",
       "alt": "Render del rincón con muro de patrón geométrico andino, mesa consola y ventanal panorámico.",
+      "altEn": "Render of the corner featuring an Andean geometric wall pattern, console table, and panoramic window.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/08.jpg",
       "alt": "Render de la vista hacia la ventana curva sobre el muro textil geométrico y vasijas doradas.",
+      "altEn": "Render looking toward the arched window set against the geometric textile wall and golden vessels.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/09.jpg",
       "alt": "Render del ambiente con puerta vidriada lateral, techo circular iluminado y muro geométrico.",
+      "altEn": "Render of the room with side glazed doors, illuminated circular ceiling coves, and geometric wall pattern.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/estancia-del-alba/renders/10.jpg",
       "alt": "Render en contrapicado del ventanal sobre el revestimiento de motivos andinos y vasijas.",
+      "altEn": "Low-angle render looking up toward the window above the Andean patterned wall and ceramic vessels.",
       "enfoque": "50% 50%"
     }
   ]

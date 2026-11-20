@@ -13,41 +13,49 @@
     {
       "src": "../../assets/proyectos/cafeteria-rafael/01.jpg",
       "alt": "Salón principal de Cafetería Rafael con piso ajedrezado en blanco y terracota, luminarias hexagonales de madera y banca tapizada.",
+      "altEn": "Main dining room at Cafetería Rafael with white and terracotta checkered flooring, hexagonal wooden pendant lights, and an upholstered bench.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/02.jpg",
       "alt": "Vista de la cafetería hacia el letrero luminoso de Rafael Café rodeado de plantas colgantes sobre muro oscuro.",
+      "altEn": "View of the café toward the illuminated Rafael Café sign framed by hanging plants against a dark wall.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/03.jpg",
       "alt": "Mesas de madera y sillones frente al muro de listones con el letrero luminoso de Rafael Café y lámparas hexagonales.",
+      "altEn": "Wooden tables and armchairs in front of the slatted wall featuring the illuminated Rafael Café sign and hexagonal pendant lamps.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/04.jpg",
       "alt": "Rincón de mesa junto a la ventana delimitado por una celosía vertical de madera y enredaderas.",
+      "altEn": "Window-side table nook framed by a vertical wooden lattice screen and trailing greenery.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/05.jpg",
       "alt": "Barra alta con taburetes tapizados frente a un panel de listones de madera e iluminación lineal.",
+      "altEn": "High counter with upholstered stools facing a slatted wooden wall panel and linear lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/06.jpg",
       "alt": "Pizarra de bienvenida en el acceso sobre el piso ajedrezado, con vista a la celosía de madera y los hexágonos del techo.",
+      "altEn": "Welcome chalkboard at the entrance over the checkered floor, overlooking the wooden lattice and hexagonal ceiling fixtures.",
       "enfoque": "50% 55%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/07.jpg",
       "alt": "Acceso vidriado con maceta de palma y vista interior hacia el letrero luminoso de Rafael Café.",
+      "altEn": "Glazed entrance with a potted palm and interior view toward the illuminated Rafael Café sign.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafeteria-rafael/08.jpg",
       "alt": "Detalle de arreglo floral en florero de vidrio sobre una mesa de madera con luminarias hexagonales al fondo.",
+      "altEn": "Detail of a floral arrangement in a glass vase on a wooden table with hexagonal ceiling lights in the background.",
       "enfoque": "50% 50%"
     }
   ]

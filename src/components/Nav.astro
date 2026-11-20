@@ -1,17 +1,23 @@
 ---
-import { navegacion } from "../config";
+import { limpiarBase, ruta, type Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const ruta = base && Astro.url.pathname.startsWith(base)
-  ? Astro.url.pathname.slice(base.length) || "/"
-  : Astro.url.pathname;
-const esActual = (href: string) => ruta.startsWith(href);
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
+const rutaActual = limpiarBase(Astro.url.pathname, import.meta.env.BASE_URL);
+const esActual = (href: string) =>
+  href === "/" || href === "/en/" ? rutaActual === href : rutaActual.startsWith(href);
+const enlaces = t.nav.items.map((item) => ({ texto: item.texto, href: ruta(item.clave, lang) }));
+const hrefContacto = ruta("contacto", lang);
 ---
 
 <header class="nav">
-  <nav class="contenedor" aria-label="Principal">
-    <a class="nav__logo" href="/"><img src="/img/logo-h-vino.svg" alt="1903 Arquitectos, inicio" width="85" height="34" /></a>
-    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-lista" aria-label="Abrir menú">
+  <nav class="contenedor" aria-label={t.nav.ariaLabel}>
+    <a class="nav__logo" href={ruta("inicio", lang)}><img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="85" height="34" /></a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-lista" aria-label={t.nav.abrirMenu} data-abrir={t.nav.abrirMenu} data-cerrar={t.nav.cerrarMenu}>
       <svg class="nav__icono nav__icono--abrir" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <line x1="4" y1="7" x2="20" y2="7" />
         <line x1="4" y1="12" x2="20" y2="12" />
@@ -23,11 +29,11 @@ const esActual = (href: string) => ruta.startsWith(href);
       </svg>
     </button>
     <ul class="nav__lista" id="nav-lista">
-      {navegacion.map((e) => (
+      {enlaces.map((e) => (
         <li><a href={e.href} aria-current={esActual(e.href) ? "page" : undefined}>{e.texto}</a></li>
       ))}
     </ul>
-    <a class="boton boton--primario nav__escribenos" href="/contacto/" aria-current={esActual("/contacto/") ? "page" : undefined}>Contacto</a>
+    <a class="boton boton--primario nav__escribenos" href={hrefContacto} aria-current={esActual(hrefContacto) ? "page" : undefined}>{t.nav.contacto}</a>
   </nav>
 </header>
 <script is:inline>document.querySelector(".nav")?.setAttribute("data-js", "");</script>
@@ -42,7 +48,7 @@ const esActual = (href: string) => ruta.startsWith(href);
     boton.addEventListener("click", () => {
       const abierto = boton.getAttribute("aria-expanded") !== "true";
       boton.setAttribute("aria-expanded", String(abierto));
-      boton.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+      boton.setAttribute("aria-label", abierto ? (boton.dataset.cerrar ?? "Cerrar menú") : (boton.dataset.abrir ?? "Abrir menú"));
       nav.toggleAttribute("data-abierto", abierto);
     });
   });

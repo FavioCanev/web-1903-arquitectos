@@ -32,26 +32,31 @@
     {
       "src": "../../assets/proyectos/la-chola-la-roja/proceso/01.jpg",
       "alt": "Segundo nivel en obra con estructura metálica negra, barandas y cerramientos de drywall.",
+      "altEn": "Second floor under construction showing black steel framing, guardrails, and drywall partitions.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-la-roja/proceso/02.jpg",
       "alt": "Operario pintando el cielo raso metálico entre perfiles y materiales de construcción.",
+      "altEn": "Painter finishing the steel ceiling structure surrounded by framing profiles and building materials.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-la-roja/proceso/03.jpg",
       "alt": "Doble altura de la escalera con barandas metálicas y muros de drywall sin empastar.",
+      "altEn": "Double-height stairwell with installed metal railings and unfinished drywall walls.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/la-chola-la-roja/proceso/04.jpg",
       "alt": "Vista de la terraza superior en obra con cobertura metálica traslúcida hacia la ciudad.",
+      "altEn": "View of the upper terrace under construction with a translucent metal-framed roof overlooking the city.",
       "enfoque": "50% 45%"
     },
     {
       "src": "../../assets/proyectos/la-chola-la-roja/proceso/05.jpg",
       "alt": "Visita técnica de obra con cascos frente al mural colorido recién pintado en el local.",
+      "altEn": "Site inspection with hard hats in front of a freshly painted colorful mural inside the restaurant.",
       "enfoque": "50% 50%"
     }
   ]

@@ -31,7 +31,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 | Elemento | Contenido | Prioridad |
 |---|---|---|
 | Enlace "Saltar al contenido" | Primer elemento de la página; solo se ve al navegar con el teclado | Must |
-| Barra superior | "Cajamarca, Perú" y la hora de Cajamarca en vivo | Must (la hora en vivo: Should) |
+| Barra superior | "Cajamarca, Perú" / "Cajamarca, Peru", la hora de Cajamarca en vivo y el selector de idioma `ES / EN` | Must (la hora en vivo: Should) |
 | Barra de navegación | Logo horizontal (lleva al Inicio) · Proyectos · Servicios · Cursos · Estudio · botón único "Contacto" (lleva a Contacto). En celular, botón hamburguesa con ícono de tres líneas que despliega el menú | Must |
 | Listón con el patrón | Baja por el lado derecho, al 80 % del ancho, desenrollándose de un rollo cilíndrico a medida que se avanza en la página (ver la [ADR 0015](adr/0015-liston-como-rollo-a-la-derecha.md)); oculto en pantallas de hasta 600 px | Should |
 | Pie de página | Logo grande sobre fondo amarillo (`--amarillo`) en toda la web · contacto: correo (`1903arq@gmail.com`), "Atención en todo el Perú · WhatsApp 924 285 500", horario (lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00) y dirección (`Jr. Amancaes 262, Cajamarca`) · enlaces del mapa del sitio · Patrón de baldosa de borde a borde · Franja inferior con "1903 Arquitectos © 2026" a la izquierda, Instagram y Facebook al centro como íconos circulares, y Aviso de privacidad · Declaración de accesibilidad a la derecha | Must |
@@ -40,12 +40,13 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Criterios de aceptación comunes**
 
-- [auto] Cada página tiene título, descripción y metadatos Open Graph propios, y el idioma declarado (`lang="es"`).
+- [auto] Cada página tiene título, descripción y metadatos Open Graph propios, y el idioma declarado (`lang="es"` o `lang="en"`).
 - [auto] Ninguna página tiene enlaces rotos.
 - [auto] Ninguna página tiene errores de accesibilidad en la revisión automática (ver la ADR 0013).
-- [manual] Al presionar Tab por primera vez aparece el enlace "Saltar al contenido", y al usarlo el foco salta al contenido principal.
+- [manual] Al presionar Tab por primera vez aparece el enlace "Saltar al contenido" (o "Skip to content"), y al usarlo el foco salta al contenido principal.
 - [manual] Todos los enlaces y botones se pueden usar con el teclado, con el foco visible.
 - [manual] La hora de la barra superior es la de Cajamarca y se actualiza sola, también después de cambiar de página.
+- [manual] El selector `ES / EN` de la barra superior lleva a la página equivalente exacta en el otro idioma, cabe en una sola fila en móvil (390 px) y mantiene los mensajes de WhatsApp y correo en el idioma activo.
 - [manual] El WhatsApp del pie abre WhatsApp con el número 924 285 500.
 - [manual] En una pantalla de 390 px de ancho no aparece barra de desplazamiento horizontal.
 - [manual] Con "reducir movimiento" activado, nada se desplaza ni se anima, salvo fundidos simples.
@@ -288,7 +289,26 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 ---
 
+## Versión en inglés — `/en/`
+
+Cada página en español tiene su espejo en inglés bajo `/en/`, con los nombres de las secciones traducidos y conservando sin cambios los identificadores propios de cada proyecto (ver la [ADR 0018](adr/0018-version-en-ingles.md)).
+
+| Página | Dirección en español | Dirección en inglés |
+|---|---|---|
+| Inicio | `/` | `/en/` |
+| Proyectos | `/proyectos/` | `/en/projects/` |
+| Proyecto (una por obra o render con vistas) | `/proyectos/{id}/` | `/en/projects/{id}/` |
+| Servicios | `/servicios/` | `/en/services/` |
+| Cursos | `/cursos/` | `/en/courses/` |
+| Estudio | `/estudio/` | `/en/studio/` |
+| Contacto | `/contacto/` | `/en/contact/` |
+| Aviso de privacidad | `/privacidad/` | `/en/privacy/` |
+| Declaración de accesibilidad | `/accesibilidad/` | `/en/accessibility/` |
+
+*Leyenda: "Página" es cada sección de la web. "Dirección en español" y "Dirección en inglés" muestran el enlace exacto al alternar entre `ES` y `EN` desde la barra superior; `{id}` es el identificador único de cada proyecto (por ejemplo, `cafetos`).*
+
+---
+
 ## Fuera de esta versión (Won't)
 
-- **Inglés.** Va bajo `/en/` cuando se agregue (ver la ADR 0002).
 - **Envío del formulario por correo.** Cuando el dominio esté comprado y se pueda probar (ver la ADR 0005).

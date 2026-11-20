@@ -26,6 +26,16 @@ describe("mensajeContacto", () => {
     expect(texto).not.toContain("Mi número");
     expect(texto.endsWith("WhatsApp")).toBe(true);
   });
+
+  it("en inglés redacta el mensaje en inglés con los mismos datos", () => {
+    const texto = mensajeContacto(
+      { nombre: " John ", tipo: "Architecture", accion: "Design", canal: "Email", correo: "john@example.com", mensaje: " A café " },
+      "en",
+    );
+    expect(texto).toBe(
+      "Hello, 1903 Arquitectos. My name is John.\nI want to: Design\nProject type: Architecture\nPreferred contact method: Email\nEmail address: john@example.com\n\nA café",
+    );
+  });
 });
 
 describe("enlaces de correo", () => {
@@ -36,10 +46,20 @@ describe("enlaces de correo", () => {
     expect(url).toContain(encodeURIComponent(asunto));
     expect(enlaceMailto(asunto, "Hola")).toContain("mailto:1903arq@gmail.com?subject=");
   });
+
+  it("genera asunto en inglés cuando el idioma es en", () => {
+    expect(asuntoContacto({ nombre: "John", accion: "Design", tipo: "Architecture" }, "en")).toBe(
+      "Website inquiry: Design — Architecture (John)",
+    );
+  });
 });
 
 describe("mensajeCurso", () => {
   it("usa el texto acordado en la ADR 0006", () => {
     expect(mensajeCurso("V-Ray")).toBe("Hola, quiero inscribirme en el curso de V-Ray");
+  });
+
+  it("en inglés arma el mensaje de inscripción en inglés", () => {
+    expect(mensajeCurso("Revit", "en")).toBe("Hello, I would like to enroll in the Revit course");
   });
 });

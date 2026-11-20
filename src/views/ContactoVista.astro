@@ -1,0 +1,477 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import mapaEstudio from "../assets/mapa-estudio.png";
+import { enlaceComoLlegar, estudio } from "../config";
+import { ruta, type Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+import { enlaceGmail, enlaceWhatsapp } from "../lib/whatsapp";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
+const c = t.contacto;
+const correoDirecto = enlaceGmail(c.correoAsuntoDirecto, c.correoCuerpoDirecto);
+const configScript = JSON.stringify({ lang, js: c.js });
+---
+
+<Layout
+  lang={lang}
+  titulo={c.titulo}
+  descripcion={c.descripcion}
+>
+  <section class="seccion contacto sobre-vino">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">{c.etiqueta}</span><h1 class="h2">{c.h1}</h1></div>
+        <p class="texto-2">{c.intro}</p>
+      </div>
+
+      <div class="grilla">
+        <div class="bloque-form">
+          <h2 class="solo-lectores">{c.asistenteHeading}</h2>
+
+          <!-- Mejora progresiva (ADR 0005): sin JavaScript quedan visibles los accesos directos -->
+          <div class="contacto-directo" data-sin-js>
+            <p class="texto-2">{c.sinJsIntro}</p>
+            <div class="botones">
+              <a class="boton boton--primario" href={enlaceWhatsapp()}>{c.escribirWhatsapp}</a>
+              <a class="boton boton--secundario" href={correoDirecto} target="_blank" rel="noopener">{c.escribirGmail}</a>
+            </div>
+          </div>
+
+          <form class="asistente" novalidate hidden data-formulario data-config={configScript}>
+            <div class="progreso" aria-live="polite">
+              <span class="progreso__texto" data-progreso-texto>{`${c.js.pasoDe[0]}1${c.js.pasoDe[1]}5`}</span>
+              <div class="progreso__barra" aria-hidden="true"><span class="progreso__relleno" data-progreso-barra></span></div>
+            </div>
+
+            <fieldset class="paso" data-paso="1">
+              <legend class="paso__titulo">{c.paso1Titulo}</legend>
+              <p class="paso__ayuda texto-2">{c.paso1Ayuda}</p>
+              <div class="opciones">
+                {c.acciones.map((a) => (
+                  <button type="button" class="opcion" data-elegir="accion" data-valor={a} aria-pressed="false">{a}</button>
+                ))}
+              </div>
+              <input type="hidden" name="accion" value="" />
+            </fieldset>
+
+            <fieldset class="paso" data-paso="2" hidden>
+              <legend class="paso__titulo">{c.paso2Titulo}</legend>
+              <p class="paso__ayuda texto-2">{c.paso2Ayuda}</p>
+              <div class="opciones">
+                {c.tipos.map((tipo) => (
+                  <button type="button" class="opcion" data-elegir="tipo" data-valor={tipo} aria-pressed="false">{tipo}</button>
+                ))}
+              </div>
+              <input type="hidden" name="tipo" value="" />
+              <div class="paso__pie"><button type="button" class="volver" data-volver="1">{c.anterior}</button></div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="3" hidden>
+              <legend class="paso__titulo">{c.paso3Titulo}</legend>
+              <p class="paso__ayuda texto-2">{c.paso3Ayuda}</p>
+              <div class="opciones">
+                {c.canales.map((canal) => (
+                  <button type="button" class="opcion" data-elegir="canal" data-clave={canal.clave} data-valor={canal.nombre} aria-pressed="false">
+                    <span class="opcion__nombre">{canal.nombre}</span>
+                    <span class="opcion__detalle">{canal.detalle}</span>
+                  </button>
+                ))}
+              </div>
+              <input type="hidden" name="canal" value="" />
+              <div class="paso__pie"><button type="button" class="volver" data-volver="2">{c.anterior}</button></div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="4" hidden>
+              <legend class="paso__titulo">{c.paso4Titulo}</legend>
+              <p class="paso__ayuda texto-2">{c.paso4Ayuda}</p>
+              <div class="campo">
+                <label class="solo-lectores" for="contacto-mensaje">{c.ideaLabel}</label>
+                <textarea id="contacto-mensaje" name="mensaje" placeholder={c.ideaPlaceholder}></textarea>
+              </div>
+              <div class="paso__acciones">
+                <button type="button" class="volver" data-volver="3">{c.anterior}</button>
+                <div class="botones">
+                  <button type="button" class="boton boton--secundario" data-ir="5">{c.omitir}</button>
+                  <button type="button" class="boton boton--primario" data-ir="5">{c.continuar}</button>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="paso" data-paso="5" hidden>
+              <legend class="paso__titulo">{c.paso5Titulo}</legend>
+              <div class="resumen">
+                <span data-resumen-texto></span>
+                <button type="button" class="volver" data-volver="1">{c.cambiarRespuestas}</button>
+              </div>
+
+              <div class="campo">
+                <label for="contacto-nombre">{c.nombreLabel} <span class="pequeno">{c.obligatorio}</span></label>
+                <input id="contacto-nombre" name="nombre" type="text" autocomplete="name" required aria-required="true" aria-describedby="error-nombre" />
+                <p class="error-campo" id="error-nombre" data-error-de="nombre"></p>
+              </div>
+
+              <div class="campo" data-grupo-telefono>
+                <label for="contacto-telefono">{c.telefonoLabel} <span class="pequeno" data-etiqueta-telefono>{c.opcional}</span></label>
+                <input id="contacto-telefono" name="telefono" type="tel" autocomplete="tel" aria-describedby="error-telefono" />
+                <p class="error-campo" id="error-telefono" data-error-de="telefono"></p>
+              </div>
+
+              <div class="campo" data-grupo-correo hidden>
+                <label for="contacto-correo">{c.correoLabel} <span class="pequeno">{c.opcional}</span></label>
+                <input id="contacto-correo" name="correo" type="email" autocomplete="email" />
+              </div>
+
+              <div>
+                <label class="consentimiento">
+                  <input type="checkbox" name="consentimiento" required aria-required="true" aria-describedby="error-consentimiento" />
+                  <span>{c.consentimientoAntes}<a href={ruta("privacidad", lang)}>{c.consentimientoEnlace}</a>{c.consentimientoDespues}<span class="pequeno">{c.obligatorio}</span></span>
+                </label>
+                <p class="error-campo" id="error-consentimiento" data-error-de="consentimiento"></p>
+              </div>
+
+              <p class="errores" role="alert" data-errores></p>
+
+              <div class="paso__acciones">
+                <button type="button" class="volver" data-volver="4">{c.anterior}</button>
+                <div class="botones">
+                  <button class="boton boton--primario" type="submit" data-btn-enviar>{c.enviarWhatsapp}</button>
+                  <button class="boton boton--secundario" type="button" data-btn-secundario hidden>{c.enviarGmail}</button>
+                </div>
+              </div>
+              <p class="alternativa-correo" data-alternativa-correo hidden>
+                {c.alternativaAntes}<button type="button" class="enlace-inline" data-btn-mailto>{c.alternativaBoton}</button>
+              </p>
+            </fieldset>
+
+            <div class="atajo-directo">
+              <p class="pequeno texto-2">{c.atajoTexto}</p>
+              <div class="atajo-directo__enlaces">
+                <a href={enlaceWhatsapp()} target="_blank" rel="noopener">{c.escribirWhatsapp}</a>
+                <span aria-hidden="true">·</span>
+                <a href={correoDirecto} target="_blank" rel="noopener">{c.escribirGmail}</a>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <h2 class="solo-lectores">{c.infoHeading}</h2>
+          <a class="mapa-enlace" href={enlaceComoLlegar} target="_blank" rel="noopener">
+            <Picture
+              src={mapaEstudio}
+              alt={c.mapaAlt(estudio.direccion)}
+              formats={["avif", "webp"]}
+              widths={[480, 796]}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </a>
+          <p class="credito-mapa pequeno">{c.creditoMapa}</p>
+          <a class="boton boton--secundario" href={enlaceComoLlegar} target="_blank" rel="noopener">{c.comoLlegar}<span class="solo-lectores">{c.abreNuevaPestana}</span></a>
+          <dl class="datos">
+            <div><dt>{c.direccionLabel}</dt><dd>{estudio.direccion}</dd></div>
+            <div><dt>{c.whatsappLabel}</dt><dd><a href={enlaceWhatsapp()}>{estudio.whatsapp.visible}</a></dd></div>
+            <div><dt>{c.correoLabelDato}</dt><dd><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></dd></div>
+            <div><dt>{c.horarioLabel}</dt><dd>{t.estudio.horarioSemana}<br />{t.estudio.horarioSabado}</dd></div>
+          </dl>
+          <p class="pequeno">{c.sinCita}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import type { Idioma } from "../i18n/rutas";
+  import type { ClaveCanal } from "../i18n/textos";
+  import { asuntoContacto, enlaceGmail, enlaceMailto, enlaceWhatsapp, mensajeContacto } from "../lib/whatsapp";
+
+  interface ConfigContacto {
+    lang: Idioma;
+    js: {
+      pasoDe: [string, string];
+      telObligatorio: string;
+      telOpcional: string;
+      btnAbrirGmail: string;
+      btnSolicitarLlamada: string;
+      btnPedirLlamadaGmail: string;
+      btnEnviarWhatsapp: string;
+      errNombre: string;
+      errTelefono: string;
+      errConsentimiento: string;
+      resumenUnCampo: string;
+      resumenVariosCampos: string;
+      defectoTipo: string;
+      defectoAccion: string;
+      defectoCanal: string;
+    };
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const formulario = document.querySelector<HTMLFormElement>("[data-formulario]");
+    if (!formulario) return;
+
+    const cfg: ConfigContacto = JSON.parse(formulario.dataset.config ?? "{}");
+    const { lang, js } = cfg;
+
+    formulario.hidden = false;
+    document.querySelector<HTMLElement>("[data-sin-js]")?.setAttribute("hidden", "");
+
+    const pasos = [...formulario.querySelectorAll<HTMLElement>("[data-paso]")];
+    const progresoTexto = formulario.querySelector<HTMLElement>("[data-progreso-texto]")!;
+    const progresoBarra = formulario.querySelector<HTMLElement>("[data-progreso-barra]")!;
+    const resumenTexto = formulario.querySelector<HTMLElement>("[data-resumen-texto]")!;
+    const grupoTelefono = formulario.querySelector<HTMLElement>("[data-grupo-telefono]")!;
+    const etiquetaTelefono = formulario.querySelector<HTMLElement>("[data-etiqueta-telefono]")!;
+    const inputTelefono = formulario.querySelector<HTMLInputElement>("#contacto-telefono")!;
+    const grupoCorreo = formulario.querySelector<HTMLElement>("[data-grupo-correo]")!;
+    const btnEnviar = formulario.querySelector<HTMLButtonElement>("[data-btn-enviar]")!;
+    const btnSecundario = formulario.querySelector<HTMLButtonElement>("[data-btn-secundario]")!;
+    const alternativaCorreo = formulario.querySelector<HTMLElement>("[data-alternativa-correo]")!;
+    const btnMailto = formulario.querySelector<HTMLButtonElement>("[data-btn-mailto]")!;
+    const errores = formulario.querySelector<HTMLElement>("[data-errores]")!;
+
+    const estado: { accion: string; tipo: string; canal: string; canalClave: ClaveCanal | "" } = {
+      accion: "",
+      tipo: "",
+      canal: "",
+      canalClave: "",
+    };
+
+    function actualizarPasoFinal() {
+      resumenTexto.textContent = [estado.accion, estado.tipo, estado.canal].filter(Boolean).join(" · ");
+
+      const esCorreo = estado.canalClave === "correo";
+      const esLlamada = estado.canalClave === "llamada";
+
+      grupoTelefono.hidden = esCorreo;
+      grupoCorreo.hidden = !esCorreo;
+      inputTelefono.required = esLlamada;
+      inputTelefono.setAttribute("aria-required", String(esLlamada));
+      etiquetaTelefono.textContent = esLlamada ? js.telObligatorio : js.telOpcional;
+
+      if (esCorreo) {
+        btnEnviar.textContent = js.btnAbrirGmail;
+        btnSecundario.hidden = true;
+        alternativaCorreo.hidden = false;
+      } else if (esLlamada) {
+        btnEnviar.textContent = js.btnSolicitarLlamada;
+        btnSecundario.textContent = js.btnPedirLlamadaGmail;
+        btnSecundario.hidden = false;
+        alternativaCorreo.hidden = true;
+      } else {
+        btnEnviar.textContent = js.btnEnviarWhatsapp;
+        btnSecundario.hidden = true;
+        alternativaCorreo.hidden = true;
+      }
+    }
+
+    function irAPaso(num: number, enfocar = true) {
+      pasos.forEach((p) => {
+        p.hidden = Number(p.dataset.paso) !== num;
+      });
+      progresoTexto.textContent = `${js.pasoDe[0]}${num}${js.pasoDe[1]}${pasos.length}`;
+      progresoBarra.style.width = `${(num / pasos.length) * 100}%`;
+      if (num === 5) actualizarPasoFinal();
+      if (enfocar) {
+        const activo = pasos.find((p) => Number(p.dataset.paso) === num);
+        const foco = activo?.querySelector<HTMLElement>("button, input, textarea");
+        foco?.focus();
+      }
+    }
+
+    irAPaso(1, false);
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-elegir]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const campo = btn.dataset.elegir as "accion" | "tipo" | "canal";
+        const valor = btn.dataset.valor ?? "";
+        estado[campo] = valor;
+        if (campo === "canal") {
+          estado.canalClave = (btn.dataset.clave as ClaveCanal) ?? "";
+        }
+
+        const oculto = formulario.querySelector<HTMLInputElement>(`input[name="${campo}"]`);
+        if (oculto) oculto.value = valor;
+
+        formulario.querySelectorAll<HTMLButtonElement>(`[data-elegir="${campo}"]`).forEach((b) => {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+
+        const pasoActual = Number(btn.closest<HTMLElement>("[data-paso]")?.dataset.paso ?? 1);
+        irAPaso(Math.min(pasos.length, pasoActual + 1));
+      });
+    });
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-volver]").forEach((btn) => {
+      btn.addEventListener("click", () => irAPaso(Number(btn.dataset.volver ?? 1)));
+    });
+
+    formulario.querySelectorAll<HTMLButtonElement>("[data-ir]").forEach((btn) => {
+      btn.addEventListener("click", () => irAPaso(Number(btn.dataset.ir ?? 5)));
+    });
+
+    function validarYConstruir(): { asunto: string; cuerpo: string } | null {
+      const datos = new FormData(formulario!);
+      const texto = (campo: string) => String(datos.get(campo) ?? "");
+      const requiereTel = estado.canalClave === "llamada";
+
+      const validaciones: [string, boolean, string][] = [
+        ["nombre", Boolean(texto("nombre").trim()), js.errNombre],
+        ["telefono", !requiereTel || Boolean(texto("telefono").trim()), js.errTelefono],
+        ["consentimiento", Boolean(datos.get("consentimiento")), js.errConsentimiento],
+      ];
+
+      let primeroInvalido: HTMLElement | null = null;
+      const faltas: string[] = [];
+      for (const [campo, valido, aviso] of validaciones) {
+        const control = formulario!.querySelector<HTMLElement>(`[name="${campo}"]`);
+        const errorEl = formulario!.querySelector<HTMLElement>(`[data-error-de="${campo}"]`);
+        if (control) control.setAttribute("aria-invalid", String(!valido));
+        if (errorEl) errorEl.textContent = valido ? "" : aviso;
+        if (!valido) {
+          faltas.push(aviso);
+          primeroInvalido ??= control;
+        }
+      }
+
+      if (faltas.length > 0) {
+        errores.textContent = lang === "en"
+          ? `Please check ${faltas.length} ${faltas.length === 1 ? js.resumenUnCampo : js.resumenVariosCampos} before sending.`
+          : `Revisa ${faltas.length} ${faltas.length === 1 ? js.resumenUnCampo : js.resumenVariosCampos} antes de enviar.`;
+      } else {
+        errores.textContent = "";
+      }
+      if (primeroInvalido) {
+        primeroInvalido.focus();
+        return null;
+      }
+
+      const payload = {
+        nombre: texto("nombre"),
+        telefono: texto("telefono"),
+        correo: texto("correo"),
+        tipo: estado.tipo || js.defectoTipo,
+        accion: estado.accion || js.defectoAccion,
+        canal: estado.canal || js.defectoCanal,
+        mensaje: texto("mensaje"),
+      };
+      return {
+        asunto: asuntoContacto(payload, lang),
+        cuerpo: mensajeContacto(payload, lang),
+      };
+    }
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      const url = estado.canalClave === "correo"
+        ? enlaceGmail(resultado.asunto, resultado.cuerpo)
+        : enlaceWhatsapp(resultado.cuerpo);
+      window.open(url, "_blank", "noopener");
+    });
+
+    btnSecundario.addEventListener("click", () => {
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      window.open(enlaceGmail(resultado.asunto, resultado.cuerpo), "_blank", "noopener");
+    });
+
+    btnMailto.addEventListener("click", () => {
+      const resultado = validarYConstruir();
+      if (!resultado) return;
+      window.location.href = enlaceMailto(resultado.asunto, resultado.cuerpo);
+    });
+  });
+</script>
+
+<style>
+  .contacto { background: var(--vino); color: var(--claro); --velo: var(--velo-vino); }
+  .contacto :global(.etiqueta), .contacto .texto-2 { color: var(--sobre-vino); }
+  .grilla { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: start; }
+  .grilla > div { grid-column: span 6; }
+  [hidden] { display: none !important; }
+
+  .contacto-directo { display: grid; gap: var(--e3); }
+  .asistente {
+    display: grid; gap: var(--e4);
+    padding: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--borde-vino);
+    border-radius: var(--radio);
+    background: rgb(253 253 253 / 0.03);
+  }
+  .progreso { display: grid; gap: var(--e1); }
+  .progreso__texto { font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); }
+  .progreso__barra { height: 4px; width: 100%; background: rgb(253 253 253 / 0.14); border-radius: 999px; overflow: hidden; }
+  .progreso__relleno { display: block; height: 100%; width: 20%; background: var(--amarillo); transition: width var(--dur-media) var(--curva); }
+
+  .paso { border: 0; margin: 0; padding: 0; display: grid; gap: var(--e3); }
+  .paso__titulo { font-size: var(--t-l); font-weight: 500; line-height: 1.2; padding: 0; margin-bottom: 4px; color: var(--claro); }
+  .paso__ayuda { font-size: var(--t-s); }
+  .opciones { display: grid; gap: var(--e2); }
+  .opcion {
+    width: 100%; min-height: 56px; padding: 14px 18px;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px;
+    background: rgb(253 253 253 / 0.04); color: var(--claro);
+    border: 1.5px solid var(--borde-vino); border-radius: var(--radio);
+    font: 500 var(--t-m)/1.3 var(--fuente); text-align: left; cursor: pointer;
+    transition: background-color var(--dur-corta) var(--curva), border-color var(--dur-corta) var(--curva), transform var(--dur-corta) var(--curva);
+  }
+  .opcion:hover { border-color: var(--amarillo); background: rgb(255 222 88 / 0.14); transform: translateY(-1px); }
+  .opcion[aria-pressed="true"] { background: var(--amarillo); color: var(--vino); border-color: var(--amarillo); }
+  .opcion__detalle { font-size: var(--t-xs); font-weight: 400; opacity: 0.88; }
+
+  .paso__pie { display: flex; justify-content: flex-start; }
+  .paso__acciones { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e3); }
+  .volver, .enlace-inline {
+    background: none; border: 0; padding: 6px 0; color: var(--sobre-vino);
+    font: 500 var(--t-s)/1.2 var(--fuente); cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+  .volver:hover, .enlace-inline:hover { color: var(--amarillo); }
+
+  .resumen {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e2);
+    padding: 10px 14px; border: 1px solid var(--borde-vino); border-radius: var(--radio);
+    font-size: var(--t-s); color: var(--amarillo);
+  }
+  .campo { display: grid; gap: var(--e1); font-size: var(--t-s); }
+  .campo input, .campo textarea {
+    min-height: 50px; padding: 12px 14px; background: transparent; color: var(--claro);
+    border: 1px solid var(--borde-vino); border-radius: var(--radio); font: 400 var(--t-m)/1.4 var(--fuente);
+  }
+  .campo textarea::placeholder { color: rgb(243 217 201 / 0.65); }
+  .campo [aria-invalid="true"] { border-color: var(--amarillo); }
+  .campo textarea { min-height: 120px; }
+  .consentimiento { display: flex; gap: var(--e2); align-items: flex-start; font-size: var(--t-s); }
+  .consentimiento input { width: 24px; height: 24px; flex: none; accent-color: var(--naranja); }
+  .error-campo, .errores { color: var(--amarillo); font-size: var(--t-s); font-weight: 500; }
+  .error-campo:empty, .errores:empty { display: none; }
+  .consentimiento + .error-campo { margin-top: var(--e1); }
+  .alternativa-correo { font-size: var(--t-s); color: var(--sobre-vino); }
+
+  .atajo-directo {
+    border-top: 1px solid rgb(201 145 141 / 0.35);
+    padding-top: var(--e3);
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e2);
+  }
+  .atajo-directo__enlaces { display: flex; gap: var(--e2); align-items: center; font-size: var(--t-s); }
+
+  .mapa-enlace {
+    display: block; overflow: hidden; border-radius: var(--radio);
+    border: 1px solid var(--borde-vino); background: var(--pendiente-vino); box-shadow: none;
+    transition: border-color var(--dur-corta) var(--curva);
+  }
+  .mapa-enlace:hover, .mapa-enlace:focus-visible { border-color: var(--amarillo); }
+  .mapa-enlace :global(img) { display: block; width: 100%; height: auto; }
+  .credito-mapa { color: var(--sobre-vino); margin: var(--e1) 0 var(--e3); }
+  .datos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e3); margin: var(--e4) 0 var(--e2); }
+  .datos dt { font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--sobre-vino); margin-bottom: 4px; }
+  .datos dd { margin: 0; font-size: var(--t-s); }
+  @media (max-width: 900px) { .grilla > div { grid-column: 1 / -1; } }
+</style>

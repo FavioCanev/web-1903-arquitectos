@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+import { enlaceWhatsapp, mensajeCurso } from "../lib/whatsapp";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
+const c = t.cursos;
+
+// Virtuales: se inscriben en Hotmart. Presenciales: por WhatsApp con el mensaje escrito (ADR 0006).
+// Sin precio en la web. Revit es presencial (actualizado por el estudio en la hoja).
+const inscripcion = (curso: (typeof c.lista)[number]) =>
+  curso.modalidad === "Presencial" ? enlaceWhatsapp(mensajeCurso(curso.nombre, lang)) : curso.hotmart;
+---
+
+<Layout
+  lang={lang}
+  titulo={c.titulo}
+  descripcion={c.descripcion}
+>
+  <section class="seccion cursos">
+    <div class="contenedor">
+      <div class="cabecera">
+        <div><span class="etiqueta">{c.etiqueta}</span><h1 class="h2">{c.h1}</h1></div>
+        <p>{c.intro}</p>
+      </div>
+      <div class="grilla">
+        {c.lista.map((curso) => {
+          const href = inscripcion(curso);
+          const etiquetaModalidad = curso.modalidad === "Virtual" ? c.modalidadVirtual : c.modalidadPresencial;
+          return (
+            <article class="curso">
+              <span class="curso__modalidad">{etiquetaModalidad}</span>
+              <h2 class="h3">{curso.nombre}</h2>
+              <p class="pequeno texto-2">{c.pendiente}</p>
+              {href
+                ? <a class="boton boton--primario" href={href}>{c.inscribirme}<span class="solo-lectores">{c.conectorCurso}{curso.nombre}</span></a>
+                : <p class="pildora curso__estado">{c.proximamente}</p>}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor certificado">
+      <div><span class="etiqueta">{c.certificadoEtiqueta}</span><h2 class="h2">{c.certificadoTitulo}</h2></div>
+      <div class="certificado__detalle">
+        <p class="texto-2">{c.certificadoTexto}</p>
+        <img class="certificado__logo" src="/img/logo-cap.webp" alt={c.logoCapAlt} width="502" height="220" loading="lazy" />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cursos { background: var(--amarillo); --velo: var(--velo-amarillo); }
+  .grilla { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e3); }
+  .curso { grid-column: span 3; background: var(--fondo); --velo: var(--velo-fondo); border-radius: var(--radio); padding: var(--e4) var(--e3); display: grid; gap: var(--e2); align-content: start; min-width: 0; }
+  .curso__modalidad { font-size: var(--t-xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--vino-2); }
+  .curso .boton, .curso__estado { justify-self: start; margin-top: var(--e1); }
+  .curso__estado { line-height: 1.4; }
+  .certificado { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: end; }
+  .certificado > div { grid-column: span 6; }
+  .certificado__detalle { display: grid; gap: var(--e3); justify-items: start; }
+  .certificado__logo { width: min(260px, 100%); height: auto; }
+  @media (max-width: 900px) {
+    .curso { grid-column: span 6; }
+    .certificado > div { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .curso { grid-column: 1 / -1; }
+  }
+</style>

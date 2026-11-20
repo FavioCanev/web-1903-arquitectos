@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { estudio } from "../config";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const p = textos(lang).privacidad;
+---
+
+<Layout lang={lang} titulo={p.titulo} descripcion={p.descripcion}>
+  <section class="seccion">
+    <div class="contenedor texto">
+      <span class="etiqueta">{p.etiqueta}</span>
+      <h1 class="h2">{p.h1}</h1>
+      {p.notaIdioma && <p class="pequeno texto-2">{p.notaIdioma}</p>}
+
+      <h2 class="h3">{p.responsableTitulo}</h2>
+      <p>{p.responsableTexto(estudio.razonSocial, estudio.ruc, estudio.direccion)}</p>
+
+      <h2 class="h3">{p.mideTitulo}</h2>
+      <p>{p.mideTexto}</p>
+
+      <h2 class="h3">{p.recibenTitulo}</h2>
+      <p>{p.recibenTexto}</p>
+
+      <h2 class="h3">{p.enlacesTitulo}</h2>
+      <p>{p.enlacesTexto}</p>
+
+      <h2 class="h3">{p.derechosTitulo}</h2>
+      <p>{p.derechosAntes}<a href={`mailto:${estudio.correo}`}>{estudio.correo}</a>{p.derechosDespues}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .texto { display: grid; gap: var(--e3); max-width: 760px; margin: 0; }
+  .texto :global(h2.h3) { margin-top: var(--e3); }
+</style>

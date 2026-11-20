@@ -157,36 +157,43 @@ flowchart TB
         fotos["assets/proyectos/<br/>(preparadas con docs/mantenimiento/preparar_fotos.py)"]
     end
 
-    subgraph logica["Funciones"]
-        whatsapp["lib/whatsapp.ts<br/>(enlaces y mensajes de WhatsApp)"]
+    subgraph logica["Funciones e idiomas"]
+        whatsapp["lib/whatsapp.ts<br/>(enlaces y mensajes en ES/EN)"]
         libproy["lib/proyectos.ts<br/>(consultas y títulos de proyectos)"]
+        i18n["i18n/rutas.ts y textos.ts<br/>(rutas espejo y diccionario ES/EN)"]
     end
 
     subgraph plantilla["Plantilla común"]
         layout["layouts/Layout.astro"]
-        comunes["Barra superior · Navegación ·<br/>Listón · Pie · Botón de WhatsApp"]
+        comunes["Barra superior (con ES / EN) · Navegación ·<br/>Listón · Pie"]
     end
 
-    subgraph piezas["Piezas de las páginas"]
+    subgraph piezas["Piezas y vistas de páginas"]
         tarjetas["GrillaFija · TarjetaProyecto ·<br/>MosaicoProyectos · CarruselRenders ·<br/>CollageProyecto · Foto"]
+        vistas["views/*Vista.astro<br/>(plantillas reutilizadas por ES y EN)"]
     end
 
-    paginas["pages/*.astro<br/>(una por página; proyectos/[id] genera<br/>la de cada obra)"]
+    paginas["pages/*.astro y pages/en/*.astro<br/>(envoltorios por idioma; proyectos/[id]<br/>genera cada obra en ES y EN)"]
     estilos["styles/tokens.css, base.css y parallax.css<br/>(sistema de diseño y movimiento)"]
 
     esquemas --> esquema
     fotos --> esquema
     proyectos --> esquema
     esquema --> libproy
+    i18n --> whatsapp
+    i18n --> libproy
+    i18n --> comunes
+    i18n --> vistas
     config --> whatsapp
     config --> comunes
     whatsapp --> comunes
-    whatsapp --> paginas
+    whatsapp --> vistas
     libproy --> tarjetas
-    libproy --> paginas
-    tarjetas --> paginas
+    libproy --> vistas
+    tarjetas --> vistas
     comunes --> layout
-    layout --> paginas
+    layout --> vistas
+    vistas --> paginas
     estilos --> layout
 ```
 
@@ -194,15 +201,17 @@ flowchart TB
 
 | Carpeta o archivo | Qué contiene | Ficha |
 |---|---|---|
-| `src/config.ts` | Los datos del estudio y la lista de la navegación, en un solo lugar | ADR 0005 |
-| `src/content.config.ts` | El esquema de los proyectos (apoyado en `src/lib/esquemas.ts`): si falta un dato obligatorio o un texto alternativo, la construcción falla | ADR 0001 y 0013 |
+| `src/config.ts` | Los datos del estudio en un solo lugar (complementado por los textos traducidos en `src/i18n/`) | ADR 0005 y 0018 |
+| `src/i18n/` | Mapa de rutas equivalentes ES ↔ EN (`rutas.ts`) y diccionario bilingüe completo (`textos.ts`) | ADR 0018 |
+| `src/content.config.ts` | El esquema de los proyectos (apoyado en `src/lib/esquemas.ts`): si falta un dato obligatorio o un texto alternativo real, la construcción falla; las traducciones `*En` son opcionales con respaldo al español | ADR 0001, 0013 y 0018 |
 | `src/content/proyectos/` | Un archivo JSON por proyecto; su nombre es la dirección de la página | ADR 0001 y 0002 |
 | `src/assets/proyectos/` | Fotos reales reducidas a 2400 px y sin metadatos (plan B temporal antes de subirlas a R2) | ADR 0011 |
 | `docs/mantenimiento/` | `preparar_fotos.py` y `seleccion.json` (aceptan `.heic` y formatos alternativos, reducen a 2400 px, pasan a sRGB, estampan el logo vertical adaptativo, borran EXIF y verifican), `nuevo-proyecto.html` (asistente visual en el navegador con vista previa de la página de proyecto y soporte `.heic` sin internet) y `manual-de-mantenimiento.md` / `.pdf` | ADR 0011 |
-| `src/lib/` | Funciones sin diseño: `esquemas.ts` valida las fotos; `whatsapp.ts` arma los enlaces y mensajes de WhatsApp (tiene su prueba); `proyectos.ts` consulta y ordena los proyectos | ADR 0005, 0006 y 0013 |
-| `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, enrutador, enlace "Saltar al contenido", barra superior, navegación, pie, listón y botón de WhatsApp | ADR 0013 y 0016 |
-| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (`GrillaFija`, `TarjetaProyecto`, `MosaicoProyectos`, `CarruselRenders`, `CollageProyecto` y `Foto`) | ADR 0015 y 0016 |
-| `src/pages/` | Una página por archivo; `proyectos/[id].astro` genera la página de cada obra terminada | ADR 0002 |
+| `src/lib/` | Funciones sin diseño: `esquemas.ts` valida las fotos; `whatsapp.ts` arma los enlaces y mensajes de WhatsApp y correo en ES o EN (tiene su prueba); `proyectos.ts` consulta, localiza y ordena los proyectos | ADR 0005, 0006, 0013 y 0018 |
+| `src/layouts/Layout.astro` | La plantilla que comparten todas las páginas: título, descripción, etiquetas `hreflang`, idioma (`lang="es"` / `"en"`), enrutador, enlace para saltar al contenido, barra superior con selector `ES / EN`, navegación, pie y listón | ADR 0013, 0016 y 0018 |
+| `src/components/` | Piezas reutilizables: las de la plantilla común y las de las páginas (`GrillaFija`, `TarjetaProyecto`, `MosaicoProyectos`, `CarruselRenders`, `CollageProyecto` y `Foto`) | ADR 0015, 0016 y 0018 |
+| `src/views/` | Vistas compartidas entre las páginas en español y en inglés para no duplicar HTML, CSS ni scripts | ADR 0018 |
+| `src/pages/` y `src/pages/en/` | Una página por ruta en español y su espejo en inglés (`/en/`); `proyectos/[id].astro` y `en/projects/[id].astro` generan la página de cada obra | ADR 0002 y 0018 |
 | `src/styles/` | `tokens.css`: todas las variables de diseño (colores, espaciado, tiempos de animación y velos); `base.css`: los estilos que se repiten y los velos del listón; `parallax.css`: desplazamiento ligado al scroll en CSS. Los estilos propios de cada pieza viven dentro de ella | ADR 0008, 0015 y 0016 |
 | `public/img/` | Los logos y el patrón de baldosa (`patron.svg` y `patron-final.svg`), en SVG | — |
 | `tests/` | Las pruebas de WhatsApp y esquemas, el revisor de enlaces internos y la configuración de la revisión de accesibilidad | ADR 0013 |

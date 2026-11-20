@@ -16,6 +16,8 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Agregado
 
+- Versión completa en inglés bajo rutas estáticas `/en/` (`projects`, `services`, `courses`, `studio`, `contact`, `privacy`, `accessibility` y páginas individuales de proyecto conservando sus slugs), con selector de idioma `ES / EN` en la barra superior de información (`BarraInfo.astro`, compacto en móvil ≤ 600 px), vistas compartidas (`src/views/`), capa de rutas y traducciones (`src/i18n/`), campos opcionales `encargoEn`, `solucionEn` y `altEn` en los proyectos, mensajes de WhatsApp y correo en el idioma activo de la página (`src/lib/whatsapp.ts`), metadatos `<html lang>`, `og:locale` y `hreflang` (`Layout.astro`), y ficha [ADR 0018](docs/adr/0018-version-en-ingles.md).
+
 - `docs/ESTRUCTURA.md`: qué hay en cada carpeta del proyecto y cuál es el código de la web.
 - Fotos reales de seis proyectos (Café San Luis, Tacos Cajamarquinos Jr. Ayacucho, Estación de servicio Labanda, Cafétos, Refugio VV y Estancia del Alba), con texto alternativo y crédito del fotógrafo. Van dentro del repositorio por ahora (a R2 más adelante). El script `scripts/preparar_fotos.py` las reduce a 2400 px, las pasa a sRGB y borra todos sus datos EXIF, XMP y demás, y verifica el resultado.
 - Las fotos se optimizan al construir (AVIF y WebP, varios tamaños, carga diferida).

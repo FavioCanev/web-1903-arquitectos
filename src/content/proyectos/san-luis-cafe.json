@@ -12,81 +12,98 @@
   "anio": 2026,
   "fotografo": "Alejandro Cerna",
   "encargo": "El encargo consistió en el diseño interior y la renovación de la identidad espacial de la Cafetería San Luis, un establecimiento de dos niveles ubicado en el Centro Histórico de Cajamarca. El principal desafío radicaba en actualizar la imagen de marca y su paleta cromática, integrando la esencia de la ciudad sin recurrir a recursos visuales literales o imágenes referenciales directas. El proyecto debía reinterpretar la identidad cajamarquina de manera contemporánea y sutil a través de la materialidad, las texturas, las formas y el color, respetando el carácter arquitectónico preexistente del entorno monumental.",
+  "encargoEn": "The commission involved interior design and spatial rebranding for Cafetería San Luis, a two-story café in Cajamarca’s Historic Center. The core challenge was refreshing the brand image and color palette to reflect the city’s essence without resorting to literal clichés—reinterpreting Cajamarcan identity in a subtle, contemporary key through materials, textures, form, and color while respecting the historic building’s monumental character.",
   "solucion": "La solución arquitectónica reinterpreta la identidad de Cajamarca de manera contemporánea mediante una paleta cromática de tonos terracota, que evocan la arcilla y las tejas coloniales, combinada con muros estucados de textura rústica y zócalos altos que abstraen las siluetas de las casonas e iglesias locales. Los techos conservan sus vigas de madera oscura originales, dialogando con un mobiliario de madera diseñado a medida donde destacan barras de atención funcionales y una estantería exenta con silueta a dos aguas que hace un guiño sutil a la volumetría rural andina.\nEl espacio se complementa con una iluminación escenográfica protagonizada por grandes lámparas colgantes de fibras naturales que emulan la forma del sombrero tradicional cajamarquino, proyectando una luz cálida sobre las superficies. En la segunda sala, el diseño se articula alrededor de una banca perimetral que rodea un árbol conceptual, coronado por lámparas naturales suspendidas que refuerzan la atmósfera íntima y sutil del ambiente; finalmente, las bancas con un respaldar tipo macetero con plantas secas e iluminacion sutil, evocan un ambiente acogedor y elegante, logrando una propuesta sofisticada y profundamente arraigada en su contexto histórico sin caer en recursos visuales literales.",
+  "solucionEn": "The design reimagines Cajamarca’s heritage through a terracotta palette reminiscent of local clay and colonial roof tiles, paired with rustic stucco walls and tall wainscoting abstracting silhouettes of regional mansions and churches. Original dark timber ceiling beams remain exposed, conversing with bespoke wooden furniture—including functional service bars and a freestanding gable-silhouetted shelving unit nodding to rural Andean architecture.\n\nWarm scenic illumination centers on oversized woven fiber pendant lamps shaped like the traditional Cajamarcan hat. In the second room, seating wraps around a sculptural tree under suspended lanterns and benches backed by softly lit dried-botanical planters, achieving an intimate, refined atmosphere deeply rooted in its historic context.",
   "fotos": [
     {
       "src": "../../assets/proyectos/san-luis-cafe/01.jpg",
       "alt": "Salón de la cafetería con banca curva crema, mesa redonda de madera y un árbol seco con farolillos blancos al centro.",
+      "altEn": "Café room with cream curved bench seating, round wooden table, and a central sculptural dry tree hung with white lanterns.",
       "enfoque": "56% 51%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/02.jpg",
       "alt": "Árbol seco con farolillos blancos sobre una base circular iluminada, junto a un mural de figuras en zancos sobre fondo azul.",
+      "altEn": "Sculptural dry tree with white lanterns rising from an illuminated circular base beside a blue-background mural of stilt-walkers.",
       "enfoque": "52% 49%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/03.jpg",
       "alt": "Mesa redonda con sillas de madera frente a una banca curva y un mural colorido de figuras sobre un cielo.",
+      "altEn": "Round wooden table and chairs before a curved bench and colorful sky mural.",
       "enfoque": "42% 54%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/04.jpg",
       "alt": "Fila de mesas de madera con banca corrida a lo largo del muro, lámparas de mimbre y farolillos bajo un techo terracota.",
+      "altEn": "Row of wooden tables along a continuous wall bench, woven wicker pendants, and lanterns beneath a terracotta ceiling.",
       "enfoque": "54% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/05.jpg",
       "alt": "Mesas de madera con sillas y banca tapizada bajo lámparas de mimbre y farolillos, con cuadros en la pared.",
+      "altEn": "Wooden dining tables with chairs and an upholstered bench beneath wicker shades, lanterns, and framed wall art.",
       "enfoque": "54% 51%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/06.jpg",
       "alt": "Perspectiva de la segunda sala hacia el arco de ingreso y el árbol iluminado entre las bancas curvas.",
+      "altEn": "Perspective across the second dining room toward the arched doorway and illuminated tree between curved benches.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/07.jpg",
       "alt": "Vitrina horizontal enmarcada de figuras costumbristas bajo tres grandes lámparas tejidas de fibras naturales.",
+      "altEn": "Horizontal framed shadowbox of folk figurines beneath three oversized woven natural-fiber pendant lamps.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/08.jpg",
       "alt": "Vista vertical hacia una mesa junto a la banca corrida iluminada y el árbol con farolillos al fondo.",
+      "altEn": "Vertical view toward a table beside the backlit bench and the lantern-hung sculptural tree in the background.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/09.jpg",
       "alt": "Primer plano de una lámpara colgante tejida con silueta de sombrero cajamarquino encendida sobre el muro.",
+      "altEn": "Close-up of a lit woven pendant lamp shaped like a traditional Cajamarcan hat against the textured wall.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/10.jpg",
       "alt": "Detalle de la banca curva tapizada en tono claro con cojines textiles andinos frente a las pampas secas.",
+      "altEn": "Detail of the light-upholstered curved bench accented with Andean textile cushions and dried pampas grass.",
       "enfoque": "50% 55%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/11.jpg",
       "alt": "Contrapicado interior dentro de la lámpara tejida de fibras naturales con su bombilla cálida al centro.",
+      "altEn": "Upward interior shot inside the woven natural-fiber lamp shade with a warm glowing bulb at the center.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/12.jpg",
       "alt": "Vista en contrapicado mirando a través de un farolillo de papel hacia las ramas del árbol decorativo.",
+      "altEn": "Low-angle view looking past a paper lantern into the branches of the sculptural tree.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/13.jpg",
       "alt": "Detalle de la jardinera circular de estuco terracota iluminada con luz cálida perimetral desde la base.",
+      "altEn": "Detail of the circular terracotta stucco planter rimmed with warm perimeter lighting at its base.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/14.jpg",
       "alt": "Toma vertical de la banca curva tapizada junto a la mesa circular y vegetación seca en el respaldar.",
+      "altEn": "Vertical shot of the curved upholstered bench beside a round table and dried botanical planter backrest.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/15.jpg",
       "alt": "Primer plano vertical de los farolillos blancos suspendidos del árbol central frente al fondo cálido.",
+      "altEn": "Vertical close-up of white lanterns suspended from the central sculptural tree against a warm backdrop.",
       "enfoque": "50% 50%"
     }
   ],
@@ -94,21 +111,25 @@
     {
       "src": "../../assets/proyectos/san-luis-cafe/renders/01.jpg",
       "alt": "Render de la sala principal de San Luis Café con mesa larga, taburetes, vigas de madera y lámparas de fibras naturales.",
+      "altEn": "Render of the main room at San Luis Café with a communal wooden table, stools, exposed beams, and natural-fiber pendants.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/renders/02.jpg",
       "alt": "Render frontal hacia el arco con el letrero luminoso San Luis, cuadros botánicos y mesas altas.",
+      "altEn": "Front render toward the archway displaying the illuminated San Luis sign, botanical prints, and high-top tables.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/renders/03.jpg",
       "alt": "Render de detalle de la mesa con servicio de café frente al nicho iluminado de San Luis.",
+      "altEn": "Detail render of a table set with coffee service in front of the backlit San Luis arch niche.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/san-luis-cafe/renders/04.jpg",
       "alt": "Render de la zona de mesas con arcos iluminados en la pared, uno con la frase Que llueva café.",
+      "altEn": "Render of the dining zone featuring backlit wall arches, one inscribed with the phrase Que llueva café.",
       "enfoque": "50% 50%"
     }
   ]

@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ruta, type Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const t = textos(lang);
+const s = t.servicios;
+---
+
+<Layout
+  lang={lang}
+  titulo={s.titulo}
+  descripcion={s.descripcion}
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="cabecera"><div><span class="etiqueta">{s.etiqueta}</span><h1 class="h2">{s.h1}</h1></div></div>
+      <ol class="servicios">
+        {s.lista.map((item, i) => (
+          <li class="servicio">
+            <span class="servicio__num">{String(i + 1).padStart(2, "0")}</span>
+            <h2 class="h3">{item.nombre}{item.proximamente && <span class="pildora pronto">{s.proximamente}</span>}</h2>
+            <p class="servicio__lista">{item.incluye}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt">
+    <div class="contenedor">
+      <div class="cabecera"><div><span class="etiqueta">{s.comoTrabajamosEtiqueta}</span><h2 class="h2">{s.comoTrabajamosTitulo}</h2></div></div>
+      <ol class="pasos">
+        {s.pasos.map((p, i) => (
+          <li class="paso"><span class="paso__num">{String(i + 1).padStart(2, "0")}</span><h3 class="h3">{p.nombre}</h3><p class="texto-2">{p.texto}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor faq">
+      <div><span class="etiqueta">{s.faqEtiqueta}</span><h2 class="h2">{s.faqTitulo}</h2></div>
+      <div>
+        {s.preguntas.map((q) => <details><summary>{q.pregunta}</summary><p class="texto-2">{q.respuesta}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt llamado">
+    <div class="contenedor">
+      <h2 class="h2">{s.llamadoTitulo}</h2>
+      <a class="boton boton--primario" href={ruta("contacto", lang)}>{s.llamadoBoton}</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .servicios { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+  .servicio { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e2) var(--canal); padding: var(--e4) 0; border-bottom: 1px solid var(--linea); align-items: baseline; }
+  .servicio__num { grid-column: span 1; font-size: var(--t-s); letter-spacing: 0.1em; color: var(--vino-2); }
+  .servicio .h3 { grid-column: span 4; }
+  .servicio__lista { grid-column: span 7; font-size: var(--t-s); color: var(--vino-2); max-width: 62ch; }
+  .pronto { margin-left: var(--e2); vertical-align: middle; }
+
+  .pasos { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); list-style: none; padding: 0; margin: 0; }
+  .paso { grid-column: span 3; display: grid; gap: var(--e2); padding-top: var(--e3); border-top: 2px solid var(--vino); min-width: 0; align-content: start; }
+  .paso__num { font-size: var(--t-xl); line-height: 1; font-weight: 500; color: var(--vino); }
+
+  .faq { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); }
+  .faq > div:first-child { grid-column: span 4; }
+  .faq > div:last-child { grid-column: span 8; }
+  details { border-bottom: 1px solid var(--linea); }
+  details:first-child { border-top: 1px solid var(--linea); }
+  summary { cursor: pointer; padding: var(--e3) 0; font-size: var(--t-m); font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: var(--e2); }
+  summary::after { content: "+"; color: var(--vino-2); }
+  details[open] summary::after { content: "−"; }
+  details p { padding-bottom: var(--e3); }
+
+  .llamado .contenedor { display: flex; justify-content: space-between; align-items: center; gap: var(--e4); flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .servicio .h3 { grid-column: span 11; }
+    .servicio__lista { grid-column: 2 / -1; }
+    .paso { grid-column: span 6; }
+    .faq > div:first-child, .faq > div:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .paso { grid-column: 1 / -1; }
+  }
+</style>

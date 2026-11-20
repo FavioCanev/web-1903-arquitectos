@@ -12,51 +12,62 @@
   "anio": 2026,
   "fotografo": "Alejandro Cerna",
   "encargo": "Desarrollar una propuesta de diseño interior temático que fusione la riqueza cultural de México con la identidad de Cajamarca, transformando una casona ubicada en el Centro Histórico en un espacio gastronómico y lleno de personalidad. El desafío consistió en trasladar un fragmento de México al corazón de Cajamarca, creando una experiencia que trascienda lo gastronómico y envuelva al usuario a través de la arquitectura, las tradiciones. La intervención contempla 147.30 m² distribuidos en dos niveles, integrando espacios de atención, preparación y consumo.",
+  "encargoEn": "To create a themed interior design fusing Mexican cultural vibrancy with Cajamarcan identity, transforming a historic townhome in downtown Cajamarca into a spirited dining destination. Spanning 147.30 m² across two levels, the challenge was weaving hospitality, kitchen prep, and dining spaces seamlessly into the heritage shell through architecture and craft.",
   "solucion": "La propuesta de TACOS CAJAMARQUINOS se desarrolla bajo el concepto de una fusión cultural y sensorial, reinterpretando la esencia festiva de México dentro de la arquitectura tradicional cajamarquina. Se emplea una paleta cromática vibrante, con tonalidades terracota, azul intenso, amarillo y verde, complementada con elementos artesanales, papel picado multicolor y luminarias escultóricas que evocan las celebraciones mexicanas. Los arcos, la madera y los elementos arquitectónicos existentes dialogan con la nueva intervención, mientras que los recursos decorativos y la iluminación cálida construyen una atmósfera envolvente, dinámica y cargada de identidad.\n\nLa intervención organiza funcionalmente los 147.30 m² en dos niveles. El primero integra la barra principal como elemento de bienvenida, la cocina, los servicios higiénicos y una zona de comensales concebida como el corazón de la experiencia gastronómica. El segundo nivel incorpora una sala adicional de comensales y un ambiente destinado a reservas, ofreciendo una experiencia más privada. El diseño aprovecha la verticalidad, el color y la riqueza gráfica para generar diferentes escenarios dentro de un mismo establecimiento. El resultado es un espacio donde México y Cajamarca convergen, transformando una casona histórica en un destino gastronómico que invita no solo a degustar, sino también a descubrir, celebrar y vivir ambas culturas.",
+  "solucionEn": "The design brings festive Mexican spirit together with traditional Cajamarcan architecture through an expressive color palette—terracotta, deep cobalt blue, marigold yellow, and emerald green—paired with folk craftwork, multicolored papel picado banners, and sculptural luminaires. Existing arches, exposed timber, and historic walls converse effortlessly with warm lighting and playful details.\n\nSpread across 147.30 m² on two floors, the ground level welcomes guests with a patterned-tile service bar, kitchen, restrooms, and the lively primary dining hall, while the upper floor adds extra dining and a private room for reservations. Using vertical volume, bold pigment, and artisanal storytelling, the project turns a heritage townhouse into an immersive culinary destination celebrating both cultures.",
   "fotos": [
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/01.jpg",
       "alt": "Salón del restaurante con techo cubierto de papel picado de colores, muros rojos y una escalera de madera al fondo.",
+      "altEn": "Restaurant dining hall with a colorful papel picado ceiling canopy, red walls, and a wooden staircase in the background.",
       "enfoque": "51% 51%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/02.jpg",
       "alt": "Rincón del restaurante con un arco blanco y una imagen de la Virgen de Guadalupe, bajo guirnaldas de papel picado.",
+      "altEn": "Dining corner featuring a white niche arch framing the Virgin of Guadalupe beneath papel picado garlands.",
       "enfoque": "53% 49%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/03.jpg",
       "alt": "Mesas con sillas amarillas, verdes y azules frente a un muro rojo con cuadros, bajo un techo de papel picado.",
+      "altEn": "Dining tables with yellow, green, and blue chairs set against a red gallery wall under papel picado banners.",
       "enfoque": "49% 47%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/04.jpg",
       "alt": "Detalle del techo con papel picado de colores y una piñata, junto a un muro rojo con cuadros enmarcados.",
+      "altEn": "Ceiling detail with multicolored papel picado and a piñata beside a red wall hung with framed art.",
       "enfoque": "49% 49%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/05.jpg",
       "alt": "Detalle de dos luminarias escultóricas traslúcidas en tonos morado y amarillo encendidas bajo el cielo raso.",
+      "altEn": "Close-up of two glowing translucent purple and yellow sculptural pendant lights suspended from the ceiling.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/06.jpg",
       "alt": "Esquina de la barra azul revestida con cubierta de losetas hidráulicas geométricas frente al listonado de madera.",
+      "altEn": "Corner of the cobalt blue service bar clad with geometric encaustic tiles opposite slatted wood wall paneling.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/07.jpg",
       "alt": "Primer plano de las tiras de papel picado multicolor con calaveras y grecas suspendidas en el salón.",
+      "altEn": "Close-up of vibrant papel picado banners cut with folk calavera motifs hanging across the dining room.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/08.jpg",
       "alt": "Vista general del salón hacia el arco con la Virgen de Guadalupe y la escalera negra hacia el segundo nivel.",
+      "altEn": "Overview of the dining room looking toward the arched niche and black staircase rising to the upper floor.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/09.jpg",
       "alt": "Ambiente del primer nivel junto al ingreso con la barra de losetas decoradas y el nicho en arco iluminado.",
+      "altEn": "Ground-floor entrance room featuring the patterned-tile service counter and illuminated arched wall niche.",
       "enfoque": "50% 50%"
     }
   ],
@@ -64,16 +75,19 @@
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/01.jpg",
       "alt": "Render de la barra azul con arcos iluminados, piso de losetas estampadas y sillas amarillas.",
+      "altEn": "Render of the blue bar counter with illuminated wall arches, patterned floor tiles, and yellow chairs.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/02.jpg",
       "alt": "Render frontal de la barra de atención azul con listones rojos ondulados en el cielorraso.",
+      "altEn": "Front render of the blue service bar beneath undulating red ceiling slats.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/tacos-cajamarquinos-jr-ayacucho/renders/03.jpg",
       "alt": "Render del salón principal con guirnaldas de papel picado multicolor, escalera de madera y mesas con sillas amarillas.",
+      "altEn": "Render of the main dining hall with multicolored papel picado garlands, wood stairs, and yellow dining chairs.",
       "enfoque": "50% 50%"
     }
   ]

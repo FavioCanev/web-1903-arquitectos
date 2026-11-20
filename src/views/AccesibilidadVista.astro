@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { estudio } from "../config";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+
+interface Props {
+  lang?: Idioma;
+}
+const { lang = "es" } = Astro.props;
+const a = textos(lang).accesibilidad;
+---
+
+<Layout lang={lang} titulo={a.titulo} descripcion={a.descripcion}>
+  <section class="seccion">
+    <div class="contenedor texto">
+      <span class="etiqueta">{a.etiqueta}</span>
+      <h1 class="h2">{a.h1}</h1>
+      {a.notaIdioma && <p class="pequeno texto-2">{a.notaIdioma}</p>}
+
+      <h2 class="h3">{a.nivelTitulo}</h2>
+      <p>{a.nivelTexto}</p>
+
+      <h2 class="h3">{a.limitacionesTitulo}</h2>
+      <p>{a.limitacionesTexto}</p>
+
+      <h2 class="h3">{a.reporteTitulo}</h2>
+      <p>{a.reporteAntes}<a href={`mailto:${estudio.correo}`}>{estudio.correo}</a>{a.reporteDespues}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .texto { display: grid; gap: var(--e3); max-width: 760px; margin: 0; }
+  .texto :global(h2.h3) { margin-top: var(--e3); }
+</style>

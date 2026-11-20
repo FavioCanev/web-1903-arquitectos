@@ -1,0 +1,10 @@
+---
+import ProyectoDetalleVista from "../../../views/ProyectoDetalleVista.astro";
+import { obtenerRutasProyectos } from "../../../lib/proyectos";
+
+export const getStaticPaths = obtenerRutasProyectos;
+
+const { proyecto, anterior, siguiente } = Astro.props;
+---
+
+<ProyectoDetalleVista proyecto={proyecto} anterior={anterior} siguiente={siguiente} lang="en" />

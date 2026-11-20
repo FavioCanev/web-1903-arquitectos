@@ -1,0 +1,232 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getImage } from "astro:assets";
+import CollageProyecto from "../components/CollageProyecto.astro";
+import { ruta, type Idioma } from "../i18n/rutas";
+import { textos, traducirCategoria } from "../i18n/textos";
+import { datoOPendiente, tituloProyecto, urlProyecto, type Proyecto } from "../lib/proyectos";
+
+interface Props {
+  proyecto: Proyecto;
+  anterior: Proyecto;
+  siguiente: Proyecto;
+  lang?: Idioma;
+}
+const { proyecto, anterior, siguiente, lang = "es" } = Astro.props;
+const t = textos(lang);
+const d = proyecto.data;
+const esRender = d.estado === "render";
+const tipoLocalizado = traducirCategoria(d.tipo, lang);
+const encargoTexto = lang === "en" && d.encargoEn ? d.encargoEn : d.encargo;
+const solucionTexto = lang === "en" && d.solucionEn ? d.solucionEn : d.solucion;
+
+// La foto principal fija es un fondo de CSS: se genera una versión optimizada (WebP, 2000 px) para ella.
+const principal = d.fotos[0]?.src ? await getImage({ src: d.fotos[0].src, format: "webp", width: 2000 }) : undefined;
+const imagenOg = d.fotos[0]?.src ? (await getImage({ src: d.fotos[0].src, format: "jpeg", width: 1200 })).src : undefined;
+const enfoquePrincipal = d.fotos[0]?.enfoque ?? "50% 40%";
+const primeraOracion = encargoTexto && !encargoTexto.startsWith("[") ? encargoTexto.split(/(?<=\.)\s+/)[0] : undefined;
+const acortarSeo = (texto: string, max = 158) =>
+  texto.length <= max ? texto : `${texto.slice(0, max - 1).replace(/\s+\S*$/, "")}…`;
+const descripcion = acortarSeo(
+  primeraOracion ?? t.proyecto.descripcionRespaldo(d.nombre, tipoLocalizado.toLowerCase(), d.ciudad),
+);
+const datos = [
+  [t.proyecto.tipo, tipoLocalizado],
+  [t.proyecto.ubicacion, d.ciudad],
+  [t.proyecto.anio, datoOPendiente(d.anio, t.proyecto.anioPendiente)],
+  [t.proyecto.area, d.area ? `${d.area} m²` : "[m²]"],
+  [t.proyecto.estado, d.estado === "terminado" ? t.proyecto.construido : t.proyecto.enDesarrollo],
+  [esRender ? t.proyecto.visualizacion : t.proyecto.fotografia, d.fotografo ?? "1903 Arquitectos"],
+];
+---
+
+<Layout
+  lang={lang}
+  titulo={tituloProyecto(d, lang)}
+  descripcion={descripcion}
+  imagen={imagenOg}
+  tipo="article"
+>
+  <!-- Portada inspirada en Casa Mulix (Arkham Projects): foto fija con el título y las migas encima -->
+  <section
+    class:list={["portada", { "portada--con-foto": Boolean(principal), pendiente: !principal }]}
+    aria-label={t.proyecto.portadaAria}
+    style={principal ? `background-image:url(${principal.src});background-position:${enfoquePrincipal}` : undefined}
+  >
+    <div class="contenedor portada__cabecera">
+      <div class="portada__titulo-grupo">
+        {esRender && <span class="pildora portada__etiqueta">{t.proyecto.render}{d.porConfirmar ? t.proyecto.porConfirmar : ""}</span>}
+        <h1 class="portada__titulo">{d.nombre}</h1>
+      </div>
+      <nav class="migas" aria-label={t.proyecto.migasAria}>
+        <a href={ruta("inicio", lang)}>{t.proyecto.inicio}</a> <span aria-hidden="true">—</span> <a href={ruta("proyectos", lang)}>{t.proyecto.proyectos}</a> <span aria-hidden="true">—</span> <span aria-current="page">{d.nombre}</span>
+      </nav>
+    </div>
+    {!principal && <p class="portada__nota">{t.proyecto.fotoPendiente} · {d.nombre}</p>}
+  </section>
+
+  <div class="contenido">
+    <div class="contenedor">
+      <section class="ficha-arkham" aria-label={t.proyecto.infoAria}>
+        <div class="fila-info">
+          <h2 class="fila-info__etiqueta">{t.proyecto.sobre}</h2>
+          <div class="fila-info__cuerpo">
+            <h3 class="ficha-arkham__nombre">{d.nombre}</h3>
+            <p class="texto-2">{tipoLocalizado}{t.proyecto.enPrefijo}{d.ciudad}.</p>
+          </div>
+        </div>
+
+        <div class="fila-info">
+          <h2 class="fila-info__etiqueta">{t.proyecto.datosTitulo}</h2>
+          <dl class="tabla-datos">
+            {datos.map(([etiqueta, valor]) => (
+              <div class="tabla-datos__fila"><dt>{etiqueta}</dt><dd>{valor}</dd></div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="fila-info">
+          <h2 class="fila-info__etiqueta">{t.proyecto.encargoTitulo}</h2>
+          <div class="fila-info__cuerpo">
+            {(encargoTexto ?? t.proyecto.encargoPendiente).split("\n\n").map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+
+        <div class="fila-info">
+          <h2 class="fila-info__etiqueta">{t.proyecto.solucionTitulo}</h2>
+          <div class="fila-info__cuerpo">
+            {(solucionTexto ?? t.proyecto.solucionPendiente).split("\n\n").map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      </section>
+
+      <div class="secciones-fotos">
+        <CollageProyecto
+          titulo={esRender ? t.proyecto.collageRenders : t.proyecto.collageTerminado}
+          fotos={d.fotos}
+          lang={lang}
+          semilla={`${proyecto.id}-${esRender ? "renders" : "terminado"}`}
+        />
+        {d.proceso && d.proceso.length > 0 && (
+          <CollageProyecto titulo={t.proyecto.collageProceso} fotos={d.proceso} lang={lang} semilla={`${proyecto.id}-proceso`} />
+        )}
+        {d.renders && d.renders.length > 0 && (
+          <CollageProyecto titulo={t.proyecto.collageRenders} fotos={d.renders} lang={lang} semilla={`${proyecto.id}-renders`} />
+        )}
+      </div>
+
+      <nav class="vecinos" aria-label={t.proyecto.vecinosAria}>
+        <a href={urlProyecto(anterior, lang)}><span class="etiqueta">{t.proyecto.anterior}</span><span class="h3">{anterior.data.nombre}</span></a>
+        <a href={urlProyecto(siguiente, lang)}><span class="etiqueta">{t.proyecto.siguiente}</span><span class="h3">{siguiente.data.nombre}</span></a>
+      </nav>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .portada {
+    position: relative; min-height: clamp(460px, 72vh, 760px); border-radius: 0;
+    display: grid; grid-template-rows: auto 1fr; align-items: start; justify-items: stretch;
+    padding: var(--e8) 0; background-attachment: fixed; background-position: center; background-size: cover;
+  }
+  .portada--con-foto { background-color: var(--vino); color: var(--claro); }
+  .portada--con-foto::before { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 0.42); pointer-events: none; }
+  .portada--con-foto :focus-visible { outline-color: var(--amarillo); }
+  .portada__cabecera {
+    position: relative; z-index: 1; width: 100%; text-align: left;
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--e4); flex-wrap: wrap;
+  }
+  .portada__titulo-grupo {
+    display: grid; gap: var(--e2); justify-items: start;
+  }
+  .portada--con-foto .portada__etiqueta {
+    background: none; box-shadow: none; color: var(--claro); border-color: rgb(253 253 253 / 0.55);
+  }
+  .portada__titulo {
+    background: none; box-shadow: none;
+    font-size: var(--t-xl); font-weight: 500; letter-spacing: -0.015em; line-height: 1.08;
+  }
+  .portada__titulo::after {
+    content: ""; display: block; width: 40px; height: 2px; background: currentColor; margin-top: var(--e2);
+  }
+  .migas {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    display: flex; flex-wrap: wrap; gap: var(--e1); align-items: center;
+  }
+  .migas a { background: none; box-shadow: none; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color var(--dur-corta) var(--curva); }
+  .migas a:hover, .migas a:focus-visible { text-decoration-color: currentColor; }
+  .portada--con-foto .migas, .portada--con-foto .migas a { color: var(--claro); }
+  .portada.pendiente .migas { color: var(--vino-2); }
+  .portada__nota {
+    position: relative; z-index: 1; align-self: center; justify-self: center;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2);
+  }
+
+  .contenido { background: var(--fondo); position: relative; }
+
+  /* Información del proyecto antes de las fotos, en dos columnas como Casa Mulix */
+  .ficha-arkham { display: grid; gap: var(--e8); padding: var(--e12) 0 var(--e8); }
+  .secciones-fotos { display: grid; gap: var(--e12); padding: var(--e8) 0 var(--seccion); border-top: 1px solid var(--linea); }
+  .fila-info { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e3) var(--canal); align-items: start; }
+  .fila-info__etiqueta {
+    grid-column: span 4;
+    font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--vino-2); padding-top: 4px;
+  }
+  .fila-info__cuerpo, .tabla-datos { grid-column: span 8; }
+  .fila-info__cuerpo { display: grid; gap: var(--e2); max-width: 66ch; }
+  .ficha-arkham__nombre { font-size: var(--t-l); font-weight: 500; line-height: 1.2; }
+  .tabla-datos { margin: 0; border-top: 1px solid var(--linea); }
+  .tabla-datos__fila {
+    display: grid; grid-template-columns: minmax(120px, 0.45fr) 1fr; gap: var(--e3);
+    padding: var(--e2) 0; border-bottom: 1px solid var(--linea); align-items: baseline;
+  }
+  .tabla-datos dt { font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--vino-2); }
+  .tabla-datos dd { margin: 0; font-size: var(--t-s); }
+
+  .vecinos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--linea); }
+  .vecinos a { padding: var(--e6) 0; text-decoration: none; display: grid; gap: 4px; justify-items: start; }
+  .vecinos a + a { text-align: right; justify-items: end; border-left: 1px solid var(--linea); padding-left: var(--e4); }
+  .vecinos a .h3 {
+    display: inline-block;
+    transform-origin: left center;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+    transition: transform var(--dur-corta) var(--curva), text-decoration-color var(--dur-corta) var(--curva);
+  }
+  .vecinos a + a .h3 { transform-origin: right center; }
+  .vecinos a:hover .h3,
+  .vecinos a:focus-visible .h3 { transform: translateX(-4px) scale(1.03); text-decoration-color: var(--naranja); }
+  .vecinos a + a:hover .h3,
+  .vecinos a + a:focus-visible .h3 { transform: translateX(4px) scale(1.03); }
+
+  @supports (-webkit-touch-callout: none) {
+    .portada { background-attachment: scroll; }
+  }
+
+  @media (max-width: 900px) {
+    .portada { background-attachment: scroll; padding: var(--e6) 0; }
+    .ficha-arkham { padding: var(--e8) 0 var(--e6); gap: var(--e6); }
+    .secciones-fotos { gap: var(--e8); padding: var(--e6) 0 var(--e8); }
+    .fila-info { grid-template-columns: minmax(0, 1fr); gap: var(--e2); }
+    .fila-info__etiqueta, .fila-info__cuerpo, .tabla-datos { grid-column: 1 / -1; }
+    .tabla-datos__fila { grid-template-columns: minmax(100px, 0.5fr) 1fr; }
+  }
+  @media (max-width: 600px) {
+    .vecinos { grid-template-columns: minmax(0, 1fr); }
+    .vecinos a + a { text-align: left; justify-items: start; border-left: 0; border-top: 1px solid var(--linea); padding-left: 0; }
+    .vecinos a + a .h3 { transform-origin: left center; }
+    .vecinos a:hover .h3,
+    .vecinos a:focus-visible .h3,
+    .vecinos a + a:hover .h3,
+    .vecinos a + a:focus-visible .h3 { transform: translateX(4px) scale(1.03); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vecinos a:hover .h3,
+    .vecinos a:focus-visible .h3,
+    .vecinos a + a:hover .h3,
+    .vecinos a + a:focus-visible .h3 { transform: none; }
+  }
+</style>

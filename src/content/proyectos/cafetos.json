@@ -12,46 +12,56 @@
   "anio": 2024,
   "fotografo": "Alejandro Cerna",
   "encargo": "Desarrollar un espacio comercial de alto impacto visual que conecte con el consumidor y fortalezca la identidad de CAFETOS, posicionando al café como producto protagonista y potenciando la comercialización de sus complementos. El principal desafío consistió en transformar un espacio reducido de 25 m² en una cafetería con gran presencia arquitectónica, capaz de ofrecer una experiencia memorable, funcional y visualmente atractiva.",
+  "encargoEn": "To design a high-impact commercial space that connects with customers and strengthens CAFETOS’s brand identity, placing coffee front and center while boosting retail sales of its accompaniments. The main challenge lay in transforming a compact 25 m² footprint into a café with strong architectural presence—capable of delivering a memorable, functional, and visually compelling experience.",
   "solucion": "La propuesta arquitectónica de CAFETOS busca transformar un espacio de apenas 25 m² en una experiencia comercial de gran impacto visual, integrando funcionalidad, identidad y diseño. La conceptualización incorpora la paleta cromática de la marca: rojo, blanco y negro, generando contrastes que aportan personalidad y reconocimiento visual. Esta composición se complementa con la calidez de la madera, una secuencia de arcos y una estructura reticular en el cielo raso que, junto con la iluminación integrada, generan continuidad, profundidad y una mayor percepción de amplitud espacial.\n\nComo elemento distintivo, se incorpora un mural de vinilo con ilustraciones inspiradas en los inicios de CAFETOS, convirtiendo la historia de la marca en un recurso narrativo que conecta emocionalmente con el consumidor. La distribución estratégica integra las áreas de preparación, exhibición, atención y consumo, optimizando cada metro cuadrado. El resultado es una cafetería donde la arquitectura trasciende sus dimensiones físicas, consolidando una identidad comercial reconocible y transformando un espacio reducido en una experiencia memorable.\n\nEl resultado es un espacio donde la arquitectura trasciende sus dimensiones físicas y se convierte en una extensión de la marca. CAFETOS demuestra que una gran cafetería no se define por su superficie, sino por su capacidad de transmitir identidad, contar una historia y transformar el consumo cotidiano en una experiencia memorable.",
+  "solucionEn": "The architectural proposal for CAFETOS turns a compact 25 m² space into a visually striking retail experience where functionality, brand identity, and design converge. The concept draws on the brand’s color palette—red, white, and black—creating crisp contrasts that lend character and immediate recognition. Warm wood finishes, a sequence of arches, and a coffered grid ceiling with integrated lighting add continuity, depth, and an expanded sense of space.\n\nAs a signature feature, a vinyl mural illustrated with scenes from CAFETOS’s early days turns brand history into a storytelling element that connects emotionally with visitors. A carefully planned layout integrates preparation, product display, counter service, and seating, making every square meter work efficiently.\n\nUltimately, the architecture transcends its physical footprint to become an extension of the brand—proving that a great coffee shop is not defined by square footage, but by its ability to express identity, tell a story, and elevate an everyday ritual into a memorable experience.",
   "fotos": [
     {
       "src": "../../assets/proyectos/cafetos/01.jpg",
       "alt": "Mostrador de la cafetería con vitrina de panes, letrero luminoso de Cafétos y un cielorraso de listones de madera.",
+      "altEn": "Café service counter with pastry display case, illuminated Cafétos sign, and wooden slatted ceiling.",
       "enfoque": "53% 49%"
     },
     {
       "src": "../../assets/proyectos/cafetos/02.jpg",
       "alt": "Dos personas conversan en una mesa dentro de un nicho de muro rojo curvo, con piso rojo y pared blanca texturada.",
+      "altEn": "Two guests seated at a table inside a curved red wall niche with red flooring and a textured white wall.",
       "enfoque": "50% 61%"
     },
     {
       "src": "../../assets/proyectos/cafetos/03.jpg",
       "alt": "Barra con taburetes negros frente a un mural de colores, bajo un cielorraso de listones de madera.",
+      "altEn": "Bar counter with black stools facing a colorful illustrated mural beneath a slatted wooden ceiling.",
       "enfoque": "51% 53%"
     },
     {
       "src": "../../assets/proyectos/cafetos/04.jpg",
       "alt": "Cielorraso de madera con listones y luz cálida sobre el letrero iluminado de Cafétos.",
+      "altEn": "Slatted wooden ceiling with warm integrated lighting above the illuminated Cafétos sign.",
       "enfoque": "47% 64%"
     },
     {
       "src": "../../assets/proyectos/cafetos/05.jpg",
       "alt": "Cielorraso de madera en cuadrícula con luz lineal, visto hacia el mostrador.",
+      "altEn": "Coffered wooden grid ceiling with linear lighting looking toward the counter.",
       "enfoque": "48% 65%"
     },
     {
       "src": "../../assets/proyectos/cafetos/06.jpg",
       "alt": "Panel de madera alargado con borde iluminado sobre un muro blanco, con una banca naranja abajo.",
+      "altEn": "Elongated backlit wooden wall panel over a white textured wall with an orange bench below.",
       "enfoque": "44% 48%"
     },
     {
       "src": "../../assets/proyectos/cafetos/07.jpg",
       "alt": "Detalle de un muro rojo y un cielorraso curvo de madera con luz indirecta.",
+      "altEn": "Detail of a curved red wall and wood ceiling accented with indirect warm lighting.",
       "enfoque": "50% 52%"
     },
     {
       "src": "../../assets/proyectos/cafetos/08.jpg",
       "alt": "Vista hacia la barra principal bajo el cielorraso reticular de madera iluminado y el nicho rojo al frente.",
+      "altEn": "View toward the main bar beneath the illuminated wooden grid ceiling with the red niche ahead.",
       "enfoque": "50% 50%"
     }
   ],
@@ -59,21 +69,25 @@
     {
       "src": "../../assets/proyectos/cafetos/proceso/01.jpg",
       "alt": "Nicho rojo curvo con el letrero de Cafétos recién instalado durante los últimos acabados de obra.",
+      "altEn": "Curved red niche with the newly installed Cafétos sign during final finishing works.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/proceso/02.jpg",
       "alt": "Barra principal en montaje bajo el cielorraso reticular de madera con iluminación lineal.",
+      "altEn": "Main bar counter under installation beneath the wooden grid ceiling and linear lights.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/cafetos/proceso/03.jpg",
       "alt": "Pruebas de iluminación y mobiliario con escalera de obra antes de la apertura.",
+      "altEn": "Lighting and furniture testing with a stepladder on site prior to opening.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/proceso/04.jpg",
       "alt": "Detalle de prueba de luz indirecta entre el muro texturado blanco y el revestimiento rojo curvo.",
+      "altEn": "Indirect lighting test detail between the textured white wall and curved red cladding.",
       "enfoque": "50% 50%"
     }
   ],
@@ -81,41 +95,49 @@
     {
       "src": "../../assets/proyectos/cafetos/renders/01.jpg",
       "alt": "Render de Cafétos mostrando la atención en mesa junto al nicho rojo curvo y la barra bajo el cielo reticular de madera.",
+      "altEn": "Render of Cafétos showing table service beside the curved red niche and the bar beneath the wooden grid ceiling.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/02.jpg",
       "alt": "Render de la vista frontal hacia la barra de Cafétos y el techo cuadriculado de madera con iluminación integrada.",
+      "altEn": "Front view render looking toward the Cafétos counter and the coffered wooden ceiling with integrated lighting.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/03.jpg",
       "alt": "Render del salón con el mural ilustrado de Cafétos, la barra en L y mesas con sillones burdeos.",
+      "altEn": "Render of the main room with the illustrated Cafétos mural, L-shaped counter, and burgundy armchairs.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/04.jpg",
       "alt": "Render en primer plano del nicho curvo rojo con el logotipo de Cafétos y una mesa para dos personas.",
+      "altEn": "Close-up render of the curved red niche bearing the Cafétos logo and a two-person table.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/05.jpg",
       "alt": "Render de la zona de preparación y vitrina de exhibición con el cielorraso reticular de madera.",
+      "altEn": "Render of the prep area and display counter beneath the wooden grid ceiling.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/06.jpg",
       "alt": "Render de la esquina de la barra frente al mural gráfico y la vitrina iluminada.",
+      "altEn": "Render of the bar corner opposite the graphic mural and illuminated pastry display.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/07.jpg",
       "alt": "Render de la mesa junto al mural de colores y las paredes texturadas en blanco.",
+      "altEn": "Render of a seating table beside the colorful mural and textured white walls.",
       "enfoque": "50% 50%"
     },
     {
       "src": "../../assets/proyectos/cafetos/renders/08.jpg",
       "alt": "Render general mostrando el nicho curvo rojo, el mostrador de atención y los arcos de madera.",
+      "altEn": "Overview render showing the curved red niche, service counter, and wooden arches.",
       "enfoque": "50% 50%"
     }
   ]

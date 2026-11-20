@@ -1,19 +1,24 @@
 ---
 import { getImage } from "astro:assets";
 import Foto from "./Foto.astro";
-import type { Proyecto } from "../lib/proyectos";
+import type { Idioma } from "../i18n/rutas";
+import { textos } from "../i18n/textos";
+import { altFoto, type Proyecto } from "../lib/proyectos";
 
 interface Props {
   titulo: string;
   fotos: Proyecto["data"]["fotos"];
+  lang?: Idioma;
   /** Semilla por proyecto y sección para variar el ritmo sin cambiar al recargar. */
   semilla?: string;
 }
-const { titulo, fotos, semilla = titulo } = Astro.props;
+const { titulo, fotos, lang = "es", semilla = titulo } = Astro.props;
+const t = textos(lang);
 
 const items = await Promise.all(
   fotos.map(async (foto, i) => ({
     foto,
+    alt: altFoto(foto, lang),
     i,
     grande: foto.src
       ? (await getImage({ src: foto.src, format: "webp", width: Math.min(2000, foto.src.width) })).src
@@ -67,20 +72,20 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
   <div class="collage" style={`--cols:${numCols};--filas:${maxPorCol};--fila-px:${filaDesktop}px`}>
     {columnas.map((col) => (
       <div class="collage__col">
-        {col.map(({ foto, i, grande }) => (
+        {col.map(({ foto, alt, i, grande }) => (
           <figure class="collage__item" style={`--peso:${pesos[i]}`}>
             {grande ? (
               <button
                 type="button"
                 class="collage__boton"
                 data-ampliar={grande}
-                data-alt={foto.alt}
-                aria-label={`Ampliar fotografía: ${foto.alt}`}
+                data-alt={alt}
+                aria-label={`${t.collage.ampliarPrefix}${alt}`}
               >
                 <Foto src={foto.src} alt="" enfoque={foto.enfoque} clase="collage__foto" sizes={sizes} />
               </button>
             ) : (
-              <Foto src={foto.src} alt={foto.alt} enfoque={foto.enfoque} clase="collage__foto" sizes={sizes} />
+              <Foto src={foto.src} alt={alt} enfoque={foto.enfoque} clase="collage__foto" sizes={sizes} />
             )}
           </figure>
         ))}
@@ -88,9 +93,9 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
     ))}
   </div>
 
-  <dialog class="visor" data-visor aria-label="Vista ampliada de la fotografía">
+  <dialog class="visor" data-visor aria-label={t.collage.visorAria}>
     <div class="visor__marco">
-      <button type="button" class="visor__cerrar" data-cerrar aria-label="Cerrar vista ampliada">Cerrar ×</button>
+      <button type="button" class="visor__cerrar" data-cerrar aria-label={t.collage.cerrarAria}>{t.collage.cerrarTexto}</button>
       <img class="visor__img" data-visor-img alt="" />
     </div>
   </dialog>
