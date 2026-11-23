@@ -17,11 +17,11 @@ Arquitectos1903/
 
 | Carpeta o archivo | Qué es | ¿Se sube a GitHub? |
 |---|---|---|
-| `src/` | Las páginas, los componentes, los estilos, los datos de los proyectos y el resto del código de la web | Sí |
-| `public/` | Archivos que la web entrega tal cual: logos y patrón de baldosa en SVG | Sí |
-| `tests/` | La prueba del mensaje de WhatsApp, las pruebas de esquemas, el revisor de enlaces y la configuración de la revisión de accesibilidad | Sí |
+| `src/` | Las páginas, los componentes, los estilos, los datos de los proyectos y el resto del código de la web, en español y en inglés (las traducciones están en `src/i18n/`) | Sí |
+| `public/` | Archivos que la web entrega tal cual: logos y patrón de baldosa en SVG, el ícono de la pestaña, el logo del Colegio de Arquitectos del Perú y `robots.txt` (las indicaciones para los buscadores) | Sí |
+| `tests/` | La prueba del mensaje de WhatsApp, las pruebas de esquemas, la prueba de las traducciones, el revisor de enlaces y la configuración de la revisión de accesibilidad | Sí |
 | `docs/mantenimiento/` | El programa en Python (`preparar_fotos.py`), la lista de fotos elegidas (`seleccion.json`), el asistente visual en el navegador (`nuevo-proyecto.html`, con soporte `.heic` en `lib/`) y el manual ilustrado con sus capturas y PDF (`manual-de-mantenimiento.md` / `.pdf`) | Sí |
-| `.github/` | Las revisiones automáticas que corren en cada *pull request* | Sí |
+| `.github/` | Las revisiones automáticas que corren en cada *pull request* y la publicación temporal en GitHub Pages (`pages.yml`), que se elimina al pasar a Cloudflare | Sí |
 | `package.json`, `package-lock.json` | La lista de herramientas (dependencias) y sus versiones exactas, y los comandos del proyecto | Sí |
 | `astro.config.mjs`, `tsconfig.json` | La configuración de Astro y de TypeScript | Sí |
 | `docs/` | Las decisiones de arquitectura (ADR), el mapa del sitio, la arquitectura, el mantenimiento (`docs/mantenimiento/`) y este documento | Sí |

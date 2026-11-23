@@ -54,13 +54,14 @@ const datos = [
     style={principal ? `background-image:url(${principal.src});background-position:${enfoquePrincipal}` : undefined}
   >
     <div class="contenedor portada__cabecera">
+      <!-- Migas encima del título, a la izquierda (como Casa Mulix): así el listón de la derecha nunca las tapa (ADR 0015). -->
+      <nav class="migas" aria-label={t.proyecto.migasAria}>
+        <a href={ruta("inicio", lang)}>{t.proyecto.inicio}</a> <span aria-hidden="true">—</span> <a href={ruta("proyectos", lang)}>{t.proyecto.proyectos}</a> <span aria-hidden="true">—</span> <span aria-current="page">{d.nombre}</span>
+      </nav>
       <div class="portada__titulo-grupo">
         {esRender && <span class="pildora portada__etiqueta">{t.proyecto.render}{d.porConfirmar ? t.proyecto.porConfirmar : ""}</span>}
         <h1 class="portada__titulo">{d.nombre}</h1>
       </div>
-      <nav class="migas" aria-label={t.proyecto.migasAria}>
-        <a href={ruta("inicio", lang)}>{t.proyecto.inicio}</a> <span aria-hidden="true">—</span> <a href={ruta("proyectos", lang)}>{t.proyecto.proyectos}</a> <span aria-hidden="true">—</span> <span aria-current="page">{d.nombre}</span>
-      </nav>
     </div>
     {!principal && <p class="portada__nota">{t.proyecto.fotoPendiente} · {d.nombre}</p>}
   </section>
@@ -134,7 +135,7 @@ const datos = [
   .portada--con-foto :focus-visible { outline-color: var(--amarillo); }
   .portada__cabecera {
     position: relative; z-index: 1; width: 100%; text-align: left;
-    display: flex; justify-content: space-between; align-items: baseline; gap: var(--e4); flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: flex-start; gap: var(--e3);
   }
   .portada__titulo-grupo {
     display: grid; gap: var(--e2); justify-items: start;

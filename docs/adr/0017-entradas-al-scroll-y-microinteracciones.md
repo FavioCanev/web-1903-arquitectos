@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Estado | Aceptada (reemplaza a la [ADR 0016](0016-animaciones-con-css-y-grilla-fija.md)) |
+| Estado | Reemplazada por la [ADR 0019](0019-entradas-sin-transparencia-pie-amarillo-y-sin-boton-flotante.md) (antes reemplazó a la [ADR 0016](0016-animaciones-con-css-y-grilla-fija.md)) |
 | Fecha | 17/11/2026 |
 | Quién decide | 1903 Arquitectos (solicitó mayor interactividad y aprobó la vista previa) y Favio Canevaro Asto (implementación técnica) |
 

@@ -4,7 +4,7 @@
 ![Estado: en desarrollo](https://img.shields.io/badge/estado-en%20desarrollo-F5700B)
 ![Licencia: todos los derechos reservados](https://img.shields.io/badge/licencia-todos%20los%20derechos%20reservados-53090A)
 
-> **In English:** portfolio website for 1903 Arquitectos, an architecture and interior design studio in Cajamarca, Peru. It is a static site built with Astro, hosted on Cloudflare, with no cookies and accessibility to WCAG 2.2 AA. The code is published with the studio's permission as part of its author's portfolio; all rights reserved. Documentation is in Spanish.
+> **In English:** portfolio website for 1903 Arquitectos, an architecture and interior design studio in Cajamarca, Peru. It is a static site built with Astro, in Spanish and English, with no cookies and accessibility to WCAG 2.2 AA. It is previewed on GitHub Pages and will be hosted on Cloudflare at 1903arq.com. The code is published with the studio's permission as part of its author's portfolio; all rights reserved. Documentation is in Spanish.
 
 Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorismo de Cajamarca, Perú. Su objetivo es mostrar la obra terminada del estudio, presentar sus servicios y sus cursos, y que el visitante termine escribiendo por WhatsApp o visitando el estudio.
 
@@ -15,8 +15,9 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 | Wireframes v2 (inicio y página de proyecto, en HTML y CSS) | Hechos y revisados por el estudio; reemplazados por la migración a Astro (quedan en la versión 0.1.0) |
 | Documentación: decisiones de arquitectura, mapa del sitio y arquitectura | Hecha |
 | Migración a Astro, en varias páginas | Hecha |
-| Mockups con las fotos en alta calidad | En curso: fotos reales en 6 obras terminadas y 3 renders; listón y grilla fija aprobados por el estudio |
-| Publicación en `1903arq.com` | Pendiente de confirmar fecha con el estudio |
+| Mockups con las fotos en alta calidad | En curso: 11 obras terminadas (9 con fotos de obra terminada) y 5 proyectos en diseño con renders; faltan las fotos retocadas del fotógrafo y parte del contenido del estudio |
+| Versión en inglés (`/en/`) | Hecha; textos aprobados por el estudio |
+| Publicación en `1903arq.com` | Prevista para el lunes 23/11/2026, en Cloudflare (versión 1.0.0) |
 
 *Leyenda: "Etapa" es cada parte del trabajo, en orden. "Estado" indica si está hecha, pendiente o prevista. "Wireframe" es un esquema de la página que muestra su estructura sin el diseño final; "mockup" es la versión con el diseño y las fotos reales.*
 
@@ -26,13 +27,14 @@ Web de portafolio de **1903 Arquitectos**, estudio de arquitectura e interiorism
 |---|---|---|
 | [Astro](https://astro.build) 7 | Generar el sitio estático a partir de componentes y datos | En uso |
 | TypeScript | Revisar los datos de cada proyecto y el código | En uso |
-| Animaciones de CSS ligadas al scroll | La grilla fija del inicio y el desplazamiento suave de las fotos, sin librerías externas | En uso |
+| Animaciones de CSS ligadas al scroll | La grilla fija del Inicio, el parallax de la portada y las entradas al hacer scroll, sin librerías externas | En uso |
 | Jost, con Fontsource | La tipografía, alojada en la propia web, en WOFF2 | En uso |
-| Vitest y pa11y-ci | La prueba del mensaje de WhatsApp y la revisión de accesibilidad | En uso |
+| Vitest y pa11y-ci | Las pruebas de los mensajes de WhatsApp, de los esquemas de proyectos y de las traducciones, y la revisión de accesibilidad | En uso |
+| GitHub Pages | Vista previa temporal de la web, hasta pasar a Cloudflare | En uso |
 | Cloudflare | Alojamiento, dominio, estadísticas sin cookies y almacenamiento de fotos (R2) | Prevista |
 | GitHub | Código, revisiones automáticas y análisis de seguridad (CodeQL) | En uso |
 
-*Leyenda: "Tecnología" es la herramienta o el servicio. "Para qué" es su función en la web. "Estado" indica si ya se usa o si se usará más adelante. "Sitio estático" es una web hecha solo de archivos, sin servidor ni base de datos. "WOFF2" es el formato de archivo de fuentes pensado para la web: pesa poco. "TypeScript" es JavaScript con tipos. "Vitest" corre pruebas automáticas; "pa11y-ci" revisa la accesibilidad de cada página.*
+*Leyenda: "Tecnología" es la herramienta o el servicio. "Para qué" es su función en la web. "Estado" indica si ya se usa o si se usará más adelante. "Parallax" es el efecto en que la foto se mueve más lento que la página al hacer scroll. "Esquema" es la regla que valida los datos de cada proyecto. "Sitio estático" es una web hecha solo de archivos, sin servidor ni base de datos. "WOFF2" es el formato de archivo de fuentes pensado para la web: pesa poco. "TypeScript" es JavaScript con tipos. "Vitest" corre pruebas automáticas; "pa11y-ci" revisa la accesibilidad de cada página.*
 
 El porqué de cada elección está en las [decisiones de arquitectura](docs/adr/README.md).
 
@@ -67,7 +69,7 @@ Los comandos del proyecto:
 | `npm run build` | Construye la web en la carpeta `dist/` |
 | `npm run preview` | Sirve la web ya construida, tal como la verá el visitante |
 | `npm run check` | Revisa los tipos de TypeScript y las plantillas de Astro |
-| `npm test` | Corre las pruebas (hoy, la del mensaje de WhatsApp) |
+| `npm test` | Corre las pruebas de los mensajes de WhatsApp, de los esquemas de proyectos y de las traducciones |
 | `npm run fotos` | Revisa que todas las fotos de `src/assets/proyectos/` sean JPEG de hasta 2400 px y sin datos EXIF |
 | `npm run enlaces` | Revisa que no haya enlaces internos rotos (después de `npm run build`) |
 | `npm run accesibilidad` | Revisa cada página con pa11y-ci, contra WCAG 2.2 AA (después de `npm run build`). Necesita Chrome: si no se encuentra solo, indica su ruta en la variable `PA11Y_CHROME` |
@@ -79,11 +81,15 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
 
 ## Cómo se publica
 
-[Pendiente: la publicación se configura cuando el estudio compre el dominio.] Está prevista así ([ADR 0004](docs/adr/0004-publicacion-en-cloudflare.md)):
+**Hoy (vista previa temporal):** cada cambio que entra en `main` se publica solo en GitHub Pages, con `.github/workflows/pages.yml`. Como esa dirección cuelga de una subcarpeta, la construcción usa la variable `ASTRO_BASE` (en `astro.config.mjs`).
+
+**Desde el lunes 23/11/2026, en `1903arq.com`** ([ADR 0004](docs/adr/0004-publicacion-en-cloudflare.md)):
 
 - Cloudflare se conecta a este repositorio y **publica sola cada cambio que entra en `main`**.
 - Cada *pull request* tiene una **vista previa** en una dirección de prueba, para revisarlo antes de publicarlo.
 - Las fotos se preparan con un script (reducidas y sin datos de ubicación) y se suben a Cloudflare R2 antes de construir la web ([ADR 0011](docs/adr/0011-fotos-en-cloudflare-r2.md)).
+
+Al pasar a Cloudflare se retira la vista previa temporal: se apaga GitHub Pages en *Settings → Pages* del repositorio, se elimina `.github/workflows/pages.yml`, se quita `ASTRO_BASE` de `astro.config.mjs` y se agrega `site: "https://1903arq.com"` (lo necesitan el enlace `canonical` y las etiquetas `hreflang` de cada página).
 
 ## Forma de trabajo
 
@@ -128,4 +134,4 @@ Cómo agregar o cambiar un proyecto: cada proyecto es un archivo en `src/content
 
 Diseño y desarrollo: **Favio Canevaro Asto**, para 1903 Arquitectos.
 
-Fotografía: Alejandro Cerna (en los proyectos publicados hasta ahora); los demás créditos se suman cuando entren sus fotos.
+Fotografía: Alejandro Cerna y 1903 Arquitectos (en los proyectos publicados hasta ahora); los demás créditos se suman cuando entren sus fotos.

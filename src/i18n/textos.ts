@@ -480,7 +480,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         {
           pregunta: "¿Trabajan fuera de Cajamarca?",
           respuesta:
-            "¡Por supuesto! Nos encanta llevar nuestro trabajo a distintas partes del país, aunque nuestra sede principal está en Cajamarca. Ya hemos desarrollado proyectos en Trujillo, Arequipa y Tumbes, y estamos listos para viajar o trabajar de forma remota según lo que tu proyecto necesite.",
+            "¡Por supuesto! Nos encanta llevar nuestro trabajo a distintas partes del país, aunque nuestra sede principal está en Cajamarca. Ya hemos desarrollado proyectos en Trujillo, Chiclayo, Arequipa y Tumbes, y estamos listos para viajar o trabajar de forma remota según lo que tu proyecto necesite.",
         },
         {
           pregunta: "¿Cuántas opciones de diseño nos presentan y cuántas modificaciones podemos hacerle al proyecto?",
@@ -496,7 +496,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         {
           pregunta: "¿Cuánto tiempo toma la etapa de diseño antes de poder tramitar los permisos o construir?",
           respuesta:
-            "Un diseño maduro y bien detallado toma aproximadamente entre 2 y 4 meses, dependiendo de la complejidad y escala del proyecto. Este tiempo se divide entre la conceptualización, el desarrollo de planos arquitectónicos y la elaboración de los proyectos de ingenierías (estructural, eléctrica, sanitaria). Invertir el tiempo correcto en esta etapa es lo que garantiza que la construcción fluya rápido y sin costosos errores de improvisación.",
+            "Un diseño maduro y bien detallado toma desde un mes, según la complejidad y escala del proyecto; el plazo exacto te lo indicamos en la cotización. Este tiempo se divide entre la conceptualización, el desarrollo de planos arquitectónicos y la elaboración de los proyectos de ingenierías (estructural, eléctrica, sanitaria). Invertir el tiempo correcto en esta etapa es lo que garantiza que la construcción fluya rápido y sin costosos errores de improvisación.",
         },
         {
           pregunta: "¿Ustedes nos ayudan a elegir los materiales y acabados de la región, o debemos buscarlos nosotros?",
@@ -903,7 +903,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         {
           pregunta: "Do you work outside Cajamarca?",
           respuesta:
-            "Of course! While our main studio is in Cajamarca, we love bringing our work to different regions across Peru. We have already developed projects in Trujillo, Arequipa, and Tumbes, and we are ready to travel or collaborate remotely depending on what your project requires.",
+            "Of course! While our main studio is in Cajamarca, we love bringing our work to different regions across Peru. We have already developed projects in Trujillo, Chiclayo, Arequipa, and Tumbes, and we are ready to travel or collaborate remotely depending on what your project requires.",
         },
         {
           pregunta: "How many design options do you present, and how many revisions can we make?",
@@ -919,7 +919,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         {
           pregunta: "How long does the design stage take before we can apply for permits or start construction?",
           respuesta:
-            "A well-developed, detailed design takes roughly 2 to 4 months, depending on the project's scale and complexity. This time covers conceptualization, architectural drawings, and engineering packages (structural, electrical, and plumbing). Investing the right time here ensures construction flows smoothly without costly on-site improvisation.",
+            "A well-developed, detailed design takes from one month, depending on the project's scale and complexity; we give you the exact timeline in our quote. This time covers conceptualization, architectural drawings, and engineering packages (structural, electrical, and plumbing). Investing the right time here ensures construction flows smoothly without costly on-site improvisation.",
         },
         {
           pregunta: "Do you help us choose regional materials and finishes, or do we have to source them ourselves?",
