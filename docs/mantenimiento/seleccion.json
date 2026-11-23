@@ -296,5 +296,13 @@
       { "archivo": "Copia de 7.png", "logo": false },
       { "archivo": "Copia de 8.png", "logo": false }
     ]
+  },
+  "casa-en-matara": {
+    "carpeta": "../drive-fotos-sync/renders/casa-en-matara",
+    "fotos": [
+      "Copia de 1.jpg",
+      "Copia de 2.jpg",
+      "Copia de 4.jpg"
+    ]
   }
 }
