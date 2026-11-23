@@ -455,7 +455,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       pasos: [
         { nombre: "Conversamos", texto: "Tu idea, el terreno o local y el presupuesto." },
         { nombre: "Diseñamos", texto: "Propuesta, renders y planos." },
-        { nombre: "Elegimos materiales", texto: "Acabados, mobiliario e iluminación." },
+        { nombre: "Elegimos", texto: "Materiales, acabados, mobiliario e iluminación." },
         { nombre: "Construimos", texto: "Llevamos la obra de inicio a fin." },
       ],
       faqEtiqueta: "Preguntas frecuentes",
@@ -878,7 +878,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       pasos: [
         { nombre: "We talk", texto: "Your idea, the site or space, and your budget." },
         { nombre: "We design", texto: "Concept proposal, renders, and drawings." },
-        { nombre: "We select materials", texto: "Finishes, furniture, and lighting." },
+        { nombre: "We select", texto: "Materials, finishes, furniture, and lighting." },
         { nombre: "We build", texto: "We manage construction from start to finish." },
       ],
       faqEtiqueta: "Frequently asked questions",
