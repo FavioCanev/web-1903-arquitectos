@@ -17,7 +17,10 @@ const enlacesMapa = [
 
 <footer class="pie">
   <div class="contenedor">
-    <a class="pie__logo" href={ruta("inicio", lang)}><img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="560" height="224" loading="lazy" /></a>
+    <div class="pie__cabecera">
+      <a class="pie__logo" href={ruta("inicio", lang)}><img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="560" height="224" loading="lazy" /></a>
+      <a class="pie__arriba" href="#arriba">{t.pie.volverArriba}<span aria-hidden="true"> ↑</span></a>
+    </div>
 
     <div class="pie__columnas grilla-12">
       <div class="pie__contacto">
@@ -63,8 +66,16 @@ const enlacesMapa = [
 <style>
   .pie { padding: var(--e12) 0 var(--e6); background: var(--amarillo); --velo: var(--velo-amarillo); }
   .pie > .contenedor { position: relative; z-index: var(--capa-contenido); }
+  .pie__cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--e3); flex-wrap: wrap; }
   .pie__logo { display: inline-block; width: fit-content; }
   .pie__logo img { width: min(560px, 80vw); height: auto; }
+  .pie__arriba {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 36px;
+    font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; color: var(--vino); border-bottom: 1px solid var(--linea-vino);
+    transition: border-color var(--dur-corta) var(--curva);
+  }
+  .pie__arriba:hover { border-bottom-color: var(--vino); }
   .pie__columnas { margin-top: var(--e8); align-items: start; }
   .pie__contacto { grid-column: span 8; display: grid; gap: var(--e1); align-content: start; font-size: var(--t-s); }
   .pie__mapa { grid-column: span 4; }

@@ -47,7 +47,7 @@ const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1
   <section class="seccion seccion--alt">
     <div class="contenedor showroom">
       <div class="showroom__media">
-        <span class="pildora showroom__marca">{e.render}</span>
+        <span class="pildora showroom__marca"><span class="pildora__larga">{e.render}</span><span class="pildora__corta">{e.renderCorto}</span></span>
         <Foto
           src={renderShowroom}
           alt={e.showroomAlt}

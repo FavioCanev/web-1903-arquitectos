@@ -15,6 +15,7 @@ const renders = await rendersEnDesarrollo();
 <!-- Desplazamiento horizontal nativo: se desliza con el dedo, el mouse y el teclado; con JS agrega flechas -->
 <div class="carrusel-marco" data-carrusel-marco>
   <div class="carrusel-controles" hidden data-carrusel-controles>
+    <span class="carrusel-contador" data-carrusel-contador aria-live="polite">{`1 / ${renders.length}`}</span>
     <button type="button" class="carrusel-btn" data-carrusel-dir="-1" aria-label={t.carrusel.anterior}>&#8592;</button>
     <button type="button" class="carrusel-btn" data-carrusel-dir="1" aria-label={t.carrusel.siguiente}>&#8594;</button>
   </div>
@@ -30,19 +31,29 @@ const renders = await rendersEnDesarrollo();
       const controles = marco.querySelector<HTMLElement>("[data-carrusel-controles]");
       const prev = marco.querySelector<HTMLButtonElement>('[data-carrusel-dir="-1"]');
       const next = marco.querySelector<HTMLButtonElement>('[data-carrusel-dir="1"]');
+      const contador = marco.querySelector<HTMLElement>("[data-carrusel-contador]");
       if (!carrusel || !controles || !prev || !next || marco.dataset.listo) continue;
+      const tarjetas = [...carrusel.querySelectorAll<HTMLElement>(".tarjeta")];
       marco.dataset.listo = "true";
       controles.hidden = false;
 
       const actualizar = () => {
         prev.disabled = carrusel.scrollLeft <= 2;
-        next.disabled = carrusel.scrollLeft + carrusel.clientWidth >= carrusel.scrollWidth - 2;
+        const alFinal = carrusel.scrollLeft + carrusel.clientWidth >= carrusel.scrollWidth - 2;
+        next.disabled = alFinal;
+        if (contador && tarjetas.length > 0) {
+          const paso = tarjetas[0].offsetWidth + parseFloat(getComputedStyle(carrusel).gap || "0");
+          const actual = alFinal
+            ? tarjetas.length
+            : Math.min(tarjetas.length, Math.max(1, Math.round(carrusel.scrollLeft / (paso || 1)) + 1));
+          contador.textContent = `${actual} / ${tarjetas.length}`;
+        }
       };
 
       const mover = (dir: number) => {
         const tarjeta = carrusel.querySelector<HTMLElement>(".tarjeta");
         const paso = tarjeta ? tarjeta.offsetWidth + parseFloat(getComputedStyle(carrusel).gap || "0") : carrusel.clientWidth * 0.8;
-        carrusel.scrollBy({ left: dir * paso, behavior: "smooth" });
+        carrusel.scrollBy({ left: dir * paso, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
       };
 
       prev.addEventListener("click", () => mover(-1));
@@ -58,6 +69,15 @@ const renders = await rendersEnDesarrollo();
   .carrusel-marco { display: grid; gap: var(--e3); }
   .carrusel-controles { display: flex; justify-content: flex-end; gap: var(--e1); }
   .carrusel-controles[hidden] { display: none; }
+  .carrusel-contador {
+    align-self: center;
+    margin-right: var(--e1);
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--vino-2);
+    font-variant-numeric: tabular-nums;
+  }
   .carrusel-btn {
     width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--vino-2);
     background: var(--fondo); color: var(--vino); font-size: 18px; line-height: 1;

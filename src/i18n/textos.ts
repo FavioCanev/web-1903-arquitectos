@@ -35,6 +35,7 @@ interface TextosIdioma {
     contacto: string;
     privacidad: string;
     accesibilidad: string;
+    volverArriba: string;
   };
   categorias: Record<string, string>;
   inicio: {
@@ -61,6 +62,7 @@ interface TextosIdioma {
   };
   tarjeta: {
     render: string;
+    renderCorto: string;
     porConfirmar: string;
     anioPendiente: string;
     renderPendiente: string;
@@ -84,6 +86,7 @@ interface TextosIdioma {
     descripcionRespaldo: (nombre: string, tipoLower: string, ciudad: string) => string;
     portadaAria: string;
     render: string;
+    renderCorto: string;
     porConfirmar: string;
     fotoPendiente: string;
     migasAria: string;
@@ -118,6 +121,8 @@ interface TextosIdioma {
     visorAria: string;
     cerrarAria: string;
     cerrarTexto: string;
+    anterior: string;
+    siguiente: string;
   };
   servicios: {
     titulo: string;
@@ -169,6 +174,7 @@ interface TextosIdioma {
     retratoPendiente: string;
     equipo: readonly string[];
     render: string;
+    renderCorto: string;
     showroomAlt: string;
     showroomEtiqueta: string;
     showroomTitulo: string;
@@ -227,6 +233,9 @@ interface TextosIdioma {
     direccionLabel: string;
     whatsappLabel: string;
     correoLabelDato: string;
+    copiarCorreo: string;
+    correoCopiado: string;
+    correoCopiadoAnuncio: string;
     horarioLabel: string;
     sinCita: string;
     js: {
@@ -274,7 +283,8 @@ interface TextosIdioma {
     nivelTitulo: string;
     nivelTexto: string;
     limitacionesTitulo: string;
-    limitacionesTexto: string;
+    limitacionesIntro: string;
+    limitacionesLista: readonly string[];
     reporteTitulo: string;
     reporteAntes: string;
     reporteDespues: string;
@@ -319,6 +329,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       contacto: "Contacto",
       privacidad: "Aviso de privacidad",
       accesibilidad: "Declaración de accesibilidad",
+      volverArriba: "Volver arriba",
     },
     categorias: {
       Arquitectura: "Arquitectura",
@@ -349,7 +360,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       regionLabel: "Proyectos en diseño: desliza para ver más",
     },
     tarjeta: {
-      render: "Render",
+      render: "Propuesta visual",
+      renderCorto: "Propuesta",
       porConfirmar: " [por confirmar]",
       anioPendiente: "Año",
       renderPendiente: "Render pendiente",
@@ -374,7 +386,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       descripcionRespaldo: (nombre, tipoLower, ciudad) =>
         `Conoce ${nombre}, un proyecto de ${tipoLower} en ${ciudad} de 1903 Arquitectos.`,
       portadaAria: "Foto principal",
-      render: "Render",
+      render: "Propuesta visual",
+      renderCorto: "Propuesta",
       porConfirmar: " [por confirmar]",
       fotoPendiente: "Foto principal pendiente",
       migasAria: "Migas de pan",
@@ -409,6 +422,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       visorAria: "Vista ampliada de la fotografía",
       cerrarAria: "Cerrar vista ampliada",
       cerrarTexto: "Cerrar ×",
+      anterior: "Fotografía anterior",
+      siguiente: "Fotografía siguiente",
     },
     servicios: {
       titulo: "Servicios — 1903 Arquitectos",
@@ -542,13 +557,13 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         "Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú.",
       etiqueta: "Cursos",
       h1: "Aprende con el estudio",
-      intro: "Los cursos virtuales se inscriben en Hotmart; los presenciales, por WhatsApp.",
+      intro: "Nuestros cursos virtuales se abrirán próximamente; para los presenciales escríbenos por WhatsApp!",
       modalidadVirtual: "Virtual",
       modalidadPresencial: "Presencial",
       pendiente: "[Duración] · [Fechas]",
       inscribirme: "Inscribirme",
       conectorCurso: " en ",
-      proximamente: "Inscripción próximamente [enlace de Hotmart pendiente]",
+      proximamente: "Inscripción próximamente",
       certificadoEtiqueta: "Certificado",
       certificadoTitulo: "Con respaldo profesional",
       certificadoTexto: "Los cursos entregan un certificado en asociación con el Colegio de Arquitectos del Perú.",
@@ -580,7 +595,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       equipoHeading: "Equipo",
       retratoPendiente: "Retrato pendiente",
       equipo: ["Arq. Jorge Muñoz", "Arq. Carla Llerena", "Arq. Loren Bazán"],
-      render: "Render",
+      render: "Propuesta visual",
+      renderCorto: "Propuesta",
       showroomAlt: "Render del showroom de materiales y oficinas en mezzanine de 1903 Arquitectos",
       showroomEtiqueta: "Showroom",
       showroomTitulo: "Ven a ver los materiales en persona",
@@ -646,6 +662,9 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       direccionLabel: "Dirección",
       whatsappLabel: "WhatsApp",
       correoLabelDato: "Correo",
+      copiarCorreo: "Copiar",
+      correoCopiado: "Copiado ✓",
+      correoCopiadoAnuncio: "Correo copiado al portapapeles",
       horarioLabel: "Horario",
       sinCita: "También te recibimos sin cita.",
       js: {
@@ -695,8 +714,13 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       nivelTexto:
         "Esta web busca cumplir las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2, nivel AA, como criterio técnico para cumplir el artículo 23.2 de la Ley 29973, Ley General de la Persona con Discapacidad.",
       limitacionesTitulo: "Limitaciones conocidas",
-      limitacionesTexto:
-        "[Lista de limitaciones conocidas: se completa y actualiza en cada publicación, después de la revisión manual.]",
+      limitacionesIntro:
+        "Última revisión: 24 de noviembre de 2026. Aunque trabajamos para cumplir WCAG 2.2 nivel AA en todo el sitio, existen las siguientes limitaciones conocidas:",
+      limitacionesLista: [
+        "Plataformas externas: al enviar una consulta, abrir el mapa interactivo, inscribirse en cursos virtuales o visitar nuestras redes sociales, la web redirige a servicios de terceros (WhatsApp, Gmail, Google Maps, Hotmart, Instagram y Facebook), cuya accesibilidad depende de cada proveedor.",
+        "Texto sobre fotografías en portadas: los títulos sobre las fotografías principales incluyen un velo oscuro para mantener el contraste, aunque la variación de luz propia de cada fotografía puede generar diferencias puntuales en zonas claras de la imagen.",
+        "Pruebas auditivas con lector de pantalla: la estructura semántica, el contraste, el zoom al 200 %, el reflujo móvil, la navegación por teclado y la preferencia de movimiento reducido se verifican en cada actualización; la revisión auditiva completa con lector de pantalla (NVDA) se realiza de forma periódica antes de cada publicación mayor.",
+      ],
       reporteTitulo: "¿Algo no te funciona?",
       reporteAntes: "Cuéntanos qué página y qué problema encontraste, escribiendo a ",
       reporteDespues: ".",
@@ -739,6 +763,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       contacto: "Contact",
       privacidad: "Privacy notice",
       accesibilidad: "Accessibility statement",
+      volverArriba: "Back to top",
     },
     categorias: {
       Arquitectura: "Architecture",
@@ -769,7 +794,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       regionLabel: "Projects in design: scroll to see more",
     },
     tarjeta: {
-      render: "Render",
+      render: "Visual proposal",
+      renderCorto: "Proposal",
       porConfirmar: " [to be confirmed]",
       anioPendiente: "Year",
       renderPendiente: "Render pending",
@@ -794,7 +820,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       descripcionRespaldo: (nombre, tipoLower, ciudad) =>
         `Explore ${nombre}, a ${tipoLower} project in ${ciudad} by 1903 Arquitectos.`,
       portadaAria: "Main photograph",
-      render: "Render",
+      render: "Visual proposal",
+      renderCorto: "Proposal",
       porConfirmar: " [to be confirmed]",
       fotoPendiente: "Main photograph pending",
       migasAria: "Breadcrumb",
@@ -829,6 +856,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       visorAria: "Enlarged view of the photograph",
       cerrarAria: "Close enlarged view",
       cerrarTexto: "Close ×",
+      anterior: "Previous photograph",
+      siguiente: "Next photograph",
     },
     servicios: {
       titulo: "Services — 1903 Arquitectos",
@@ -965,13 +994,13 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
         "Architecture courses taught by the studio: AutoCAD, plan reading, V-Ray, and Revit, with certification in association with the College of Architects of Peru.",
       etiqueta: "Courses",
       h1: "Learn with the studio",
-      intro: "Online courses are enrolled via Hotmart; in-person courses, via WhatsApp.",
+      intro: "Online courses are open soon; for in-person courses, write to us via WhatsApp!",
       modalidadVirtual: "Online",
       modalidadPresencial: "In-person",
       pendiente: "[Duration] · [Dates]",
       inscribirme: "Enroll",
       conectorCurso: " in ",
-      proximamente: "Enrollment opening soon [Hotmart link pending]",
+      proximamente: "Enrollment opening soon",
       certificadoEtiqueta: "Certificate",
       certificadoTitulo: "Professional backing",
       certificadoTexto:
@@ -1004,7 +1033,8 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       equipoHeading: "Team",
       retratoPendiente: "Portrait pending",
       equipo: ["Arch. Jorge Muñoz", "Arch. Carla Llerena", "Arch. Loren Bazán"],
-      render: "Render",
+      render: "Visual proposal",
+      renderCorto: "Proposal",
       showroomAlt: "Render of the 1903 Arquitectos materials showroom and mezzanine studio offices",
       showroomEtiqueta: "Showroom",
       showroomTitulo: "Come experience the materials in person",
@@ -1070,6 +1100,9 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       direccionLabel: "Address",
       whatsappLabel: "WhatsApp",
       correoLabelDato: "Email",
+      copiarCorreo: "Copy",
+      correoCopiado: "Copied ✓",
+      correoCopiadoAnuncio: "Email copied to clipboard",
       horarioLabel: "Hours",
       sinCita: "Walk-ins are also welcome.",
       js: {
@@ -1123,8 +1156,13 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       nivelTexto:
         "This website aims to conform to the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA, as a technical benchmark to fulfill Article 23.2 of Peruvian Law No. 29973 (General Law on Persons with Disabilities).",
       limitacionesTitulo: "Known limitations",
-      limitacionesTexto:
-        "[List of known limitations: completed and updated with each release following manual review.]",
+      limitacionesIntro:
+        "Last reviewed: November 24, 2026. While we work to meet WCAG 2.2 Level AA across the entire site, the following known limitations apply:",
+      limitacionesLista: [
+        "Third-party platforms: when sending an inquiry, opening the interactive map, enrolling in online courses, or visiting our social media profiles, this website redirects to external services (WhatsApp, Gmail, Google Maps, Hotmart, Instagram, and Facebook) whose accessibility depends on each provider.",
+        "Text over cover photography: headings placed over main photographs include a dark overlay to preserve contrast, although natural lighting variations in each photograph may cause localized contrast differences over bright areas.",
+        "Screen reader audio testing: semantic structure, color contrast, 200% text zoom, mobile reflow, keyboard navigation, and reduced-motion preferences are verified with every update; full audio testing with a screen reader (NVDA) is performed periodically before major releases.",
+      ],
       reporteTitulo: "Something not working for you?",
       reporteAntes: "Let us know which page and what issue you encountered by writing to ",
       reporteDespues: ".",

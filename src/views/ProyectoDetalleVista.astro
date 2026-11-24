@@ -59,7 +59,7 @@ const datos = [
         <a href={ruta("inicio", lang)}>{t.proyecto.inicio}</a> <span aria-hidden="true">—</span> <a href={ruta("proyectos", lang)}>{t.proyecto.proyectos}</a> <span aria-hidden="true">—</span> <span aria-current="page">{d.nombre}</span>
       </nav>
       <div class="portada__titulo-grupo">
-        {esRender && <span class="pildora portada__etiqueta">{t.proyecto.render}{d.porConfirmar ? t.proyecto.porConfirmar : ""}</span>}
+        {esRender && <span class="pildora portada__etiqueta"><span class="pildora__larga">{t.proyecto.render}</span><span class="pildora__corta">{t.proyecto.renderCorto}</span>{d.porConfirmar ? t.proyecto.porConfirmar : ""}</span>}
         <h1 class="portada__titulo">{d.nombre}</h1>
       </div>
     </div>
@@ -225,6 +225,7 @@ const datos = [
     .vecinos a + a:focus-visible .h3 { transform: translateX(4px) scale(1.03); }
   }
   @media (prefers-reduced-motion: reduce) {
+    .portada { background-attachment: scroll; }
     .vecinos a:hover .h3,
     .vecinos a:focus-visible .h3,
     .vecinos a + a:hover .h3,

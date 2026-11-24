@@ -40,17 +40,30 @@ const hrefContacto = ruta("contacto", lang);
 
 <script>
   // Menú de celular. Sin JavaScript los enlaces quedan siempre a la vista (mejora progresiva).
+  function alternarMenu(nav: HTMLElement, boton: HTMLButtonElement, abrir: boolean) {
+    boton.setAttribute("aria-expanded", String(abrir));
+    boton.setAttribute("aria-label", abrir ? (boton.dataset.cerrar ?? "Cerrar menú") : (boton.dataset.abrir ?? "Abrir menú"));
+    nav.toggleAttribute("data-abierto", abrir);
+  }
+
   document.addEventListener("astro:page-load", () => {
     const nav = document.querySelector<HTMLElement>(".nav");
     const boton = nav?.querySelector<HTMLButtonElement>(".nav__menu");
-    if (!nav || !boton) return;
+    if (!nav || !boton || nav.dataset.listo) return;
+    nav.dataset.listo = "true";
     nav.dataset.js = "";
     boton.addEventListener("click", () => {
-      const abierto = boton.getAttribute("aria-expanded") !== "true";
-      boton.setAttribute("aria-expanded", String(abierto));
-      boton.setAttribute("aria-label", abierto ? (boton.dataset.cerrar ?? "Cerrar menú") : (boton.dataset.abrir ?? "Abrir menú"));
-      nav.toggleAttribute("data-abierto", abierto);
+      alternarMenu(nav, boton, boton.getAttribute("aria-expanded") !== "true");
     });
+  });
+
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key !== "Escape") return;
+    const nav = document.querySelector<HTMLElement>(".nav[data-abierto]");
+    const boton = nav?.querySelector<HTMLButtonElement>(".nav__menu");
+    if (!nav || !boton) return;
+    alternarMenu(nav, boton, false);
+    boton.focus();
   });
 </script>
 

@@ -29,7 +29,7 @@ const datos = [d.ciudad, d.area ? `${d.area} m²` : "[m²]", datoOPendiente(d.an
 ---
 
 <Etiqueta class:list={["tarjeta", clase]} href={conEnlace ? urlProyecto(proyecto, lang) : undefined} aria-label={soloFoto && conEnlace ? d.nombre : undefined} data-categorias={JSON.stringify(d.categorias)}>
-  {esRender && <span class="pildora">{t.tarjeta.render}{d.porConfirmar ? t.tarjeta.porConfirmar : ""}</span>}
+  {esRender && <span class="pildora"><span class="pildora__larga">{t.tarjeta.render}</span><span class="pildora__corta">{t.tarjeta.renderCorto}</span>{d.porConfirmar ? t.tarjeta.porConfirmar : ""}</span>}
   <Foto clase={esRender ? "r-3x2" : "r-4x5"} alt="" pendiente={`${esRender ? t.tarjeta.renderPendiente : t.tarjeta.fotoPendiente} · ${d.nombre}`} src={foto?.src} enfoque={foto?.enfoque} />
   <span class:list={["tarjeta__datos", { "solo-lectores": soloFoto }]}>{datos}</span>
   <div class:list={["tarjeta__titulo", { "solo-lectores": soloFoto }]}><Titulo class="h3">{d.nombre}</Titulo><span class="tarjeta__tipo">{traducirCategoria(d.tipo, lang)}</span></div>

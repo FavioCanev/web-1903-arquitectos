@@ -12,16 +12,19 @@
     {
       "src": "../../assets/proyectos/casa-en-matara/01.jpg",
       "alt": "Maqueta volumétrica blanca sobre fondo amarillo mostrando la vivienda de techos inclinados a dos aguas, patio con árbol y óculo circular en la cubierta.",
+      "altEn": "White volumetric architectural scale model on a yellow background showing the house with pitched roofs, courtyard tree, and circular roof oculus.",
       "enfoque": "50% 48%"
     },
     {
       "src": "../../assets/proyectos/casa-en-matara/02.jpg",
       "alt": "Vista exterior en perspectiva de la maqueta de Wasi - La Torre destacando el patio de ingreso con árbol bajo el óculo circular y celosía vertical.",
+      "altEn": "Exterior perspective view of the Wasi - La Torre scale model highlighting the entrance courtyard with a tree beneath the circular oculus and vertical louvers.",
       "enfoque": "50% 52%"
     },
     {
       "src": "../../assets/proyectos/casa-en-matara/03.jpg",
       "alt": "Vista bajo el alero de la maqueta mostrando las sombras del árbol proyectadas sobre la celosía vertical y los planos de acceso.",
+      "altEn": "View beneath the eaves of the scale model showing tree shadows cast across the vertical louvers and entrance planes.",
       "enfoque": "50% 50%"
     }
   ]

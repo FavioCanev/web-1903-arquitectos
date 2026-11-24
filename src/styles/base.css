@@ -74,6 +74,11 @@ main > :not(.liston-sobre) > .contenedor,
   letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--vino-2);
   border-radius: 999px; padding: 6px var(--e2); color: var(--vino-2);
 }
+.pildora__corta { display: none; }
+@media (max-width: 480px) {
+  .pildora__larga { display: none; }
+  .pildora__corta { display: inline; }
+}
 .cabecera { display: flex; justify-content: space-between; align-items: end; gap: var(--e3); margin-bottom: var(--e6); flex-wrap: wrap; }
 .cabecera p { max-width: 42ch; }
 
@@ -82,18 +87,30 @@ main > :not(.liston-sobre) > .contenedor,
   display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--e3);
   border-radius: 999px; font: 500 15px/1 var(--fuente); letter-spacing: 0.02em;
   text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
-  transition: transform var(--dur-corta) var(--curva), border-color var(--dur-corta) var(--curva);
+  transition:
+    transform var(--dur-corta) var(--curva),
+    background-color var(--dur-corta) var(--curva),
+    color var(--dur-corta) var(--curva),
+    border-color var(--dur-corta) var(--curva),
+    text-shadow var(--dur-corta) var(--curva);
 }
-.boton:hover { transform: translateY(-2px); }
+.boton:hover { transform: translateY(-2px); text-shadow: 0 0 0.45px currentColor; }
+.boton:active { transform: translateY(0) scale(0.98); }
 .boton--primario { background: var(--naranja); color: var(--vino); }
+.boton--primario:hover { background: var(--naranja-oscuro); color: var(--claro); }
+:is(.portada-pausa--con-foto, .sobre-vino, .contacto) .boton--primario:hover { background: var(--amarillo); color: var(--vino); }
 /* Todos los botones llevan fondo sólido, al 100 % y sin borde (--boton-fondo: un tono que se distingue del de su
    sección: beige sobre los fondos claros, blanco sobre el beige y sobre las fotos, claro sobre el vino). */
-:root { --boton-fondo: var(--pendiente); }
-.pendiente { --boton-fondo: var(--fondo); }
-.sobre-vino, .contacto { --boton-fondo: var(--claro); }
+:root { --boton-fondo: var(--pendiente); --boton-fondo-hover: #dfd5ca; }
+.pendiente { --boton-fondo: var(--fondo); --boton-fondo-hover: var(--pendiente); }
+.sobre-vino, .contacto { --boton-fondo: var(--claro); --boton-fondo-hover: var(--fondo-alt); }
 .boton--secundario { background: var(--boton-fondo); color: var(--vino); }
-.boton--secundario:hover, .boton--secundario:focus-visible { border-color: var(--vino-2); }
+.boton--secundario:hover { background: var(--boton-fondo-hover); }
+.boton--secundario:focus-visible { border-color: var(--vino-2); }
 .botones { display: flex; flex-wrap: wrap; gap: var(--e2); }
+@media (prefers-reduced-motion: reduce) {
+  .boton:hover, .boton:active { transform: none; }
+}
 :focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
 .sobre-vino :focus-visible, .contacto :focus-visible { outline-color: var(--amarillo); }
 

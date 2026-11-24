@@ -74,12 +74,12 @@ const imagenOgUrl = Astro.site ? new URL(imagenOg, Astro.site).href : imagenOg;
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <ClientRouter />
   </head>
-  <body>
+  <body id="arriba">
     <a class="saltar" href="#contenido">{t.meta.saltar}</a>
     <Liston />
     <BarraInfo lang={lang} urlEs={urlEs} urlEn={urlEn} />
     <Nav lang={lang} />
-    <main id="contenido">
+    <main id="contenido" tabindex="-1">
       <slot />
     </main>
     <Pie lang={lang} />

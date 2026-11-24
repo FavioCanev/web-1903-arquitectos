@@ -95,35 +95,144 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
 
   <dialog class="visor" data-visor aria-label={t.collage.visorAria}>
     <div class="visor__marco">
-      <button type="button" class="visor__cerrar" data-cerrar aria-label={t.collage.cerrarAria}>{t.collage.cerrarTexto}</button>
-      <img class="visor__img" data-visor-img alt="" />
+      <div class="visor__barra">
+        <span class="visor__contador" data-contador aria-live="polite"></span>
+        <button type="button" class="visor__cerrar" data-cerrar aria-label={t.collage.cerrarAria}>{t.collage.cerrarTexto}</button>
+      </div>
+      <div class="visor__escena">
+        <button type="button" class="visor__nav visor__nav--prev" data-prev aria-label={t.collage.anterior}>&#8592;</button>
+        <img class="visor__img" data-visor-img alt="" />
+        <button type="button" class="visor__nav visor__nav--next" data-next aria-label={t.collage.siguiente}>&#8594;</button>
+      </div>
     </div>
   </dialog>
 </section>
 
 <script>
-  // Visor de foto ampliada en cada sección de collage; se reinicia al cambiar de página (ADR 0016).
+  // Visor de foto ampliada en cada sección de collage; permite navegar con flechas, teclado y swipe (ADR 0016).
   document.addEventListener("astro:page-load", () => {
     for (const bloque of document.querySelectorAll<HTMLElement>(".bloque-collage")) {
       const visor = bloque.querySelector<HTMLDialogElement>("[data-visor]");
       const img = bloque.querySelector<HTMLImageElement>("[data-visor-img]");
       const cerrar = bloque.querySelector<HTMLButtonElement>("[data-cerrar]");
-      if (!visor || !img || !cerrar || visor.dataset.listo) continue;
+      const contador = bloque.querySelector<HTMLElement>("[data-contador]");
+      const prev = bloque.querySelector<HTMLButtonElement>("[data-prev]");
+      const next = bloque.querySelector<HTMLButtonElement>("[data-next]");
+      const botones = [...bloque.querySelectorAll<HTMLButtonElement>("[data-ampliar]")];
+      if (!visor || !img || !cerrar || !contador || !prev || !next || visor.dataset.listo) continue;
       visor.dataset.listo = "true";
+
+      let indice = 0;
+      let solicitudId = 0;
+      const cargadas = new Set<string>();
+      const precargadas = new Set<string>();
+      const multiple = botones.length > 1;
+      prev.hidden = !multiple;
+      next.hidden = !multiple;
+      contador.hidden = !multiple;
+
+      const precargar = (idx: number) => {
+        if (botones.length === 0) return;
+        const normalizado = ((idx % botones.length) + botones.length) % botones.length;
+        const url = botones[normalizado]?.dataset.ampliar;
+        if (!url || cargadas.has(url) || precargadas.has(url)) return;
+        precargadas.add(url);
+        const pre = new Image();
+        pre.decoding = "async";
+        pre.onload = () => {
+          cargadas.add(url);
+        };
+        pre.src = url;
+      };
+
+      const mostrar = (nuevoIndice: number) => {
+        if (botones.length === 0) return;
+        indice = ((nuevoIndice % botones.length) + botones.length) % botones.length;
+        const boton = botones[indice];
+        const url = boton?.dataset.ampliar;
+        if (!boton || !url) return;
+        const alt = boton.dataset.alt ?? "";
+        if (multiple) contador.textContent = `${indice + 1} / ${botones.length}`;
+
+        const id = ++solicitudId;
+        if (cargadas.has(url)) {
+          delete img.dataset.cargando;
+          img.src = url;
+          img.alt = alt;
+        } else {
+          // Muestra al instante la miniatura ya cargada del collage mientras descarga la versión de 2000 px.
+          const mini = boton.querySelector("img")?.currentSrc;
+          if (mini) {
+            img.dataset.cargando = "true";
+            img.src = mini;
+          } else {
+            img.removeAttribute("src");
+          }
+          img.alt = alt;
+          const alta = new Image();
+          alta.decoding = "async";
+          alta.onload = () => {
+            cargadas.add(url);
+            if (id === solicitudId && visor.open) {
+              delete img.dataset.cargando;
+              img.src = url;
+            }
+          };
+          alta.src = url;
+        }
+
+        if (multiple) {
+          precargar(indice + 1);
+          precargar(indice - 1);
+          precargar(indice + 2);
+        }
+      };
 
       bloque.addEventListener("click", (e) => {
         const boton = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-ampliar]");
         if (!boton?.dataset.ampliar) return;
-        img.src = boton.dataset.ampliar;
-        img.alt = boton.dataset.alt ?? "";
+        const idx = botones.indexOf(boton);
         visor.showModal();
+        mostrar(idx >= 0 ? idx : 0);
       });
+
+      prev.addEventListener("click", () => mostrar(indice - 1));
+      next.addEventListener("click", () => mostrar(indice + 1));
+
+      visor.addEventListener("keydown", (e) => {
+        if (!multiple) return;
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          mostrar(indice - 1);
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          mostrar(indice + 1);
+        }
+      });
+
+      let toqueX = 0;
+      let toqueY = 0;
+      visor.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        toqueX = e.touches[0].clientX;
+        toqueY = e.touches[0].clientY;
+      }, { passive: true });
+      visor.addEventListener("touchend", (e) => {
+        if (!multiple || e.changedTouches.length !== 1) return;
+        const dx = e.changedTouches[0].clientX - toqueX;
+        const dy = e.changedTouches[0].clientY - toqueY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          mostrar(dx < 0 ? indice + 1 : indice - 1);
+        }
+      }, { passive: true });
 
       cerrar.addEventListener("click", () => visor.close());
       visor.addEventListener("click", (e) => {
         if (e.target === visor) visor.close();
       });
       visor.addEventListener("close", () => {
+        solicitudId++;
+        delete img.dataset.cargando;
         img.removeAttribute("src");
         img.alt = "";
       });
@@ -190,18 +299,40 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
     padding: 0;
     border: 0;
     background: transparent;
+    width: min(92vw, 1280px);
     max-width: min(92vw, 1280px);
     max-height: 90vh;
     overflow: visible;
   }
-  .visor::backdrop { background: rgb(20 4 4 / 0.86); }
+  .visor::backdrop { background: rgb(20 4 4 / 0.94); }
   .visor__marco {
     position: relative;
     display: grid;
-    justify-items: end;
+    justify-items: stretch;
     gap: var(--e2);
   }
+  .visor__barra {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--e2);
+  }
+  .visor__contador {
+    grid-column: 2;
+    justify-self: center;
+    color: var(--claro);
+    font-size: var(--t-s);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+  .visor__contador[hidden],
+  .visor__nav[hidden] {
+    display: none;
+  }
   .visor__cerrar {
+    grid-column: 3;
+    justify-self: end;
     min-height: 44px;
     padding: 0 var(--e3);
     border: 0;
@@ -212,15 +343,42 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
     letter-spacing: 0.04em;
     cursor: pointer;
   }
-  .visor__cerrar:focus-visible { outline-color: var(--amarillo); }
+  .visor__cerrar:focus-visible,
+  .visor__nav:focus-visible { outline-color: var(--amarillo); }
+  .visor__escena {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    justify-items: center;
+    gap: var(--e2);
+  }
+  .visor__nav {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--claro);
+    color: var(--vino);
+    font-size: 18px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--dur-corta) var(--curva), background-color var(--dur-corta) var(--curva);
+  }
+  .visor__nav:hover { background: var(--fondo-alt); transform: scale(1.05); }
   .visor__img {
     display: block;
-    max-width: min(92vw, 1280px);
-    max-height: 82vh;
+    max-width: min(82vw, 1140px);
+    max-height: 80vh;
     width: auto;
     height: auto;
     object-fit: contain;
+    touch-action: pan-y;
+    transition: opacity var(--dur-corta) var(--curva);
   }
+  .visor__img[data-cargando] { opacity: 0.92; }
 
   @media (max-width: 900px) {
     .bloque-collage { width: 100%; }
@@ -235,5 +393,16 @@ const sizes = numCols === 1 ? "(max-width: 900px) 100vw, 80vw" : numCols === 2 ?
       flex: none;
       aspect-ratio: 4 / 3;
     }
+    .visor__escena {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .visor__img {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      max-width: 92vw;
+      max-height: 70vh;
+    }
+    .visor__nav--prev { grid-column: 1; grid-row: 2; justify-self: end; }
+    .visor__nav--next { grid-column: 2; grid-row: 2; justify-self: start; }
   }
 </style>

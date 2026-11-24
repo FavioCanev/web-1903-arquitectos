@@ -8,6 +8,7 @@
   --vino: #53090a;          /* texto principal y bloques oscuros (14,9:1 sobre el fondo) */
   --vino-2: #822325;        /* texto secundario (9,5:1) */
   --naranja: #f5700b;       /* acento único: botones, siempre con texto vino */
+  --naranja-oscuro: #bf4d00; /* hover de botón primario sobre fondos claros (4,83:1 con --claro) */
   --amarillo: #ffde58;      /* una sola banda por página */
   --claro: #fdfdfd;
   --linea: #e4d8cc;
