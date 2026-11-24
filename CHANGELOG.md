@@ -38,6 +38,7 @@ La sección "Sin publicar" reúne lo que ya está en `main` pero todavía no tie
 
 ### Cambiado
 
+- Proyectos sin fotos principales (`src/lib/proyectos.ts`): `obrasTerminadas()` y `rendersEnDesarrollo()` filtran los proyectos sin imágenes reales en `fotos` para no mostrar tarjetas ni portadas pendientes de cara al público (ocultando temporalmente `La Chola - La roja` y `Tacos Cajamarquinos - La Colmena` hasta contar con fotos reales de obra terminada).
 - En la página de cada proyecto, las migas de pan pasan encima del título, a la izquierda, porque el listón tapaba su comienzo a 1440 px (`src/views/ProyectoDetalleVista.astro`).
 - Pregunta frecuente «¿Trabajan fuera de Cajamarca?»: suma Chiclayo a las ciudades donde el estudio ya tiene proyectos (Trujillo, Chiclayo, Arequipa y Tumbes), en español y en inglés.
 - Pregunta frecuente sobre el tiempo de la etapa de diseño: pasa de «entre 2 y 4 meses» a «desde un mes» (plazo exacto en la cotización), en español y en inglés, para no contradecir «¿Cuánto tiempo toma?» [por aprobar por el estudio].

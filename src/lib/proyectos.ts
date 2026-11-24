@@ -5,18 +5,18 @@ import { textos, traducirCategoria } from "../i18n/textos";
 export type Proyecto = CollectionEntry<"proyectos">;
 
 const porOrden = (a: Proyecto, b: Proyecto) => a.data.orden - b.data.orden;
+const tieneFotoPrincipal = (p: Proyecto) => p.data.fotos.some((f) => Boolean(f.src));
 
 export async function obrasTerminadas(): Promise<Proyecto[]> {
-  return (await getCollection("proyectos", (p) => p.data.estado === "terminado")).sort(porOrden);
+  return (await getCollection("proyectos", (p) => p.data.estado === "terminado" && tieneFotoPrincipal(p))).sort(porOrden);
 }
 
 export async function rendersEnDesarrollo(): Promise<Proyecto[]> {
-  return (await getCollection("proyectos", (p) => p.data.estado === "render")).sort(porOrden);
+  return (await getCollection("proyectos", (p) => p.data.estado === "render" && tieneFotoPrincipal(p))).sort(porOrden);
 }
 
-/** Los renders con al menos una imagen real ya tienen su propia página de proyecto. */
-export const tienePagina = (p: Proyecto) =>
-  p.data.estado === "terminado" || p.data.fotos.some((f) => Boolean(f.src));
+/** Solo se publican y enlazan en la web los proyectos con al menos una foto/vista principal real de su sección. */
+export const tienePagina = (p: Proyecto) => tieneFotoPrincipal(p);
 
 export const urlProyecto = (p: Proyecto, lang: Idioma = "es") => rutaProyecto(p.id, lang);
 

@@ -64,7 +64,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 |---|---|---|
 | Proyecto destacado | Foto de Hito - complejo de estación de servicio Labanda (su segunda foto, el pasillo de ladrillo) a pantalla completa, con enlace a la página del proyecto, velo oscuro al 40 %, el lema "Celebramos la cultura mediante el diseño." en blanco y los botones "Ver proyectos" y "Escríbenos por WhatsApp" | Must |
 | Obra terminada (grilla fija animada) | Obras terminadas marcadas para el inicio que cuentan con fotos reales (1.ª y 2.ª foto intercaladas), solo fotos, en 3 columnas. La sección es muy alta y su escenario queda fijo una pantalla: al bajar, las columnas suben y bajan a distinta velocidad, la grilla hace un leve zoom y las de los lados se abren, y al final aparece el botón "Ver todos los proyectos". El título "Obra terminada" queda al centro, sobre la grilla. Cada foto lleva a la página de su proyecto (su nombre solo lo leen los lectores de pantalla). En navegadores sin animaciones ligadas al scroll, con "reducir movimiento" y en pantallas de menos de 900 px es una grilla normal y quieta, con el título arriba y el botón abajo | Must |
-| Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; los que ya tienen vistas enlazan a su propia página y los que aún no tienen imagen quedan como tarjeta sin enlace | Must |
+| Proyectos en diseño | Carrusel de renders, con la etiqueta "Render" en cada uno; solo se muestran los que ya tienen vistas reales y cada uno enlaza a su propia página | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "Render" es una imagen hecha por computadora de un proyecto que todavía no se construye.*
 
@@ -89,15 +89,15 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
-| Obra terminada | Todas las obras terminadas, con foto, nombre y ficha corta (lugar · m² · año) | Must |
+| Obra terminada | Todas las obras terminadas que ya cuentan con fotos de obra terminada, con foto, nombre y ficha corta (lugar · m² · año) | Must |
 | Filtros | "Todos" y las categorías que el estudio asigne en la hoja. Un proyecto puede tener más de una categoría. Las categorías de la hoja son "Arquitectura", "Interiorismo comercial" e "Interiorismo residencial" | Should |
-| En desarrollo | Carrusel con los proyectos en diseño (renders), separados de la obra terminada y con la etiqueta "Render"; los que tienen vistas enlazan a su página propia | Must |
+| En desarrollo | Carrusel con los proyectos en diseño (renders) que ya tienen vistas reales, separados de la obra terminada, con la etiqueta "Render" y enlace a su página propia | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW. "m²" son los metros cuadrados del proyecto.*
 
 **Criterios de aceptación**
 
-- [auto] Aparecen todas las obras terminadas de los datos, cada una con su enlace a su página.
+- [auto] Aparecen todas las obras terminadas y renders que tienen al menos una foto principal real de su sección (`fotos` con imagen), cada uno enlazado a su página; los que aún no tienen fotos de su sección quedan ocultos hasta recibirlas.
 - [auto] Un proyecto con dos categorías aparece al elegir cualquiera de ellas.
 - [manual] Al elegir un filtro se muestran solo los proyectos de esa categoría, y "Todos" los vuelve a mostrar todos.
 - [manual] Los filtros se pueden usar con el teclado, y el filtro elegido se distingue de los demás sin depender solo del color.
