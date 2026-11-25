@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import { getImage } from "astro:assets";
 import Foto from "../components/Foto.astro";
 import renderShowroom from "../assets/showroom.jpg";
+import retratoJorge from "../assets/equipo/jorge.jpg";
+import retratoCarla from "../assets/equipo/carla.jpg";
+import retratoLoren from "../assets/equipo/loren.jpg";
 import { enlaceComoLlegar } from "../config";
 import type { Idioma } from "../i18n/rutas";
 import { textos } from "../i18n/textos";
@@ -12,6 +15,7 @@ interface Props {
 }
 const { lang = "es" } = Astro.props;
 const e = textos(lang).estudioPagina;
+const retratos = [retratoJorge, retratoCarla, retratoLoren];
 const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1200 })).src;
 ---
 
@@ -37,8 +41,19 @@ const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1
       </div>
       <h2 class="solo-lectores">{e.equipoHeading}</h2>
       <ul class="equipo">
-        {e.equipo.map((nombre) => (
-          <li><div class="pendiente r-4x5">{e.retratoPendiente}</div><h3 class="h3">{nombre}</h3></li>
+        {e.equipo.map((nombre, i) => (
+          <li>
+            <Foto
+              src={retratos[i]}
+              alt=""
+              pendiente={e.retratoPendiente}
+              lang={lang}
+              clase="r-4x5 equipo__foto"
+              sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+              enfoque="50% 25%"
+            />
+            <h3 class="h3">{nombre}</h3>
+          </li>
         ))}
       </ul>
     </div>
@@ -74,6 +89,7 @@ const imagenOg = (await getImage({ src: renderShowroom, format: "jpeg", width: 1
   .bloque { display: grid; gap: var(--e1); padding-top: var(--e3); border-top: 1px solid var(--linea); }
   .equipo { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); list-style: none; padding: 0; margin: var(--e12) 0 0; }
   .equipo li { grid-column: span 4; display: grid; gap: var(--e2); min-width: 0; }
+  .equipo__foto { border-radius: var(--radio); }
   .showroom { display: grid; grid-template-columns: repeat(var(--columnas), minmax(0, 1fr)); gap: var(--e6) var(--canal); align-items: center; }
   .showroom__media { grid-column: span 5; }
   .showroom__texto { grid-column: span 7; }

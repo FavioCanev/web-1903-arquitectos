@@ -601,7 +601,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       showroomEtiqueta: "Showroom",
       showroomTitulo: "Ven a ver los materiales en persona",
       showroomNota:
-        "Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario. [Fecha exacta y materiales por confirmar.]",
+        "Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario.",
       comoLlegar: "Cómo llegar",
       abreNuevaPestana: " (se abre en otra pestaña)",
     },
@@ -1039,7 +1039,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       showroomEtiqueta: "Showroom",
       showroomTitulo: "Come experience the materials in person",
       showroomNota:
-        "Opening in early December, inside the studio’s own space with the same visiting hours. [Exact date and materials to be confirmed.]",
+        "Opening in early December, inside the studio’s own space with the same visiting hours.",
       comoLlegar: "Get directions",
       abreNuevaPestana: " (opens in a new tab)",
     },
