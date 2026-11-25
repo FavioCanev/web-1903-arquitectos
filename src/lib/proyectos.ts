@@ -1,6 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { rutaProyecto, type Idioma } from "../i18n/rutas";
-import { textos, traducirCategoria } from "../i18n/textos";
 
 export type Proyecto = CollectionEntry<"proyectos">;
 
@@ -26,11 +25,9 @@ export const datoOPendiente = (valor: string | number | undefined, etiqueta: str
 
 const esPendiente = (texto: string) => texto.startsWith("[");
 
-/** "Cafétos — interiorismo comercial en Cajamarca · 1903 Arquitectos" (mapa del sitio). */
-export function tituloProyecto({ nombre, tipo, ciudad }: Proyecto["data"], lang: Idioma = "es"): string {
-  const tipoLocalizado = traducirCategoria(tipo, lang).toLowerCase();
-  const lugar = esPendiente(ciudad) ? "" : `${textos(lang).proyecto.enPrefijo}${ciudad}`;
-  return `${nombre} — ${tipoLocalizado}${lugar} · 1903 Arquitectos`;
+/** "Cafétos | 1903 Arquitectos" (mapa del sitio). */
+export function tituloProyecto({ nombre }: Pick<Proyecto["data"], "nombre">): string {
+  return `${nombre} | 1903 Arquitectos`;
 }
 
 /** Devuelve el texto alternativo de la foto en el idioma pedido (con respaldo al español si falta altEn). */

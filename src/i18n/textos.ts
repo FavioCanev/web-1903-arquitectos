@@ -337,7 +337,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       "Interiorismo residencial": "Interiorismo residencial",
     },
     inicio: {
-      titulo: "1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca",
+      titulo: "1903 Arquitectos",
       descripcion:
         "Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina.",
       portadaAria: "Proyecto destacado",
@@ -368,7 +368,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       fotoPendiente: "Foto pendiente",
     },
     proyectos: {
-      titulo: "Proyectos — 1903 Arquitectos",
+      titulo: "Proyectos | 1903 Arquitectos",
       descripcion:
         "Obras terminadas del estudio: cafés, restaurantes, locales comerciales y viviendas en Cajamarca y el norte del Perú.",
       etiqueta: "Proyectos",
@@ -426,7 +426,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       siguiente: "Fotografía siguiente",
     },
     servicios: {
-      titulo: "Servicios — 1903 Arquitectos",
+      titulo: "Servicios | 1903 Arquitectos",
       descripcion:
         "Diseño arquitectónico, interiorismo, visualización 3D, coordinación de proyectos, supervisión y construcción de obra de inicio a fin.",
       etiqueta: "Servicios",
@@ -552,7 +552,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       llamadoBoton: "Escríbenos",
     },
     cursos: {
-      titulo: "Cursos de AutoCAD, V-Ray y Revit — 1903 Arquitectos",
+      titulo: "Cursos | 1903 Arquitectos",
       descripcion:
         "Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú.",
       etiqueta: "Cursos",
@@ -576,7 +576,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       ],
     },
     estudioPagina: {
-      titulo: "Estudio — 1903 Arquitectos",
+      titulo: "Estudio | 1903 Arquitectos",
       descripcion:
         "Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales.",
       etiqueta: "Estudio",
@@ -606,7 +606,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       abreNuevaPestana: " (se abre en otra pestaña)",
     },
     contacto: {
-      titulo: "Contacto — 1903 Arquitectos",
+      titulo: "Contacto | 1903 Arquitectos",
       descripcion:
         "Escríbenos por WhatsApp o correo, o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00.",
       etiqueta: "Contacto",
@@ -686,7 +686,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       },
     },
     privacidad: {
-      titulo: "Aviso de privacidad — 1903 Arquitectos",
+      titulo: "Aviso de privacidad | 1903 Arquitectos",
       descripcion: "Qué datos trata esta web, quién los recibe y cómo pedir acceso, corrección o borrado.",
       etiqueta: "Aviso de privacidad",
       h1: "Tus datos en esta web",
@@ -706,7 +706,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       derechosDespues: ", según la Ley 29733 de Protección de Datos Personales.",
     },
     accesibilidad: {
-      titulo: "Declaración de accesibilidad — 1903 Arquitectos",
+      titulo: "Declaración de accesibilidad | 1903 Arquitectos",
       descripcion: "Nivel de accesibilidad que busca esta web, limitaciones conocidas y dónde reportar un problema.",
       etiqueta: "Declaración de accesibilidad",
       h1: "Una web para todas las personas",
@@ -771,7 +771,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       "Interiorismo residencial": "Residential interior design",
     },
     inicio: {
-      titulo: "1903 Arquitectos — Commercial Architecture & Interior Design in Cajamarca",
+      titulo: "1903 Arquitectos",
       descripcion:
         "Architecture and interior design studio in Cajamarca, Peru. We design and build cafés, restaurants, commercial spaces, and homes with Cajamarcan identity.",
       portadaAria: "Featured project",
@@ -802,7 +802,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       fotoPendiente: "Photo pending",
     },
     proyectos: {
-      titulo: "Projects — 1903 Arquitectos",
+      titulo: "Projects | 1903 Arquitectos",
       descripcion:
         "Completed work by the studio: cafés, restaurants, retail spaces, and homes in Cajamarca and northern Peru.",
       etiqueta: "Projects",
@@ -860,7 +860,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       siguiente: "Next photograph",
     },
     servicios: {
-      titulo: "Services — 1903 Arquitectos",
+      titulo: "Services | 1903 Arquitectos",
       descripcion:
         "Architectural design, interior design, 3D visualization, project coordination, supervision, and end-to-end construction.",
       etiqueta: "Services",
@@ -989,7 +989,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       llamadoBoton: "Write to us",
     },
     cursos: {
-      titulo: "AutoCAD, V-Ray & Revit Courses — 1903 Arquitectos",
+      titulo: "Courses | 1903 Arquitectos",
       descripcion:
         "Architecture courses taught by the studio: AutoCAD, plan reading, V-Ray, and Revit, with certification in association with the College of Architects of Peru.",
       etiqueta: "Courses",
@@ -1014,7 +1014,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       ],
     },
     estudioPagina: {
-      titulo: "Studio — 1903 Arquitectos",
+      titulo: "Studio | 1903 Arquitectos",
       descripcion:
         "Nineteen zero three: a Cajamarca studio with built work. Discover our story, our team, and the materials showroom.",
       etiqueta: "Studio",
@@ -1044,7 +1044,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       abreNuevaPestana: " (opens in a new tab)",
     },
     contacto: {
-      titulo: "Contact — 1903 Arquitectos",
+      titulo: "Contact | 1903 Arquitectos",
       descripcion:
         "Write to us on WhatsApp or email, or visit us at Jr. Amancaes 262, Cajamarca. Monday to Friday, 8:30 AM–1:00 PM and 3:00 PM–7:00 PM; Saturdays, 8:30 AM–1:00 PM.",
       etiqueta: "Contact",
@@ -1124,7 +1124,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       },
     },
     privacidad: {
-      titulo: "Privacy Notice — 1903 Arquitectos",
+      titulo: "Privacy Notice | 1903 Arquitectos",
       descripcion: "What data this website processes, who receives it, and how to request access, correction, or deletion.",
       etiqueta: "Privacy notice",
       h1: "Your data on this website",
@@ -1146,7 +1146,7 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
       derechosDespues: ", in accordance with Peruvian Law No. 29733 on Personal Data Protection.",
     },
     accesibilidad: {
-      titulo: "Accessibility Statement — 1903 Arquitectos",
+      titulo: "Accessibility Statement | 1903 Arquitectos",
       descripcion: "Accessibility level this website targets, known limitations, and where to report an issue.",
       etiqueta: "Accessibility statement",
       h1: "A website for everyone",

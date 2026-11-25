@@ -57,7 +57,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien llega por primera vez. Que vea de inmediato la calidad de la obra del estudio y quiera ver más o escribir.
 
-**Título:** 1903 Arquitectos — Arquitectura e interiorismo comercial en Cajamarca
+**Título:** 1903 Arquitectos
 **Descripción:** Estudio de arquitectura e interiorismo en Cajamarca. Diseñamos y construimos cafés, restaurantes, locales comerciales y viviendas con identidad cajamarquina.
 
 | Sección | Contenido | Prioridad |
@@ -84,7 +84,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien busca un tipo de obra en particular (por ejemplo, un café). Que encuentre proyectos parecidos al suyo y vea sus datos.
 
-**Título:** Proyectos — 1903 Arquitectos
+**Título:** Proyectos | 1903 Arquitectos
 **Descripción:** Obras terminadas del estudio: cafés, restaurantes, locales comerciales y viviendas en Cajamarca y el norte del Perú.
 
 | Sección | Contenido | Prioridad |
@@ -109,7 +109,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien quiere conocer un proyecto a fondo. Que entienda qué pidió el cliente, qué hizo el estudio y vea el resultado.
 
-**Título:** {Nombre} — {tipo} en {ciudad} · 1903 Arquitectos (por ejemplo, "Cafétos — interiorismo comercial en Cajamarca · 1903 Arquitectos")
+**Título:** {Nombre} | 1903 Arquitectos (por ejemplo, "Cafétos | 1903 Arquitectos")
 **Descripción:** la primera oración del encargo de cada proyecto (recortada limpiamente a ~158 caracteres si supera ese largo), o un resumen con nombre, tipo y ciudad si aún falta el encargo.
 
 | Sección | Contenido | Prioridad |
@@ -136,7 +136,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien quiere saber si el estudio puede hacer lo que necesita. Que reconozca su caso y escriba.
 
-**Título:** Servicios — 1903 Arquitectos
+**Título:** Servicios | 1903 Arquitectos
 **Descripción:** Diseño arquitectónico, interiorismo, visualización 3D, coordinación de proyectos, supervisión y construcción de obra de inicio a fin.
 
 | Sección | Contenido | Prioridad |
@@ -160,7 +160,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para estudiantes y profesionales que quieren aprender un programa. Que elijan un curso y se inscriban.
 
-**Título:** Cursos de AutoCAD, V-Ray y Revit — 1903 Arquitectos
+**Título:** Cursos | 1903 Arquitectos
 **Descripción:** Cursos para arquitectos dictados por el estudio: AutoCAD, lectura de planos, V-Ray y Revit, con certificado en asociación con el Colegio de Arquitectos del Perú.
 
 | Sección | Contenido | Prioridad |
@@ -183,14 +183,14 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien quiere saber quién está detrás de la obra antes de confiar su proyecto. Que perciba un estudio joven con oficio probado.
 
-**Título:** Estudio — 1903 Arquitectos
+**Título:** Estudio | 1903 Arquitectos
 **Descripción:** Diecinueve cero tres: un estudio de Cajamarca con obra construida. Conoce nuestra historia, al equipo y el showroom de materiales.
 
 | Sección | Contenido | Prioridad |
 |---|---|---|
 | Por qué "1903" | La historia del nombre: el 19 del Jr. Amazonas 919, en Cajamarca, y el 03 de la calle Amazonas 103, en Arequipa; se pronuncia "diecinueve cero tres" (texto aprobado en la hoja) | Must |
 | Misión, visión y propósito | Cada una por separado, en versión corta aprobada | Must |
-| Equipo | Arq. Jorge Muñoz, Arq. Carla Llerena y Arq. Loren Bazán, solo con sus nombres [retratos pendientes] | Must |
+| Equipo | Arq. Jorge Muñoz, Arq. Carla Llerena y Arq. Loren Bazán, con sus retratos de estudio (`src/assets/equipo/`) y nombres sin cargos | Must |
 | Showroom | Abre a inicios de diciembre, en el mismo espacio del estudio y con el mismo horario; render del showroom (`src/assets/showroom.jpg`) con etiqueta `Render` [fecha exacta y materiales por confirmar]. Cuando tenga su propia web, un enlace a ella | Must |
 
 *Leyenda: "Sección" es el bloque de la página, de arriba abajo. "Contenido" es lo que lleva. "Prioridad" es su grupo MoSCoW.*
@@ -207,7 +207,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien ya decidió escribir o visitar el estudio. Que lo haga sin fricción.
 
-**Título:** Contacto — 1903 Arquitectos
+**Título:** Contacto | 1903 Arquitectos
 **Descripción:** Escríbenos por WhatsApp o correo, o visítanos en Jr. Amancaes 262, Cajamarca. Lunes a viernes de 8:30 a 13:00 y de 15:00 a 19:00; sábados de 8:30 a 13:00.
 
 | Sección | Contenido | Prioridad |
@@ -232,7 +232,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para cualquier visitante que quiera saber qué pasa con sus datos. Que lo entienda sin ser abogado.
 
-**Título:** Aviso de privacidad — 1903 Arquitectos
+**Título:** Aviso de privacidad | 1903 Arquitectos
 **Descripción:** Qué datos trata esta web, quién los recibe y cómo pedir acceso, corrección o borrado.
 
 | Sección | Contenido | Prioridad |
@@ -252,7 +252,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para visitantes con discapacidad y para quien quiera comprobar el compromiso del estudio. Que sepa qué nivel cumple la web y a dónde escribir si algo no le funciona.
 
-**Título:** Declaración de accesibilidad — 1903 Arquitectos
+**Título:** Declaración de accesibilidad | 1903 Arquitectos
 **Descripción:** Nivel de accesibilidad que busca esta web, limitaciones conocidas y dónde reportar un problema.
 
 | Sección | Contenido | Prioridad |
@@ -272,7 +272,7 @@ Lo que está entre [corchetes] es un dato o un texto pendiente: no se inventa, s
 
 **Para quién y qué debe lograr:** para quien entra a una dirección que no existe (por ejemplo, un enlace viejo o mal escrito). Que no se vaya: que encuentre el camino de vuelta.
 
-**Título:** Página no encontrada — 1903 Arquitectos
+**Título:** Página no encontrada | 1903 Arquitectos
 **Descripción:** La página que buscas no existe.
 
 | Sección | Contenido | Prioridad |
