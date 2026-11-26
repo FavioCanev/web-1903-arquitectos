@@ -35,6 +35,8 @@ const FRANJAS = 10;
   // Fracción del alto de la última baldosa (patron-final.svg) donde termina su dibujo; debajo queda vacía.
   // El rollo se gasta justo ahí, para que no quede separado de la tela. Medido el 11/11/2026.
   const FIN_DIBUJO_FINAL = 0.837;
+  // Separación mínima (px) entre el extremo final del listón y el inicio del pie de página.
+  const MARGEN_PIE = 32;
 
   let pendiente = false;
   let ultimoScroll = scrollY;
@@ -63,14 +65,27 @@ const FRANJAS = 10;
     raiz.setProperty("--pausa-portada", `${pausa}px`);
     raiz.setProperty("--fin-pausa", `${barra + pausa}px`);
 
+    // Tope antes del pie de página: el listón termina de desenrollarse por encima del footer.
+    const pie = document.querySelector<HTMLElement>(".pie");
+    const limitePie = pie ? pie.offsetTop : document.documentElement.scrollHeight;
+    const techoFin = Math.max(origen + baldosa, limitePie - MARGEN_PIE);
+    const hayPausaPortada = Boolean(document.querySelector(".portada-pausa"));
+    const pausaEfectiva = hayPausaPortada
+      ? pausa
+      : Math.min(pausa, Math.max(0, techoFin - origen - largoInicial));
+    const disponibleHastaPie = Math.max(baldosa, techoFin - (origen + pausaEfectiva));
+
     // El largo crece al mismo ritmo que el scroll. Durante la pausa, el listón baja junto con la portada fija.
     const avance = Math.max(0, scrollY - barra);
     const finPagina = Math.max(0, document.documentElement.scrollHeight - innerHeight - barra);
     // Largo total en baldosas completas, para que la última sea entera (la variante sin las piezas de abajo).
-    const maximo = Math.max(baldosa, Math.floor((largoInicial + finPagina) / baldosa) * baldosa);
+    const maximo = Math.max(
+      baldosa,
+      Math.floor(Math.min(largoInicial + finPagina, disponibleHastaPie) / baldosa) * baldosa,
+    );
     const fin = maximo - baldosa * (1 - FIN_DIBUJO_FINAL);
     const largo = reducir.matches ? fin : Math.min(fin, largoInicial + avance);
-    const desplazamiento = Math.min(avance, pausa);
+    const desplazamiento = Math.min(avance, pausaEfectiva);
 
     // El rollo se adelgaza a lo largo de toda la página: el área de la tela que queda baja con el largo.
     const quedaTela = Math.max(0, 1 - largo / fin);

@@ -31,10 +31,14 @@ interface TextosIdioma {
   };
   pie: {
     mapaLabel: string;
+    exploraTitulo: string;
+    estudioTitulo: string;
     redesLabel: string;
+    siguenos: string;
     contacto: string;
     privacidad: string;
     accesibilidad: string;
+    derechos: string;
     volverArriba: string;
   };
   categorias: Record<string, string>;
@@ -325,10 +329,14 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
     },
     pie: {
       mapaLabel: "Mapa del sitio",
+      exploraTitulo: "Explora",
+      estudioTitulo: "Estudio",
       redesLabel: "Redes sociales",
+      siguenos: "¡Síguenos!",
       contacto: "Contacto",
       privacidad: "Aviso de privacidad",
       accesibilidad: "Declaración de accesibilidad",
+      derechos: "© 2026 1903 Arquitectos S.A.C. · Cajamarca, Perú. Todos los derechos reservados.",
       volverArriba: "Volver arriba",
     },
     categorias: {
@@ -759,10 +767,14 @@ export const TEXTOS: Record<Idioma, TextosIdioma> = {
     },
     pie: {
       mapaLabel: "Site map",
+      exploraTitulo: "Explore",
+      estudioTitulo: "Studio",
       redesLabel: "Social media",
+      siguenos: "Follow us!",
       contacto: "Contact",
       privacidad: "Privacy notice",
       accesibilidad: "Accessibility statement",
+      derechos: "© 2026 1903 Arquitectos S.A.C. · Cajamarca, Peru. All rights reserved.",
       volverArriba: "Back to top",
     },
     categorias: {

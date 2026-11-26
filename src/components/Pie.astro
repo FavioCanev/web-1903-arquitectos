@@ -17,25 +17,54 @@ const enlacesMapa = [
 
 <footer class="pie">
   <div class="contenedor">
-    <div class="pie__cabecera">
-      <a class="pie__logo" href={ruta("inicio", lang)}><img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="560" height="224" loading="lazy" /></a>
-      <a class="pie__arriba" href="#arriba">{t.pie.volverArriba}<span aria-hidden="true"> ↑</span></a>
-    </div>
-
-    <div class="pie__columnas grilla-12">
-      <div class="pie__contacto">
-        <p><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></p>
-        <p>{t.estudio.atencionPeru} · <a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></p>
-        <p>{t.estudio.horarioSemana}<br />{t.estudio.horarioSabado}</p>
-        <p>{estudio.direccion}</p>
+    <div class="pie__interior">
+      <div class="pie__marca">
+        <a class="pie__logo" href={ruta("inicio", lang)}>
+          <img src="/img/logo-h-vino.svg" alt={t.estudio.logoAlt} width="196" height="78" loading="lazy" />
+        </a>
+        <p class="pie__lema">{t.estudio.lema}</p>
       </div>
-      <nav class="pie__mapa" aria-label={t.pie.mapaLabel}>
-        <ul>
+
+      <nav class="pie__col" aria-label={t.pie.mapaLabel}>
+        <h2 class="pie__titulo">{t.pie.exploraTitulo}</h2>
+        <ul class="pie__lista">
           {enlacesMapa.map((item) => (
             <li><a href={item.href}>{item.texto}</a></li>
           ))}
         </ul>
       </nav>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">{t.pie.estudioTitulo}</h2>
+        <ul class="pie__lista pie__datos">
+          <li><a href={`mailto:${estudio.correo}`}>{estudio.correo}</a></li>
+          <li><a href={enlaceWhatsapp()}>WhatsApp {estudio.whatsapp.visible}</a></li>
+          <li>{estudio.direccion}</li>
+        </ul>
+        <ul class="pie__lista pie__bloque-sec">
+          <li><a href={ruta("privacidad", lang)}>{t.pie.privacidad}</a></li>
+          <li><a href={ruta("accesibilidad", lang)}>{t.pie.accesibilidad}</a></li>
+        </ul>
+      </div>
+
+      <div class="pie__social">
+        <p class="pie__tag">{t.pie.redesLabel}</p>
+        <p class="pie__cta-social">{t.pie.siguenos}</p>
+        <div class="pie__redes" role="group" aria-label={t.pie.redesLabel}>
+          <a class="pie__red" href={estudio.redes.instagram} aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a class="pie__red" href={estudio.redes.facebook} aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -43,54 +72,72 @@ const enlacesMapa = [
 
   <div class="contenedor">
     <div class="pie__legal">
-      <span>{estudio.nombre} © 2026</span>
-      <div class="pie__redes" role="group" aria-label={t.pie.redesLabel}>
-        <a class="pie__red" href={estudio.redes.instagram} aria-label="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5" />
-            <circle cx="12" cy="12" r="4" />
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-          </svg>
-        </a>
-        <a class="pie__red" href={estudio.redes.facebook} aria-label="Facebook">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z" />
-          </svg>
-        </a>
+      <p class="pie__derechos">{t.pie.derechos}</p>
+      <div class="pie__legal-der">
+        <p class="pie__horario">{t.estudio.horarioSemana} · {t.estudio.horarioSabado}</p>
+        <a class="pie__arriba" href="#arriba">{t.pie.volverArriba}<span aria-hidden="true"> ↑</span></a>
       </div>
-      <span><a href={ruta("privacidad", lang)}>{t.pie.privacidad}</a> · <a href={ruta("accesibilidad", lang)}>{t.pie.accesibilidad}</a></span>
     </div>
   </div>
 </footer>
 
 <style>
-  .pie { padding: var(--e12) 0 var(--e6); background: var(--amarillo); --velo: var(--velo-amarillo); }
+  .pie { padding: var(--e8) 0 var(--e6); background: var(--amarillo); color: var(--vino); --velo: var(--velo-amarillo); }
   .pie > .contenedor { position: relative; z-index: var(--capa-contenido); }
-  .pie__cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--e3); flex-wrap: wrap; }
-  .pie__logo { display: inline-block; width: fit-content; }
-  .pie__logo img { width: min(560px, 80vw); height: auto; }
+  .pie__interior {
+    display: grid;
+    grid-template-columns: 1.15fr 0.75fr 1.25fr 0.95fr;
+    gap: var(--e6) var(--e4);
+    align-items: start;
+  }
+  .pie__marca { display: grid; justify-items: start; gap: var(--e2); }
+  .pie__logo { display: inline-block; width: fit-content; background-color: transparent; box-shadow: none; }
+  .pie__logo img { width: min(196px, 60vw); height: auto; display: block; }
+  .pie__lema { margin: 0; font-size: var(--t-s); color: var(--vino-2); max-width: 24ch; line-height: 1.45; }
+  .pie__titulo {
+    margin: 0 0 var(--e2);
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--vino-2);
+  }
+  .pie__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e1); font-size: var(--t-s); }
+  .pie__datos { color: var(--vino-2); }
+  .pie__bloque-sec { margin-top: var(--e3); padding-top: var(--e2); border-top: 1px solid var(--linea-vino); }
+  .pie__lista a { display: inline-flex; align-items: center; min-height: 24px; color: inherit; text-decoration: none; transition: color var(--dur-corta) var(--curva); }
+  .pie__lista a:hover { color: var(--vino); text-decoration: underline; text-underline-offset: 4px; }
+  .pie__social { display: grid; gap: var(--e1); justify-items: start; align-content: start; }
+  .pie__tag { margin: 0; font-size: var(--t-xs); color: var(--vino-2); }
+  .pie__cta-social { margin: 0 0 var(--e1); font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 500; line-height: 1.05; color: var(--vino); }
+  .pie__redes { display: flex; align-items: center; gap: var(--e2); }
+  .pie__red {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid rgb(83 9 10 / 0.42); color: var(--vino);
+    background-color: var(--velo); box-shadow: none; text-decoration: none;
+    transition: border-color var(--dur-corta) var(--curva), background-color var(--dur-corta) var(--curva);
+  }
+  .pie__red:hover { border-color: var(--vino); background-color: rgb(83 9 10 / 0.1); box-shadow: none; }
+  /* De borde a borde, con 16 px de aire entre baldosas (pedido del 02/11/2026) */
+  .pie__patron { height: 40px; margin: var(--e6) 0 var(--e4); background: url("/img/patron.svg") center / 56px 40px repeat-x; }
+  .pie__legal {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--e2) var(--e4);
+    font-size: var(--t-xs); color: var(--vino);
+  }
+  .pie__derechos, .pie__horario { margin: 0; }
+  .pie__legal-der { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e2) var(--e4); }
   .pie__arriba {
-    display: inline-flex; align-items: center; gap: 6px; min-height: 36px;
+    display: inline-flex; align-items: center; gap: 6px; min-height: 28px;
     font-size: var(--t-xs); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none; color: var(--vino); border-bottom: 1px solid var(--linea-vino);
     transition: border-color var(--dur-corta) var(--curva);
   }
   .pie__arriba:hover { border-bottom-color: var(--vino); }
-  .pie__columnas { margin-top: var(--e8); align-items: start; }
-  .pie__contacto { grid-column: span 8; display: grid; gap: var(--e1); align-content: start; font-size: var(--t-s); }
-  .pie__mapa { grid-column: span 4; }
-  .pie__mapa ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e1); font-size: var(--t-s); }
-  .pie__mapa a, .pie__legal a { display: inline-flex; align-items: center; min-height: 24px; }
-  /* De borde a borde, con 16 px de aire entre baldosas (pedido del 02/11/2026) */
-  .pie__patron { height: 56px; margin: var(--e8) 0 var(--e4); background: url("/img/patron.svg") center / 72px 56px repeat-x; }
-  .pie__legal { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--e3); font-size: var(--t-xs); color: var(--vino); border-top: 1px solid var(--linea-vino); padding-top: var(--e3); }
-  .pie__legal > :last-child { justify-self: end; text-align: right; }
-  .pie__redes { display: flex; align-items: center; gap: var(--e2); }
-  .pie__red { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(83, 9, 10, 0.4); color: var(--vino); background-color: transparent; box-shadow: none; transition: border-color var(--dur-corta) var(--curva), background-color var(--dur-corta) var(--curva); }
-  .pie__red:hover { border-color: var(--vino); background-color: rgba(83, 9, 10, 0.08); }
-  @media (max-width: 900px) {
-    .pie__contacto, .pie__mapa { grid-column: 1 / -1; }
-    .pie__legal { grid-template-columns: minmax(0, 1fr); justify-items: start; }
-    .pie__legal > :last-child { justify-self: start; text-align: left; }
+  @media (max-width: 960px) {
+    .pie__interior { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e6) var(--e4); }
+  }
+  @media (max-width: 600px) {
+    .pie__interior { grid-template-columns: minmax(0, 1fr); gap: var(--e4); }
+    .pie__legal { flex-direction: column; align-items: flex-start; }
   }
 </style>
