@@ -96,9 +96,8 @@ main > :not(.liston-sobre) > .contenedor,
 }
 .boton:hover { transform: translateY(-2px); text-shadow: 0 0 0.45px currentColor; }
 .boton:active { transform: translateY(0) scale(0.98); }
-.boton--primario { background: var(--naranja); color: var(--vino); }
-.boton--primario:hover { background: var(--naranja-oscuro); color: var(--claro); }
-:is(.portada-pausa--con-foto, .sobre-vino, .contacto) .boton--primario:hover { background: var(--amarillo); color: var(--vino); }
+.boton--primario { background: var(--amarillo); color: var(--vino); }
+.boton--primario:hover { background: var(--naranja); color: var(--vino); }
 /* Todos los botones llevan fondo sólido, al 100 % y sin borde (--boton-fondo: un tono que se distingue del de su
    sección: beige sobre los fondos claros, blanco sobre el beige y sobre las fotos, claro sobre el vino). */
 :root { --boton-fondo: var(--pendiente); --boton-fondo-hover: #dfd5ca; }

@@ -7,9 +7,8 @@
   --fondo-alt: #f6f1ea;
   --vino: #53090a;          /* texto principal y bloques oscuros (14,9:1 sobre el fondo) */
   --vino-2: #822325;        /* texto secundario (9,5:1) */
-  --naranja: #f5700b;       /* acento único: botones, siempre con texto vino */
-  --naranja-oscuro: #bf4d00; /* hover de botón primario sobre fondos claros (4,83:1 con --claro) */
-  --amarillo: #ffde58;      /* una sola banda por página */
+  --naranja: #f5700b;       /* hover de botones primarios y acento en subrayados */
+  --amarillo: #ffde58;      /* botones primarios (con texto vino), pie de página y banda de cursos */
   --claro: #fdfdfd;
   --linea: #e4d8cc;
   --linea-vino: rgb(83 9 10 / 0.25);
