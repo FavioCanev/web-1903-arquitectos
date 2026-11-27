@@ -8,6 +8,7 @@ import "../styles/base.css";
 import "../styles/parallax.css";
 import { estudio } from "../config";
 import { alternarRuta, limpiarBase, type Idioma } from "../i18n/rutas";
+import { ARCHIVOS_LOGO, RANGOS_TEMPORADA } from "../lib/temporada";
 import { textos } from "../i18n/textos";
 import portadaDefecto from "../assets/proyectos/estacion-de-servicio-labanda/02.jpg";
 import BarraInfo from "../components/BarraInfo.astro";
@@ -73,16 +74,70 @@ const imagenOgUrl = Astro.site ? new URL(imagenOg, Astro.site).href : imagenOg;
     <meta name="twitter:image" content={imagenOgUrl} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <ClientRouter />
+    <script
+      type="application/json"
+      is:inline
+      data-temporada-config
+      set:html={JSON.stringify({ rangos: RANGOS_TEMPORADA, archivos: ARCHIVOS_LOGO, zona: estudio.zonaHoraria })}
+    />
+    <script is:inline>
+      (() => {
+        const nodoCfg = document.querySelector("script[data-temporada-config]");
+        if (!nodoCfg) return;
+        const cfg = JSON.parse(nodoCfg.textContent || "{}");
+        function detectarTemporada() {
+          const p = new URLSearchParams(location.search).get("temporada");
+          const clave = p ? p.trim().toLowerCase() : "";
+          if (clave && cfg.archivos && Object.prototype.hasOwnProperty.call(cfg.archivos, clave)) return clave;
+          const partes = new Intl.DateTimeFormat("en-US", {
+            timeZone: cfg.zona,
+            month: "numeric",
+            day: "numeric",
+          }).formatToParts(new Date());
+          const mes = Number((partes.find((x) => x.type === "month") || {}).value);
+          const dia = Number((partes.find((x) => x.type === "day") || {}).value);
+          const codigo = mes * 100 + dia;
+          for (let i = 0; i < (cfg.rangos || []).length; i += 1) {
+            const r = cfg.rangos[i];
+            if (codigo >= r.inicioMes * 100 + r.inicioDia && codigo <= r.finMes * 100 + r.finDia) {
+              return r.temporada;
+            }
+          }
+          return "normal";
+        }
+        function aplicarLogosTemporada() {
+          const temporada = detectarTemporada();
+          const mapa = cfg.archivos || {};
+          const archivo = mapa[temporada] || mapa.normal;
+          if (!archivo) return;
+          document.querySelectorAll("img[data-logo-temporada]").forEach((img) => {
+            const actual = img.getAttribute("src") || "";
+            const siguiente = /logo-h-[^/]+\.svg$/i.test(actual)
+              ? actual.replace(/logo-h-[^/]+\.svg$/i, archivo)
+              : "/img/" + archivo;
+            if (actual !== siguiente) img.setAttribute("src", siguiente);
+          });
+        }
+        window["__aplicarLogosTemporada"] = aplicarLogosTemporada;
+        if (!window["__logosTemporadaListo"]) {
+          window["__logosTemporadaListo"] = true;
+          document.addEventListener("astro:after-swap", aplicarLogosTemporada);
+          document.addEventListener("astro:page-load", aplicarLogosTemporada);
+        }
+      })();
+    </script>
   </head>
   <body id="arriba">
     <a class="saltar" href="#contenido">{t.meta.saltar}</a>
     <Liston />
     <BarraInfo lang={lang} urlEs={urlEs} urlEn={urlEn} />
     <Nav lang={lang} />
+    <script is:inline>window["__aplicarLogosTemporada"]?.();</script>
     <main id="contenido" tabindex="-1">
       <slot />
     </main>
     <Pie lang={lang} />
+    <script is:inline>window["__aplicarLogosTemporada"]?.();</script>
     <script>
       document.addEventListener("astro:page-load", () => {
         document.querySelectorAll<HTMLImageElement>(".foto-esqueleto img").forEach((img) => {
